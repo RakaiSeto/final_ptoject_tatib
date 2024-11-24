@@ -1,6 +1,6 @@
 <?php
 
-namespace MVC\src;
+namespace Tatib\Src;
 
 class Controller {
     protected function render($view, $data = []) {

@@ -1,0 +1,17 @@
+<?php
+
+//spl_autoload_register(function ($class) {
+//
+//    $file = str_replace('\\', '/', $class) . '.php';
+//
+//    if (file_exists($file)) {
+//        require_once $file;
+//    } else {
+//        throw new \Exception("Class $file not found");
+//    }
+//});
+
+$uri = $_SERVER['REQUEST_URI'];
+
+$router = require 'src/routes.php';
+$router->dispatch($uri);

@@ -1,8 +1,9 @@
 <?php
 
-use MVC\Router;
-use MVC\Controllers\UserController;
+use Tatib\Src\Controller\TestController;
 
 $router = new Router();
 
-$router->addRoute('/', UserController::class, 'index');
+$router->addRoute('/', TestController::class, 'index');
+
+return $router;
