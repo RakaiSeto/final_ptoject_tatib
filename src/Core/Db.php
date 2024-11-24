@@ -16,7 +16,7 @@ class Db
         $pass = $env['DB_PASS'];
         $db = $env['DB_NAME'];
 
-        $dsn = 'sqlsrv:Server=' . $host . ',' . $port . ';Database=' . $db . "Encrypt=yes;TrustServerCertificate=yes;";
+        $dsn = 'sqlsrv:Server=' . $host . ',' . $port . ';Database=' . $db . ";Encrypt=yes;TrustServerCertificate=yes;";
         $username = $user;
         $password = $pass;
 
