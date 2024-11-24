@@ -1,9 +1,0 @@
-<?php
-
-use Tatib\Src\Controller\TestController;
-
-$router = new Router();
-
-$router->addRoute('/', TestController::class, 'index');
-
-return $router;
