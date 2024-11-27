@@ -1,4 +1,4 @@
-/vendor/
-.env
+vendor/
+user/.env
 /.idea/
 *~

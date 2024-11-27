@@ -1,0 +1,12 @@
+{
+    "name": "tatib/src",
+    "autoload": {
+        "psr-4": {
+            "Tatib\\Src\\": "src/"
+        }
+    },
+    "require": {
+        "tatib/src": "*",
+        "ext-pdo": "*"
+    }
+}
