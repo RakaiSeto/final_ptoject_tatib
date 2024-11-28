@@ -8,7 +8,6 @@ use Tatib\Src\Core\Db;
 class TestController extends Controller
 {
     public function index() {
-        $db = new Db();
-        $db->getDB();
+        $db = Db::getInstance();
     }
 }

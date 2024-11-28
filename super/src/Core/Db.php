@@ -1,12 +1,16 @@
 <?php
 namespace Tatib\Src\Core;
 
+use Tatib\Src\Core\Helper;
+
 use PDO;
 use PDOException;
 
 class Db
 {
-    function getDB()
+    private static $instance = null;
+
+    function __construct()
     {
         $env = parse_ini_file(__DIR__ . '/../../.env');
 
@@ -23,10 +27,20 @@ class Db
 
         try {
             $conn = new PDO($dsn, $username, $password);
-            echo "Connected successfully";
+            dumpToLog("Connected successfully");
+            return $conn;
         } catch (PDOException $e) {
-            die("Connection failed: " . $e->getMessage());
+            dumpToLog("Failed to connect : " . $e->getMessage());
+            return null;
         }
+    }
+
+    public static function getInstance() {
+        if (self::$instance === null) {
+            self::$instance = new DB();
+        }
+
+        return self::$instance;
     }
 
 }
