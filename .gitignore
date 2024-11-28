@@ -1,4 +1,4 @@
 vendor/
-user/.env
+.env
 /.idea/
 *~
