@@ -1,8 +1,6 @@
 <?php
 namespace Tatib\Src\Core;
 
-use Tatib\Src\Core\Helper;
-
 use PDO;
 use PDOException;
 
@@ -27,10 +25,10 @@ class Db
 
         try {
             $conn = new PDO($dsn, $username, $password);
-            dumpToLog("Connected successfully");
+            Helper::dumpToLog("Connected successfully");
             return $conn;
         } catch (PDOException $e) {
-            dumpToLog("Failed to connect : " . $e->getMessage());
+            Helper::dumpToLog("Failed to connect : " . $e->getMessage());
             return null;
         }
     }
