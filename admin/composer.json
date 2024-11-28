@@ -6,7 +6,6 @@
         }
     },
     "require": {
-        "tatib/src": "*",
         "ext-pdo": "*"
     }
 }
