@@ -83,32 +83,7 @@
 
       <div class="bg-white">
         <!-- <button class="btn btn-success mb-4"><i class="bi bi-plus me-2"></i>Tambah</button> -->
-          <div class="table-responsive">
-            <table class="table table-bordered table-hover" id="tabel-awal">
-              <thead>
-                <tr>
-                  <th>No</th>
-                  <th>Pelanggaran</th>
-                  <th>Status</th>
-                  <th>File</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Merokok di kawasan kampus</td>
-                  <td>Menunggu</td>
-                  <td><button class="btn-generate btn btn-primary">Download</button></td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Merusak sarana dan prasarana</td>
-                  <td>Selesai</td>
-                  <td><button class="btn-generate btn btn-primary">Download</button></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+         
         </div>
       </div>
     </div>

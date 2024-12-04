@@ -9,7 +9,7 @@
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" />
-  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/style-css" />
 </head>
 
 <body>
@@ -17,7 +17,7 @@
     <!-- Sidebar -->
     <div class="sidebar" id="side_nav">
       <div class="header-box px-5 pt-3 pb-2 d-flex justify-content-between">
-        <img alt="Logo E-Tatib" src="../img/logo.svg" />
+        <img alt="Logo E-Tatib" src="../img/logo-svg" />
         <button class="btn d-md-none d-block close-btn px-1 py-0 text-dark">
           <i class="fas fa-stream"></i>
         </button>
@@ -54,7 +54,7 @@
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
-                <img src="../img/fotoagung.jpeg" alt="User Profile Picture" class="rounded-circle" width="50"
+                <img src="../img/fotoagung-jpeg" alt="User Profile Picture" class="rounded-circle" width="50"
                   height="50" />
               </a>
               <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
@@ -93,7 +93,7 @@
             <div class="row g-3 flex-column flex-md-row align-items-center">
               <!-- Gambar dan Tombol -->
               <div class="col-12 col-md-3 text-center">
-                <img alt="Profile Picture" src="../img/fotoagung.jpeg" class="img-fluid rounded mb-2"
+                <img alt="Profile Picture" src="../img/fotoagung-jpeg" class="img-fluid rounded mb-2"
                   style="max-width: 100%; height: auto;" />
                 <button class="btn-generate mt-2" data-bs-toggle="modal" data-bs-target="#QRCodeModal">Generate QR
                   Code</button>
@@ -165,7 +165,7 @@
             </div>
             <div class="modal-body text-center">
               <!-- Gambar bukti pelanggaran -->
-              <img src="../img/QRCode.png" class="img-fluid" alt="Bukti Pelanggaran">
+              <img src="../img/QRCode-png" class="img-fluid" alt="Bukti Pelanggaran">
             </div>
           </div>
         </div>

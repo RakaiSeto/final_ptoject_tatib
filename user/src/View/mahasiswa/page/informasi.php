@@ -37,7 +37,7 @@ if ($query === false) {
       <!-- Sidebar -->
       <div class="sidebar" id="side_nav">
         <div class="header-box px-xl-5 pt-3 pb-2 d-flex justify-content-between">
-          <img alt="Logo E-Tatib" src="../img/logo.svg" />
+          <img alt="Logo E-Tatib" src="../img/logo-svg" />
           <button class="btn d-md-none d-block close-btn px-1 py-0 text-dark">
             <i class="fas fa-stream"></i>
           </button>
@@ -69,7 +69,7 @@ if ($query === false) {
             <div class="d-flex ms-auto">
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  <img src="../img/fotoagung.jpeg" alt="User Profile Picture" class="rounded-circle" width="50" height="50" />
+                  <img src="../img/fotoagung-jpeg" alt="User Profile Picture" class="rounded-circle" width="50" height="50" />
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                   <li><a class="dropdown-item" href="#change-password">Ganti Password</a></li>
@@ -115,20 +115,23 @@ if ($query === false) {
                 <tr>
                     <th>No</th>
                     <th>Nama Pelanggaran</th>
-                    <!-- <th>Deskripsi</th> -->
+                    <th>Deskripsi</th>
                     <th>Tingkat Pelanggaran</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
+                $no=1;
+
                 // Menampilkan data dari database ke tabel
                 while ($row = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) {
                     echo "<tr>";
-                    echo "<td>" . htmlspecialchars($row['kode_pelanggaran']) . "</td>";
+                    echo "<td>" . $no . "</td>";
                     echo "<td>" . htmlspecialchars($row['nama_pelanggaran']) . "</td>";
-                    // echo "<td>" . htmlspecialchars($row['deskripsi']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['deskripsi']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['tingkat_pelanggaran']) . "</td>";
                     echo "</tr>";
+                    $no++;
                 }
                 ?>
             </tbody>
