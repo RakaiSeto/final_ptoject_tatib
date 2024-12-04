@@ -14,6 +14,25 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" rel="stylesheet" />
 
 
+    <style>
+        /* Ubah warna tab aktif */
+        .nav-pills .nav-link.active {
+            background-color: #fd7e14 !important;
+            border-color: #fd7e14 !important;
+            color: #fff !important;
+        }
+
+        /* Ubah warna tab biasa */
+        .nav-pills .nav-link {
+            color: #fd7e14;
+        }
+
+        /* Warna saat di-hover */
+        .nav-pills .nav-link:hover {
+            background-color: rgba(253, 126, 20, 0.1);
+            color: #fd7e14;
+        }
+    </style>
 </head>
 
 <body>
@@ -93,13 +112,12 @@
             </div>
 
             <div class="bg-white border">
+
                 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
-                            aria-selected="true"
-                            style=;
-                            >Pelanggaran Terbaru</button>
+                            aria-selected="true">Pelanggaran Terbaru</button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
@@ -107,12 +125,14 @@
                             aria-selected="false">Verifikasi Sanksi Mahasiswa</button>
                     </li>
                 </ul>
+
+
                 <div class="tab-content" id="pills-tabContent">
+                    <!-- Tab Pane: Pelanggaran Terbaru -->
                     <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
                         aria-labelledby="pills-home-tab" tabindex="0">
                         <div class="table-responsive my-4">
                             <table class="table table-hover" id="tabel-awal">
-
                                 <thead>
                                     <tr>
                                         <th>Tanggal</th>
@@ -120,7 +140,6 @@
                                         <th>Nama</th>
                                         <th>Jenis Pelanggaran</th>
                                         <th>Aksi</th>
-                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -128,53 +147,24 @@
                                         <td>01-08-2023</td>
                                         <td>2341720001</td>
                                         <td>Dedi Gunawan Saputra</td>
-                                        <td style="width: 520px;"> Tidak menjaga nama baik Polinema di masyarakat dan
-                                            atau
-                                            mencemarkan nama baik
-                                            Polinema melalui media apapun</td>
+                                        <td>Tidak menjaga nama baik Polinema</td>
                                         <td>
-                                            <button type="button" class="btn" style="background-color: #FD7E14; color: #fff; 
-                                    padding: 10px 20px; border: none; border-radius: 5px;"><i
-                                                    class="bi bi-eye-fill"></i> Tinjau </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>01-08-2023</td>
-                                        <td>2341720001</td>
-                                        <td>Dedi Gunawan Saputra</td>
-                                        <td style="width: 520px;"> Tidak menjaga nama baik Polinema di masyarakat dan
-                                            atau
-                                            mencemarkan nama baik
-                                            Polinema melalui media apapun</td>
-                                        <td>
-                                            <button type="button" class="btn" style="background-color: #FD7E14; color: #fff; 
-                                    padding: 10px 20px; border: none; border-radius: 5px;"><i
-                                                    class="bi bi-eye-fill"></i> Tinjau </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>01-08-2023</td>
-                                        <td>2341720001</td>
-                                        <td>Dedi Gunawan Saputra</td>
-                                        <td style="width: 520px;"> Tidak menjaga nama baik Polinema di masyarakat dan
-                                            atau
-                                            mencemarkan nama baik
-                                            Polinema melalui media apapun</td>
-                                        <td>
-                                            <button type="button" class="btn" style="background-color: #FD7E14; color: #fff; 
-                                    padding: 10px 20px; border: none; border-radius: 5px;"><i
-                                                    class="bi bi-eye-fill"></i> Tinjau </button>
+                                            <button type="button" class="btn"
+                                                style="background-color: #fd7e14; color: #fff;">
+                                                <i class="bi bi-eye-fill"></i> Tinjau
+                                            </button>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
+
+                    <!-- Tab Pane: Verifikasi Sanksi Mahasiswa -->
                     <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
                         tabindex="0">
                         <div class="table-responsive my-4">
-                            <table class="table table-hover" id="tabel-awal">
-
+                            <table class="table table-hover" id="tabel-verifikasi">
                                 <thead>
                                     <tr>
                                         <th>Tanggal</th>
@@ -182,7 +172,6 @@
                                         <th>Nama</th>
                                         <th>Jenis Pelanggaran</th>
                                         <th>Aksi</th>
-                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -190,26 +179,11 @@
                                         <td>01-08-2023</td>
                                         <td>2341720001</td>
                                         <td>Dedi Gunawan Saputra</td>
-                                        <td style="width: 520px;"> Tidak menjaga nama baik Polinema di masyarakat dan
-                                            atau
-                                            mencemarkan nama baik
-                                            Polinema melalui media apapun</td>
+                                        <td>Tidak menjaga nama baik Polinema</td>
                                         <td>
-                                            <button type="button" class="btn btn-success"><i class="bi bi-check"></i>
-                                                Selesai </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>01-08-2023</td>
-                                        <td>2341720001</td>
-                                        <td>Dedi Gunawan Saputra</td>
-                                        <td style="width: 520px;"> Tidak menjaga nama baik Polinema di masyarakat dan
-                                            atau
-                                            mencemarkan nama baik
-                                            Polinema melalui media apapun</td>
-                                        <td>
-                                            <button type="button" class="btn btn-success"><i class="bi bi-check"></i>
-                                                Selesai </button>
+                                            <button type="button" class="btn btn-success">
+                                                <i class="bi bi-check"></i> Selesai
+                                            </button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -218,8 +192,12 @@
                     </div>
                 </div>
 
+
             </div>
         </div>
+
+    </div>
+    </div>
     </div>
     </div>
 

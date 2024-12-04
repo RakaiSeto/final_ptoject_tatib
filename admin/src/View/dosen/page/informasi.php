@@ -1,3 +1,17 @@
+<?php
+// Termasuk koneksi.php untuk menghubungkan ke database
+include('koneksi.php');
+
+// Query untuk mengambil data pelanggaran dari database
+$sql = "SELECT kode_pelanggaran, nama_pelanggaran, deskripsi, tingkat_pelanggaran FROM daftar_pelanggaran";
+$query = sqlsrv_query($conn, $sql);
+
+// Mengecek apakah query berhasil dijalankan
+if ($query === false) {
+    die(print_r(sqlsrv_errors(), true));
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -71,7 +85,9 @@
       </nav>
 
         <!--Content -->
-        <div class="content px-3 pt-3">
+        <!-- Dashboard Content -->
+        <div class="content px-3 pt-3" style="margin-top: 44px;">
+          <div class="bg-white">
         <div class="input-group">
             <div class="form-outline" data-mdb-input-init>
               <input type="search" id="form1" class="form-control" placeholder="Search" />
@@ -82,198 +98,35 @@
           </div>
 
           <div class="table-responsive my-4">
-            <table class="table table-bordered table-hover" id="tabel-awal">
-              <thead>
-              <tr>
-                  <th>No</th>
-                  <th>Pelanggaran</th>
-                  <th>Tingkat</th>
+        <table class="table table-bordered table-hover" id="tabel-awal">
+          
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Nama Pelanggaran</th>
+                    <!-- <th>Deskripsi</th> -->
+                    <th>Tingkat Pelanggaran</th>
                 </tr>
-              </thead>
-              <tbody>
-              <tr>
-                <td>1</td>
-                <td>Berkomunikasi dengan tidak sopan, baik tertulis atau tidak tertulis kepada mahasiswa, dosen, karyawan, atau orang lain</td>
-                <td>V</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Berbusana tidak sopan dan tidak rapi, seperti pakaian ketat, transparan, t-shirt tidak berkerah, tank top, hipster, rok mini, celana pendek, celana tiga per empat, legging, model celana atau baju koyak, sandal, sepatu sandal di lingkungan kampus</td>
-                <td>IV</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Mahasiswa laki-laki berambut tidak rapi, gondrong, atau panjang rambutnya melewati batas alis mata di bagian depan, telinga di bagian samping atau menyentuh kerah baju di bagian leher</td>
-                <td>IV</td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>Mahasiswa berambut dengan model punk, dicat selain hitam dan/atau skinned</td>
-                <td>IV</td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td>Makan atau minum di dalam ruang kuliah/laboratorium/bengkel</td>
-                <td>IV</td>
-              </tr>
-              <tr>
-                <td>6</td>
-                <td>Melanggar peraturan/ketentuan yang berlaku di Polinema baik di Jurusan/Program Studi</td>
-                <td>III</td>
-              </tr>
-              <tr>
-                <td>7</td>
-                <td>Tidak menjaga kebersihan di seluruh area Polinema</td>
-                <td>III</td>
-              </tr>
-              <tr>
-                <td>8</td>
-                <td>Membuat kegaduhan yang mengganggu pelaksanaan perkuliahan atau praktikum yang sedang berlangsung</td>
-                <td>III</td>
-              </tr>
-              <tr>
-                <td>9</td>
-                <td>Merokok di luar area kawasan merokok</td>
-                <td>III</td>
-              </tr>
-              <tr>
-                <td>10</td>
-                <td>Bermain kartu, game online di area kampus</td>
-                <td>III</td>
-              </tr>
-              <tr>
-                <td>11</td>
-                <td>Mengotori atau mencoret-coret meja, kursi, tembok, dan lain-lain di lingkungan Polinema</td>
-                <td>III</td>
-              </tr>
-              <tr>
-                <td>12</td>
-                <td>Bertingkah laku kasar atau tidak sopan kepada mahasiswa, dosen, dan/atau karyawan</td>
-                <td>III</td>
-              </tr>
-              <tr>
-                <td>13</td>
-                <td>Merusak sarana dan prasarana yang ada di area Polinema</td>
-                <td>II</td>
-              </tr>
-              <tr>
-                <td>14</td>
-                <td>Tidak menjaga ketertiban dan keamanan di seluruh area Polinema (misalnya: parkir tidak pada tempatnya, konvoi selebrasi wisuda dll)</td>
-                <td>II</td>
-              </tr>
-              <tr>
-                <td>15</td>
-                <td>Melakukan pengotoran/pengrusakan barang milik orang lain termasuk milik Politeknik Negeri Malang</td>
-                <td>II</td>
-              </tr>
-              <tr>
-                <td>16</td>
-                <td>Mengakses materi pornografi di kelas atau area kampus</td>
-                <td>II</td>
-              </tr>
-              <tr>
-                <td>17</td>
-                <td>Membawa dan/atau menggunakan senjata tajam dan/atau senjata api untuk hal kriminal</td>
-                <td>II</td>
-              </tr>
-              <tr>
-                <td>18</td>
-                <td>Melakukan perkelahian, serta membentuk geng/kelompok yang bertujuan negatif</td>
-                <td>II</td>
-              </tr>
-              <tr>
-                <td>19</td>
-                <td>Melakukan kegiatan politik praktis di dalam kampus</td>
-                <td>II</td>
-              </tr>
-              <tr>
-                <td>20</td>
-                <td>Melakukan tindakan kekerasan atau perkelahian di dalam kampus</td>
-                <td>II</td>
-              </tr>
-              <tr>
-                <td>21</td>
-                <td>Melakukan penyalahgunaan identitas untuk perbuatan negatif</td>
-                <td>II</td>
-              </tr>
-              <tr>
-                <td>22</td>
-                <td>Mengancam, baik tertulis atau tidak tertulis kepada mahasiswa, dosen, dan/atau karyawan</td>
-                <td>II</td>
-              </tr>
-              <tr>
-                <td>23</td>
-                <td>Mencuri dalam bentuk apapun</td>
-                <td>II</td>
-              </tr>
-              <tr>
-                <td>24</td>
-                <td>Melakukan kecurangan dalam bidang akademik, administratif, dan keuangan</td>
-                <td>II</td>
-              </tr>
-              <tr>
-                <td>25</td>
-                <td>Melakukan pemerasan dan/atau penipuan</td>
-                <td>II</td>
-              </tr>
-              <tr>
-                <td>26</td>
-                <td>Melakukan pelecehan dan/atau tindakan asusila dalam segala bentuk di dalam dan di luar kampus</td>
-                <td>II</td>
-              </tr>
-              <tr>
-                <td>27</td>
-                <td>Berjudi, mengkonsumsi minuman keras, dan/atau bermabuk-mabukan di lingkungan dan di luar lingkungan Kampus Polinema</td>
-                <td>I</td>
-              </tr>
-              <tr>
-                <td>28</td>
-                <td>Mengikuti organisasi dan atau menyebarkan faham-faham yang dilarang oleh Pemerintah</td>
-                <td>I</td>
-              </tr>
-              <tr>
-                <td>29</td>
-                <td>Melakukan pemalsuan data/dokumen/tanda tangan</td>
-                <td>I</td>
-              </tr>
-              <tr>
-                <td>30</td>
-                <td>Melakukan plagiasi (copy paste) dalam tugas-tugas atau karya ilmiah</td>
-                <td>I</td>
-              </tr>
-              <tr>
-                <td>31</td>
-                <td>Tidak menjaga nama baik Polinema di masyarakat dan/atau mencemarkan nama baik Polinema melalui media apapun</td>
-                <td>I</td>
-              </tr>
-              <tr>
-                <td>32</td>
-                <td>Melakukan kegiatan atau sejenisnya yang dapat menurunkan kehormatan atau martabat Negara, Bangsa dan Polinema</td>
-                <td>I</td>
-              </tr>
-              <tr>
-                <td>33</td>
-                <td>Menggunakan barang-barang psikotropika dan/atau zat-zat Adiktif lainnya</td>
-                <td>I</td>
-              </tr>
-              <tr>
-                <td>34</td>
-                <td>Mengedarkan serta menjual barang-barang psikotropika dan/atau zat-zat Adiktif lainnya</td>
-                <td>I</td>
-              </tr>
-              <tr>
-                <td>35</td>
-                <td>Terlibat dalam tindakan kriminal dan dinyatakan bersalah oleh Pengadilan</td>
-                <td>I</td>
-              </tr>
-
-              </tbody>
+            </thead>
+            <tbody>
+                <?php
+                // Menampilkan data dari database ke tabel
+                while ($row = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) {
+                    echo "<tr>";
+                    echo "<td>" . htmlspecialchars($row['kode_pelanggaran']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['nama_pelanggaran']) . "</td>";
+                    // echo "<td>" . htmlspecialchars($row['deskripsi']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['tingkat_pelanggaran']) . "</td>";
+                    echo "</tr>";
+                }
+                ?>
+            </tbody>
             </table>
+          </div>
           </div>
     </div>
       </div>
     </div>
-
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>

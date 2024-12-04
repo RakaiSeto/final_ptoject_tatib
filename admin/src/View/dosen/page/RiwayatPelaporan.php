@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pelanggaran Mahasiswa</title>
+  <title>Riwayat Pelaporan</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
@@ -14,22 +14,6 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" rel="stylesheet" />
 
 
-  <style>
-    .nav-pills .nav-link.active {
-      background-color: #fd7e14 !important;
-      border-color: #fd7e14 !important;
-      color: #fff !important;
-    }
-
-    .nav-pills .nav-link {
-      color: #fd7e14;
-    }
-
-    .nav-pills .nav-link:hover {
-      background-color: rgba(253, 126, 20, 0.1);
-      color: #fd7e14;
-    }
-  </style>
 </head>
 
 <body>
@@ -51,13 +35,12 @@
           <a href="laporkan.php" class="text-decoration-none px-3 py-3 d-block fw-bold"><i class="fas fa-book"></i>
             Laporkan</a>
         </li>
-        <li>
+        <li class="active">
           <a href="RiwayatPelaporan.php" class="text-decoration-none px-3 py-3 d-block fw-bold"><i
               class="fas fa-info-circle"></i> Riwayat Pelaporan</a>
         </li>
-        <li class="active">
-          <a href="dataPelanggaran.php" class="text-decoration-none px-3 py-3 d-block fw-bold"><i
-              class="fas fa-print"></i>
+        <li>
+          <a href="dataPelanggaran.php" class="text-decoration-none px-3 py-3 d-block fw-bold"><i class="fas fa-print"></i>
             Data Pelanggaran</a>
         </li>
         <li>
@@ -74,7 +57,7 @@
           <button class="btn px-0 py-0 open-btn">
             <i class="fas fa-stream me-2 d-md-none"></i>
           </button>
-          <span class="fw-medium" style="font-size: 28px">Pelanggaran Mahasiswa</span>
+          <span class="fw-medium" style="font-size: 28px">Riwayat Pelanggaran</span>
           <div class="d-flex ms-auto">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown"
@@ -100,97 +83,185 @@
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-0">
               <li class="breadcrumb-item"><a href="#">E-Tatib</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Pelanggaran Mahasiswa Gue</li>
+              <li class="breadcrumb-item active" aria-current="page">Riwayat Pelaporan</li>
             </ol>
           </nav>
         </div>
       </div>
 
       <div class="bg-white border">
-
-        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-          <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home"
-              type="button" role="tab" aria-controls="pills-home" aria-selected="true">Pelanggaran Terbaru</button>
-          </li>
-          <li class="nav-item" role="presentation">
-            <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
-              type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Verifikasi Sanksi
-              Mahasiswa</button>
-          </li>
-        </ul>
-
-
-        <div class="tab-content" id="pills-tabContent">
-          <!-- Tab Pane: Pelanggaran Terbaru -->
-          <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
-            tabindex="0">
-            <div class="table-responsive my-4">
-              <table class="table table-hover" id="tabel-awal">
-                <thead>
-                  <tr>
-                    <th>Tanggal</th>
-                    <th>NIM</th>
-                    <th>Nama</th>
-                    <th>Jenis Pelanggaran</th>
-                    <th>Aksi</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>01-08-2023</td>
-                    <td>2341720001</td>
-                    <td>Dedi Gunawan Saputra</td>
-                    <td>Tidak menjaga nama baik Polinema</td>
-                    <td>
-                      <button type="button" class="btn" style="background-color: #fd7e14; color: #fff;">
-                        <i class="bi bi-eye-fill"></i> Tinjau
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+        <div class="input-group">
+          <div class="form-outline" data-mdb-input-init>
+            <input type="search" id="form1" class="form-control" placeholder="Cari apa kak? klik disini ya" />
           </div>
+          <button type="button" class="btn btn-detail" data-mdb-ripple-init>
+            <i class="fas fa-search"></i>
+          </button>
 
-          <!-- Tab Pane: Verifikasi Sanksi Mahasiswa -->
-          <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
-            tabindex="0">
-            <div class="table-responsive my-4">
-              <table class="table table-hover" id="tabel-verifikasi">
-                <thead>
-                  <tr>
-                    <th>Tanggal</th>
-                    <th>NIM</th>
-                    <th>Nama</th>
-                    <th>Jenis Pelanggaran</th>
-                    <th>Aksi</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>01-08-2023</td>
-                    <td>2341720001</td>
-                    <td>Dedi Gunawan Saputra</td>
-                    <td>Tidak menjaga nama baik Polinema</td>
-                    <td>
-                      <button type="button" class="btn btn-success">
-                        <i class="bi bi-check"></i> Selesai
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+
+          <div style="margin-left: auto;">
+            <label for="rowsPerPage" class="me-2">Baris per halaman</label>
+            <select id="rowsPerPage" class="form-select w-auto d-inline">
+              <option value="10" selected>10</option>
+              <option value="25">20</option>
+              <option value="50">30</option>
+            </select>
           </div>
         </div>
 
+        <div class="table-responsive my-4">
+          <table class="table table-hover" id="tabel-awal">
 
+            <thead>
+              <tr>
+                <th>Tanggal</th>
+                <th>NIM</th>
+                <th>Nama</th>
+                <th>Jenis Pelanggaran</th>
+                <th>Status</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>01-08-2023</td>
+                <td>2341720001</td>
+                <td>Dedi Gunawan Saputra</td>
+                <td style="width: 520px;"> Tidak menjaga nama baik Polinema di masyarakat dan atau mencemarkan nama baik
+                  Polinema melalui media apapun</td>
+                  <td><span class="btn btn-warning fw-semibold" style="background-color: rgba(252, 192, 12, 0.25); color: rgb(252, 192, 12); 
+                  border: 0; border-radius: 0; width: 114px; text-align: center;  padding: 10px 0;">Dalam proses</span></td>
+                <td>
+                  <button class="btn btn-sm btn-light"><i class="fas fa-ellipsis-h"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td>11-10-2023</td>
+                <td>2341720001</td>
+                <td>Indah Cahya Ramadhani</td>
+                <td>Tidak menjaga nama baik Polinema di masyarakat dan ...</td>
+                <td><span class="btn btn-warning fw-semibold" style="background-color: rgba(252, 192, 12, 0.25); color: rgb(252, 192, 12); 
+                  border: 0; border-radius: 0; width: 114px; text-align: center; padding: 10px 0;">Dalam proses</span></td>
+                <td>
+                  <button class="btn btn-sm btn-light"><i class="fas fa-ellipsis-h"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td>21-10-2023</td>
+                <td>2341720001</td>
+                <td>Ahmad Rizky Maulana</td>
+                <td>Tidak menjaga nama baik Polinema di masyarakat dan ...</td>
+                <td><span class="btn btn-success fw-semibold" style="background-color: rgba(40, 167, 69, 0.25); color: rgb(40, 167, 69); 
+                  border: 0; border-radius: 0; width: 114px; text-align: center; padding: 10px 0;">Selesai</span></td>
+                <td>
+                  <button class="btn btn-sm btn-light"><i class="fas fa-ellipsis-h"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td>07-11-2023</td>
+                <td>2341720001</td>
+                <td>Budi Santoso Putra</td>
+                <td>Tidak menjaga nama baik Polinema di masyarakat dan ...</td>
+                <td><span class="btn btn-danger fw-semibold" style="background-color: rgba(220, 53, 69, 0.25); color: rgb(220, 53, 69); 
+                  border: 0; border-radius: 0; width: 114px; text-align: center; padding: 10px 0;">Dibatalkan</span></td>
+                <td>
+                  <button class="btn btn-sm btn-light"><i class="fas fa-ellipsis-h"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td>23-12-2023</td>
+                <td>2341720001</td>
+                <td>Hendra Wijaya Kusuma</td>
+                <td>Tidak menjaga nama baik Polinema di masyarakat dan ...</td>
+                <td><span class="btn btn-success fw-semibold" style="background-color: rgba(40, 167, 69, 0.25); color: rgb(40, 167, 69); 
+                  border: 0; border-radius: 0; width: 114px; text-align: center; padding: 10px 0;">Selesai</span></td>
+                <td>
+                  <button class="btn btn-sm btn-light"><i class="fas fa-ellipsis-h"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td>01-08-2023</td>
+                <td>2341720001</td>
+                <td>Dedi Gunawan Saputra</td>
+                <td style="width: 520px;"> Tidak menjaga nama baik Polinema di masyarakat dan atau mencemarkan nama baik
+                  Polinema melalui media apapun</td>
+                  <td><span class="btn btn-warning fw-semibold" style="background-color: rgba(252, 192, 12, 0.25); color: rgb(252, 192, 12); 
+                  border: 0; border-radius: 0; width: 114px; text-align: center;  padding: 10px 0;">Dalam proses</span></td>
+                <td>
+                  <button class="btn btn-sm btn-light"><i class="fas fa-ellipsis-h"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td>11-10-2023</td>
+                <td>2341720001</td>
+                <td>Indah Cahya Ramadhani</td>
+                <td>Tidak menjaga nama baik Polinema di masyarakat dan ...</td>
+                <td><span class="btn btn-warning fw-semibold" style="background-color: rgba(252, 192, 12, 0.25); color: rgb(252, 192, 12); 
+                  border: 0; border-radius: 0; width: 114px; text-align: center; padding: 10px 0;">Dalam proses</span></td>
+                <td>
+                  <button class="btn btn-sm btn-light"><i class="fas fa-ellipsis-h"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td>21-10-2023</td>
+                <td>2341720001</td>
+                <td>Ahmad Rizky Maulana</td>
+                <td>Tidak menjaga nama baik Polinema di masyarakat dan ...</td>
+                <td><span class="btn btn-success fw-semibold" style="background-color: rgba(40, 167, 69, 0.25); color: rgb(40, 167, 69); 
+                  border: 0; border-radius: 0; width: 114px; text-align: center; padding: 10px 0;">Selesai</span></td>
+                <td>
+                  <button class="btn btn-sm btn-light"><i class="fas fa-ellipsis-h"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td>07-11-2023</td>
+                <td>2341720001</td>
+                <td>Budi Santoso Putra</td>
+                <td>Tidak menjaga nama baik Polinema di masyarakat dan ...</td>
+                <td><span class="btn btn-danger fw-semibold" style="background-color: rgba(220, 53, 69, 0.25); color: rgb(220, 53, 69); 
+                  border: 0; border-radius: 0; width: 114px; text-align: center; padding: 10px 0;">Dibatalkan</span></td>
+                <td>
+                  <button class="btn btn-sm btn-light"><i class="fas fa-ellipsis-h"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td>23-12-2023</td>
+                <td>2341720001</td>
+                <td>Hendra Wijaya Kusuma</td>
+                <td>Tidak menjaga nama baik Polinema di masyarakat dan ...</td>
+                <td><span class="btn btn-success fw-semibold" style="background-color: rgba(40, 167, 69, 0.25); color: rgb(40, 167, 69); 
+                  border: 0; border-radius: 0; width: 114px; text-align: center; padding: 10px 0;">Selesai</span></td>
+                <td>
+                  <button class="btn btn-sm btn-light"><i class="fas fa-ellipsis-h"></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <nav>
+            <ul class="pagination justify-content-center">
+              <li class="page-item disabled">
+                <a class="page-link" href="#">‹</a>
+              </li>
+              <li class="page-item active">
+                <a class="page-link" href="#">1</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#">2</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#">3</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#">4</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#">›</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </div>
     </div>
-
-  </div>
-  </div>
   </div>
   </div>
 
