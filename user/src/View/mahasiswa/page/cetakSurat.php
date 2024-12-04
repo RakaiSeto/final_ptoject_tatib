@@ -70,8 +70,20 @@
 
         <!-- Dashboard Content -->
         <div class="content px-3 pt-3" style="margin-top: 56px">
+
+          <div class="bg-white p-2 my-2" style="color: #b1b1b1; border-radius: 5px">
+      <nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Data</li>
+  </ol>
+</nav>
+</div>
+
+
+      <div class="bg-white">
         <!-- <button class="btn btn-success mb-4"><i class="bi bi-plus me-2"></i>Tambah</button> -->
-          <div class="table-responsive mb-4">
+          <div class="table-responsive">
             <table class="table table-bordered table-hover" id="tabel-awal">
               <thead>
                 <tr>
@@ -99,6 +111,8 @@
           </div>
         </div>
       </div>
+    </div>
+    </div>
     </div>
 
     <!-- Scripts -->

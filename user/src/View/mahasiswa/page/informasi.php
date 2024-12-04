@@ -85,15 +85,28 @@ if ($query === false) {
 
         <!-- Dashboard Content -->
         <div class="content px-3 pt-3" style="margin-top: 44px;">
+
+        <div class="bg-white p-2 my-2" style="color: #b1b1b1; border-radius: 5px">
+      <nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Data</li>
+  </ol>
+</nav>
+</div>
+          
           <div class="bg-white">
-        <div class="input-group">
-            <div class="form-outline" data-mdb-input-init>
-              <input type="search" id="form1" class="form-control" placeholder="Search" />
-            </div>
-            <button type="button" class="btn btn-detail" data-mdb-ripple-init>
-              <i class="fas fa-search"></i>
-            </button>
-          </div>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Home</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Profile</button>
+  </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+  <!-- <div class="input-group"> -->
 
           <div class="table-responsive my-4">
         <table class="table table-bordered table-hover" id="tabel-awal">
@@ -121,8 +134,74 @@ if ($query === false) {
             </tbody>
             </table>
           </div>
-          </div>
     </div>
+
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+    <div class="table table-responsive mt-3">
+      <table class="table table-bordered table-hover" id="tabel-awal">
+        <thead>
+          <tr>
+            <th>Akumulasi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Perbuatan / tindakan pelanggaran Tata Tertib Kehidupan Kampus akan
+diakumulasikan<br> untuk setiap kategori pelanggaran dan berlaku sepanjang mahasiswa
+masih tercatat sebagai mahasiswa di Polinema.<br>
+<ul>
+  <li>A. Apabila pelanggaran tingkat V dilakukan 3 (tiga) kali maka klasifikasi
+  pelanggaran tersebut ditingkatkan menjadi pelanggaran tingkat IV.</li>
+  <li>B. Apabila pelanggaran tingkat IV dilakukan 3 (tiga) kali maka klasifikasi
+  pelanggaran tersebut ditingkatkan menjadi pelanggaran tingkat III.</li>
+  <li>C. Apabila pelanggaran tingkat III dilakukan 3 (tiga) kali maka klasifikasi
+  pelanggaran tersebut ditingkatkan menjadi pelanggaran tingkat II.</li>
+  <li>D. Apabila pelanggaran tingkat II dilakukan 3 (tiga) kali maka klasifikasi
+  pelanggaran tersebut ditingkatkan menjadi pelanggaran tingkat I</li>
+</ul>
+</td>
+            
+          </tr>
+        </tbody>
+      </table>
+
+      <table class="table table-bordered table-hover" id="tabel-awal">
+        <thead>
+          <tr>
+            <th>Akumulasi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Perbuatan / tindakan pelanggaran Tata Tertib Kehidupan Kampus akan
+diakumulasikan<br> untuk setiap kategori pelanggaran dan berlaku sepanjang mahasiswa
+masih tercatat sebagai mahasiswa di Polinema.<br>
+<ul>
+  <li>A. Apabila pelanggaran tingkat V dilakukan 3 (tiga) kali maka klasifikasi
+  pelanggaran tersebut ditingkatkan menjadi pelanggaran tingkat IV.</li>
+  <li>B. Apabila pelanggaran tingkat IV dilakukan 3 (tiga) kali maka klasifikasi
+  pelanggaran tersebut ditingkatkan menjadi pelanggaran tingkat III.</li>
+  <li>C. Apabila pelanggaran tingkat III dilakukan 3 (tiga) kali maka klasifikasi
+  pelanggaran tersebut ditingkatkan menjadi pelanggaran tingkat II.</li>
+  <li>D. Apabila pelanggaran tingkat II dilakukan 3 (tiga) kali maka klasifikasi
+  pelanggaran tersebut ditingkatkan menjadi pelanggaran tingkat I</li>
+</ul>
+</td>
+            
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+  <!-- <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div> -->
+</div>
+        
+</div>
+
+    </div>
+
+                
       </div>
     </div>
 

@@ -45,7 +45,7 @@
       </div>
 
       <!-- Navbar -->
-      <nav class="navbar navbar-expand-md navbar-light py-2">
+      <nav class="navbar navbar-expand-md navbar-light py-2 position-fixed">
         <div class="container-fluid">
           <div class="d-flex align-items-center w-100">
             <button class="btn px-0 py-0 open-btn">
@@ -69,7 +69,19 @@
 
 
 
-        <div class="content px-3 pt-3 position-relative">
+      <div class="content px-3 pt-3" style="margin-top: 56px">
+      
+
+
+        <div class="bg-white p-2 my-2" style="color: #b1b1b1; border-radius: 5px">
+      <nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Data</li>
+  </ol>
+</nav>
+</div>
+        <div class="bg-white">
           <h2 class="h3 mb-3" style="font-size: 24px">Pelanggaran Terbaru</h2>
           <div class="table-responsive mb-4">
             <table class="table table-bordered table-hover" id="tabel-awal">
@@ -165,9 +177,13 @@
   </div>
 </div>
 <div class="d-flex justify-content-end mt-2">
-    <button class="btn-detail me-2 p-2 px-3" style="background-color: #fff; color: #fd7e14; border: 1px solid #fd7e14" data-bs-toggle="modal" data-bs-target="#bandingModal">Ajukan Banding</button>
+  <button class="btn-detail me-2 p-2 px-3" style="background-color: #fff; color: #fd7e14; border: 1px solid #fd7e14" data-bs-toggle="modal" data-bs-target="#bandingModal">Ajukan Banding</button>
+  
+  <a href="../assets/Berita Acara.pdf" target="_blank">
     <button class="btn-detail p-2 px-3">Cetak Berita Acara</button>
-  </div>
+  </a>
+</div>
+
 
         </div>
       </div>
@@ -233,6 +249,7 @@
           </div>
         </div>
       </div>
+    </div>
     </div>
 
     <!-- Scripts -->
