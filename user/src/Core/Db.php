@@ -8,7 +8,7 @@ class Db
 {
     private static $instance = null;
 
-    private function __construct() {
+    public function __construct() {
         // Prevent direct instantiation
     }
 
