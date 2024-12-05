@@ -7,7 +7,7 @@ use Tatib\Src\Core\Helper;
 
 class mahasiswa
 {
-    public $nim, $nama_mahasiswa, $no_telp, $email, $id_kelas, $secret, $is_active;
+    public $nim, $nama_mahasiswa, $no_telp, $email, $id_kelas, $secret, $is_active, $foto_mahasiswa, $tanggal_lahir, $jenis_kelamin, $id_prodi, $password;
 
     function __construct() {}
 
@@ -32,6 +32,11 @@ class mahasiswa
                 $temp->id_kelas = $row['id_kelas'];
                 $temp->secret = $row['secret'];
                 $temp->is_active = $row['is_active'];
+                $temp->foto_mahasiswa = $row['foto_mahasiswa'];
+                $temp->tanggal_lahir = $row['tanggal_lahir'];
+                $temp->jenis_kelamin = $row['jenis_kelamin'];
+                $temp->id_prodi = $row['id_prodi'];
+                $temp->password = $row['password'];
                 array_push($result, $temp);
             }
             if (count($result) == 0) {
@@ -52,11 +57,11 @@ class mahasiswa
             Helper::dumpToLog("duplicate key mahasiswa $this->nim");
             return "duplicate";
         }
-        $query = "INSERT INTO mahasiswa VALUES(?, ?, ?, ?, ?, ?, ?)";
+        $query = "INSERT INTO mahasiswa VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $conn = Db::getInstance();
         try {
             $stmt = $conn->prepare($query);
-            $stmt->execute([$this->nim, $this->nama_mahasiswa, $this->no_telp, $this->email, $this->id_kelas, $this->secret, $this->is_active]);
+            $stmt->execute([$this->nim, $this->nama_mahasiswa, $this->no_telp, $this->email, $this->id_kelas, $this->secret, $this->is_active, $this->foto_mahasiswa, $this->tanggal_lahir, $this->jenis_kelamin, $this->id_prodi, $this->password]);
             Helper::dumpToLog("success insert mahasiswa $this->nim");
             return true;
         } catch (\PDOException $th) {
@@ -73,11 +78,11 @@ class mahasiswa
             return '0';
         }
 
-        $query = "UPDATE mahasiswa SET nama_mahasiswa = ?, no_telp = ?, email = ?, id_kelas = ?, secret = ?, is_active = ? WHERE nim = ?";
+        $query = "UPDATE mahasiswa SET nama_mahasiswa = ?, no_telp = ?, email = ?, id_kelas = ?, secret = ?, is_active = ?, foto_mahasiswa = ?, tanggal_lahir = ?, jenis_kelamin = ?, id_prodi = ?, password = ? WHERE nim = ?";
         $conn = Db::getInstance();
         try {
             $stmt = $conn->prepare($query);
-            $stmt->execute([$this->nama_mahasiswa, $this->no_telp, $this->email, $this->id_kelas, $this->secret, $this->is_active, $nim]);
+            $stmt->execute([$this->nama_mahasiswa, $this->no_telp, $this->email, $this->id_kelas, $this->secret, $this->is_active, $this->foto_mahasiswa, $this->tanggal_lahir, $this->jenis_kelamin, $this->id_prodi, $this->password, $nim]);
             Helper::dumpToLog("success update mahasiswa $nim");
             return true;
         } catch (\PDOException $th) {

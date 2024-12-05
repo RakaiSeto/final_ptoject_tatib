@@ -9,7 +9,7 @@ use Tatib\Src\Core\Helper;
 class StaticController extends Controller
 {
     public function serveFile($file) {
-        $filePath = __DIR__ . '/../public/' . $file;
+        $filePath = __DIR__ . '/../../../public/' . $file;
         Helper::dumpToLog("serving file: $filePath");
 
         if (file_exists($filePath)) {

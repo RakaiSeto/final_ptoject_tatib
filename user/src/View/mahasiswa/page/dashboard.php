@@ -14,7 +14,9 @@
 
 <body>
   <div class="main-container">
-    
+
+    <!-- Sidebar -->
+  <?php require_once 'sidebar.php'; ?>
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-md navbar-light py-2">
@@ -28,7 +30,7 @@
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
-                <img src="/public/img/fotoagung-jpeg" alt="User Profile Picture" class="rounded-circle" width="50"
+                <img src="<?= $profile->foto_mahasiswa ?>" alt="User Profile Picture" class="rounded-circle" width="50"
                   height="50" />
               </a>
               <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
@@ -56,7 +58,7 @@
 
       <!-- alert -->
       <div class="alert alert-success mt-3" role="alert">
-        Selamat datang <strong>Agung Fradiansyah.</strong> Ayo patuhi peraturan kampus demi menciptakan lingkungan
+        Selamat datang <strong><?= $profile->nama_mahasiswa ?>.</strong> Ayo patuhi peraturan kampus demi menciptakan lingkungan
         belajar yang aman, nyaman, dan kondusif.
       </div>
 
@@ -67,7 +69,7 @@
             <div class="row g-3 flex-column flex-md-row align-items-center">
               <!-- Gambar dan Tombol -->
               <div class="col-12 col-md-3 text-center">
-                <img alt="Profile Picture" src="/public/img/fotoagung-jpeg" class="img-fluid rounded mb-2"
+                <img alt="Profile Picture" src="<?= $profile->foto_mahasiswa ?>" class="img-fluid rounded mb-2"
                   style="max-width: 100%; height: auto;" />
                 <button class="btn-generate mt-2" data-bs-toggle="modal" data-bs-target="#QRCodeModal">Generate QR
                   Code</button>
@@ -76,39 +78,31 @@
                 <table class="mt-3 ml-3 table table-responsive table-hover">
                   <tr>
                     <td>Nama</td>
-                    <td>: Agung Fradiansyah</td>
+                    <td>: <?= $profile->nama_mahasiswa ?></td>
                   </tr>
                   <tr>
                     <td>NIM</td>
-                    <td>: 2341720025</td>
+                    <td>: <?= $profile->nim ?></td>
                   </tr>
                   <tr>
                     <td>Kelas</td>
-                    <td>: 2E</td>
+                    <td>: <?= $profile->id_kelas ?></td>
                   </tr>
                   <tr>
                     <td>Prodi</td>
-                    <td>: Teknik Informatika</td>
+                    <td>: <?= $profile->id_prodi ?></td>
                   </tr>
                   <tr>
-                    <td>Jurusan</td>
-                    <td>: Teknologi Informasi</td>
-                  </tr>
-                  <tr>
-                    <td>TTL</td>
-                    <td>: 28, Februari 2024</td>
+                    <td>Tanggal Lahir</td>
+                    <td>: <?= $profile->tanggal_lahir ?></td>
                   </tr>
                   <tr>
                     <td>Jenis Kelamin</td>
-                    <td>: Laki-laki</td>
-                  </tr>
-                  <tr>
-                    <td>Alamat</td>
-                    <td>: Pasuruan</td>
+                    <td>: <?php echo $profile->jenis_kelamin == 1 ? 'Laki-laki' : 'Perempuan' ?></td>
                   </tr>
                   <tr>
                     <td>Email</td>
-                    <td>: agungfradiansyah@gmail.com</td>
+                    <td>: <?= $profile->email ?></td>
                   </tr>
                 </table>
               </div>

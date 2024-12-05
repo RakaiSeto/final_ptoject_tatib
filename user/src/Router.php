@@ -8,12 +8,12 @@ class Router
 {
     protected $routes = [];
 
-    public function addRoute($route, $controller, ?string $action)
+    public function addRoute($method, $route, $controller, ?string $action)
     {
-        $this->routes[$route] = ['controller' => $controller, 'action' => $action];
+        $this->routes[$route] = ['method' => $method, 'controller' => $controller, 'action' => $action];
     }
 
-    public function dispatch($uri)
+    public function dispatch($method, $uri)
     {
         foreach ($this->routes as $route => $target) {
             Helper::dumpToLog($route . ' => ' . $uri);
@@ -33,7 +33,8 @@ class Router
                 return;
             }
         }
-        if (array_key_exists($uri, $this->routes)) {
+
+        if (array_key_exists($uri, $this->routes) && $this->routes[$uri]['method'] === $method) {
             $controller = $this->routes[$uri]['controller'];
             $action = $this->routes[$uri]['action'];
 
