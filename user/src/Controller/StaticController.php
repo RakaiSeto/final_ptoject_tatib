@@ -2,21 +2,22 @@
 
 namespace Tatib\Src\Controller;
 
+use http\Header;
 use Tatib\Src\Controller;
 use Tatib\Src\Core\Helper;
 
 class StaticController extends Controller
 {
     public function serveFile($file) {
-        $lastHyphenPos = strrpos($file, '-');
-        if ($lastHyphenPos !== false) {
-            $file = substr_replace($file, '.', $lastHyphenPos, 1);
-        }
         $filePath = __DIR__ . '/../public/' . $file;
         Helper::dumpToLog("serving file: $filePath");
 
         if (file_exists($filePath)) {
-            header('Content-Type: ' . mime_content_type($filePath));
+            $mime = mime_content_type($filePath);
+            if (pathinfo($filePath, PATHINFO_EXTENSION) == 'css') {
+                $mime = 'text/css';
+            }
+            header('Content-Type: ' . $mime);
             header('Content-Length: ' . filesize($filePath));
             readfile($filePath);
         } else {

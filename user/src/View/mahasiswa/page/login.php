@@ -42,6 +42,9 @@
             <form>
               <input class="form-control mb-3" placeholder="Username" type="text" />
               <input class="form-control mb-3" placeholder="Password" type="password" />
+                <div class="alert alert-danger py-2 d-none" role="alert">
+                    Password salah
+                </div>
               <a href="dashboard.php" class="btn w-100 text-light">Login</a>
               <!-- <button class="btn w-100">Login</button>/ -->
             </form>

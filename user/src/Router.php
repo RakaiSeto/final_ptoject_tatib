@@ -21,6 +21,11 @@ class Router
                 $controller = $target['controller'];
                 $action = $target['action'];
 
+                $lastHyphenIndex = strrpos($uri, '-');
+                if ($lastHyphenIndex !== false) {
+                    $uri = substr_replace($uri, '.', $lastHyphenIndex, 1);
+                }
+
                 $uri = preg_replace('/public/', '', $uri);
 
                 $controller = new $controller();
