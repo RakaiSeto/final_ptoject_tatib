@@ -25,7 +25,7 @@
       }
 
       .bg-orange {
-        background-image: url("../img/loginFrame.png");
+        background-image: url("/public/img/loginFrame-png");
       }
     </style>
   </head>
@@ -35,7 +35,7 @@
         <!-- Left Section -->
         <div class="col-lg-5 d-flex flex-column justify-content-center align-items-center bg-light p-4">
           <div class="login-box text-center p-4">
-            <img alt="Logo" src="../img/logo.svg" />
+            <img alt="Logo" src="/public/img/logo-svg" />
             <!-- <h1 class="h4 fw-bold mt-3">E-Tatib</h1> -->
             <h2 class="h5 text-secondary text-sm-start">Login</h2>
             <p class="text-muted">Masukkan Username dan Password Anda</p>
@@ -50,7 +50,7 @@
 
         <!-- Right Section -->
         <div class="col-lg-7 d-none d-lg-flex justify-content-center align-items-center bg-orange p-4">
-          <!-- <img class="illustration" alt="img" src="../img/loginFrame.png" /> -->
+          <!-- <img class="illustration" alt="img" src="/public/img/loginFrame-png" /> -->
         </div>
       </div>
     </div>

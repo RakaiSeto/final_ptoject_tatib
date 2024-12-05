@@ -9,7 +9,7 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" />
-    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="/public/css/style-css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" rel="stylesheet" />
 
@@ -40,7 +40,7 @@
         <!-- Sidebar -->
         <div class="sidebar" id="side_nav">
             <div class="header-box px-5 pt-3 pb-2 d-flex justify-content-between">
-                <img alt="Logo E-Tatib" src="../img/logo.svg" />
+                <img alt="Logo E-Tatib" src="/public/img/logo-svg" />
                 <button class="btn d-md-none d-block close-btn px-1 py-0 text-dark">
                     <i class="fas fa-stream"></i>
                 </button>
@@ -84,7 +84,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="../img/fotoagung.jpeg" alt="User Profile Picture" class="rounded-circle"
+                                <img src="/public/img/fotoagung-jpeg" alt="User Profile Picture" class="rounded-circle"
                                     width="50" height="50" />
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
