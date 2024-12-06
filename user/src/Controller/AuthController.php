@@ -56,4 +56,12 @@ class AuthController extends Controller
         }
 
     }
+
+    public function logout()
+    {
+        session_start();
+        session_destroy();
+        setcookie("user", "", time() - 3600, "/"); // 86400 = 1 day
+        header("Location: /");
+    }
 }

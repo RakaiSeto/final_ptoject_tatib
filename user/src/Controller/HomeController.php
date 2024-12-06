@@ -40,6 +40,42 @@ class HomeController extends Controller
         }
         $result[0]->foto_mahasiswa = Helper::lastFullstopToHyphen($result[0]->foto_mahasiswa);
 
-        $this->render('mahasiswa/page/dashboard', ['profile' => $result[0]]);
+        $this->render('mahasiswa/page/dashboard', [
+            'profile' => $result[0],
+            'title' => 'Dashboard'
+        ]);
+    }
+
+    public function informasi(){
+        Helper::dumpToLog("serve home");
+        if (!isset($_COOKIE['user'])) {
+            header("Location: /");
+            return;
+        }
+        $this->render('mahasiswa/page/informasi', [
+            'title' => 'Informasi'
+        ]);
+    }
+
+    public function dataPelanggaran(){
+        Helper::dumpToLog("serve home");
+        if (!isset($_COOKIE['user'])) {
+            header("Location: /");
+            return;
+        }
+        $this->render('mahasiswa/page/dataPelanggaran', [
+            'title' => 'Data Pelanggaran'
+        ]);
+    }
+
+    public function cetakSurat(){
+        Helper::dumpToLog("serve home");
+        if (!isset($_COOKIE['user'])) {
+            header("Location: /");
+            return;
+        }
+        $this->render('mahasiswa/page/cetakSurat', [
+            'title' => 'Cetak Surat'
+        ]);
     }
 }
