@@ -3,6 +3,7 @@
 namespace Tatib\Src\Controller;
 
 use Tatib\Src\Controller;
+use Tatib\Src\Core\Db;
 use Tatib\Src\Core\Helper;
 use Tatib\Src\Model\mahasiswa;
 
@@ -25,6 +26,8 @@ class HomeController extends Controller
             header("Location: /");
             return;
         }
+
+//        get profile data
         $cookieArray = json_decode($_COOKIE['user'], true);
         $mahasiswa = new mahasiswa();
         $result = $mahasiswa->getMahasiswa($cookieArray['nim']);
@@ -40,8 +43,17 @@ class HomeController extends Controller
         }
         $result[0]->foto_mahasiswa = Helper::lastFullstopToHyphen($result[0]->foto_mahasiswa);
 
+//        sek onk pelanggaran a?
+        $db = new Db();
+        $dbConn = $db->getInstance();
+        $query = "SELECT count(*) FROM data_pelanggaran WHERE nim_terlapor = ? and is_done = 0";
+        $stmt = $dbConn->prepare($query);
+        $stmt->execute([$cookieArray['nim']]);
+        $jumlah_pelanggaran = $stmt->fetchColumn();
+
         $this->render('mahasiswa/page/dashboard', [
             'profile' => $result[0],
+            'jumlah_pelanggaran' => $jumlah_pelanggaran,
             'title' => 'Dashboard'
         ]);
     }

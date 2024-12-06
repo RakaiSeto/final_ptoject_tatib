@@ -32,8 +32,8 @@
             <div class="bg-white p-2 my-2" style="color: #b1b1b1; border-radius: 5px">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Data</li>
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><?= $title ?></li>
                     </ol>
                 </nav>
             </div>
@@ -167,7 +167,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="buktiModalLabel">Bukti Pelanggaran</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                <button type="button" class="btn-close" data-bs-toggle="modal" data-bs-target="#exampleModal"
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body text-center">
@@ -186,7 +186,7 @@
                         <div class="modal-content" style="background-color: #F5F7FA">
                             <div class="modal-header">
                                 <h5 class="modal-title fw-bold" id="exampleModalLabel">Detail Pelanggaran</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                <button type="button" class="btn-close"  data-bs-toggle="modal" data-bs-target="#exampleModal"
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
@@ -247,8 +247,6 @@
         document.querySelector(".content").classList.remove("sidebar-open");
     });
 
-    //modal foro
-
     // const mainModal = document.getElementById('exampleModal');
     // mainModal.addEventListener('hidden.bs.modal', function () {
     //   // Redirect ke halaman utama setelah modal utama ditutup
@@ -256,14 +254,22 @@
     // });
 
 
-    const buktiModal = document.getElementById('buktiModal');
-    buktiModal.addEventListener('hidden.bs.modal', function() {
-        // Setelah buktiModal tertutup, tampilkan kembali exampleModal
-        const firstModal = new bootstrap.Modal(document.getElementById('exampleModal'));
-        firstModal.show();
-
-
+    // event listener for .btn-close in #buktiModal
+    $("#buktiModal").on("hidden.bs.modal", function () {
+    //     buka modal utama
+        $("#exampleModal").modal("show");
     });
+
+    $("#bandingModal").on("hidden.bs.modal", function () {
+        //     buka modal utama
+        $("#exampleModal").modal("show");
+    });
+
+    $(".modal").on("shown.bs.modal", function () {
+        if ($(".modal-backdrop").length > 1) {
+            $(".modal-backdrop").not(':first').remove();
+        }
+    })
     </script>
 </body>
 

@@ -29,8 +29,7 @@
             <div class="bg-white p-2 my-2" style="color: #b1b1b1; border-radius: 5px">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Data</li>
+                        <li class="breadcrumb-item active" aria-current="page">Home</li>
                     </ol>
                 </nav>
             </div>
@@ -43,7 +42,7 @@
             </div>
 
             <div class="row">
-                <div class="col-12 col-lg-7 mb-4 mb-md-0">
+                <?php echo $jumlah_pelanggaran > 0 ? '<div class="col-12 col-lg-7 mb-4 mb-md-0">' : '<div class="col-12 col-lg-12 mb-4 mb-md-0">'; ?>
                     <div class="biodata">
 
                         <div class="row g-3 flex-column flex-md-row align-items-center">
@@ -92,18 +91,20 @@
                     </div>
                 </div>
 
-                <div class="col-lg-5">
+                <?php if ($jumlah_pelanggaran > 0) {
+                    echo '<div class="col-lg-5">
                     <div class="bg-white p-3 position-relative">
                         <h5 class="fw-bold mb-3 text-dark">Pemberitahuan</h5>
                         <hr>
-                        <div class="alert alert-danger">
-                            <p class="fw-semibold">Anda masih memiliki pelanggaran yang belum terselesaikan!</p>
-                            <a href="dataPelanggaran.php" class="btn btn-danger mt-2 mb-1"><i
+                        <div class="alert alert-success">
+                            <p class="fw-semibold">Anda tidak memiliki pelanggaran yang belum terselesaikan!</p>
+                            <a href="/dataPelanggaran" class="btn btn-success mt-2 mb-1"><i
                                     class="bi bi-info-circle me-2"></i>Lihat
                                 Pelanggaran</a>
                         </div>
                     </div>
-                </div>
+                </div>';
+                } ?>
             </div>
 
             <div class="modal fade" id="QRCodeModal" tabindex="-1" aria-labelledby="buktiModalLabel" aria-hidden="true"
