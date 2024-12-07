@@ -46,7 +46,7 @@
                 <div class="col-12 col-lg-7 mb-4 mb-md-0">
                     <div class="biodata">
 
-                        <div class="row g-3 flex-column flex-md-row align-items-center">
+                        <div class="row g-3 flex-column flex-md-row">
                             <!-- Gambar dan Tombol -->
                             <div class="col-12 col-md-3 text-center">
                                 <img alt="Profile Picture" src="<?= $profile->foto_mahasiswa ?>"
