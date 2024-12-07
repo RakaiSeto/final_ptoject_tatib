@@ -17,7 +17,7 @@ class InformasiController extends Controller
         }
         $model = new daftar_pelanggaran();
         $result = $model->getDaftarPelanggaran();
-        $this->render('mahasiswa/page/informasi', ['informasi' => $result]);
+        $this->render('mahasiswa/page/informasi', ['informasi' => $result, 'title' => 'Informasi']);
     }
 
     

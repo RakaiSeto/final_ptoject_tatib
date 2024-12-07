@@ -264,30 +264,14 @@
       // });
 
 
-      // Tutup buktiModal, lalu tampilkan kembali exampleModal
       const buktiModal = document.getElementById('buktiModal');
       buktiModal.addEventListener('hidden.bs.modal', function() {
+          // Setelah buktiModal tertutup, tampilkan kembali exampleModal
           const firstModal = new bootstrap.Modal(document.getElementById('exampleModal'));
           firstModal.show();
+
+
       });
-
-      // Hindari masalah backdrop bertumpuk
-      const modals = document.querySelectorAll('.modal');
-      modals.forEach(modal => {
-          modal.addEventListener('hidden.bs.modal', () => {
-              document.body.classList.remove('modal-open');
-              document.body.style.paddingRight = '';
-          });
-      });
-
-      // const buktiModal = document.getElementById('buktiModal');
-      // buktiModal.addEventListener('hidden.bs.modal', function() {
-      //     // Setelah buktiModal tertutup, tampilkan kembali exampleModal
-      //     const firstModal = new bootstrap.Modal(document.getElementById('exampleModal'));
-      //     firstModal.show();
-
-
-      // });
       </script>
   </body>
 
