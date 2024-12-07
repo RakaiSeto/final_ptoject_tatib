@@ -39,8 +39,8 @@
               <div class="bg-white p-2 my-2" style="color: #b1b1b1; border-radius: 5px">
                   <nav aria-label="breadcrumb">
                       <ol class="breadcrumb">
-                          <li class="breadcrumb-item"><a href="#">Home</a></li>
-                          <li class="breadcrumb-item active" aria-current="page">Data</li>
+                          <li class="breadcrumb-item"><a href="#" style="color: #fd7e14;">Home</a></li>
+                          <li class="breadcrumb-item active" aria-current="page">Data Pelanggaran</li>
                       </ol>
                   </nav>
               </div>
@@ -66,20 +66,7 @@
                                   <td><button class="btn-detail" data-bs-toggle="modal"
                                           data-bs-target="#exampleModal">Lihat Detail</button></td>
                               </tr>
-                              <tr>
-                                  <td>2</td>
-                                  <td>Merusak sarana dan prasarana</td>
-                                  <td>2</td>
-                                  <td>19/11/2024</td>
-                                  <td><button class="btn btn-detail">Lihat Detail</button></td>
-                              </tr>
-                              <tr>
-                                  <td>3</td>
-                                  <td>Makan atau minum di dalam ruang...</td>
-                                  <td>3</td>
-                                  <td>19/11/2024</td>
-                                  <td><button class="btn btn-detail">Lihat Detail</button></td>
-                              </tr>
+
                           </tbody>
                       </table>
                   </div>

@@ -31,7 +31,7 @@
             <div class="bg-white p-2 my-2" style="color: #b1b1b1; border-radius: 5px">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/" style="color: #fd7e14;">Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page"><?= $title ?></li>
                     </ol>
                 </nav>
@@ -41,7 +41,7 @@
             <div class="bg-white">
                 <!-- <button class="btn btn-success mb-4"><i class="bi bi-plus me-2"></i>Tambah</button> -->
                 <div class="table-responsive">
-                    <table class="table table-bordered table-hover" id="tabel-awal">
+                    <table class="table table-bordered" id="tabel-awal">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -55,13 +55,13 @@
                                 <td>1</td>
                                 <td>Merokok di kawasan kampus</td>
                                 <td>Menunggu</td>
-                                <td><button class="btn-generate btn btn-primary">Download</button></td>
+                                <td><button class="btn-detail btn-primary">Download</button></td>
                             </tr>
                             <tr>
                                 <td>2</td>
                                 <td>Merusak sarana dan prasarana</td>
                                 <td>Selesai</td>
-                                <td><button class="btn-generate btn btn-primary">Download</button></td>
+                                <td><button class="btn-detail btn-primary">Download</button></td>
                             </tr>
                         </tbody>
                     </table>
