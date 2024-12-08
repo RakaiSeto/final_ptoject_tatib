@@ -13,7 +13,7 @@
                             width="50" height="50" />
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                        <li><a class="dropdown-item" href="#change-password">Ganti Password</a></li>
+                        <li><a class="dropdown-item" href="gantiPassword.php">Ganti Password</a></li>
                         <li><a class="dropdown-item" href="/logout">Logout</a></li>
                     </ul>
                 </li>
