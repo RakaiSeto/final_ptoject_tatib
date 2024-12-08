@@ -15,87 +15,33 @@
 
 
     <style>
-        /* Ubah warna tab aktif */
-        .nav-pills .nav-link.active {
-            background-color: #fd7e14 !important;
-            border-color: #fd7e14 !important;
-            color: #fff !important;
-        }
+    /* Ubah warna tab aktif */
+    .nav-pills .nav-link.active {
+        background-color: #fd7e14 !important;
+        border-color: #fd7e14 !important;
+        color: #fff !important;
+    }
 
-        /* Ubah warna tab biasa */
-        .nav-pills .nav-link {
-            color: #fd7e14;
-        }
+    /* Ubah warna tab biasa */
+    .nav-pills .nav-link {
+        color: #fd7e14;
+    }
 
-        /* Warna saat di-hover */
-        .nav-pills .nav-link:hover {
-            background-color: rgba(253, 126, 20, 0.1);
-            color: #fd7e14;
-        }
+    /* Warna saat di-hover */
+    .nav-pills .nav-link:hover {
+        background-color: rgba(253, 126, 20, 0.1);
+        color: #fd7e14;
+    }
     </style>
 </head>
 
 <body>
     <div class="main-container">
         <!-- Sidebar -->
-        <div class="sidebar" id="side_nav">
-            <div class="header-box px-5 pt-3 pb-2 d-flex justify-content-between">
-                <img alt="Logo E-Tatib" src="/public/img/logo-svg" />
-                <button class="btn d-md-none d-block close-btn px-1 py-0 text-dark">
-                    <i class="fas fa-stream"></i>
-                </button>
-            </div>
-            <ul class="list-unstyled px-2 py-1">
-                <li>
-                    <a href="dashboard.php" class="text-decoration-none px-3 py-3 d-block fw-bold"><i
-                            class="fas fa-home"></i>
-                        Dashboard</a>
-                </li>
-                <li>
-                    <a href="laporkan.php" class="text-decoration-none px-3 py-3 d-block fw-bold"><i
-                            class="fas fa-book"></i>
-                        Laporkan</a>
-                </li>
-                <li>
-                    <a href="RiwayatPelaporan.php" class="text-decoration-none px-3 py-3 d-block fw-bold"><i
-                            class="fas fa-info-circle"></i> Riwayat Pelaporan</a>
-                </li>
-                <li class="active">
-                    <a href="dataPelanggaran.php" class="text-decoration-none px-3 py-3 d-block fw-bold"><i
-                            class="fas fa-print"></i>
-                        Data Pelanggaran</a>
-                </li>
-                <li>
-                    <a href="informasi.php" class="text-decoration-none px-3 py-3 d-block fw-bold"><i
-                            class="fas fa-info-circle"></i> Informasi</a>
-                </li>
-            </ul>
-        </div>
+        <?php include('sidebar.php'); ?>
 
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-md navbar-light py-2 position-fixed">
-            <div class="container-fluid">
-                <div class="d-flex align-items-center w-100">
-                    <button class="btn px-0 py-0 open-btn">
-                        <i class="fas fa-stream me-2 d-md-none"></i>
-                    </button>
-                    <span class="fw-medium" style="font-size: 28px">Pelanggaran Mahasiswa</span>
-                    <div class="d-flex ms-auto">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="/public/img/fotoagung-jpeg" alt="User Profile Picture" class="rounded-circle"
-                                    width="50" height="50" />
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                                <li><a class="dropdown-item" href="#change-password">Ganti Password</a></li>
-                                <li><a class="dropdown-item" href="#logout">Logout</a></li>
-                            </ul>
-                        </li>
-                    </div>
-                </div>
-            </div>
-        </nav>
+        <?php include('navbar.php'); ?>
 
         <!-- Dashboard Content -->
         <div class="content px-3 pt-3" style="margin-top: 68px;">
@@ -211,18 +157,18 @@
 
 
     <script>
-        $(".sidebar ul li").on("click", function () {
-            $(".sidebar ul li.active").removeClass("active");
-            $(this).addClass("active");
-        });
+    $(".sidebar ul li").on("click", function() {
+        $(".sidebar ul li.active").removeClass("active");
+        $(this).addClass("active");
+    });
 
-        $(".open-btn").on("click", function () {
-            $(".sidebar").addClass("active");
-        });
+    $(".open-btn").on("click", function() {
+        $(".sidebar").addClass("active");
+    });
 
-        $(".close-btn").on("click", function () {
-            $(".sidebar").removeClass("active");
-        });
+    $(".close-btn").on("click", function() {
+        $(".sidebar").removeClass("active");
+    });
     </script>
 </body>
 

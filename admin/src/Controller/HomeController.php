@@ -54,19 +54,41 @@ class HomeController extends Controller
             header("Location: /");
             return;
         }
-        $this->render('mahasiswa/page/informasi', [
+        $this->render('dosen/page/informasi', [
             'title' => 'Informasi'
         ]);
     }
 
-    public function cetakSurat(){
+    public function laporkan(){
         Helper::dumpToLog("serve home");
         if (!isset($_COOKIE['user'])) {
             header("Location: /");
             return;
         }
-        $this->render('mahasiswa/page/cetakSurat', [
-            'title' => 'Cetak Surat'
+        $this->render('dosen/page/laporkan', [
+            'title' => 'Laporkan Pelanggaran'
+        ]);
+    }
+
+    public function riwayatPelaporan(){
+        Helper::dumpToLog("serve home");
+        if (!isset($_COOKIE['user'])) {
+            header("Location: /");
+            return;
+        }
+        $this->render('dosen/page/riwayatPelaporan', [
+            'title' => 'Riwayat Pelaporan'  
+        ]);
+    }
+
+    public function dataPelanggaran(){
+        Helper::dumpToLog("serve home");
+        if (!isset($_COOKIE['user'])) {
+            header("Location: /");
+            return;
+        }
+        $this->render('dosen/page/dataPelanggaran', [
+            'title' => 'Data Pelanggaran'  
         ]);
     }
 }
