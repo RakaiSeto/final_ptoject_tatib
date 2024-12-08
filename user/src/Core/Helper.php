@@ -2,6 +2,8 @@
 
 namespace Tatib\Src\Core;
 
+use Tatib\Src\Model\mahasiswa;
+
 class Helper
 {
     public static function dumpToLog($data)
@@ -55,6 +57,17 @@ class Helper
         $iv = substr(hash('sha256', $secret_iv), 0, 16);
         $output = openssl_decrypt(base64_decode($string), $encrypt_method, $key, 0, $iv);
         return $output;
+    }
+
+    public static function getProfilePicture() {
+        $cookieArray = json_decode($_COOKIE['user'], true);
+        $mahasiswa = new mahasiswa();
+        $result = $mahasiswa->getMahasiswa($cookieArray['nim']);
+        if ($result == null || $result[0]->foto_mahasiswa == null || !self::checkFileExist($result[0]->foto_mahasiswa)) {
+            return Helper::lastFullstopToHyphen('/public/img/default-pp.png');
+        }
+
+        return Helper::lastFullstopToHyphen($result[0]->foto_mahasiswa);
     }
 
     public static function checkFileExist($path) {
