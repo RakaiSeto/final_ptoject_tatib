@@ -10,6 +10,7 @@ $router = new Router();
 
 $router->addRoute('GET', '/', HomeController::class, 'index');
 $router->addRoute('POST', '/doLogin', AuthController::class, 'doLogin');
+$router->addRoute('GET', '/logout', AuthController::class, 'logout');
 
 $router->addRoute('GET', '/home', HomeController::class, 'home');
 
