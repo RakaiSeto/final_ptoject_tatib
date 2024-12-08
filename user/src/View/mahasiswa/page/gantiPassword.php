@@ -13,6 +13,32 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" rel="stylesheet" />
 
+    <style>
+        .form-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .btn-primary {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+        .btn-primary:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+        .btn-secondary {
+            background-color: #e9ecef;
+            color: #212529;
+            border: none;
+        }
+        .btn-secondary:hover {
+            background-color: #d6d8db;
+        }
+    </style>
 
 </head>
 
@@ -40,7 +66,29 @@
 
             <div class="bg-white">
                 <!-- <button class="btn btn-success mb-4"><i class="bi bi-plus me-2"></i>Tambah</button> -->
-
+                <div class="container">
+                    <div class="form-container">
+                        <h3 class="text-center mb-4">Ganti Password</h3>
+                        <form>
+                            <div class="mb-3">
+                                <label for="passwordLama" class="form-label">Password Lama</label>
+                                <input type="password" class="form-control" id="passwordLama" placeholder="Masukkan password lama">
+                            </div>
+                            <div class="mb-3">
+                                <label for="passwordBaru" class="form-label">Password Baru</label>
+                                <input type="password" class="form-control" id="passwordBaru" placeholder="Masukkan password baru">
+                            </div>
+                            <div class="mb-3">
+                                <label for="ulangiPasswordBaru" class="form-label">Ulangi Password Baru</label>
+                                <input type="password" class="form-control" id="ulangiPasswordBaru" placeholder="Ulangi password baru">
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <button type="submit" class="btn btn-primary">Ganti Password</button>
+                                <button type="button" class="btn btn-secondary">Kembali</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>   
             </div>
         </div>
     </div>
@@ -54,9 +102,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 
-    <script>
+    <script> 
     document.querySelector(".open-btn").addEventListener("click", function() {
-        document.getElementById("side_nav").classList.add("active");
+        document.getElement ById("side_nav").classList.add("active");
         document.querySelector(".content").classList.add("sidebar-open");
     });
 
