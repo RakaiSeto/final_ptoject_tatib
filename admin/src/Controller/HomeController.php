@@ -92,4 +92,15 @@ class HomeController extends Controller
             'title' => 'Data Pelanggaran'  
         ]);
     }
+
+    public function gantiPassword(){
+        Helper::dumpToLog("serve home");
+        if (!isset($_COOKIE['user'])) {
+            header("Location: /");
+            return;
+        }
+        $this->render('dosen/page/gantiPassword', [
+            'title' => 'Ganti Password'  
+        ]);
+    }
 }
