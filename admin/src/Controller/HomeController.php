@@ -6,6 +6,7 @@ use Tatib\Src\Controller;
 use Tatib\Src\Core\Db;
 use Tatib\Src\Core\Helper;
 use Tatib\Src\Model\mahasiswa;
+use Tatib\Src\Model\daftar_pelanggaran;
 
 class HomeController extends Controller
 {
@@ -55,7 +56,7 @@ class HomeController extends Controller
             return;
         }
         $this->render('dosen/page/informasi', [
-            'title' => 'Informasi'
+            'title' => 'Informasi Tata Tertib'
         ]);
     }
 

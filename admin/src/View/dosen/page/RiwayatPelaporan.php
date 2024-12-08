@@ -26,17 +26,15 @@
 
         <!-- Dashboard Content -->
         <div class="content px-3 pt-3" style="margin-top: 68px;">
-
-            <div class="card mb-4">
-                <div class="card-body py-2">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb mb-0">
-                            <li class="breadcrumb-item"><a href="#">E-Tatib</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Riwayat Pelaporan</li>
-                        </ol>
-                    </nav>
-                </div>
+            <div class="bg-white p-2 my-2" style="color: #b1b1b1; border-radius: 5px">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/" style="color: #fd7e14;">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><?= $title ?></li>
+                    </ol>
+                </nav>
             </div>
+
 
             <div class="bg-white border">
                 <div class="input-group">

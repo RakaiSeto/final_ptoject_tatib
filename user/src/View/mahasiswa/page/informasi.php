@@ -57,18 +57,21 @@
             <div class="bg-white">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
-                            type="button" role="tab" aria-controls="home" aria-selected="true"> Informasi Tata
+                        <button class="nav-link active" id="informasi-tab" data-bs-toggle="tab"
+                            data-bs-target="#informasi" type="button" role="tab" aria-controls="informasi"
+                            aria-selected="true"> Informasi Tata
                             Tertib</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
-                            type="button" role="tab" aria-controls="profile" aria-selected="false">klasifikasi
+                        <button class="nav-link" id="klasifikasi-tab" data-bs-toggle="tab" data-bs-target="#klasifikasi"
+                            type="button" role="tab" aria-controls="klasifikasi" aria-selected="false">klasifikasi
                             Pelanggaran</button>
                     </li>
                 </ul>
+
                 <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="tab-pane fade show active" id="informasi" role="tabpanel"
+                        aria-labelledby="informasi-tab">
                         <div class="table table-responsive mt-3">
                             <table class="table table-bordered table-hover" id="tabel-awal">
                                 <thead>
@@ -224,8 +227,7 @@
                                                         </li>
                                                         <li style=" list-style-type: lower-alpha">
                                                             Diberikan nilai D pada mata kuliah
-                                                            terkait
-                                                            saat melakukan
+                                                            terkait saat melakukan
                                                             pelanggaran.
                                                         </li>
                                                     </ol>
@@ -255,15 +257,12 @@
                             </table>
 
                         </div>
-                        <!-- <div class="input-group"> -->
-
-
                     </div>
 
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="profile-tab">
+
+                    <div class="tab-pane fade" id="klasifikasi" role="tabpanel" aria-labelledby="klasifikasi-tab">
                         <div class="table-responsive my-4">
                             <table class="table table-bordered table-hover" id="tabel-awal">
-
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -274,53 +273,47 @@
                                 </thead>
                                 <tbody>
                                     <?php
-                $no=1;
-
-                // Menampilkan data dari database ke tabel
-                foreach ($informasi as $row) {
-                  echo "<tr>";
-                    echo "<td>" . $no . "</td>";
-                    echo "<td>" . htmlspecialchars($row->nama_pelanggaran) . "</td>";
-                    echo "<td>" . htmlspecialchars($row->deskripsi) . "</td>";
-                    echo "<td>" . htmlspecialchars($row->tingkat_pelanggaran) . "</td>";
-                    echo "</tr>";
-                    $no++;
-                }
-               
-                ?>
+                                $no=1;
+                                // Menampilkan data dari database ke tabel
+                                foreach ($Informasi as $row) {
+                                echo "<tr>";
+                                    echo "<td>" . $no . "</td>";
+                                    echo "<td>" . htmlspecialchars($row->nama_pelanggaran) . "</td>";
+                                    echo "<td>" . htmlspecialchars($row->deskripsi) . "</td>";
+                                    echo "<td>" . htmlspecialchars($row->tingkat_pelanggaran) . "</td>";
+                                    echo "</tr>";
+                                    $no++;
+                                }
+                                ?>
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                    <!-- <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div> -->
+
                 </div>
 
-            </div>
 
-        </div>
+            </div><!-- tutup bg-white -->
+        </div> <!-- tutup container -->
 
-
-    </div>
-    </div>
-
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Scripts -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 
-    <script>
-    document.querySelector(".open-btn").addEventListener("click", function() {
-        document.getElementById("side_nav").classList.add("active");
-        document.querySelector(".content").classList.add("sidebar-open");
-    });
+        <script>
+        document.querySelector(".open-btn").addEventListener("click", function() {
+            document.getElementById("side_nav").classList.add("active");
+            document.querySelector(".content").classList.add("sidebar-open");
+        });
 
-    document.querySelector(".close-btn").addEventListener("click", function() {
-        document.getElementById("side_nav").classList.remove("active");
-        document.querySelector(".content").classList.remove("sidebar-open");
-    });
-    </script>
+        document.querySelector(".close-btn").addEventListener("click", function() {
+            document.getElementById("side_nav").classList.remove("active");
+            document.querySelector(".content").classList.remove("sidebar-open");
+        });
+        </script>
 </body>
 
 </html>

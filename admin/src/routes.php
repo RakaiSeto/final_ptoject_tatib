@@ -4,6 +4,7 @@
 use Tatib\Src\Controller\AuthController;
 use Tatib\Src\Controller\HomeController;
 use Tatib\Src\Controller\StaticController;
+use Tatib\Src\Controller\InformasiController;
 use Tatib\Src\Router;
 
 $router = new Router();
