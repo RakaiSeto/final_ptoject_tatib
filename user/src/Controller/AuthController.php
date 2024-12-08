@@ -92,6 +92,11 @@ class AuthController extends Controller
                 $result[0]->updateMahasiswa($cookieArray['nim']);
                 Helper::dumpToLog("success change password mahasiswa $cookieArray[nim]");
                 header("Location: /logout");
+            } else {
+                Helper::dumpToLog("gagal change password mahasiswa $cookieArray[nim]");
+                session_start();
+                $_SESSION['Error'] = 'Password Lama Salah';
+                header("Location: /changePassword");
             }
         }
     }

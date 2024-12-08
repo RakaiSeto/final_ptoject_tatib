@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <?php session_start(); ?>
     <title><?= $title ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
@@ -69,6 +70,10 @@
                 <div class="container">
                     <div class="form-container">
                         <h3 class="text-center mb-4">Ganti Password</h3>
+                        <?php
+                        if (!empty($_SESSION['Error'])) { echo '<div class="alert alert-danger py-2" role="alert">' . $_SESSION['Error'] . '</div>';
+                            unset($_SESSION['Error']);
+                        } ?>
                         <form action="/doGantiPassword" method="post">
                             <div class="mb-3">
                                 <label for="passwordLama" class="form-label">Password Lama</label>
@@ -82,6 +87,8 @@
                                 <label for="ulangiPasswordBaru" class="form-label">Ulangi Password Baru</label>
                                 <input type="password" class="form-control" name="confirm" id="ulangiPasswordBaru" placeholder="Ulangi password baru">
                             </div>
+
+
                             <div class="d-flex justify-content-between">
                                 <button type="submit" class="btn btn-primary" id="btnSubmit" disabled>Ganti Password</button>
                                 <a href="/" class="btn btn-secondary">Kembali</a>
