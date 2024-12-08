@@ -68,7 +68,7 @@
                     </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="home-tab">
                         <div class="table table-responsive mt-3">
                             <table class="table table-bordered table-hover" id="tabel-awal">
                                 <thead>
@@ -260,7 +260,7 @@
 
                     </div>
 
-                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="profile-tab">
                         <div class="table-responsive my-4">
                             <table class="table table-bordered table-hover" id="tabel-awal">
 

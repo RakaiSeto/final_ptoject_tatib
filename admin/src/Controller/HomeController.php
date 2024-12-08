@@ -16,7 +16,7 @@ class HomeController extends Controller
             header("Location: /home");
             return;
         }
-        $this->render('mahasiswa/page/login');
+        $this->render('dosen/page/login');
     }
 
     public function home()
@@ -26,34 +26,24 @@ class HomeController extends Controller
             header("Location: /");
             return;
         }
+//
+//        $cookieArray = json_decode($_COOKIE['user'], true);
+//        $mahasiswa = new mahasiswa();
+//        $result = $mahasiswa->getMahasiswa($cookieArray['nim']);
+//        if ($result == null) {
+//            session_start();
+//            $_SESSION['Error'] = "Mahasiswa $cookieArray[nim] tidak ditemukan";
+//            header("Location: /");
+//            return;
+//        }
+//
+//        if (!Helper::checkFileExist($result[0]->foto_mahasiswa)) {
+//            $result[0]->foto_mahasiswa = "/public/img/default-pp.png";
+//        }
+//        $result[0]->foto_mahasiswa = Helper::lastFullstopToHyphen($result[0]->foto_mahasiswa);
 
-//        get profile data
-        $cookieArray = json_decode($_COOKIE['user'], true);
-        $mahasiswa = new mahasiswa();
-        $result = $mahasiswa->getMahasiswa($cookieArray['nim']);
-        if ($result == null) {
-            session_start();
-            $_SESSION['Error'] = "Mahasiswa $cookieArray[nim] tidak ditemukan";
-            header("Location: /");
-            return;
-        }
-
-        if (!Helper::checkFileExist($result[0]->foto_mahasiswa)) {
-            $result[0]->foto_mahasiswa = "/public/img/default-pp.png";
-        }
-        $result[0]->foto_mahasiswa = Helper::lastFullstopToHyphen($result[0]->foto_mahasiswa);
-
-//        sek onk pelanggaran a?
-        $db = new Db();
-        $dbConn = $db->getInstance();
-        $query = "SELECT count(*) FROM data_pelanggaran WHERE nim_terlapor = ? and is_done = 0";
-        $stmt = $dbConn->prepare($query);
-        $stmt->execute([$cookieArray['nim']]);
-        $jumlah_pelanggaran = $stmt->fetchColumn();
-
-        $this->render('mahasiswa/page/dashboard', [
-            'profile' => $result[0],
-            'jumlah_pelanggaran' => $jumlah_pelanggaran,
+        $this->render('dosen/page/dashboard', [
+//            'profile' => $result[0],
             'title' => 'Dashboard'
         ]);
     }

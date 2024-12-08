@@ -47,6 +47,32 @@ data_pelanggaran
         }
     }
 
+    public function getByNimTerlapor(string $nim_terlapor) {
+        $query = "SELECT * FROM data_pelanggaran WHERE nim_terlapor = '$nim_terlapor'";
+
+        $conn = Db::getInstance();
+        try {
+            $queryRes = $conn->query($query);
+            while ($row = $queryRes->fetch(\PDO::FETCH_ASSOC)) {
+                $temp = new data_pelanggaran();
+                $temp->kode_pelanggaran = $row['kode_pelanggaran'];
+                $temp->jenis_pelanggaran = $row['jenis_pelanggaran'];
+                $temp->kronologi = $row['kronologi'];
+                $temp->tautan_bukti = $row['tautan_bukti'];
+                $temp->nip_pelapor = $row['nip_pelapor'];
+                $temp->nim_terlapor = $row['nim_terlapor'];
+                $temp->is_verified = $row['is_verified'];
+                $temp->is_banding = $row['is_banding'];
+                $temp->is_done = $row['is_done'];
+                $temp->datetime = $row['datetime'];
+                return $temp;
+            }
+            return null;
+        } catch (\PDOException $th) {
+            return false . " " . $th->getMessage();
+        }
+    }
+
     public function insertDataPelanggaran() {
         $rand = Helper::randomAlphaNum();
         $fullId = "PLG-$this->nim_terlapor-" . $rand;

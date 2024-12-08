@@ -11,7 +11,7 @@ class daftar_pelanggaran
 
     function __construct() {}
 
-    function getDaftarPelanggaran(?string $kode_pelanggaran) {
+    function getDaftarPelanggaran(string $kode_pelanggaran = null) {
         $result = [];
 
         if (empty($kode_pelanggaran)) {
@@ -19,6 +19,7 @@ class daftar_pelanggaran
         } else {
             $query = "SELECT * FROM daftar_pelanggaran WHERE kode_pelanggaran = '$kode_pelanggaran'";
         }
+        $query = $query . " ORDER BY tingkat_pelanggaran DESC";
 
         $conn = Db::getInstance();
         try {

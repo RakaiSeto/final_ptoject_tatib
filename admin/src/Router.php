@@ -1,5 +1,6 @@
 <?php
 
+
 namespace Tatib\Src;
 
 use Tatib\Src\Core\Helper;
@@ -41,7 +42,10 @@ class Router
             $controller = new $controller();
             $controller->$action();
         } else {
-            throw new \Exception("No route found for URI: $uri");
+            session_start();
+            $_SESSION['Error'] = 'URL tidak ditemukan';
+
+            header("Location: /");
         }
     }
 }

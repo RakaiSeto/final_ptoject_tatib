@@ -34,6 +34,14 @@
                 </nav>
             </div>
 
+            <?php
+            session_start();
+            if (!empty($_SESSION['Error'])) {
+                echo '<div class="alert alert-danger" role="alert">' . $_SESSION['Error'] . '</div>';
+            }
+            unset($_SESSION['Error'])
+            ?>
+
             <!-- alert -->
             <div class="alert alert-success mt-3" role="alert">
                 Selamat datang <strong><?= $profile->nama_mahasiswa ?>.</strong> Ayo patuhi peraturan kampus demi
