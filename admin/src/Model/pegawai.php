@@ -7,7 +7,7 @@ use Tatib\Src\Core\Helper;
 
 class pegawai
 {
-    public $nip, $nama_pegawai, $role, $email, $no_telp, $prodi, $is_dpa, $is_kps;
+    public $nip, $nama_pegawai, $role, $email, $no_telp, $prodi, $is_dpa, $is_kps, $pegawai;
 
     function __construct() {
     }
@@ -34,6 +34,7 @@ class pegawai
                 $temp->prodi = $row['prodi'];
                 $temp->is_dpa = $row['is_dpa'] == 1 ? true : false;
                 $temp->is_kps = $row['is_kps'] == 1 ? true : false;
+                $temp->password = $row['password'];
                 array_push($result, $temp);
             }
             if (count($result) == 0) {

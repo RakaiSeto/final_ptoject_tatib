@@ -6,6 +6,7 @@ use Tatib\Src\Controller;
 use Tatib\Src\Core\Db;
 use Tatib\Src\Core\Helper;
 use Tatib\Src\Model\mahasiswa;
+use Tatib\Src\Model\pegawai;
 
 class AuthController extends Controller
 {
@@ -13,41 +14,36 @@ class AuthController extends Controller
     {
         Helper::dumpToLog('serve doLogin');
         Helper::dumpToLog(json_encode($_POST));
-        $db = new Db();
-        $dbConn = $db->getInstance();
 
-        $nim = $_POST['nim'];
+        $nim = $_POST['nip'];
         $password = $_POST['password'];
 
-        $mahasiswa = new mahasiswa();
-        $result = $mahasiswa->getMahasiswa($nim);
+        $mahasiswa = new pegawai();
+        $result = $mahasiswa->getPegawai($nim);
 
         if ($result == null) {
-            Helper::dumpToLog("mahasiswa $nim tidak ditemukan");
+            Helper::dumpToLog("Pegawai $nim tidak ditemukan");
             session_start();
-            $_SESSION['Error'] = "Mahasiswa $nim tidak ditemukan";
+            $_SESSION['Error'] = "Pegawai $nim tidak ditemukan";
             header("Location: /");
         } else {
             if ($result[0]->password == Helper::encrypt($password)) {
-                Helper::dumpToLog("success login mahasiswa $nim");
+                Helper::dumpToLog("success login Pegawai $nim");
                 $cookieValue = [];
-                $cookieValue['nim'] = $result[0]->nim;
-                $cookieValue['nama_mahasiswa'] = $result[0]->nama_mahasiswa;
-                $cookieValue['no_telp'] = $result[0]->no_telp;
+                $cookieValue['nip'] = $result[0]->nip;
+                $cookieValue['nama_pegawai'] = $result[0]->nama_pegawai;
+                $cookieValue['role'] = $result[0]->role;
                 $cookieValue['email'] = $result[0]->email;
-                $cookieValue['id_kelas'] = $result[0]->id_kelas;
-                $cookieValue['secret'] = $result[0]->secret;
-                $cookieValue['is_active'] = $result[0]->is_active;
-                $cookieValue['fotomahasiswa'] = $result[0]->foto_mahasiswa;
-                $cookieValue['tanggal_lahir'] = $result[0]->tanggal_lahir;
-                $cookieValue['jenis_kelamin'] = $result[0]->jenis_kelamin;
-                $cookieValue['id_prodi'] = $result[0]->id_prodi;;
+                $cookieValue['no_telp'] = $result[0]->no_telp;
+                $cookieValue['prodi'] = $result[0]->prodi;
+                $cookieValue['is_dpa'] = $result[0]->is_dpa;
+                $cookieValue['is_kps'] = $result[0]->is_kps;
 
                 setcookie("user", json_encode($cookieValue), time() + 86400, "/"); // 86400 = 1 day
 
                 header("Location: /home");
             } else {
-                Helper::dumpToLog("gagal login mahasiswa $nim");
+                Helper::dumpToLog("gagal login pegawai $nim");
                 session_start();
                 $_SESSION['Error'] = 'Password Salah';
 

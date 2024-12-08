@@ -3,6 +3,7 @@
 
 use Tatib\Src\Controller\AuthController;
 use Tatib\Src\Controller\HomeController;
+use Tatib\Src\Controller\PelanggaranController;
 use Tatib\Src\Controller\StaticController;
 use Tatib\Src\Controller\InformasiController;
 use Tatib\Src\Router;
@@ -15,7 +16,7 @@ $router->addRoute('GET', '/logout', AuthController::class, 'logout');
 
 $router->addRoute('GET', '/home', HomeController::class, 'home');
 $router->addRoute('GET', '/informasi', InformasiController::class, 'informasi');
-$router->addRoute('GET', '/dataPelanggaran', HomeController::class, 'dataPelanggaran');
+$router->addRoute('GET', '/dataPelanggaran', PelanggaranController::class, 'index');
 $router->addRoute('GET', '/cetakSurat', HomeController::class, 'cetakSurat');
 $router->addRoute('GET', '/gantiPassword', HomeController::class, 'gantiPassword');
 

@@ -69,17 +69,6 @@ class HomeController extends Controller
         ]);
     }
 
-    public function dataPelanggaran(){
-        Helper::dumpToLog("serve home");
-        if (!isset($_COOKIE['user'])) {
-            header("Location: /");
-            return;
-        }
-        $this->render('mahasiswa/page/dataPelanggaran', [
-            'title' => 'Data Pelanggaran'
-        ]);
-    }
-
     public function cetakSurat(){
         Helper::dumpToLog("serve home");
         if (!isset($_COOKIE['user'])) {

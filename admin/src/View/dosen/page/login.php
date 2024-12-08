@@ -38,11 +38,20 @@
             <img alt="Logo" src="/public/img/logo-svg" />
             <!-- <h1 class="h4 fw-bold mt-3">E-Tatib</h1> -->
             <h2 class="h5 text-secondary text-sm-start">Login</h2>
-            <p class="text-muted">Masukkan Username dan Password Anda</p>
-            <form>
-              <input class="form-control mb-3" placeholder="Username" type="text" />
-              <input class="form-control mb-3" placeholder="Password" type="password" />
-              <a href="dashboard.php" class="btn w-100 text-light">Login</a>
+            <p class="text-muted">Masukkan NIP dan Password Anda</p>
+            <form method="post" action="/doLogin" >
+              <input class="form-control mb-3" placeholder="NIP" name="nip" type="number" />
+              <input class="form-control mb-3" placeholder="Password" name="password" type="password" />
+
+                <?php
+                    session_start();
+                    if (!empty($_SESSION['Error'])) {
+                      echo '<div class="alert alert-danger py-2" role="alert">' . $_SESSION['Error'] . '</div>';
+                    }
+                    unset($_SESSION['Error'])
+                ?>
+
+              <button type="submit" class="btn w-100 text-light">Login</button>
               <!-- <button class="btn w-100">Login</button>/ -->
             </form>
           </div>
@@ -50,7 +59,7 @@
 
         <!-- Right Section -->
         <div class="col-lg-7 d-none d-lg-flex justify-content-center align-items-center bg-orange p-4">
-          <!-- <img class="illustration" alt="img" src="/public/img/loginFrame-png" /> -->
+          <!-- <img class="illustration" alt="img" src="/public/img/loginFrame.png" /> -->
         </div>
       </div>
     </div>
