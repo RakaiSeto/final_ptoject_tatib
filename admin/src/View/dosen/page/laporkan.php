@@ -14,50 +14,50 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" rel="stylesheet" />
 
     <style>
-        .dropdown-submenu {
-            position: relative;
-        }
+    .dropdown-submenu {
+        position: relative;
+    }
 
-        .dropdown-submenu .dropdown-menu {
-            top: 0 !important;
-            left: 100% !important;
-            margin-top: 0;
-            margin-left: 0;
-            display: none;
-        }
+    .dropdown-submenu .dropdown-menu {
+        top: 0 !important;
+        left: 100% !important;
+        margin-top: 0;
+        margin-left: 0;
+        display: none;
+    }
 
-        .dropdown-submenu:hover .dropdown-menu {
-            display: block;
-            /* Tampilkan submenu saat hover */
-        }
+    .dropdown-submenu:hover .dropdown-menu {
+        display: block;
+        /* Tampilkan submenu saat hover */
+    }
 
-        .dropdown-menu {
-            position: absolute;
-            /* Pastikan posisinya absolut untuk submenu */
-        }
+    .dropdown-menu {
+        position: absolute;
+        /* Pastikan posisinya absolut untuk submenu */
+    }
 
-        .hidden {
-            display: none;
-        }
+    .hidden {
+        display: none;
+    }
 
-        #identityCard {
-            border: 1px solid #FFA500;
-            padding: 20px;
-            background-color: rgba(253, 126, 20, 0.04);
-            /* margin-top: 20px; */
-        }
+    #identityCard {
+        border: 1px solid #FFA500;
+        padding: 20px;
+        background-color: rgba(253, 126, 20, 0.04);
+        /* margin-top: 20px; */
+    }
 
 
-        .container-fluid {
-            display: flex;
-            justify-content: center;
-        }
+    .container-fluid {
+        display: flex;
+        justify-content: center;
+    }
 
-        .card {
-            max-width: 500px;
-            /* Atur lebar maksimal untuk memastikan tata letak rapi */
-            width: 100%;
-        }
+    .card {
+        max-width: 500px;
+        /* Atur lebar maksimal untuk memastikan tata letak rapi */
+        width: 100%;
+    }
     </style>
 
 </head>
@@ -187,8 +187,9 @@
             <!-- Card Laporan Pelanggaran -->
             <!-- <div class="row">
   <div class="col-md-12"> -->
-            <div class="bg-white p-3">
-                <div id="reportCard" class=" hidden">
+
+            <div id="reportCard" class=" hidden">
+                <div class="bg-white p-3">
                     <div id="identityCard">
                         <h6>Laporkan pelanggaran untuk:</h6>
                         <p style="font-size: 20px" class="fw-bold" id="studentInfo"></p>
@@ -254,87 +255,87 @@
 
 
             <script>
-                document.querySelectorAll(".mahasiswaRow").forEach((row) => {
-                    row.addEventListener("click", function () {
-                        const nama = row.dataset.nama;
-                        const nim = row.dataset.nim;
-                        const kelas = row.dataset.kelas;
+            document.querySelectorAll(".mahasiswaRow").forEach((row) => {
+                row.addEventListener("click", function() {
+                    const nama = row.dataset.nama;
+                    const nim = row.dataset.nim;
+                    const kelas = row.dataset.kelas;
 
-                        // Isi data pada card
-                        document.getElementById("studentInfo").innerText = `${nama}/ NIM: ${nim}/ ${kelas}`;
-                        document.getElementById("reportCard").classList.remove("hidden");
-                        document.getElementById("mahasiswaTable").classList.add("hidden");
-                    });
+                    // Isi data pada card
+                    document.getElementById("studentInfo").innerText = `${nama}/ NIM: ${nim}/ ${kelas}`;
+                    document.getElementById("reportCard").classList.remove("hidden");
+                    document.getElementById("mahasiswaTable").classList.add("hidden");
+                });
+            });
+
+            // Tambahkan fungsi batal
+            document.getElementById("batal").addEventListener("click", function() {
+                document.getElementById("reportCard").classList.add("hidden");
+            });
+
+
+            document.querySelectorAll('.dropdown-submenu').forEach(function(submenu) {
+                submenu.addEventListener('mouseenter', function() {
+                    const submenuMenu = submenu.querySelector('.dropdown-menu');
+                    if (submenuMenu) submenuMenu.classList.add('show');
                 });
 
-                // Tambahkan fungsi batal
-                document.getElementById("batal").addEventListener("click", function () {
-                    document.getElementById("reportCard").classList.add("hidden");
+                submenu.addEventListener('mouseleave', function() {
+                    const submenuMenu = submenu.querySelector('.dropdown-menu');
+                    if (submenuMenu) submenuMenu.classList.remove('show');
                 });
+            });
+
+            function updateTingkatDropdown(element) {
+                const dropdownButton = document.getElementById("dropdownTingkat");
+                const parentMenu = element.closest(".dropdown-submenu").querySelector(".dropdown-toggle").textContent;
+                dropdownButton.textContent = `${parentMenu} - ${element.textContent}`;
+            }
 
 
-                document.querySelectorAll('.dropdown-submenu').forEach(function (submenu) {
-                    submenu.addEventListener('mouseenter', function () {
-                        const submenuMenu = submenu.querySelector('.dropdown-menu');
-                        if (submenuMenu) submenuMenu.classList.add('show');
-                    });
+            function updateProdiDropdown(element) {
+                const dropdownButton = document.getElementById("dropdownButton");
+                dropdownButton.textContent = element.textContent;
+            }
 
-                    submenu.addEventListener('mouseleave', function () {
-                        const submenuMenu = submenu.querySelector('.dropdown-menu');
-                        if (submenuMenu) submenuMenu.classList.remove('show');
-                    });
+
+            $(".sidebar ul li").on("click", function() {
+                $(".sidebar ul li.active").removeClass("active");
+                $(this).addClass("active");
+            });
+
+            $(".open-btn").on("click", function() {
+                $(".sidebar").addClass("active");
+            });
+
+            $(".close-btn").on("click", function() {
+                $(".sidebar").removeClass("active");
+            });
+
+            //dropdown
+            $(document).ready(function() {
+                $('.dropdown-submenu a.test').on("click", function(e) {
+                    $(this).next('ul').toggle();
+                    e.stopPropagation();
+                    e.preventDefault();
                 });
+            });
 
-                function updateTingkatDropdown(element) {
-                    const dropdownButton = document.getElementById("dropdownTingkat");
-                    const parentMenu = element.closest(".dropdown-submenu").querySelector(".dropdown-toggle").textContent;
-                    dropdownButton.textContent = `${parentMenu} - ${element.textContent}`;
-                }
-
-
-                function updateProdiDropdown(element) {
-                    const dropdownButton = document.getElementById("dropdownButton");
-                    dropdownButton.textContent = element.textContent;
-                }
-
-
-                $(".sidebar ul li").on("click", function () {
-                    $(".sidebar ul li.active").removeClass("active");
-                    $(this).addClass("active");
+            //
+            document.querySelectorAll('#prodiOptions .dropdown-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const selectedValue = this.getAttribute('data-value'); // Ambil data-value dari item
+                    document.getElementById('prodiInput').value =
+                        selectedValue; // Isi input dengan nilai yang dipilih
                 });
-
-                $(".open-btn").on("click", function () {
-                    $(".sidebar").addClass("active");
-                });
-
-                $(".close-btn").on("click", function () {
-                    $(".sidebar").removeClass("active");
-                });
-
-                //dropdown
-                $(document).ready(function () {
-                    $('.dropdown-submenu a.test').on("click", function (e) {
-                        $(this).next('ul').toggle();
-                        e.stopPropagation();
-                        e.preventDefault();
-                    });
-                });
-
-                //
-                document.querySelectorAll('#prodiOptions .dropdown-item').forEach(item => {
-                    item.addEventListener('click', function () {
-                        const selectedValue = this.getAttribute('data-value'); // Ambil data-value dari item
-                        document.getElementById('prodiInput').value = selectedValue; // Isi input dengan nilai yang dipilih
-                    });
-                });
+            });
 
 
-                //tombol filter
-                document.getElementById('filterBtn').addEventListener('click', function () {
-                    const table = document.getElementById('filterTable')
-                    table.classList.toggle('hidden');
-                });
-
+            //tombol filter
+            document.getElementById('filterBtn').addEventListener('click', function() {
+                const table = document.getElementById('filterTable')
+                table.classList.toggle('hidden');
+            });
             </script>
 </body>
 
