@@ -14,30 +14,34 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" rel="stylesheet" />
 
     <style>
-        .form-container {
-            max-width: 600px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #f9f9f9;
-            border-radius: 10px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .btn-primary {
-            background-color: #28a745;
-            border-color: #28a745;
-        }
-        .btn-primary:hover {
-            background-color: #218838;
-            border-color: #1e7e34;
-        }
-        .btn-secondary {
-            background-color: #e9ecef;
-            color: #212529;
-            border: none;
-        }
-        .btn-secondary:hover {
-            background-color: #d6d8db;
-        }
+    .form-container {
+        /* max-width: 600px; */
+        /* margin: 50px auto; */
+        padding: 20px;
+        /* background-color: #f9f9f9; */
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
+        /* box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1); */
+    }
+
+    .container {
+        max-width: 800px;
+    }
+
+    .login-box .btn:hover {
+        background-color: #df7935;
+    }
+
+
+    .btn-primary {
+        background-color: #fd7934;
+        border-color: #fd7934;
+    }
+
+    .btn-primary:hover {
+        background-color: #fd7934;
+        border-color: #ff6f00;
+    }
     </style>
 
 </head>
@@ -57,7 +61,7 @@
             <div class="bg-white p-2 my-2" style="color: #b1b1b1; border-radius: 5px">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#" style="color: #fd7e14;">Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Data</li>
                     </ol>
                 </nav>
@@ -66,29 +70,43 @@
 
             <div class="bg-white">
                 <!-- <button class="btn btn-success mb-4"><i class="bi bi-plus me-2"></i>Tambah</button> -->
-                <div class="container">
-                    <div class="form-container">
-                        <h3 class="text-center mb-4">Ganti Password</h3>
+                <!-- <div class="container"> -->
+                <div class="form-container">
+                    <h4 class="fw-medium" style="color: #fd7934">Ganti Password</h4>
+                    <hr>
+                    <div class="container mb-4 p-3">
                         <form>
                             <div class="mb-3">
                                 <label for="passwordLama" class="form-label">Password Lama</label>
-                                <input type="password" class="form-control" id="passwordLama" placeholder="Masukkan password lama">
+                                <input type="password" class="form-control" id="passwordLama"
+                                    placeholder="Masukkan password lama">
                             </div>
                             <div class="mb-3">
                                 <label for="passwordBaru" class="form-label">Password Baru</label>
-                                <input type="password" class="form-control" id="passwordBaru" placeholder="Masukkan password baru">
+                                <input type="password" class="form-control" id="passwordBaru"
+                                    placeholder="Masukkan password baru">
                             </div>
                             <div class="mb-3">
                                 <label for="ulangiPasswordBaru" class="form-label">Ulangi Password Baru</label>
-                                <input type="password" class="form-control" id="ulangiPasswordBaru" placeholder="Ulangi password baru">
+                                <input type="password" class="form-control" id="ulangiPasswordBaru"
+                                    placeholder="Ulangi password baru">
                             </div>
-                            <div class="d-flex justify-content-between">
-                                <button type="submit" class="btn btn-primary">Ganti Password</button>
-                                <button type="button" class="btn btn-secondary">Kembali</button>
-                            </div>
+
                         </form>
                     </div>
-                </div>   
+
+                    <div class="button-container p-3 "
+                        style="background-color: #f9f9f9; border-top: 1px solid rgba(0, 0, 0, 0.1);">
+                        <div class="d-flex justify-content-center gap-2">
+                            <button type="button" class="btn btn-outline-secondary"><i
+                                    class="bi bi-arrow-left me-2"></i>Kembali</button>
+                            <button type="submit" class="btn btn-primary"><i class="bi bi-key-fill me-2"></i>Ganti
+                                Password</button>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- </div> -->
             </div>
         </div>
     </div>
@@ -102,7 +120,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 
-    <script> 
+    <script>
     document.querySelector(".open-btn").addEventListener("click", function() {
         document.getElement ById("side_nav").classList.add("active");
         document.querySelector(".content").classList.add("sidebar-open");
