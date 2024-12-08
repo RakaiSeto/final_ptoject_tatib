@@ -17,6 +17,8 @@ $router->addRoute('GET', '/home', HomeController::class, 'home');
 $router->addRoute('GET', '/informasi', InformasiController::class, 'informasi');
 $router->addRoute('GET', '/dataPelanggaran', HomeController::class, 'dataPelanggaran');
 $router->addRoute('GET', '/cetakSurat', HomeController::class, 'cetakSurat');
+$router->addRoute('GET', '/gantiPassword', HomeController::class, 'gantiPassword');
+
 
 // Add a new route for serving static files
 $router->addRoute('GET', '/public/[A-Za-z]+/[A-Za-z0-9-]+-[A-Za-z]+', StaticController::class, 'serveFile');
