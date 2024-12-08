@@ -6,6 +6,7 @@ use Tatib\Src\Controller;
 use Tatib\Src\Core\Db;
 use Tatib\Src\Core\Helper;
 use Tatib\Src\Model\mahasiswa;
+use Tatib\Src\Model\daftar_pelanggaran;
 
 class HomeController extends Controller
 {
@@ -54,19 +55,41 @@ class HomeController extends Controller
             header("Location: /");
             return;
         }
-        $this->render('mahasiswa/page/informasi', [
-            'title' => 'Informasi'
+        $this->render('dosen/page/informasi', [
+            'title' => 'Informasi Tata Tertib'
         ]);
     }
 
-    public function cetakSurat(){
+    public function laporkan(){
         Helper::dumpToLog("serve home");
         if (!isset($_COOKIE['user'])) {
             header("Location: /");
             return;
         }
-        $this->render('mahasiswa/page/cetakSurat', [
-            'title' => 'Cetak Surat'
+        $this->render('dosen/page/laporkan', [
+            'title' => 'Laporkan Pelanggaran'
+        ]);
+    }
+
+    public function riwayatPelaporan(){
+        Helper::dumpToLog("serve home");
+        if (!isset($_COOKIE['user'])) {
+            header("Location: /");
+            return;
+        }
+        $this->render('dosen/page/riwayatPelaporan', [
+            'title' => 'Riwayat Pelaporan'  
+        ]);
+    }
+
+    public function dataPelanggaran(){
+        Helper::dumpToLog("serve home");
+        if (!isset($_COOKIE['user'])) {
+            header("Location: /");
+            return;
+        }
+        $this->render('dosen/page/dataPelanggaran', [
+            'title' => 'Data Pelanggaran'  
         ]);
     }
 }

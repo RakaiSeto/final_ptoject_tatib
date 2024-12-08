@@ -12,20 +12,20 @@
             Dashboard</a>
         </li>
         <?= $_SERVER["REQUEST_URI"] == '/laporkan' ? '<li class="active">' : '<li>' ?>
-            <a href="/laporkan" class="text-decoration-none px-3 py-3 d-block fw-bold"><i class="fas fa-book"></i>
-                Laporkan</a>
+        <a href="/laporkan" class="text-decoration-none px-3 py-3 d-block fw-bold"><i class="fas fa-book"></i>
+            Laporkan</a>
         </li>
         <?= $_SERVER["REQUEST_URI"] == '/riwayatPelaporan' ? '<li class="active">' : '<li>' ?>
-            <a href="/riwayatPelaporan" class="text-decoration-none px-3 py-3 d-block fw-bold"><i
-                        class="fas fa-info-circle"></i> Riwayat Pelaporan</a>
+        <a href="/riwayatPelaporan" class="text-decoration-none px-3 py-3 d-block fw-bold"><i
+                class="fas fa-info-circle"></i> Riwayat Pelaporan</a>
         </li>
         <?= $_SERVER["REQUEST_URI"] == '/dataPelanggaran' ? '<li class="active">' : '<li>' ?>
-            <a href="/dataPelanggaran" class="text-decoration-none px-3 py-3 d-block fw-bold"><i
-                        class="fas fa-print"></i> Data Pelanggaran</a>
+        <a href="/dataPelanggaran" class="text-decoration-none px-3 py-3 d-block fw-bold"><i class="fas fa-print"></i>
+            Data Pelanggaran</a>
         </li>
         <?= $_SERVER["REQUEST_URI"] == '/informasi' ? '<li class="active">' : '<li>' ?>
-            <a href="/informasi" class="text-decoration-none px-3 py-3 d-block fw-bold"><i
-                        class="fas fa-info-circle"></i> Informasi</a>
+        <a href="/informasi" class="text-decoration-none px-3 py-3 d-block fw-bold"><i class="fas fa-info-circle"></i>
+            Informasi</a>
         </li>
     </ul>
 </div>

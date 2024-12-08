@@ -79,4 +79,15 @@ class HomeController extends Controller
             'title' => 'Cetak Surat'
         ]);
     }
+
+    public function gantiPassword(){
+        Helper::dumpToLog("serve home");
+        if (!isset($_COOKIE['user'])) {
+            header("Location: /");
+            return;
+        }
+        $this->render('mahasiswa/page/gantiPassword', [
+            'title' => 'Ganti Password'
+        ]);
+    }
 }
