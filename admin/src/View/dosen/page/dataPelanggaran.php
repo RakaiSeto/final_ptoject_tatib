@@ -51,7 +51,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb mb-0">
                             <li class="breadcrumb-item"><a href="#">E-Tatib</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Pelanggaran Mahasiswa Gue</li>
+                            <li class="breadcrumb-item active" aria-current="page">Pelanggaran Mahasiswa</li>
                         </ol>
                     </nav>
                 </div>
