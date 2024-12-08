@@ -15,46 +15,47 @@
 
 
     <style>
-    /* Ubah warna tab aktif */
-    .nav-pills .nav-link.active {
-        background-color: #fd7e14 !important;
-        border-color: #fd7e14 !important;
-        color: #fff !important;
-    }
+        /* Ubah warna tab aktif */
+        .nav-pills .nav-link.active {
+            background-color: #fd7e14 !important;
+            border-color: #fd7e14 !important;
+            color: #fff !important;
+        }
 
-    /* Ubah warna tab biasa */
-    .nav-pills .nav-link {
-        color: #fd7e14;
-    }
+        /* Ubah warna tab biasa */
+        .nav-pills .nav-link {
+            color: #fd7e14;
+        }
 
-    /* Warna saat di-hover */
-    .nav-pills .nav-link:hover {
-        background-color: rgba(253, 126, 20, 0.1);
-        color: #fd7e14;
-    }
+        /* Warna saat di-hover */
+        .nav-pills .nav-link:hover {
+            background-color: rgba(253, 126, 20, 0.1);
+            color: #fd7e14;
+        }
     </style>
 </head>
 
 <body>
     <div class="main-container">
         <!-- Sidebar -->
-        <?php include('sidebar.php'); ?>
+    <?php include('sidebar.php'); ?>
 
-        <!-- Navbar -->
-        <?php include('navbar.php'); ?>
+<!-- Navbar -->
+<?php include('navbar.php'); ?>
 
         <!-- Dashboard Content -->
         <div class="content px-3 pt-3" style="margin-top: 68px;">
 
-            <div class="bg-white p-2 my-2" style="color: #b1b1b1; border-radius: 5px">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/" style="color: #fd7e14;">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page"><?= $title ?></li>
-                    </ol>
-                </nav>
+            <div class="card mb-4">
+                <div class="card-body py-2">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0">
+                            <li class="breadcrumb-item"><a href="#">E-Tatib</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Pelanggaran Mahasiswa Gue</li>
+                        </ol>
+                    </nav>
+                </div>
             </div>
-
 
             <div class="bg-white border">
 
@@ -156,18 +157,18 @@
 
 
     <script>
-    $(".sidebar ul li").on("click", function() {
-        $(".sidebar ul li.active").removeClass("active");
-        $(this).addClass("active");
-    });
+        $(".sidebar ul li").on("click", function () {
+            $(".sidebar ul li.active").removeClass("active");
+            $(this).addClass("active");
+        });
 
-    $(".open-btn").on("click", function() {
-        $(".sidebar").addClass("active");
-    });
+        $(".open-btn").on("click", function () {
+            $(".sidebar").addClass("active");
+        });
 
-    $(".close-btn").on("click", function() {
-        $(".sidebar").removeClass("active");
-    });
+        $(".close-btn").on("click", function () {
+            $(".sidebar").removeClass("active");
+        });
     </script>
 </body>
 
