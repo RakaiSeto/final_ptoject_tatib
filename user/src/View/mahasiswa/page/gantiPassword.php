@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
+    <title><?= $title ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
@@ -69,30 +69,28 @@
                 <div class="container">
                     <div class="form-container">
                         <h3 class="text-center mb-4">Ganti Password</h3>
-                        <form>
+                        <form action="/doGantiPassword" method="post">
                             <div class="mb-3">
                                 <label for="passwordLama" class="form-label">Password Lama</label>
-                                <input type="password" class="form-control" id="passwordLama" placeholder="Masukkan password lama">
+                                <input type="password" class="form-control" name="old" id="passwordLama" placeholder="Masukkan password lama">
                             </div>
                             <div class="mb-3">
                                 <label for="passwordBaru" class="form-label">Password Baru</label>
-                                <input type="password" class="form-control" id="passwordBaru" placeholder="Masukkan password baru">
+                                <input type="password" class="form-control" name="new" id="passwordBaru" placeholder="Masukkan password baru">
                             </div>
                             <div class="mb-3">
                                 <label for="ulangiPasswordBaru" class="form-label">Ulangi Password Baru</label>
-                                <input type="password" class="form-control" id="ulangiPasswordBaru" placeholder="Ulangi password baru">
+                                <input type="password" class="form-control" name="confirm" id="ulangiPasswordBaru" placeholder="Ulangi password baru">
                             </div>
                             <div class="d-flex justify-content-between">
-                                <button type="submit" class="btn btn-primary">Ganti Password</button>
-                                <button type="button" class="btn btn-secondary">Kembali</button>
+                                <button type="submit" class="btn btn-primary" id="btnSubmit" disabled>Ganti Password</button>
+                                <a href="/" class="btn btn-secondary">Kembali</a>
                             </div>
                         </form>
                     </div>
                 </div>   
             </div>
         </div>
-    </div>
-    </div>
     </div>
 
     <!-- Scripts -->
@@ -104,7 +102,7 @@
 
     <script> 
     document.querySelector(".open-btn").addEventListener("click", function() {
-        document.getElement ById("side_nav").classList.add("active");
+        document.getElementById("side_nav").classList.add("active");
         document.querySelector(".content").classList.add("sidebar-open");
     });
 
@@ -112,6 +110,36 @@
         document.getElementById("side_nav").classList.remove("active");
         document.querySelector(".content").classList.remove("sidebar-open");
     });
+
+    $(document).ready(function() {
+        $('#ulangiPasswordBaru').on('input', function(event) {
+            if ($('#ulangiPasswordBaru').val() !== '' && $('#passwordLama').val() !== '') {
+                if ($('#passwordBaru').val() !== $('#ulangiPasswordBaru').val()) {
+                    $('#btnSubmit').prop('disabled', true);
+                } else {
+                    $('#btnSubmit').prop('disabled', false);
+                }
+            }
+        })
+
+        $('#passwordBaru').on('input', function (event) {
+            if ($('#passwordBaru').val() !== '' && $('#passwordLama').val() !== '') {
+                if ($('#passwordBaru').val() !== $('#ulangiPasswordBaru').val()) {
+                    $('#btnSubmit').prop('disabled', true);
+                } else {
+                    $('#btnSubmit').prop('disabled', false);
+                }
+            }
+        })
+
+        $('#passwordLama').on('input', function (event) {
+            if ($('#passwordLama').val() === '') {
+                $('#btnSubmit').prop('disabled', true);
+            } else {
+                $('#passwordBaru').trigger('input');
+            }
+        })
+    })
     </script>
 </body>
 

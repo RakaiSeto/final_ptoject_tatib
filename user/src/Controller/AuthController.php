@@ -54,7 +54,46 @@ class AuthController extends Controller
                 header("Location: /");
             }
         }
+    }
 
+    public function changePassword()
+    {
+        Helper::dumpToLog('serve changePassword');
+        if (!isset($_COOKIE['user'])) {
+            header("Location: /");
+            return;
+        }
+
+        $this->render('mahasiswa/page/gantiPassword', [
+            'title' => 'Change Password'
+        ]);
+    }
+
+    public function doChangePassword()
+    {
+        Helper::dumpToLog('serve doChangePassword');
+        if (!isset($_COOKIE['user'])) {
+            header("Location: /");
+            return;
+        }
+
+        $mahasiswa = new mahasiswa();
+        $cookieArray = json_decode($_COOKIE['user'], true);
+        $result = $mahasiswa->getMahasiswa($cookieArray['nim']);
+
+        if ($result == null) {
+            Helper::dumpToLog("mahasiswa $cookieArray[nim] tidak ditemukan");
+            session_start();
+            $_SESSION['Error'] = "Mahasiswa $cookieArray[nim] tidak ditemukan";
+            header("Location: /");
+        } else {
+            if ($result[0]->password == Helper::encrypt($_POST['old'])) {
+                $result[0]->password = Helper::encrypt($_POST['new']);
+                $result[0]->updateMahasiswa($cookieArray['nim']);
+                Helper::dumpToLog("success change password mahasiswa $cookieArray[nim]");
+                header("Location: /logout");
+            }
+        }
     }
 
     public function logout()
