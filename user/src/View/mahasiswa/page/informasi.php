@@ -275,7 +275,7 @@
                                     <?php
                                 $no=1;
                                 // Menampilkan data dari database ke tabel
-                                foreach ($Informasi as $row) {
+                                foreach ($informasi as $row) {
                                 echo "<tr>";
                                     echo "<td>" . $no . "</td>";
                                     echo "<td>" . htmlspecialchars($row->nama_pelanggaran) . "</td>";
