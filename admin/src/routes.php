@@ -16,7 +16,7 @@ $router->addRoute('POST', '/doLogin', AuthController::class, 'doLogin');
 $router->addRoute('GET', '/logout', AuthController::class, 'logout');
 
 $router->addRoute('GET', '/home', HomeController::class, 'home');
-$router->addRoute('GET', '/informasi', HomeController::class, 'informasi');
+$router->addRoute('GET', '/informasi', InformasiController::class, 'informasi');
 $router->addRoute('GET', '/laporkan', HomeController::class, 'laporkan');
 $router->addRoute('GET', '/riwayatPelaporan', HomeController::class, 'riwayatPelaporan');
 $router->addRoute('GET', '/dataPelanggaran', HomeController::class, 'dataPelanggaran');

@@ -17,8 +17,7 @@ class InformasiController extends Controller
         }
         $model = new daftar_pelanggaran();
         $result = $model->getDaftarPelanggaran();
-        $this->render('dosen/page/informasi', ['informasi' => $result, 'title' => 'informasi']);
-
+        $role = json_decode($_COOKIE['user'], true)['role'];
+        $this->render($role . '/page/informasi', ['informasi' => $result, 'title' => 'informasi']);
     }
-    
 }

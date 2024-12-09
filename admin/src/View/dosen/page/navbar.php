@@ -9,7 +9,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="/public/img/fotoagung-jpeg" alt="User Profile Picture" class="rounded-circle"
+                        <img src="<?= \Tatib\Src\Core\Helper::getProfilePicture(); ?>" alt="User Profile Picture" class="rounded-circle"
                             width="50" height="50" />
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
