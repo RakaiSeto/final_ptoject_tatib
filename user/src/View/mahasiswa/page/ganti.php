@@ -69,7 +69,7 @@
             </div>
 
             <div class="form-container">
-                <h4 class="fw-medium">Ganti Password</h4>
+                <h4 class="fw-medium" style="color: #fd7934">Ganti Password</h4>
                 <hr>
                 <?php
                 
@@ -101,8 +101,7 @@
                         <div class="d-flex justify-content-center gap-2">
                             <a href="/" class="btn btn-outline-secondary"><i
                                     class="bi bi-arrow-left me-2"></i>Kembali</a>
-                            <button type="submit" class="btn btn-primary"
-                                style="background-color: #fd7e14; border-color: #fd7e14;" id="btnSubmit" disabled>
+                            <button type="submit" class="btn btn-primary" id="btnSubmit" disabled>
                                 <i class="bi bi-key-fill me-2"></i>Ganti Password
                             </button>
                         </div>
