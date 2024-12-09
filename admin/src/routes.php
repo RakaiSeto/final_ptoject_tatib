@@ -13,6 +13,8 @@ $router = new Router();
 
 $router->addRoute('GET', '/', HomeController::class, 'index');
 $router->addRoute('POST', '/doLogin', AuthController::class, 'doLogin');
+$router->addRoute('GET', '/gantiPassword', AuthController::class, 'change');
+$router->addRoute('POST', '/doChangePassword', AuthController::class, 'doChangePassword');
 $router->addRoute('GET', '/logout', AuthController::class, 'logout');
 
 $router->addRoute('GET', '/home', HomeController::class, 'home');
@@ -20,7 +22,6 @@ $router->addRoute('GET', '/informasi', InformasiController::class, 'informasi');
 $router->addRoute('GET', '/laporkan', HomeController::class, 'laporkan');
 $router->addRoute('GET', '/riwayatPelaporan', HomeController::class, 'riwayatPelaporan');
 $router->addRoute('GET', '/dataPelanggaran', HomeController::class, 'dataPelanggaran');
-$router->addRoute('GET', '/gantiPassword', HomeController::class, 'gantiPassword');
 
 
 // Add a new route for serving static files
