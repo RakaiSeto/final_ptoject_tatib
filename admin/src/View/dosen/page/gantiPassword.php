@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
+    <title><?php session_start(); echo $title; ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
@@ -74,37 +74,44 @@
                 <div class="form-container">
                     <h4 class="fw-medium" style="color: #fd7934">Ganti Password</h4>
                     <hr>
+                    <form action="/doChangePassword" method="POST">
                     <div class="container mb-4 p-3">
-                        <form>
                             <div class="mb-3">
                                 <label for="passwordLama" class="form-label">Password Lama</label>
-                                <input type="password" class="form-control" id="passwordLama"
+                                <input type="password" class="form-control" name="old" id="passwordLama"
                                     placeholder="Masukkan password lama">
                             </div>
                             <div class="mb-3">
                                 <label for="passwordBaru" class="form-label">Password Baru</label>
-                                <input type="password" class="form-control" id="passwordBaru"
+                                <input type="password" class="form-control" name="new" id="passwordBaru"
                                     placeholder="Masukkan password baru">
                             </div>
                             <div class="mb-3">
                                 <label for="ulangiPasswordBaru" class="form-label">Ulangi Password Baru</label>
-                                <input type="password" class="form-control" id="ulangiPasswordBaru"
+                                <input type="password" class="form-control" name="confirm" id="ulangiPasswordBaru"
                                     placeholder="Ulangi password baru">
                             </div>
 
-                        </form>
                     </div>
+
+                    <?php
+
+                    if (!empty($_SESSION['Error'])) {
+                        echo '<div class="alert alert-danger py-2" role="alert">' . $_SESSION['Error'] . '</div>';
+                        unset($_SESSION['Error']);
+                    }
+                    ?>
 
                     <div class="button-container p-3 "
                         style="background-color: #f9f9f9; border-top: 1px solid rgba(0, 0, 0, 0.1);">
                         <div class="d-flex justify-content-center gap-2">
                             <button type="button" class="btn btn-outline-secondary"><i
                                     class="bi bi-arrow-left me-2"></i>Kembali</button>
-                            <button type="submit" class="btn btn-primary"><i class="bi bi-key-fill me-2"></i>Ganti
+                            <button type="submit" class="btn btn-primary" id="btnSubmit" disabled><i class="bi bi-key-fill me-2"></i>Ganti
                                 Password</button>
                         </div>
                     </div>
-
+                    </form>
                 </div>
                 <!-- </div> -->
             </div>
@@ -121,15 +128,19 @@
 
 
     <script>
-    document.querySelector(".open-btn").addEventListener("click", function() {
-        document.getElement ById("side_nav").classList.add("active");
-        document.querySelector(".content").classList.add("sidebar-open");
-    });
+        $(document).ready(function() {
+            function toggleSubmitButton() {
+                const oldPassword = $('#passwordLama').val().trim();
+                const newPassword = $('#passwordBaru').val().trim();
+                const confirmPassword = $('#ulangiPasswordBaru').val().trim();
+                const isValid = oldPassword && newPassword && newPassword === confirmPassword;
+                document.getElementById('btnSubmit').disabled = !isValid;
+            }
 
-    document.querySelector(".close-btn").addEventListener("click", function() {
-        document.getElementById("side_nav").classList.remove("active");
-        document.querySelector(".content").classList.remove("sidebar-open");
-    });
+            $('#passwordLama').on('input', toggleSubmitButton);
+            $('#passwordBaru').on('input', toggleSubmitButton);
+            $('#ulangiPasswordBaru').on('input', toggleSubmitButton);
+        });
     </script>
 </body>
 

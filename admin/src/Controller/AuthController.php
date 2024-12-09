@@ -50,7 +50,49 @@ class AuthController extends Controller
                 header("Location: /");
             }
         }
+    }
 
+    public function change(){
+        Helper::dumpToLog("serve change");
+        if (!isset($_COOKIE['user'])) {
+            header("Location: /");
+            return;
+        }
+        $this->render('dosen/page/gantiPassword', [
+            'title' => 'Ganti Password'
+        ]);
+    }
+
+    public function doChangePassword()
+    {
+        Helper::dumpToLog('serve doChangePassword');
+        if (!isset($_COOKIE['user'])) {
+            header("Location: /");
+            return;
+        }
+
+        $mahasiswa = new pegawai();
+        $cookieArray = json_decode($_COOKIE['user'], true);
+        $result = $mahasiswa->getPegawai($cookieArray['nip']);
+
+        if ($result == null) {
+            Helper::dumpToLog("Pegawai $cookieArray[nim] tidak ditemukan");
+            session_start();
+            $_SESSION['Error'] = "Pegawai $cookieArray[nim] tidak ditemukan";
+            header("Location: /");
+        } else {
+            if ($result[0]->password == Helper::encrypt($_POST['old'])) {
+                $result[0]->password = Helper::encrypt($_POST['new']);
+                $result[0]->updatePegawai($cookieArray['nip']);
+                Helper::dumpToLog("success change password Pegawai $cookieArray[nim]");
+                header("Location: /logout");
+            } else {
+                Helper::dumpToLog("gagal change password Pegawai $cookieArray[nim]");
+                session_start();
+                $_SESSION['Error'] = 'Password Lama Salah';
+                header("Location: /changePassword");
+            }
+        }
     }
 
     public function logout()

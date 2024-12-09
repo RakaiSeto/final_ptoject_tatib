@@ -20,61 +20,10 @@
 <body>
     <div class="main-container">
         <!-- Sidebar -->
-        <div class="sidebar" id="side_nav">
-            <div class="header-box px-5 pt-3 pb-2 d-flex justify-content-between">
-                <img alt="Logo E-Tatib" src="../img/logo.svg" />
-                <button class="btn d-md-none d-block close-btn px-1 py-0 text-dark">
-                    <i class="fas fa-stream"></i>
-                </button>
-            </div>
-            <ul class="list-unstyled px-2 py-1">
-                <li>
-                    <a href="dashboard.php" class="text-decoration-none px-3 py-3 d-block fw-bold"><i
-                            class="fas fa-home"></i> Dashboard</a>
-                </li>
-                <li class="active">
-                    <a href="laporkan.php" class="text-decoration-none px-3 py-3 d-block fw-bold"><i
-                            class="fas fa-book"></i> Laporkan</a>
-                </li>
-                <li>
-                    <a href="RiwayatPelaporan.php" class="text-decoration-none px-3 py-3 d-block fw-bold"><i
-                            class="fas fa-info-circle"></i> Riwayat Pelaporan</a>
-                </li>
-                <li>
-                    <a href="cetakSurat.php" class="text-decoration-none px-3 py-3 d-block fw-bold"><i
-                            class="fas fa-print"></i> Data Pelanggaran</a>
-                </li>
-                <li>
-                    <a href="informasi.php" class="text-decoration-none px-3 py-3 d-block fw-bold"><i
-                            class="fas fa-info-circle"></i> Informasi</a>
-                </li>
-            </ul>
-        </div>
+        <?php require_once 'sidebar.php'; ?>
 
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-md navbar-light py-2">
-            <div class="container-fluid">
-                <div class="d-flex align-items-center w-100">
-                    <button class="btn px-0 py-0 open-btn">
-                        <i class="fas fa-stream me-2 d-md-none"></i>
-                    </button>
-                    <span class="fw-medium" style="font-size: 28px">Dashboard</span>
-                    <div class="d-flex ms-auto">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="../img/fotoagung.jpeg" alt="User Profile Picture" class="rounded-circle"
-                                    width="50" height="50" />
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                                <li><a class="dropdown-item" href="#change-password">Ganti Password</a></li>
-                                <li><a class="dropdown-item" href="#logout">Logout</a></li>
-                            </ul>
-                        </li>
-                    </div>
-                </div>
-            </div>
-        </nav>
+        <?php require_once 'navbar.php'; ?>
 
         <!-- Dashboard Content -->
         <div class="content px-3 pt-3" style="margin-top: 57px;">

@@ -12,53 +12,6 @@
     <link rel="stylesheet" href="/public/css/style-css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <style>
-    .pagination .page-link {
-        background-color: white;
-        color: gray;
-        border: 1px solid lightgray;
-    }
-
-    .pagination .page-item.active .page-link {
-        background-color: #fd7e14;
-        border-color: lightgray;
-        color: white;
-    }
-
-    .pagination .page-item.disabled .page-link {
-        background-color: lightgray;
-        color: gray;
-        border-color: lightgray;
-    }
-
-    .pagination .page-link:hover {
-        background-color: rgba(253, 126, 20, 0.5);
-        color: white;
-    }
-
-    .pagination .page-link {
-        background-color: white;
-        color: gray;
-        border: 1px solid lightgray;
-    }
-
-    .pagination .page-item.active .page-link {
-        background-color: #fd7e14;
-        border-color: lightgray;
-        color: white;
-    }
-
-    .pagination .page-item.disabled .page-link {
-        background-color: lightgray;
-        color: gray;
-        border-color: lightgray;
-    }
-
-    .pagination .page-link:hover {
-        background-color: rgba(253, 126, 20, 0.5);
-        color: white;
-    }
-    </style>
 </head>
 
 <body>
