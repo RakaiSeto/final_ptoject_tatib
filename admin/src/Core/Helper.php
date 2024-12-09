@@ -2,6 +2,9 @@
 
 namespace Tatib\Src\Core;
 
+use Tatib\Src\Model\mahasiswa;
+use Tatib\Src\Model\pegawai;
+
 class Helper
 {
     public static function dumpToLog($data)
@@ -55,6 +58,10 @@ class Helper
         $iv = substr(hash('sha256', $secret_iv), 0, 16);
         $output = openssl_decrypt(base64_decode($string), $encrypt_method, $key, 0, $iv);
         return $output;
+    }
+
+    public static function getProfilePicture() {
+        return Helper::lastFullstopToHyphen('/public/img/default-pp.png');
     }
 
     public static function checkFileExist($path) {
