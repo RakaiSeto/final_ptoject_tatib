@@ -81,7 +81,20 @@
                   border: 0; border-radius: 0; width: 114px; text-align: center;  padding: 10px 0;">Dalam proses</span>
                                 </td>
                                 <td>
-                                    <button class="btn btn-sm btn-light"><i class="fas fa-ellipsis-h"></i></button>
+                                    <div class="dropdown">
+                                        <button class="btn btn-sm btn-light dropdown-toggle" type="button"
+                                            id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <li><a class="dropdown-item" href="#" onclick="lihatDetail()">Lihat
+                                                    Detail</a></li>
+                                            <li><a class="dropdown-item" href="#" onclick="modifikasi()">Modifikasi</a>
+                                            </li>
+                                            <li><a class="dropdown-item text-danger" href="#"
+                                                    onclick="batalkan()">Batalkan</a></li>
+                                        </ul>
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
