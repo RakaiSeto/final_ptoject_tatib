@@ -46,7 +46,6 @@
         <div class="content px-3 pt-3" style="margin-top: 56px">
 
 
-
             <div class="bg-white p-2 my-2" style="color: #b1b1b1; border-radius: 5px">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
@@ -57,7 +56,7 @@
             </div>
             <div class="bg-white">
                 <h2 class="h3 mb-3" style="font-size: 24px">Pelanggaran Terbaru</h2>
-                <div class="table-responsive mb-4">
+                <div class="table-responsive mb-2">
                     <table class="table table-bordered table-hover" id="tabel-awal">
                         <thead>
                             <tr>
@@ -236,7 +235,8 @@
 
 
                 <div class="mb-3">
-                    <h5 class="modal-title mb-2" id="exampleModalLabel">Riwayat Pelaporan</h5>
+                    <h2 class="h3 mb-3" style="font-size: 20px">Riwayat Pelaporan</h2>
+                    <!-- <h5 class="modal-title mb-2" id="exampleModalLabel">Riwayat Pelaporan</h5> -->
                     <select class="form-select" id="periode-select">
                         <option selected value="ganjil">2023/2024 Ganjil</option>
                         <option value="genap">2023/2024 Genap</option>

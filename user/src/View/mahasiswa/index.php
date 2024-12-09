@@ -274,7 +274,7 @@
                             <li><i class="bi bi-x-circle-fill me-2"></i>Larangan merokok di area kampus.</li>
                             <li><i class="bi bi-x-circle-fill me-2"></i>Tidak melakukan plagiasi.</li>
                         </ul>
-                        <a href="#cta" class="btn btn-primary btn-l mt-3">Selengkapnya</a>
+                        <a href="/login" class="btn btn-primary btn-l mt-3">Selengkapnya</a>
                     </div>
                 </div>
 
