@@ -19,6 +19,17 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/public/css/style-css" />
 
+    <style>
+    .btn-detail-transparan {
+        background-color: #FFE5D0;
+        color: #fd7e14;
+    }
+
+    .btn-detail-transparan:hover {
+        background-color: #fd7e14;
+        color: #FFE5D0;
+    }
+    </style>
 
 
 </head>
@@ -224,12 +235,67 @@
                 </div>
 
 
-                <div class="mb-4">
+                <div class="mb-3">
+                    <h5 class="modal-title mb-2" id="exampleModalLabel">Riwayat Pelaporan</h5>
                     <select class="form-select" id="periode-select">
-                        <option selected="" value="awal">2023/2024 Ganjil</option>
-                        <option value="baru">2023/2024 Genap</option>
+                        <option selected value="ganjil">2023/2024 Ganjil</option>
+                        <option value="genap">2023/2024 Genap</option>
                     </select>
                 </div>
+
+                <!-- Tabel Ganjil -->
+                <div id="tabel-ganjil" class="table-container" style="display: none;">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Jenis Pelanggaran</th>
+                                <th>Tingkat</th>
+                                <th>Tanggal</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>rok mini</td>
+                                <td>3</td>
+                                <td>19/11/2024</td>
+                                <td><button class="btn-detail btn-detail-transparan" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal">Lihat Detail</button></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Tabel Genap -->
+                <div id="tabel-genap" class="table-container" style="display: none;">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Jenis Pelanggaran</th>
+                                <th>Tingkat</th>
+                                <th>Tanggal</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Merokok di kawasan kampus</td>
+                                <td>3</td>
+                                <td>19/11/2024</td>
+                                <td><button class="btn-detail btn-detail-transparan" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal">Lihat Detail</button></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+
             </div>
         </div>
     </div>
@@ -243,6 +309,27 @@
 
 
     <script>
+    //table
+    const selectPeriode = document.getElementById('periode-select');
+    const tabelGanjil = document.getElementById('tabel-ganjil');
+    const tabelGenap = document.getElementById('tabel-genap');
+
+    selectPeriode.addEventListener('change', function() {
+        const selectedValue = this.value;
+
+        // Sembunyikan semua tabel saat opsi berubah
+        tabelGanjil.style.display = 'none';
+        tabelGenap.style.display = 'none';
+
+        // Tampilkan tabel berdasarkan pilihan
+        if (selectedValue === 'ganjil') {
+            tabelGanjil.style.display = 'block';
+        } else if (selectedValue === 'genap') {
+            tabelGenap.style.display = 'block';
+        }
+    });
+
+    //sidebar
     document.querySelector(".open-btn").addEventListener("click", function() {
         document.getElementById("side_nav").classList.add("active");
         document.querySelector(".content").classList.add("sidebar-open");
