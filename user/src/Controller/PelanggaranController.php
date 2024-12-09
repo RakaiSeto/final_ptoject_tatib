@@ -11,7 +11,7 @@ class PelanggaranController extends Controller
     public function index(){
         Helper::dumpToLog("serve index data pelangaran");
         if (!isset($_COOKIE['user'])) {
-            header("Location: /");
+            header("Location: /login");
             return;
         }
 

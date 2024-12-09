@@ -20,7 +20,7 @@
     }
 
     .header-image {
-        background-image: url('img/bg(1).png');
+        background-image: url('<?= BASE_URL; ?>/public/img/bg(1)-png');
         background-size: cover;
         background-position: center;
         height: 900px;
@@ -138,7 +138,7 @@
 
         <nav class="navbar navbar-expand-lg navbar-light pt-2 pb-2">
             <div class="container-fluid">
-                <a class="navbar-brand fw-bold" href="#"><img src="img/logo.svg" height="50px" alt=""></a>
+                <a class="navbar-brand fw-bold" href="#"><img src="/public/img/logo-svg" height="50px" alt=""></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -158,7 +158,7 @@
                             <a class="nav-link" href="#list-tata-tertib">List Tata Tertib</a>
                         </li>
                     </ul>
-                    <a href="page/login.php" class="btn btn-primary px-4 ms-3">Login</a>
+                    <a href="/login" class="btn btn-primary px-4 ms-3">Login</a>
                 </div>
             </div>
         </nav>
@@ -173,7 +173,7 @@
                         Informasi</h1>
                     <p class="lead" style="font-size: 16px;">Sistem Tata Tertib yang Membantu Menciptakan Lingkungan
                         Belajar yang Kondusif dan Profesional</p>
-                    <a href="page/login.php" class="btn btn-primary btn-lg mt-3">Login</a>
+                    <a href="   /login" class="btn btn-primary btn-lg mt-3">Login</a>
                 </div>
             </div>
         </div>
@@ -219,7 +219,7 @@
                             sama dengan lebih baik, mengurangi konflik, dan meningkatkan efisiensi dalam berbagai
                             kegiatan.</p>
                         <div class="d-flex align-items-center">
-                            <img src="img/qr.png" alt="QR Code" width="75px" height="75px" class="me-3">
+                            <img src="/public/img/qr-png" alt="QR Code" width="75px" height="75px" class="me-3">
                             <div>
                                 <p style="font-size: 20px; margin-bottom: 5px;">QR Code</p>
                                 <p style="font-size: 16px;">QR Code didapatkan setelah login ke sistem. QR Code
@@ -229,7 +229,7 @@
                     </div>
                 </div>
                 <div class="col-md-5">
-                    <img src="img/svg1.svg" alt="Illustration of E-Tatib Benefits" class="img-fluid"
+                    <img src="/public/img/svg1-svg" alt="Illustration of E-Tatib Benefits" class="img-fluid"
                         style="max-width: 100%; height: 340px;">
                 </div>
             </div>
@@ -240,7 +240,7 @@
         <section id="list-tata-tertib" class="text-center">
             <div class="row align-items-center g-4">
                 <div class="col-md-5">
-                    <img src="img/svg2.svg" alt="Illustration of E-Tatib Benefits" class="img-fluid"
+                    <img src="/public/img/svg2-svg" alt="Illustration of E-Tatib Benefits" class="img-fluid"
                         style="max-width: 100%; height: 300px;">
                 </div>
                 <div class="col-md-7">
@@ -279,7 +279,7 @@
                 </div>
 
                 <div class="col-md-6">
-                    <img src="img/svg3.svg" alt="Illustration of E-Tatib Benefits" class="img-fluid"
+                    <img src="/public/img/svg3-svg" alt="Illustration of E-Tatib Benefits" class="img-fluid"
                         style="max-width: 100%; height: 300px;">
                 </div>
             </div>

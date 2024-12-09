@@ -24,6 +24,6 @@ $router->addRoute('GET', '/gantiPassword', HomeController::class, 'gantiPassword
 
 
 // Add a new route for serving static files
-$router->addRoute('GET', '/public/[A-Za-z]+/[A-Za-z0-9-]+-[A-Za-z]+', StaticController::class, 'serveFile');
+$router->addRoute('GET', '/public/[A-Za-z]+/[A-Za-z0-9\(\)-]+-[A-Za-z]+', StaticController::class, 'serveFile');
 
 return $router;

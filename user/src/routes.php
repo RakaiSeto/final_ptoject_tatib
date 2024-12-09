@@ -11,6 +11,7 @@ use Tatib\Src\Router;
 $router = new Router();
 
 $router->addRoute('GET', '/', HomeController::class, 'index');
+$router->addRoute('GET', '/login', HomeController::class, 'login');
 $router->addRoute('POST', '/doLogin', AuthController::class, 'doLogin');
 $router->addRoute('GET', '/changePassword', AuthController::class, 'changePassword');
 $router->addRoute('POST', '/doGantiPassword', AuthController::class, 'doChangePassword');
@@ -24,6 +25,6 @@ $router->addRoute('GET', '/gantiPassword', HomeController::class, 'gantiPassword
 
 
 // Add a new route for serving static files
-$router->addRoute('GET', '/public/[A-Za-z]+/[A-Za-z0-9-]+-[A-Za-z]+', StaticController::class, 'serveFile');
+$router->addRoute('GET', '/public/[A-Za-z]+/[A-Za-z0-9\(\)-]+-[A-Za-z]+', StaticController::class, 'serveFile');
 
 return $router;

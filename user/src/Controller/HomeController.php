@@ -12,6 +12,12 @@ class HomeController extends Controller
     public function index()
     {
         Helper::dumpToLog("serve index");
+        $this->render('mahasiswa/index');
+    }
+
+    public function login()
+    {
+        Helper::dumpToLog("serve login");
         if (isset($_COOKIE['user'])) {
             header("Location: /home");
             return;
@@ -23,7 +29,7 @@ class HomeController extends Controller
     {
         Helper::dumpToLog("serve home");
         if (!isset($_COOKIE['user'])) {
-            header("Location: /");
+            header("Location: /login");
             return;
         }
 
@@ -61,7 +67,7 @@ class HomeController extends Controller
     public function informasi(){
         Helper::dumpToLog("serve home");
         if (!isset($_COOKIE['user'])) {
-            header("Location: /");
+            header("Location: /login");
             return;
         }
         $this->render('mahasiswa/page/informasi', [
@@ -72,7 +78,7 @@ class HomeController extends Controller
     public function cetakSurat(){
         Helper::dumpToLog("serve home");
         if (!isset($_COOKIE['user'])) {
-            header("Location: /");
+            header("Location: /login");
             return;
         }
         $this->render('mahasiswa/page/cetakSurat', [
@@ -83,7 +89,7 @@ class HomeController extends Controller
     public function gantiPassword(){
         Helper::dumpToLog("serve home");
         if (!isset($_COOKIE['user'])) {
-            header("Location: /");
+            header("Location: /login");
             return;
         }
         $this->render('mahasiswa/page/gantiPassword', [

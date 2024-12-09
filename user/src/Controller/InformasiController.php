@@ -12,7 +12,7 @@ class InformasiController extends Controller
     public function informasi(){
         Helper::dumpToLog("serve home");
         if (!isset($_COOKIE['user'])) {
-            header("Location: /");
+            header("Location: /login");
             return;
         }
         $model = new daftar_pelanggaran();
