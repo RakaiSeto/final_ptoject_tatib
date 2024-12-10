@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -91,6 +91,9 @@
         <!-- Dashboard Content -->
         <div class="content px-3 pt-3" style="margin-top: 68px;">
 
+
+            <div class="alert alert-danger hidden" role="alert" id="alert-ajax"></div>
+
             <div class="bg-white p-2 my-2" style="color: #b1b1b1; border-radius: 5px">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
@@ -107,29 +110,20 @@
 
                         <div class="d-flex py-2 gap-1">
                             <!-- Dropdown Prodi -->
-                            <div class="dropdown">
-                                <button
-                                    class="btn btn-light dropdown-toggle border d-flex justify-content-between align-items-center"
-                                    type="button" id="dropdownButton" data-bs-toggle="dropdown" aria-expanded="false"
-                                    style="width: 200px;">
-                                    Pilih Prodi
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#" data-value="Teknik Informatika"
-                                            onclick="updateProdiDropdown(this)">Teknik Informatika</a></li>
-                                    <li><a class="dropdown-item" href="#" data-value="Sistem Informasi Bisnis"
-                                            onclick="updateProdiDropdown(this)">Sistem Informasi Bisnis</a></li>
-                                    <li><a class="dropdown-item" href="#" data-value="D2 PPLS"
-                                            onclick="updateProdiDropdown(this)">D2
-                                            PPLS</a></li>
-                                </ul>
+                            <div class="dropdown me-1">
+                                    <select class="form-select bg-light" id="prodi_select" aria-label="Default select example">
+                                        <option selected disabled>Pilih Prodi</option>
+                                        <option id="prodi-ti" value="ti">Teknik Informatika</option>
+                                        <option id="prodi-sib" value="sib">Sistem Informasi Bisnis</option>
+                                        <option id="prodi-ppls" value="ppls">PPLS</option>
+                                    </select>
                             </div>
 
                             <!-- Dropdown Tingkat -->
-                            <div class="dropdown">
+                            <div class="dropdown d-none" id="dropdownTI">
                                 <button
                                     class="btn btn-light dropdown-toggle border d-flex justify-content-between align-items-center"
-                                    type="button" id="dropdownTingkat" data-bs-toggle="dropdown" aria-expanded="false"
+                                    type="button" id="dropdownTIButton" data-selected="" data-bs-toggle="dropdown" aria-expanded="false"
                                     style="width: 200px;">
                                     Pilih Tingkat
                                 </button>
@@ -137,38 +131,118 @@
                                     <li class="dropdown-submenu">
                                         <a class="dropdown-item dropdown-toggle" href="#">1</a>
                                         <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="#"
-                                                    onclick="updateTingkatDropdown(this)">A</a></li>
-                                            <li><a class="dropdown-item" href="#"
-                                                    onclick="updateTingkatDropdown(this)">B</a></li>
-                                            <li><a class="dropdown-item" href="#"
-                                                    onclick="updateTingkatDropdown(this)">C</a></li>
+                                        <?php foreach ($ti['1'] as $tingkat) {
+                                            echo '<li><a class="dropdown-item" data-kelas="' . $tingkat->id_kelas . '" href="#" onclick="updateTingkatDropdown(this)">' . $tingkat->nama_kelas . '</a></li>';
+                                        }?>
+                                            <?= empty($ti['1']) ? '<li><a class="dropdown-item disabled" href="#">Belum ada data</a></li>' : '' ?>
                                         </ul>
                                     </li>
                                     <li class="dropdown-submenu">
                                         <a class="dropdown-item dropdown-toggle" href="#">2</a>
                                         <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="#"
-                                                    onclick="updateTingkatDropdown(this)">A</a></li>
-                                            <li><a class="dropdown-item" href="#"
-                                                    onclick="updateTingkatDropdown(this)">B</a></li>
-                                            <li><a class="dropdown-item" href="#"
-                                                    onclick="updateTingkatDropdown(this)">C</a></li>
+                                        <?php foreach ($ti['2'] as $tingkat) {
+                                            echo '<li><a class="dropdown-item" data-kelas="' . $tingkat->id_kelas . '" href="#" onclick="updateTingkatDropdown(this)">' . $tingkat->nama_kelas . '</a></li>';
+                                        }?>
+                                        <?= empty($ti['2']) ? '<li><a class="dropdown-item disabled" href="#">Belum ada data</a></li>' : '' ?>
                                         </ul>
                                     </li>
                                     <li class="dropdown-submenu">
                                         <a class="dropdown-item dropdown-toggle" href="#">3</a>
                                         <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="#"
-                                                    onclick="updateTingkatDropdown(this)">A</a></li>
-                                            <li><a class="dropdown-item" href="#"
-                                                    onclick="updateTingkatDropdown(this)">B</a></li>
-                                            <li><a class="dropdown-item" href="#"
-                                                    onclick="updateTingkatDropdown(this)">C</a></li>
+                                        <?php foreach ($ti['3'] as $tingkat) {
+                                            echo '<li><a class="dropdown-item" data-kelas="' . $tingkat->id_kelas . '" href="#" onclick="updateTingkatDropdown(this)">' . $tingkat->nama_kelas . '</a></li>';
+                                        }?>
+                                        <?= empty($ti['3']) ? '<li><a class="dropdown-item disabled" href="#">Belum ada data</a></li>' : '' ?>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown-submenu">
+                                        <a class="dropdown-item dropdown-toggle" href="#">4</a>
+                                        <ul class="dropdown-menu">
+                                        <?php foreach ($ti['4'] as $tingkat) {
+                                            echo '<li><a class="dropdown-item" data-kelas="' . $tingkat->id_kelas . '" href="#" onclick="updateTingkatDropdown(this)">' . $tingkat->nama_kelas . '</a></li>';
+                                        }?>
+                                        <?= empty($ti['4']) ? '<li><a class="dropdown-item disabled" href="#">Belum ada data</a></li>' : '' ?>
                                         </ul>
                                     </li>
                                 </ul>
                             </div>
+                            <div class="dropdown d-none" id="dropdownSIB">
+
+                                <button
+                                        class="btn btn-light dropdown-toggle border d-flex justify-content-between align-items-center"
+                                        type="button" id="dropdownSIBButton" data-selected="" data-bs-toggle="dropdown" aria-expanded="false"
+                                        style="width: 200px;">
+                                    Pilih Tingkat
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li class="dropdown-submenu">
+                                        <a class="dropdown-item dropdown-toggle" href="#">1</a>
+                                        <ul class="dropdown-menu">
+                                            <?php foreach ($sib['1'] as $tingkat) {
+                                                echo '<li><a class="dropdown-item" data-kelas="' . $tingkat->id_kelas . '" href="#" onclick="updateTingkatDropdown(this)">' . $tingkat->nama_kelas . '</a></li>';
+                                            }?>
+                                            <?= empty($sib['1']) ? '<li><a class="dropdown-item disabled" href="#">Belum ada data</a></li>' : '' ?>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown-submenu">
+                                        <a class="dropdown-item dropdown-toggle" href="#">2</a>
+                                        <ul class="dropdown-menu">
+                                            <?php foreach ($sib['2'] as $tingkat) {
+                                                echo '<li><a class="dropdown-item" data-kelas="' . $tingkat->id_kelas . '" href="#" onclick="updateTingkatDropdown(this)">' . $tingkat->nama_kelas . '</a></li>';
+                                            }?>
+                                            <?= empty($sib['2']) ? '<li><a class="dropdown-item disabled" href="#">Belum ada data</a></li>' : '' ?>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown-submenu">
+                                        <a class="dropdown-item dropdown-toggle" href="#">3</a>
+                                        <ul class="dropdown-menu">
+                                            <?php foreach ($sib['3'] as $tingkat) {
+                                                echo '<li><a class="dropdown-item" data-kelas="' . $tingkat->id_kelas . '" href="#" onclick="updateTingkatDropdown(this)">' . $tingkat->nama_kelas . '</a></li>';
+                                            }?>
+                                            <?= empty($sib['3']) ? '<li><a class="dropdown-item disabled" href="#">Belum ada data</a></li>' : '' ?>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown-submenu">
+                                        <a class="dropdown-item dropdown-toggle" href="#">4</a>
+                                        <ul class="dropdown-menu">
+                                            <?php foreach ($sib['4'] as $tingkat) {
+                                                echo '<li><a class="dropdown-item" data-kelas="' . $tingkat->id_kelas . '" href="#" onclick="updateTingkatDropdown(this)">' . $tingkat->nama_kelas . '</a></li>';
+                                            }?>
+                                            <?= empty($sib['4']) ? '<li><a class="dropdown-item disabled" href="#">Belum ada data</a></li>' : '' ?>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="dropdown d-none" id="dropdownPPLS">
+                                <button
+                                        class="btn btn-light dropdown-toggle border d-flex justify-content-between align-items-center"
+                                        type="button" id="dropdownPPLSButton" data-selected="" data-bs-toggle="dropdown" aria-expanded="false"
+                                        style="width: 200px;">
+                                    Pilih Tingkat
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li class="dropdown-submenu">
+                                        <a class="dropdown-item dropdown-toggle" href="#">1</a>
+                                        <ul class="dropdown-menu">
+                                            <?php foreach ($ppls['1'] as $tingkat) {
+                                                echo '<li><a class="dropdown-item" data-kelas="' . $tingkat->id_kelas . '" href="#" onclick="updateTingkatDropdown(this)">' . $tingkat->nama_kelas . '</a></li>';
+                                            }?>
+                                            <?= empty($ppls['1']) ? '<li><a class="dropdown-item disabled" href="#">Belum ada data</a></li>' : '' ?>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown-submenu">
+                                        <a class="dropdown-item dropdown-toggle" href="#">2</a>
+                                        <ul class="dropdown-menu">
+                                            <?php foreach ($ppls['2'] as $tingkat) {
+                                                echo '<li><a class="dropdown-item" data-kelas="' . $tingkat->id_kelas . '" href="#" onclick="updateTingkatDropdown(this)">' . $tingkat . '</a></li>';
+                                            }?>
+                                            <?= empty($ppls['2']) ? '<li><a class="dropdown-item disabled" href="#">Belum ada data</a></li>' : '' ?>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+
+
                             <button class="btn btn-detail" id="filterBtn">Filter </button>
                         </div>
 
@@ -182,17 +256,11 @@
                                         <th>Kelas</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr class="mahasiswaRow" data-nama="Ahmad Rizky Maulana" data-nim="23417720001"
+                                <tbody id="filterTableBody">
+                                    <tr class="mahasiswaRow" role="button" data-nama="Ahmad Rizky Maulana" data-nim="23417720001"
                                         data-kelas="TI-1A">
                                         <td>Ahmad Rizky Maulana</td>
                                         <td>23417720001</td>
-                                        <td>TI-1A</td>
-                                    </tr>
-                                    <tr class="mahasiswaRow" data-nama="Agung Fradiansyah" data-nim="23417729999"
-                                        data-kelas="TI-1A">
-                                        <td>Agung Fradiansyah</td>
-                                        <td>23417729999</td>
                                         <td>TI-1A</td>
                                     </tr>
                                     <!-- Tambahkan baris lain sesuai data mahasiswa -->
@@ -419,42 +487,41 @@
             <script>
                 document.addEventListener('DOMContentLoaded', function () {
                     // Event handler untuk memilih pelanggaran di dalam modal
-                    document.querySelectorAll('.tingkat-row').forEach(function (row) {
-                        row.addEventListener('click', function () {
-                            // Ambil elemen input dan tombol
-                            const inputField = document.getElementById('inputPelanggaran');
-                            const buttonTrigger = document.getElementById('btnTriggerModal');
+                    // document.querySelectorAll('.tingkat-row').forEach(function (row) {
+                    //     row.addEventListener('click', function () {
+                    //         // Ambil elemen input dan tombol
+                    //         const inputField = document.getElementById('inputPelanggaran');
+                    //         const buttonTrigger = document.getElementById('btnTriggerModal');
+                    //
+                    //         // Set value input dengan jenis pelanggaran yang dipilih
+                    //         const tingkat = document.querySelector('.nav-tabs .nav-link.active').innerText; // Ambil tingkat
+                    //         inputField.value = `${row.dataset.pelanggaran} (${tingkat})`;
+                    //         inputField.classList.remove('hidden'); // Tampilkan input field
+                    //
+                    //         // Sembunyikan tombol trigger modal
+                    //         buttonTrigger.classList.add('hidden');
+                    //
+                    //         // Tutup modal
+                    //         const modalElement = document.getElementById('modalPilihPelanggaran');
+                    //         const modalInstance = bootstrap.Modal.getInstance(modalElement);
+                    //         modalInstance.hide();
+                    //     });
+                    // });
 
-                            // Set value input dengan jenis pelanggaran yang dipilih
-                            const tingkat = document.querySelector('.nav-tabs .nav-link.active').innerText; // Ambil tingkat
-                            inputField.value = `${row.dataset.pelanggaran} (${tingkat})`;
-                            inputField.classList.remove('hidden'); // Tampilkan input field
-
-                            // Sembunyikan tombol trigger modal
-                            buttonTrigger.classList.add('hidden');
-
-                            // Tutup modal
-                            const modalElement = document.getElementById('modalPilihPelanggaran');
-                            const modalInstance = bootstrap.Modal.getInstance(modalElement);
-                            modalInstance.hide();
-                        });
-                    });
                 });
 
 
 
-                document.querySelectorAll(".mahasiswaRow").forEach((row) => {
-                    row.addEventListener("click", function () {
-                        const nama = row.dataset.nama;
-                        const nim = row.dataset.nim;
-                        const kelas = row.dataset.kelas;
+                function clickMahasiswa(e) {
+                    const nama = e.getAttribute('data-nama')
+                    const nim = e.getAttribute('data-nim')
+                    const kelas = e.getAttribute('data-kelas')
 
-                        // Isi data pada card
-                        document.getElementById("studentInfo").innerText = `${nama}/ NIM: ${nim}/ ${kelas}`;
-                        document.getElementById("reportCard").classList.remove("hidden");
-                        document.getElementById("mahasiswaTable").classList.add("hidden");
-                    });
-                });
+                    // Isi data pada card
+                    document.getElementById("studentInfo").innerText = `${nama}/ NIM: ${nim}/ ${kelas}`;
+                    document.getElementById("reportCard").classList.remove("hidden");
+                    document.getElementById("filterTable").classList.add("hidden");
+                };
 
                 // Tambahkan fungsi batal
                 document.getElementById("batal").addEventListener("click", function () {
@@ -466,6 +533,11 @@
                     submenu.addEventListener('mouseenter', function () {
                         const submenuMenu = submenu.querySelector('.dropdown-menu');
                         if (submenuMenu) submenuMenu.classList.add('show');
+                    })
+
+                    submenu.addEventListener('mouseclick', function (e) {
+                        const submenuMenu = submenu.querySelector('.dropdown-menu');
+                        if (submenuMenu) submenuMenu.classList.add('show');
                     });
 
                     submenu.addEventListener('mouseleave', function () {
@@ -475,11 +547,39 @@
                 });
 
                 function updateTingkatDropdown(element) {
-                    const dropdownButton = document.getElementById("dropdownTingkat");
-                    const parentMenu = element.closest(".dropdown-submenu").querySelector(".dropdown-toggle").textContent;
-                    dropdownButton.textContent = `${parentMenu} - ${element.textContent}`;
+                    const kelas = element.getAttribute('data-kelas');
+                    if (kelas.startsWith('TI')) {
+                        var dropdownButton = document.getElementById("dropdownTIButton");
+                    } else if (kelas.startsWith('SIB')) {
+                        var dropdownButton = document.getElementById("dropdownSIBButton");
+                    } else {
+                        var dropdownButton = document.getElementById("dropdownPPLSButton");
+                    }
+
+                    dropdownButton.attributes['data-selected'].value = kelas;
+                    dropdownButton.textContent = element.textContent;
                 }
 
+                $(document).ready(function () {
+                    $('#prodi_select').on('change', function () {
+                        console.log($(this).val())
+                        const selectedValue = $(this).val();
+                        if (selectedValue === 'ti') {
+                            $('#dropdownTI').removeClass('d-none');
+                            $('#dropdownSIB').addClass('d-none');
+                            $('#dropdownPPLS').addClass('d-none');
+                        } else if (selectedValue === 'sib') {
+                            $('#dropdownTI').addClass('d-none');
+                            $('#dropdownSIB').removeClass('d-none');
+                            $('#dropdownPPLS').addClass('d-none');
+                        } else {
+                            $('#dropdownTI').addClass('d-none');
+                            $('#dropdownSIB').addClass('d-none');
+                            $('#dropdownPPLS').removeClass('d-none');
+                        }
+
+                    })
+                })
 
                 function updateProdiDropdown(element) {
                     const dropdownButton = document.getElementById("dropdownButton");
@@ -520,8 +620,55 @@
 
                 //tombol filter
                 document.getElementById('filterBtn').addEventListener('click', function () {
-                    const table = document.getElementById('filterTable')
-                    table.classList.toggle('hidden');
+                    let selectedProdi = document.getElementById('prodi_select').value;
+                    if (selectedProdi === 'ti') {
+                        var selectedKelas = document.getElementById('dropdownTIButton').getAttribute('data-selected');
+                    } else if (selectedProdi === 'sib') {
+                        var selectedKelas = document.getElementById('dropdownSIBButton').getAttribute('data-selected');
+                    } else {
+                        var selectedKelas = document.getElementById('dropdownPPLSButton').getAttribute('data-selected');
+                    }
+
+                    $.ajax({
+                        url: '/getMahasiswaKelas',
+                        method: 'POST',
+                        data: {
+                            kelas : selectedKelas,
+                        },
+                        success: function (response) {
+                            document.getElementById('alert-ajax').classList.add('hidden');
+                            let decodedResponse = JSON.parse(response);
+                            const table = document.getElementById('filterTableBody');
+                            table.innerHTML = '';
+                            decodedResponse.forEach(item => {
+                                const row = document.createElement('tr');
+                                row.innerHTML = `
+                                    <td>${item.nim}</td>
+                                    <td>${item.nama_mahasiswa}</td>
+                                    <td>${item.id_kelas}</td>
+                                `;
+                                row.onclick = function () {
+                                    clickMahasiswa(row)
+                                };
+                                row.classList.add('mahasiswaRow');
+                                row.role = 'button';
+                                row.setAttribute('data-nim', item.nim);
+                                row.setAttribute('data-nama', item.nama_mahasiswa);
+                                row.setAttribute('data-kelas', item.id_kelas);
+                                table.appendChild(row);
+                            });
+                            document.getElementById('filterTable').classList.remove('hidden');
+                        },
+                        error: function (xhr, status, error) {
+                            let alert = document.getElementById('alert-ajax');
+                            let decodedResponse = JSON.parse(xhr.responseText);
+                            alert.innerText = 'Error: ' + decodedResponse.message;
+                            alert.classList.remove('hidden')
+                        }
+                    })
+
+                    // const table = document.getElementById('filterTable')
+                    // table.classList.toggle('hidden');
                 });
 
             </script>

@@ -26,6 +26,13 @@
 
         <!-- Dashboard Content -->
         <div class="content px-3 pt-3" style="margin-top: 60px;">
+            <?php
+            // session_start();
+            if (!empty($_SESSION['Error'])) {
+                echo '<div class="alert alert-danger" role="alert">' . $_SESSION['Error'] . '</div>';
+            }
+            unset($_SESSION['Error'])
+            ?>
             <!-- Cards -->
             <div class="row mb-3">
                 <!-- Card 1 -->
