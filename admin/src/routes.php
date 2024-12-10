@@ -22,6 +22,7 @@ $router->addRoute('GET', '/home', HomeController::class, 'home');
 $router->addRoute('GET', '/informasi', InformasiController::class, 'informasi');
 $router->addRoute('GET', '/laporkan', LaporanController::class, 'index');
 $router->addRoute('POST', '/getMahasiswaKelas', LaporanController::class, 'filterMahasiswa');
+$router->addRoute('POST', '/doLaporkan', LaporanController::class, 'doLaporkan');
 $router->addRoute('GET', '/riwayatPelaporan', HomeController::class, 'riwayatPelaporan');
 $router->addRoute('GET', '/dataPelanggaran', HomeController::class, 'dataPelanggaran');
 

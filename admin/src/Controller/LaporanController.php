@@ -4,6 +4,8 @@ namespace Tatib\Src\Controller;
 
 use Tatib\Src\Controller;
 use Tatib\Src\Core\Helper;
+use Tatib\Src\Model\daftar_pelanggaran;
+use Tatib\Src\Model\data_pelanggaran;
 use Tatib\Src\Model\kelas;
 use Tatib\Src\Model\mahasiswa;
 
@@ -35,6 +37,20 @@ class LaporanController extends Controller
             '2' => []
         ];
 
+        $arrPeraturan = [
+            '1' => [],
+            '2' => [],
+            '3' => [],
+            '4' => [],
+            '5' => []
+        ];
+        $daftar_pelanggaran = new daftar_pelanggaran();
+        $result = $daftar_pelanggaran->getDaftarPelanggaran(null);
+
+        foreach ($result as $key => $value) {
+            $arrPeraturan[$value->tingkat_pelanggaran][] = $value;
+        }
+
         $kelas = new kelas();
         $result = $kelas->getKelas(null);
 
@@ -55,7 +71,8 @@ class LaporanController extends Controller
             'title' => 'Laporkan Pelanggaran',
             'ti' => $arrTI,
             'sib' => $arrSIB,
-            'ppls' => $arrPPLS
+            'ppls' => $arrPPLS,
+            'peraturan' => $arrPeraturan
         ]);
     }
 
@@ -80,6 +97,55 @@ class LaporanController extends Controller
             echo json_encode($error);
         } else {
             echo json_encode($result);
+        }
+    }
+
+
+    public function doLaporkan() {
+        Helper::dumpToLog(json_encode($_POST));
+        $kode_pelanggaran = 'PEL' . date('dmy') . '-' . Helper::randomAlphaNum();
+        $date = $_POST['date'];
+        $nim = $_POST['nim'];
+        $jenisPelanggaran = $_POST['pelanggaran'];
+        $kronologi = $_POST['kronologi'];
+        $nip = json_decode($_COOKIE['user'], true)['nip'];
+        
+        $fileName = $kode_pelanggaran . '-BUKTI';
+        $fileExtension = pathinfo($_FILES['bukti']['name'], PATHINFO_EXTENSION);
+
+        // Get the temporary file path
+        $tmpFilePath = $_FILES['bukti']['tmp_name'];
+
+        // Store the file in a directory
+        $uploadDir = __DIR__ . '/../../../public/img/';
+        $uploadFilePath = $uploadDir . $fileName . '.' . $fileExtension;
+
+        // Move the file from the temporary path to the upload directory
+        if (move_uploaded_file($tmpFilePath, $uploadFilePath)) {
+            $data_pelanggaran = new data_pelanggaran();
+            $data_pelanggaran->kode_pelanggaran = $kode_pelanggaran;
+            $data_pelanggaran->datetime = $date;
+            $data_pelanggaran->nim_terlapor = $nim;
+            $data_pelanggaran->jenis_pelanggaran = $jenisPelanggaran;
+            $data_pelanggaran->kronologi = $kronologi;
+            $data_pelanggaran->nip_pelapor = $nip;
+            $data_pelanggaran->is_verified = 0;
+            $data_pelanggaran->is_banding = 0;
+            $data_pelanggaran->is_done = 0;
+            $data_pelanggaran->tautan_bukti = '/public/img/' . $fileName . '.' . $fileExtension;
+            $saveResult = $data_pelanggaran->insertDataPelanggaran();
+
+            if ($saveResult == true) {
+                Helper::dumpToLog("Berhasil melaporkan $nim");
+                echo "Berhasil melaporkan";
+            } else {
+                Helper::dumpToLog("Gagal melaporkan $nim: " . $saveResult);
+                http_response_code(400);
+                echo $saveResult;
+            }
+        } else {
+            Helper::dumpToLog("Gagal Melaporkan $nim, gagal upload file");
+            echo "Error uploading file!";
         }
     }
 }

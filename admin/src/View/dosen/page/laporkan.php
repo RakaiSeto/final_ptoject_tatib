@@ -276,7 +276,7 @@
                 <div class="bg-white p-3">
                     <div id="identityCard">
                         <h6>Laporkan pelanggaran untuk:</h6>
-                        <p style="font-size: 20px" class="fw-bold" id="studentInfo"></p>
+                        <p style="font-size: 20px" class="fw-bold" id="studentInfo" data-nim=""></p>
                     </div>
                     <div>
 
@@ -325,7 +325,7 @@
                         <div class="form-group row mt-3">
                             <div class="col-sm-10 offset-sm-2">
                                 <button class="btn btn-danger mr-2" id="batal">Batal</button>
-                                <button class="btn btn-success" id="kirim">Kirim</button>
+                                <button class="btn btn-success" disabled id="kirim">Kirim</button>
                             </div>
                         </div>
 
@@ -334,7 +334,7 @@
             </div>
 
             <!-- Modal -->
-            <div class="modal fade" id="modalPilihPelanggaran" data-bs-backdrop="static" data-bs-keyboard="false"
+            <div class="modal fade" id="modalPilihPelanggaran" data-selected-pelanggaran="" data-bs-backdrop="static" data-bs-keyboard="false"
                 tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-xl modal-dialog-centered" style="height: 10vh">
                     <div class="modal-content">
@@ -347,33 +347,33 @@
                                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                                     <li class="nav-item" role="presentation">
                                         <button class="nav-link active" id="tingkat-1-tab" data-bs-toggle="tab"
-                                            data-bs-target="#informasi" type="button" role="tab"
+                                            data-bs-target="#tingkat-1" type="button" role="tab"
                                             aria-controls="informasi" aria-selected="true">Tingkat 1</button>
                                     </li>
                                     <li class="nav-item" role="presentation">
                                         <button class="nav-link" id="tingkat-2-tab" data-bs-toggle="tab"
-                                            data-bs-target="#klasifikasi" type="button" role="tab"
+                                            data-bs-target="#tingkat-2" type="button" role="tab"
                                             aria-controls="klasifikasi" aria-selected="false">Tingkat 2</button>
                                     </li>
                                     <li class="nav-item" role="presentation">
                                         <button class="nav-link" id="tingkat-3-tab" data-bs-toggle="tab"
-                                            data-bs-target="#klasifikasi" type="button" role="tab"
+                                            data-bs-target="#tingkat-3" type="button" role="tab"
                                             aria-controls="klasifikasi" aria-selected="false">Tingkat 3</button>
                                     </li>
                                     <li class="nav-item" role="presentation">
                                         <button class="nav-link" id="tingkat-4-tab" data-bs-toggle="tab"
-                                            data-bs-target="#klasifikasi" type="button" role="tab"
+                                            data-bs-target="#tingkat-4" type="button" role="tab"
                                             aria-controls="klasifikasi" aria-selected="false">Tingkat 4</button>
                                     </li>
                                     <li class="nav-item" role="presentation">
                                         <button class="nav-link" id="tingkat-5-tab" data-bs-toggle="tab"
-                                            data-bs-target="#klasifikasi" type="button" role="tab"
+                                            data-bs-target="#tingkat-5" type="button" role="tab"
                                             aria-controls="klasifikasi" aria-selected="false">Tingkat 5</button>
                                     </li>
                                 </ul>
 
                                 <div class="tab-content" id="myTabContent">
-                                    <div class="tab-pane fade show active" id="informasi" role="tabpanel"
+                                    <div class="tab-pane fade show active" id="tingkat-1" role="tabpanel"
                                         aria-labelledby="tingkat-1-tab">
                                         <div class="table table-responsive mt-3">
                                             <table class="table table-bordered table-hover" id="tabel-awal">
@@ -383,88 +383,77 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr class="tingkat-row"
-                                                        data-pelanggaran="Tidak menjaga nama baik Polinema di masyarakat dan/ atau mencemarkan nama baik Polinema melalui media apapun">
-                                                        <td>Tidak menjaga nama baik Polinema di masyarakat dan/ atau
-                                                            mencemarkan nama baik Polinema
-                                                            melalui media apapun</td>
-                                                    </tr>
-                                                    <tr class="tingkat-row"
-                                                        data-pelanggaran="Menggunakan barang-barang psikotropika dan/ atau zat-zat Adiktif lainnya">
-                                                        <td>Menggunakan barang-barang psikotropika dan/ atau zat-zat
-                                                            Adiktif lainnya</td>
-                                                    </tr>
-                                                    <tr class="tingkat-row"
-                                                        data-pelanggaran="Melakukan pemalsuan data / dokumen / tanda tangan">
-                                                        <td>Melakukan pemalsuan data/ dokumen/ tanda tangan</td>
-                                                    </tr>
-                                                    <tr class="tingkat-row"
-                                                        data-pelanggaran="Merokok di luar area kawasan merokok">
-                                                        <td>Merokok di luar area kawasan merokok</td>
-                                                    </tr>
-                                                    <tr class="tingkat-row"
-                                                        data-pelanggaran="Bermain kartu, game online di area kampus">
-                                                        <td>Bermain kartu, game online di area kampus</td>
-                                                    </tr>
-                                                    <tr class="tingkat-row"
-                                                        data-pelanggaran="Mengotori atau mencoret-coret meja, kursi, tembok, dan lain-lain di lingkungan Polinema">
-                                                        <td>Mengotori atau mencoret-coret meja, kursi, tembok, dan
-                                                            lain-lain di lingkungan Polinema
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="tingkat-row"
-                                                        data-pelanggaran="Bertingkah laku kasar atau tidak sopan kepada mahasiswa, dosen, dan/atau karyawan">
-                                                        <td>Bertingkah laku kasar atau tidak sopan kepada mahasiswa,
-                                                            dosen, dan/atau karyawan</td>
-                                                    </tr>
-                                                    <tr class="tingkat-row"
-                                                        data-pelanggaran="Merusak sarana dan prasarana yang ada di area Polinema">
-                                                        <td>Merusak sarana dan prasarana yang ada di area Polinema</td>
-                                                    </tr>
-
+                                                    <?php foreach ($peraturan['1'] as $row) {
+                                                        echo "<tr class=\"tingkat-row\" data-pelanggaran=\"" . $row->kode_pelanggaran . "\"><td>" . $row->deskripsi . "</td></tr>";
+                                                    }?>
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
-                                    <div class="tab-pane fade" id="klasifikasi" role="tabpanel"
-                                        aria-labelledby="tingkat-2-tab">
+                                    <div class="tab-pane fade" id="tingkat-2" role="tabpanel"
+                                         aria-labelledby="tingkat-2-tab">
                                         <div class="table table-responsive mt-3">
                                             <table class="table table-bordered table-hover" id="tabel-awal">
                                                 <thead>
-                                                    <tr>
-                                                        <th>Pelanggaran</th>
-                                                    </tr>
+                                                <tr>
+                                                    <th>Pelanggaran</th>
+                                                </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr class="tingkat-row"
-                                                        data-pelanggaran="Tidak menjaga nama baik Polinema di masyarakat dan/ atau mencemarkan nama baik Polinema melalui media apapun">
-                                                        <td>Tidak menjaga nama baik Polinema di masyarakat dan/ atau
-                                                            mencemarkan nama baik Polinema
-                                                            melalui media apapun</td>
-                                                    </tr>
-                                                    <tr class="tingkat-row"
-                                                        data-pelanggaran="Menggunakan barang-barang psikotropika dan/ atau zat-zat Adiktif lainnya">
-                                                        <td>Menggunakan barang-barang psikotropika dan/ atau zat-zat
-                                                            Adiktif lainnya</td>
-                                                    </tr>
-                                                    <tr class="tingkat-row"
-                                                        data-pelanggaran="Melakukan pemalsuan data / dokumen / tanda tangan">
-                                                        <td>Melakukan pemalsuan data/ dokumen/ tanda tangan</td>
-                                                    </tr>
-                                                    <tr class="tingkat-row"
-                                                        data-pelanggaran="Merokok di luar area kawasan merokok">
-                                                        <td>Merokok di luar area kawasan merokok</td>
-                                                    </tr>
-                                                    <tr class="tingkat-row"
-                                                        data-pelanggaran="Bermain kartu, game online di area kampus">
-                                                        <td>Bermain kartu, game online di area kampus</td>
-                                                    </tr>
-                                                    <tr class="tingkat-row"
-                                                        data-pelanggaran="Mengotori atau mencoret-coret meja, kursi, tembok, dan lain-lain di lingkungan Polinema">
-                                                        <td>Mengotori atau mencoret-coret meja, kursi, tembok, dan
-                                                            lain-lain di lingkungan Polinema
-                                                        </td>
-                                                    </tr>
+                                                <?php foreach ($peraturan['2'] as $row) {
+                                                    echo "<tr class=\"tingkat-row\" data-pelanggaran=\"" . $row->kode_pelanggaran . "\"><td>" . $row->deskripsi . "</td></tr>";
+                                                }?>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="tingkat-3" role="tabpanel"
+                                         aria-labelledby="tingkat-3-tab">
+                                        <div class="table table-responsive mt-3">
+                                            <table class="table table-bordered table-hover" id="tabel-awal">
+                                                <thead>
+                                                <tr>
+                                                    <th>Pelanggaran</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <?php foreach ($peraturan['3'] as $row) {
+                                                    echo "<tr class=\"tingkat-row\" data-pelanggaran=\"" . $row->kode_pelanggaran . "\"><td>" . $row->deskripsi . "</td></tr>";
+                                                }?>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="tingkat-4" role="tabpanel"
+                                         aria-labelledby="tingkat-4-tab">
+                                        <div class="table table-responsive mt-3">
+                                            <table class="table table-bordered table-hover" id="tabel-awal">
+                                                <thead>
+                                                <tr>
+                                                    <th>Pelanggaran</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <?php foreach ($peraturan['4'] as $row) {
+                                                    echo "<tr class=\"tingkat-row\" data-pelanggaran=\"" . $row->kode_pelanggaran . "\"><td>" . $row->deskripsi . "</td></tr>";
+                                                }?>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="tingkat-5" role="tabpanel"
+                                         aria-labelledby="tingkat-5-tab">
+                                        <div class="table table-responsive mt-3">
+                                            <table class="table table-bordered table-hover" id="tabel-awal">
+                                                <thead>
+                                                <tr>
+                                                    <th>Pelanggaran</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <?php foreach ($peraturan['5'] as $row) {
+                                                    echo "<tr class=\"tingkat-row\" data-pelanggaran=\"" . $row->kode_pelanggaran . "\"><td>" . $row->deskripsi . "</td></tr>";
+                                                }?>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -485,6 +474,63 @@
             <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script> -->
 
             <script>
+                function checkInput() {
+                    console.log("masuk checkInput");
+                    const nim = document.getElementById("studentInfo").attributes["data-nim"].value;
+                    const pelanggaran = document.getElementById("modalPilihPelanggaran").attributes["data-selected-pelanggaran"].value;
+                    const keterangan = document.getElementById("catatan").value;
+                    const tgl = document.getElementById("tanggal").value;
+                    const bukti = document.getElementById("bukti").files[0];
+
+                    document.getElementById('kirim').disabled = !(nim && pelanggaran && keterangan && tgl && bukti);
+                }
+
+                function debounce(func, wait, immediate) {
+                    var timeout;
+                    return function() {
+                        var context = this, args = arguments;
+                        var later = function() {
+                            timeout = null;
+                            if (!immediate) func.apply(context, args);
+                        };
+                        var callNow = immediate && !timeout;
+                        clearTimeout(timeout);
+                        timeout = setTimeout(later, wait);
+                        if (callNow) func.apply(context, args);
+                    };
+                };
+
+                var debounceAjax = debounce(function() {
+                    const nim = document.getElementById("studentInfo").attributes["data-nim"].value;
+                    const pelanggaran = document.getElementById("modalPilihPelanggaran").attributes["data-selected-pelanggaran"].value;
+                    const keterangan = document.getElementById("catatan").value;
+                    const tgl = document.getElementById("tanggal").value;
+
+                    var formData = new FormData();
+                    formData.append('nim', nim);
+                    formData.append('pelanggaran', pelanggaran);
+                    formData.append('kronologi', keterangan);
+                    formData.append('date', tgl);
+                    formData.append('bukti', $('#bukti')[0].files[0]);
+
+                    $.ajax({
+                        url: '/doLaporkan',
+                        method: 'POST',
+                        contentType: false,
+                        processData: false,
+                        data: formData,
+                        success: function (response) {
+                            location.reload()
+                        },
+                        error: function (xhr, status, error) {
+                            let alert = document.getElementById('alert-ajax');
+                            let decodedResponse = JSON.parse(xhr.responseText);
+                            alert.innerText = 'Error: ' + decodedResponse.message;
+                            alert.classList.remove('hidden')
+                        }
+                    })
+                }, 500, false)
+
                 document.addEventListener('DOMContentLoaded', function () {
                     // Event handler untuk memilih pelanggaran di dalam modal
                     document.querySelectorAll('.tingkat-row').forEach(function (row) {
@@ -495,7 +541,8 @@
                     
                             // Set value input dengan jenis pelanggaran yang dipilih
                             const tingkat = document.querySelector('.nav-tabs .nav-link.active').innerText; // Ambil tingkat
-                            inputField.value = `${row.dataset.pelanggaran} (${tingkat})`;
+                            document.getElementById("modalPilihPelanggaran").attributes["data-selected-pelanggaran"].value = row.attributes['data-pelanggaran'].value;
+                            inputField.value = `${row.innerText} (${tingkat})`;
                             inputField.classList.remove('hidden'); // Tampilkan input field
                     
                             // Sembunyikan tombol trigger modal
@@ -505,11 +552,16 @@
                             const modalElement = document.getElementById('modalPilihPelanggaran');
                             const modalInstance = bootstrap.Modal.getInstance(modalElement);
                             modalInstance.hide();
+                            checkInput();
                         });
+
+                        $('#kirim').on('click', debounceAjax)
                     });
+
+                    $('#catatan').on('input', checkInput)
+                    $('#tanggal').on('change', checkInput)
+                    $('#bukti').on('input', checkInput)
                 });
-
-
 
                 function clickMahasiswa(e) {
                     const nama = e.getAttribute('data-nama')
@@ -518,6 +570,7 @@
 
                     // Isi data pada card
                     document.getElementById("studentInfo").innerText = `${nama}/ NIM: ${nim}/ ${kelas}`;
+                    document.getElementById("studentInfo").attributes["data-nim"].value = nim;
                     document.getElementById("reportCard").classList.remove("hidden");
                     document.getElementById("filterTable").classList.add("hidden");
                 };
