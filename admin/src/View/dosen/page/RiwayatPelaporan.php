@@ -87,12 +87,14 @@
                                             <i class="fas fa-ellipsis-v"></i>
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <li><a class="dropdown-item" href="#" onclick="lihatDetail()">Lihat
+                                            <li><a class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#lihatDetailModal">Lihat
                                                     Detail</a></li>
-                                            <li><a class="dropdown-item" href="#" onclick="modifikasi()">Modifikasi</a>
+                                            <li><a class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#modifikasiModal">Modifikasi</a>
                                             </li>
-                                            <li><a class="dropdown-item text-danger" href="#"
-                                                    onclick="batalkan()">Batalkan</a></li>
+                                            <li><a class="dropdown-item text-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#batalkanModal">Batalkan</a></li>
                                         </ul>
                                     </div>
                                 </td>
@@ -132,77 +134,7 @@
                                     <button class="btn btn-sm btn-light"><i class="fas fa-ellipsis-h"></i></button>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>23-12-2023</td>
-                                <td>2341720001</td>
-                                <td>Hendra Wijaya Kusuma</td>
-                                <td>Tidak menjaga nama baik Polinema di masyarakat dan ...</td>
-                                <td><span class="btn btn-success fw-semibold" style="background-color: rgba(40, 167, 69, 0.25); color: rgb(40, 167, 69); 
-                  border: 0; border-radius: 0; width: 114px; text-align: center; padding: 10px 0;">Selesai</span></td>
-                                <td>
-                                    <button class="btn btn-sm btn-light"><i class="fas fa-ellipsis-h"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>01-08-2023</td>
-                                <td>2341720001</td>
-                                <td>Dedi Gunawan Saputra</td>
-                                <td style="width: 520px;"> Tidak menjaga nama baik Polinema di masyarakat dan atau
-                                    mencemarkan nama baik
-                                    Polinema melalui media apapun</td>
-                                <td><span class="btn btn-warning fw-semibold" style="background-color: rgba(252, 192, 12, 0.25); color: rgb(252, 192, 12); 
-                  border: 0; border-radius: 0; width: 114px; text-align: center;  padding: 10px 0;">Dalam proses</span>
-                                </td>
-                                <td>
-                                    <button class="btn btn-sm btn-light"><i class="fas fa-ellipsis-h"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>11-10-2023</td>
-                                <td>2341720001</td>
-                                <td>Indah Cahya Ramadhani</td>
-                                <td>Tidak menjaga nama baik Polinema di masyarakat dan ...</td>
-                                <td><span class="btn btn-warning fw-semibold" style="background-color: rgba(252, 192, 12, 0.25); color: rgb(252, 192, 12); 
-                  border: 0; border-radius: 0; width: 114px; text-align: center; padding: 10px 0;">Dalam proses</span>
-                                </td>
-                                <td>
-                                    <button class="btn btn-sm btn-light"><i class="fas fa-ellipsis-h"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>21-10-2023</td>
-                                <td>2341720001</td>
-                                <td>Ahmad Rizky Maulana</td>
-                                <td>Tidak menjaga nama baik Polinema di masyarakat dan ...</td>
-                                <td><span class="btn btn-success fw-semibold" style="background-color: rgba(40, 167, 69, 0.25); color: rgb(40, 167, 69); 
-                  border: 0; border-radius: 0; width: 114px; text-align: center; padding: 10px 0;">Selesai</span></td>
-                                <td>
-                                    <button class="btn btn-sm btn-light"><i class="fas fa-ellipsis-h"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>07-11-2023</td>
-                                <td>2341720001</td>
-                                <td>Budi Santoso Putra</td>
-                                <td>Tidak menjaga nama baik Polinema di masyarakat dan ...</td>
-                                <td><span class="btn btn-danger fw-semibold" style="background-color: rgba(220, 53, 69, 0.25); color: rgb(220, 53, 69); 
-                  border: 0; border-radius: 0; width: 114px; text-align: center; padding: 10px 0;">Dibatalkan</span>
-                                </td>
-                                <td>
-                                    <button class="btn btn-sm btn-light"><i class="fas fa-ellipsis-h"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>23-12-2023</td>
-                                <td>2341720001</td>
-                                <td>Hendra Wijaya Kusuma</td>
-                                <td>Tidak menjaga nama baik Polinema di masyarakat dan ...</td>
-                                <td><span class="btn btn-success fw-semibold" style="background-color: rgba(40, 167, 69, 0.25); color: rgb(40, 167, 69); 
-                  border: 0; border-radius: 0; width: 114px; text-align: center; padding: 10px 0;">Selesai</span></td>
-                                <td>
-                                    <button class="btn btn-sm btn-light"><i class="fas fa-ellipsis-h"></i></button>
-                                </td>
-                            </tr>
+
                         </tbody>
                     </table>
                     <nav>
@@ -227,6 +159,289 @@
                             </li>
                         </ul>
                     </nav>
+
+                    <!-- lihat detail modal -->
+                    <div class="modal fade" id="lihatDetailModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true" data-bs-backdrop="static"
+                        style="background-color: rgba(255, 255, 255, 0.20);">
+                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                            <div class="modal-content" style="background-color: #F5F5F5">
+                                <div class="modal-header">
+                                    <h5 class="modal-title fw-bold" id="exampleModalLabel">Detail Pelanggaran</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="bg-body-tertiary">
+
+                                        <div class="form-group">
+                                            <div class="row mb-3">
+                                                <label for=""
+                                                    class="col-sm-3 col-form-label text-end fw-bold">NIM</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" value="2541987544" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for=""
+                                                    class="col-sm-3 col-form-label text-end fw-bold">Nama</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" value="No Name" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for=""
+                                                    class="col-sm-3 col-form-label text-end fw-bold">Kelas</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" value="2E" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for="" class="col-sm-3 col-form-label text-end fw-bold">Jenis
+                                                    Pelanggaran</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" value="Terlambat" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for=""
+                                                    class="col-sm-3 col-form-label text-end fw-bold">Tingkat</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" value="Ringan" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for=""
+                                                    class="col-sm-3 col-form-label text-end fw-bold">Tanggal</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" value="28 Februari 2024"
+                                                        readonly>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for=""
+                                                    class="col-sm-3 col-form-label text-end fw-bold">Sanksi</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" value="Beli gorengan"
+                                                        readonly>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for=""
+                                                    class="col-sm-3 col-form-label text-end fw-bold">Catatan</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control"
+                                                        value="Datang terlambat lebih dari 15 menit" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for="" class="col-sm-3 col-form-label text-end fw-bold">Bukti
+                                                    Pelanggaran</label>
+                                                <div class="col-sm-9">
+                                                    <button class="btn btn-success" data-bs-toggle="modal"
+                                                        data-bs-target="#buktiModal">Lihat Bukti Pelanggaran</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-outline-danger">Batalkan
+                                                Laporan</button>
+                                            <button type="button" class="btn btn-danger"
+                                                data-bs-dismiss="modal">Tutup</button>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="modifikasiModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true" data-bs-backdrop="static"
+                        style="background-color: rgba(255, 255, 255, 0.20);">
+                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                            <div class="modal-content" style="background-color: #F5F5F5">
+                                <div class="modal-header">
+                                    <h5 class="modal-title fw-bold" id="exampleModalLabel">Detail Pelanggaran</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="bg-body-tertiary">
+
+                                        <div class="form-group">
+                                            <div class="row mb-3">
+                                                <label for=""
+                                                    class="col-sm-3 col-form-label text-end fw-bold">NIM</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" value="2541987544">
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for=""
+                                                    class="col-sm-3 col-form-label text-end fw-bold">Nama</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" value="No Name">
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for=""
+                                                    class="col-sm-3 col-form-label text-end fw-bold">Kelas</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" value="2E">
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for="" class="col-sm-3 col-form-label text-end fw-bold">Jenis
+                                                    Pelanggaran</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" value="Terlambat">
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for=""
+                                                    class="col-sm-3 col-form-label text-end fw-bold">Tingkat</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" value="Ringan">
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for=""
+                                                    class="col-sm-3 col-form-label text-end fw-bold">Tanggal</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" value="28 Februari 2024">
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for=""
+                                                    class="col-sm-3 col-form-label text-end fw-bold">Catatan</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control"
+                                                        value="Datang terlambat lebih dari 15 menit">
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for="" class="col-sm-3 col-form-label text-end fw-bold">Bukti
+                                                    Pelanggaran</label>
+                                                <div class="col-sm-9">
+                                                    <button class="btn btn-success" data-bs-toggle="modal"
+                                                        data-bs-target="#buktiModal">Lihat Bukti Pelanggaran</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Batalkan
+                                                Laporan</button>
+                                            <button type="button" class="btn btn-success">Ubah</button>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="lihatDetailModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true" data-bs-backdrop="static"
+                        style="background-color: rgba(255, 255, 255, 0.20);">
+                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                            <div class="modal-content" style="background-color: #F5F5F5">
+                                <div class="modal-header">
+                                    <h5 class="modal-title fw-bold" id="exampleModalLabel">Modifikasi Laporan
+                                        Pelanggaran</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="bg-body-tertiary">
+
+                                        <div class="form-group">
+                                            <div class="row mb-3">
+                                                <label for=""
+                                                    class="col-sm-3 col-form-label text-end fw-bold">NIM</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" value="2541987544" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for=""
+                                                    class="col-sm-3 col-form-label text-end fw-bold">Nama</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" value="No Name" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for=""
+                                                    class="col-sm-3 col-form-label text-end fw-bold">Kelas</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" value="2E" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for="" class="col-sm-3 col-form-label text-end fw-bold">Jenis
+                                                    Pelanggaran</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" value="Terlambat" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for=""
+                                                    class="col-sm-3 col-form-label text-end fw-bold">Tingkat</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" value="Ringan" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for=""
+                                                    class="col-sm-3 col-form-label text-end fw-bold">Tanggal</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" value="28 Februari 2024"
+                                                        readonly>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for=""
+                                                    class="col-sm-3 col-form-label text-end fw-bold">Sanksi</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" value="Beli gorengan"
+                                                        readonly>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for=""
+                                                    class="col-sm-3 col-form-label text-end fw-bold">Catatan</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control"
+                                                        value="Datang terlambat lebih dari 15 menit" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for="" class="col-sm-3 col-form-label text-end fw-bold">Bukti
+                                                    Pelanggaran</label>
+                                                <div class="col-sm-9">
+                                                    <button class="btn btn-success" data-bs-toggle="modal"
+                                                        data-bs-target="#buktiModal">Lihat Bukti Pelanggaran</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-outline-danger">Batalkan
+                                                Laporan</button>
+                                            <button type="button" class="btn btn-danger"
+                                                data-bs-dismiss="modal">Tutup</button>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
         </div>
