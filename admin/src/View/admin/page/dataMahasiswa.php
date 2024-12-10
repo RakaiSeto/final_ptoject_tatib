@@ -229,7 +229,9 @@
                                                     style="border-radius: 4px; border: 1px solid rgba(0, 0, 0, 0.1);">
                                                     <!-- Gambar dan Tombol -->
                                                     <div class="col-12 col-md-3">
-                                                        <img alt="Profile Picture" src="../img/fotoagung.jpeg"
+
+                                                        <img alt="Profile Picture"
+                                                            src="<?php echo \Tatib\Src\Core\Helper::getProfilePicture(); ?>"
                                                             class="img-fluid rounded mb-2"
                                                             style="max-width: 100%; height: auto;" />
                                                         <!-- <button class="btn-generate mt-2" data-bs-toggle="modal"
