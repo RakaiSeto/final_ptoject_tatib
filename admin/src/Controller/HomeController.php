@@ -44,8 +44,8 @@ class HomeController extends Controller
 //        }
 //        $result[0]->foto_mahasiswa = Helper::lastFullstopToHyphen($result[0]->foto_mahasiswa);
 
-
-        $this->render('/dosen/page/dashboard', [
+        $role = json_decode($_COOKIE['user'], true)['role'];
+        $this->render($role . '/page/dashboard', [
 //            'profile' => $result[0],
             'title' => 'Dashboard'
         ]);
