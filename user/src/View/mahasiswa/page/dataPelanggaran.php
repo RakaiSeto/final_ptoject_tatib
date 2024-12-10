@@ -138,6 +138,13 @@
                                         </div>
                                         <div class="row mb-3">
                                             <label for=""
+                                                class="col-sm-3 col-form-label text-end fw-bold">Sanksi</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" value="Beli gorengan" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for=""
                                                 class="col-sm-3 col-form-label text-end fw-bold">Catatan</label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control"
