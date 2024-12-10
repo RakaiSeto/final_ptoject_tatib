@@ -487,27 +487,26 @@
             <script>
                 document.addEventListener('DOMContentLoaded', function () {
                     // Event handler untuk memilih pelanggaran di dalam modal
-                    // document.querySelectorAll('.tingkat-row').forEach(function (row) {
-                    //     row.addEventListener('click', function () {
-                    //         // Ambil elemen input dan tombol
-                    //         const inputField = document.getElementById('inputPelanggaran');
-                    //         const buttonTrigger = document.getElementById('btnTriggerModal');
-                    //
-                    //         // Set value input dengan jenis pelanggaran yang dipilih
-                    //         const tingkat = document.querySelector('.nav-tabs .nav-link.active').innerText; // Ambil tingkat
-                    //         inputField.value = `${row.dataset.pelanggaran} (${tingkat})`;
-                    //         inputField.classList.remove('hidden'); // Tampilkan input field
-                    //
-                    //         // Sembunyikan tombol trigger modal
-                    //         buttonTrigger.classList.add('hidden');
-                    //
-                    //         // Tutup modal
-                    //         const modalElement = document.getElementById('modalPilihPelanggaran');
-                    //         const modalInstance = bootstrap.Modal.getInstance(modalElement);
-                    //         modalInstance.hide();
-                    //     });
-                    // });
-
+                    document.querySelectorAll('.tingkat-row').forEach(function (row) {
+                        row.addEventListener('click', function () {
+                            // Ambil elemen input dan tombol
+                            const inputField = document.getElementById('inputPelanggaran');
+                            const buttonTrigger = document.getElementById('btnTriggerModal');
+                    
+                            // Set value input dengan jenis pelanggaran yang dipilih
+                            const tingkat = document.querySelector('.nav-tabs .nav-link.active').innerText; // Ambil tingkat
+                            inputField.value = `${row.dataset.pelanggaran} (${tingkat})`;
+                            inputField.classList.remove('hidden'); // Tampilkan input field
+                    
+                            // Sembunyikan tombol trigger modal
+                            buttonTrigger.classList.add('hidden');
+                    
+                            // Tutup modal
+                            const modalElement = document.getElementById('modalPilihPelanggaran');
+                            const modalInstance = bootstrap.Modal.getInstance(modalElement);
+                            modalInstance.hide();
+                        });
+                    });
                 });
 
 
