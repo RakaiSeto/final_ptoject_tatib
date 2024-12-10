@@ -145,4 +145,15 @@ class HomeController extends Controller
             'title' => 'Ganti Password'  
         ]);
     }
+
+    public function pelanggaranMahasiswa(){
+        Helper::dumpToLog("serve data pelanggaran");
+        if (!isset($_COOKIE['user'])) {
+            header("Location: /");
+            return;
+        }
+        $this->render('admin/page/pelanggaranMahasiswa', [
+            'title' => 'Data Pelanggaran'  
+        ]);
+    }
 }

@@ -13,258 +13,308 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" rel="stylesheet" />
 
+    <style>
+    .nav-tabs .nav-link.active {
+        /* background-color: #fd7e14 !important; */
+        /* border-color: #fd7e14 !important; */
+        font-weight: bold;
+        color: #fd7e14 !important;
+    }
 
+    /* Ubah warna tab biasa */
+    .nav-tabs .nav-link {
+        color: rgba(253, 126, 20, 0.5);
+    }
+
+    /* Warna saat di-hover */
+    .nav-tabs .nav-link:hover {
+        background-color: rgba(253, 126, 20, 0.1);
+        color: #fd7e14;
+    }
+    </style>
 </head>
 
 <body>
     <div class="main-container">
         <!-- Sidebar -->
-        <?php require_once 'sidebar.php'; ?>
+        <?php include('sidebar.php'); ?>
 
         <!-- Navbar -->
-        <?php require_once 'navbar.php'; ?>
+        <?php include('navbar.php'); ?>
 
-        <!--Content -->
-        <div class="content px-3 pt-3">
-            <div class="input-group">
-                <div class="form-outline" data-mdb-input-init>
-                    <input type="search" id="form1" class="form-control" placeholder="Search" />
+        <!-- Dashboard Content -->
+        <div class="content px-3 pt-3" style="margin-top: 56px;">
+
+            <div class="bg-white p-2 my-2" style="color: #b1b1b1; border-radius: 5px">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/" style="color: #fd7e14;">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><?= $title ?></li>
+                    </ol>
+                </nav>
+            </div>
+
+            <div class="bg-white">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="informasi-tab" data-bs-toggle="tab"
+                            data-bs-target="#informasi" type="button" role="tab" aria-controls="informasi"
+                            aria-selected="true"> Informasi Tata
+                            Tertib</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="klasifikasi-tab" data-bs-toggle="tab" data-bs-target="#klasifikasi"
+                            type="button" role="tab" aria-controls="klasifikasi" aria-selected="false">klasifikasi
+                            Pelanggaran</button>
+                    </li>
+                </ul>
+
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="informasi" role="tabpanel"
+                        aria-labelledby="informasi-tab">
+                        <div class="table table-responsive mt-3">
+                            <table class="table table-bordered table-hover" id="tabel-awal">
+                                <thead>
+                                    <tr>
+                                        <th>Tingkat Pelanggaran</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Berikut adalah tingkat pelanggaran yang ditentukan sebagai berikut:
+                                            <ol type="1">
+                                                <li style=" list-style-type: decimal">Tingkat I, yaitu pelanggaran
+                                                    sangat berat
+                                                </li>
+                                                <li style=" list-style-type: decimal">Tingkat II, yaitu pelanggaran
+                                                    berat
+                                                </li>
+                                                <li style=" list-style-type: decimal">Tingkat III, yaitu pelanggaran
+                                                    cukup berat
+                                                </li>
+                                                <li style=" list-style-type: decimal">Tingkat IV, yaitu pelanggaran
+                                                    sedang
+                                                </li>
+                                                <li style=" list-style-type: decimal">Tingkat V, yaitu pelanggaran
+                                                    Ringan
+                                                </li>
+                                            </ol>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <table class="table table-bordered table-hover" id="tabel-awal">
+                                <thead>
+                                    <tr>
+                                        <th>Akumulasi Sanksi Pelanggaran</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Perbuatan / tindakan pelanggaran Tata Tertib Kehidupan Kampus akan
+                                            diakumulasikan<br> untuk setiap kategori pelanggaran dan berlaku sepanjang
+                                            mahasiswa
+                                            masih tercatat sebagai mahasiswa di Polinema.<br>
+
+                                            <ol type="1">
+                                                <li style=" list-style-type: decimal">Apabila pelanggaran tingkat V
+                                                    dilakukan 3 (tiga) kali maka
+                                                    klasifikasi
+                                                    pelanggaran tersebut ditingkatkan menjadi pelanggaran tingkat IV.
+                                                </li>
+                                                <li style=" list-style-type: decimal">Apabila pelanggaran tingkat IV
+                                                    dilakukan 3 (tiga) kali maka
+                                                    klasifikasi
+                                                    pelanggaran tersebut ditingkatkan menjadi pelanggaran tingkat III.
+                                                </li>
+                                                <li style=" list-style-type: decimal"> Apabila pelanggaran tingkat III
+                                                    dilakukan 3 (tiga) kali maka
+                                                    klasifikasi
+                                                    pelanggaran tersebut ditingkatkan menjadi pelanggaran tingkat II.
+                                                </li>
+                                                <li style=" list-style-type: decimal">Apabila pelanggaran tingkat II
+                                                    dilakukan 3 (tiga) kali maka
+                                                    klasifikasi
+                                                    pelanggaran tersebut ditingkatkan menjadi pelanggaran tingkat I</li>
+                                            </ol>
+                                        </td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <table class="table table-bordered table-hover" id="tabel-awal">
+                                <thead>
+                                    <tr>
+                                        <th>Sanksi Pelanggaran</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Berikut adalah sanksi yang diberikan berdasarkan
+                                            tingkat
+                                            pelanggarannya:
+                                            <ul>
+                                                <li style=" list-style-type: decimal">Sanksi
+                                                    atas
+                                                    pelanggaran Tingkat V
+                                                    yang dilakukan oleh mahasiswa
+                                                    berupa Teguran lisan disertai dengan surat
+                                                    pernyataan tidak
+                                                    mengulangi perbuatanvtersebut, dibubuhi
+                                                    materai,
+                                                    ditandatangani
+                                                    mahasiswa yang
+                                                    bersangkutan dan DPA;
+                                                </li>
+                                                <li style=" list-style-type: decimal">Sanksi
+                                                    atas
+                                                    pelanggaran Tingkat IV
+                                                    yang dilakukan oleh mahasiswa
+                                                    berupa:
+                                                    Teguran tertulis disertai dengan surat
+                                                    pernyataan
+                                                    tidak mengulangi
+                                                    perbuatan
+                                                    tersebut, dibubuhi materai, ditandatangani
+                                                    mahasiswa
+                                                    yang
+                                                    bersangkutan dan
+                                                    DPA;
+                                                </li>
+                                                <li style=" list-style-type: decimal">Sanksi
+                                                    atas
+                                                    pelanggaran Tingkat
+                                                    III yang dilakukan oleh mahasiswa
+                                                    berupa:
+                                                    <ol>
+                                                        <li style=" list-style-type: lower-alpha">
+                                                            Membuat surat pernyataan tidak
+                                                            mengulangi
+                                                            perbuatan
+                                                            tersebut, dibubuhi
+                                                            materai, ditandatangani mahasiswa
+                                                            yang
+                                                            bersangkutan dan DPA;
+                                                        </li>
+                                                        <li style=" list-style-type: lower-alpha">
+                                                            Melakukan tugas khusus, misalnya
+                                                            bertanggungjawab untuk
+                                                            memperbaiki
+                                                            atau membersihkan kembali, dan
+                                                            tugas-tugas
+                                                            lainnya.
+                                                        </li>
+                                                    </ol>
+                                                </li>
+                                                <li style=" list-style-type: decimal">Sanksi
+                                                    atas
+                                                    pelanggaran Tingkat II
+                                                    yang dilakukan oleh mahasiswa
+                                                    berupa:
+                                                    <ol>
+                                                        <li style=" list-style-type: lower-alpha">
+                                                            Dikenakan penggantian kerugian atau
+                                                            penggantian benda/barang
+                                                            semacamnya dan/atau;
+                                                        </li>
+                                                        <li style=" list-style-type: lower-alpha">
+                                                            Melakukan tugas layanan sosial dalam
+                                                            jangka
+                                                            waktu tertentu
+                                                            dan/atau;
+                                                        </li>
+                                                        <li style=" list-style-type: lower-alpha">
+                                                            Diberikan nilai D pada mata kuliah
+                                                            terkait
+                                                            saat melakukan
+                                                            pelanggaran.
+                                                        </li>
+                                                    </ol>
+                                                </li>
+                                                <li style=" list-style-type: decimal">
+                                                    Sanksi atas pelanggaran tingkat I yang
+                                                    dilakukan
+                                                    oleh mahasiswa
+                                                    berupa:
+                                                    <ol>
+                                                        <li style=" list-style-type: lower-alpha">
+                                                            Dinonaktifkan (Cuti Akademik/
+                                                            Terminal)
+                                                            selama dua semester
+                                                            dan/atau;
+                                                        </li>
+                                                        <li style=" list-style-type: lower-alpha">
+                                                            Diberhentikan sebagai mahasiswa.
+                                                        </li>
+                                                    </ol>
+                                                </li>
+                                            </ul>
+                                        </td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+
+
+                    <div class="tab-pane fade" id="klasifikasi" role="tabpanel" aria-labelledby="klasifikasi-tab">
+                        <div class="table-responsive my-4">
+                            <table class="table table-bordered table-hover" id="tabel-awal">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama Pelanggaran</th>
+                                        <th>Deskripsi</th>
+                                        <th>Tingkat Pelanggaran</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                $no=1;
+                                // Menampilkan data dari database ke tabel
+                                foreach ($informasi as $row) {
+                                echo "<tr>";
+                                    echo "<td>" . $no . "</td>";
+                                    echo "<td>" . htmlspecialchars($row->nama_pelanggaran) . "</td>";
+                                    echo "<td>" . htmlspecialchars($row->deskripsi) . "</td>";
+                                    echo "<td>" . htmlspecialchars($row->tingkat_pelanggaran) . "</td>";
+                                    echo "</tr>";
+                                    $no++;
+                                }
+                                ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
                 </div>
-                <button type="button" class="btn btn-detail" data-mdb-ripple-init>
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
-
-            <div class="table-responsive my-4">
-                <table class="table table-bordered table-hover" id="tabel-awal">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Pelanggaran</th>
-                            <th>Tingkat</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Berkomunikasi dengan tidak sopan, baik tertulis atau tidak tertulis kepada mahasiswa,
-                                dosen, karyawan, atau orang lain</td>
-                            <td>V</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Berbusana tidak sopan dan tidak rapi, seperti pakaian ketat, transparan, t-shirt tidak
-                                berkerah, tank top, hipster, rok mini, celana pendek, celana tiga per empat, legging,
-                                model celana atau baju koyak, sandal, sepatu sandal di lingkungan kampus</td>
-                            <td>IV</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Mahasiswa laki-laki berambut tidak rapi, gondrong, atau panjang rambutnya melewati batas
-                                alis mata di bagian depan, telinga di bagian samping atau menyentuh kerah baju di bagian
-                                leher</td>
-                            <td>IV</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Mahasiswa berambut dengan model punk, dicat selain hitam dan/atau skinned</td>
-                            <td>IV</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>Makan atau minum di dalam ruang kuliah/laboratorium/bengkel</td>
-                            <td>IV</td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>Melanggar peraturan/ketentuan yang berlaku di Polinema baik di Jurusan/Program Studi
-                            </td>
-                            <td>III</td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>Tidak menjaga kebersihan di seluruh area Polinema</td>
-                            <td>III</td>
-                        </tr>
-                        <tr>
-                            <td>8</td>
-                            <td>Membuat kegaduhan yang mengganggu pelaksanaan perkuliahan atau praktikum yang sedang
-                                berlangsung</td>
-                            <td>III</td>
-                        </tr>
-                        <tr>
-                            <td>9</td>
-                            <td>Merokok di luar area kawasan merokok</td>
-                            <td>III</td>
-                        </tr>
-                        <tr>
-                            <td>10</td>
-                            <td>Bermain kartu, game online di area kampus</td>
-                            <td>III</td>
-                        </tr>
-                        <tr>
-                            <td>11</td>
-                            <td>Mengotori atau mencoret-coret meja, kursi, tembok, dan lain-lain di lingkungan Polinema
-                            </td>
-                            <td>III</td>
-                        </tr>
-                        <tr>
-                            <td>12</td>
-                            <td>Bertingkah laku kasar atau tidak sopan kepada mahasiswa, dosen, dan/atau karyawan</td>
-                            <td>III</td>
-                        </tr>
-                        <tr>
-                            <td>13</td>
-                            <td>Merusak sarana dan prasarana yang ada di area Polinema</td>
-                            <td>II</td>
-                        </tr>
-                        <tr>
-                            <td>14</td>
-                            <td>Tidak menjaga ketertiban dan keamanan di seluruh area Polinema (misalnya: parkir tidak
-                                pada tempatnya, konvoi selebrasi wisuda dll)</td>
-                            <td>II</td>
-                        </tr>
-                        <tr>
-                            <td>15</td>
-                            <td>Melakukan pengotoran/pengrusakan barang milik orang lain termasuk milik Politeknik
-                                Negeri Malang</td>
-                            <td>II</td>
-                        </tr>
-                        <tr>
-                            <td>16</td>
-                            <td>Mengakses materi pornografi di kelas atau area kampus</td>
-                            <td>II</td>
-                        </tr>
-                        <tr>
-                            <td>17</td>
-                            <td>Membawa dan/atau menggunakan senjata tajam dan/atau senjata api untuk hal kriminal</td>
-                            <td>II</td>
-                        </tr>
-                        <tr>
-                            <td>18</td>
-                            <td>Melakukan perkelahian, serta membentuk geng/kelompok yang bertujuan negatif</td>
-                            <td>II</td>
-                        </tr>
-                        <tr>
-                            <td>19</td>
-                            <td>Melakukan kegiatan politik praktis di dalam kampus</td>
-                            <td>II</td>
-                        </tr>
-                        <tr>
-                            <td>20</td>
-                            <td>Melakukan tindakan kekerasan atau perkelahian di dalam kampus</td>
-                            <td>II</td>
-                        </tr>
-                        <tr>
-                            <td>21</td>
-                            <td>Melakukan penyalahgunaan identitas untuk perbuatan negatif</td>
-                            <td>II</td>
-                        </tr>
-                        <tr>
-                            <td>22</td>
-                            <td>Mengancam, baik tertulis atau tidak tertulis kepada mahasiswa, dosen, dan/atau karyawan
-                            </td>
-                            <td>II</td>
-                        </tr>
-                        <tr>
-                            <td>23</td>
-                            <td>Mencuri dalam bentuk apapun</td>
-                            <td>II</td>
-                        </tr>
-                        <tr>
-                            <td>24</td>
-                            <td>Melakukan kecurangan dalam bidang akademik, administratif, dan keuangan</td>
-                            <td>II</td>
-                        </tr>
-                        <tr>
-                            <td>25</td>
-                            <td>Melakukan pemerasan dan/atau penipuan</td>
-                            <td>II</td>
-                        </tr>
-                        <tr>
-                            <td>26</td>
-                            <td>Melakukan pelecehan dan/atau tindakan asusila dalam segala bentuk di dalam dan di luar
-                                kampus</td>
-                            <td>II</td>
-                        </tr>
-                        <tr>
-                            <td>27</td>
-                            <td>Berjudi, mengkonsumsi minuman keras, dan/atau bermabuk-mabukan di lingkungan dan di luar
-                                lingkungan Kampus Polinema</td>
-                            <td>I</td>
-                        </tr>
-                        <tr>
-                            <td>28</td>
-                            <td>Mengikuti organisasi dan atau menyebarkan faham-faham yang dilarang oleh Pemerintah</td>
-                            <td>I</td>
-                        </tr>
-                        <tr>
-                            <td>29</td>
-                            <td>Melakukan pemalsuan data/dokumen/tanda tangan</td>
-                            <td>I</td>
-                        </tr>
-                        <tr>
-                            <td>30</td>
-                            <td>Melakukan plagiasi (copy paste) dalam tugas-tugas atau karya ilmiah</td>
-                            <td>I</td>
-                        </tr>
-                        <tr>
-                            <td>31</td>
-                            <td>Tidak menjaga nama baik Polinema di masyarakat dan/atau mencemarkan nama baik Polinema
-                                melalui media apapun</td>
-                            <td>I</td>
-                        </tr>
-                        <tr>
-                            <td>32</td>
-                            <td>Melakukan kegiatan atau sejenisnya yang dapat menurunkan kehormatan atau martabat
-                                Negara, Bangsa dan Polinema</td>
-                            <td>I</td>
-                        </tr>
-                        <tr>
-                            <td>33</td>
-                            <td>Menggunakan barang-barang psikotropika dan/atau zat-zat Adiktif lainnya</td>
-                            <td>I</td>
-                        </tr>
-                        <tr>
-                            <td>34</td>
-                            <td>Mengedarkan serta menjual barang-barang psikotropika dan/atau zat-zat Adiktif lainnya
-                            </td>
-                            <td>I</td>
-                        </tr>
-                        <tr>
-                            <td>35</td>
-                            <td>Terlibat dalam tindakan kriminal dan dinyatakan bersalah oleh Pengadilan</td>
-                            <td>I</td>
-                        </tr>
-
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-    </div>
-
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 
-    <script>
-    $(".sidebar ul li").on("click", function() {
-        $(".sidebar ul li.active").removeClass("active");
-        $(this).addClass("active");
-    });
+            </div><!-- tutup bg-white -->
+        </div> <!-- tutup container -->
 
-    $(".open-btn").on("click", function() {
-        $(".sidebar").addClass("active");
-    });
+        <!-- Scripts -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    $(".close-btn").on("click", function() {
-        $(".sidebar").removeClass("active");
-    });
-    </script>
+
+        <script>
+        document.querySelector(".open-btn").addEventListener("click", function() {
+            document.getElementById("side_nav").classList.add("active");
+            document.querySelector(".content").classList.add("sidebar-open");
+        });
+
+        document.querySelector(".close-btn").addEventListener("click", function() {
+            document.getElementById("side_nav").classList.remove("active");
+            document.querySelector(".content").classList.remove("sidebar-open");
+        });
+        </script>
 </body>
 
 </html>

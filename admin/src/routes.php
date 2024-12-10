@@ -24,6 +24,11 @@ $router->addRoute('GET', '/riwayatPelaporan', HomeController::class, 'riwayatPel
 $router->addRoute('GET', '/dataPelanggaran', HomeController::class, 'dataPelanggaran');
 
 
+$router->addRoute('GET', '/dataDosen', PelanggaranController::class, 'dataDosen');
+$router->addRoute('GET', '/dataMahasiswa', PelanggaranController::class, 'dataMahasiswa');
+$router->addRoute('GET', '/pelanggaranMahasiswa', PelanggaranController::class, 'pelanggaranMahasiswa');
+
+
 // Add a new route for serving static files
 $router->addRoute('GET', '/public/[A-Za-z]+/[A-Za-z0-9\(\)-]+-[A-Za-z]+', StaticController::class, 'serveFile');
 
