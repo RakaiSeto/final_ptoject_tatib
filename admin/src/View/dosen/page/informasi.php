@@ -64,7 +64,7 @@
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="klasifikasi-tab" data-bs-toggle="tab" data-bs-target="#klasifikasi"
-                            type="button" role="tab" aria-controls="klasifikasi" aria-selected="false">klasifikasi
+                            type="button" role="tab" aria-controls="klasifikasi" aria-selected="false">Klasifikasi
                             Pelanggaran</button>
                     </li>
                 </ul>
