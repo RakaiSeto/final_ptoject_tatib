@@ -12,6 +12,8 @@
   <link rel="stylesheet" href="/public/css/style-css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css">
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
 </head>
 
 <body>
@@ -25,7 +27,6 @@
     <!-- Dashboard Content -->
     <div class="content px-3 pt-3" style="margin-top: 60px;">
         <?php
-        session_start();
         if (!empty($_SESSION['Error'])) {
             echo '<div class="alert alert-danger" role="alert">' . $_SESSION['Error'] . '</div>';
         }
