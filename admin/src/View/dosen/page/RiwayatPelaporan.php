@@ -82,7 +82,7 @@
                                 </td>
                                 <td>
                                     <div class="dropdown">
-                                        <button class="btn btn-sm btn-light dropdown-toggle" type="button"
+                                        <button class="btn btn-sm btn-light" type="button"
                                             id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                             <i class="fas fa-ellipsis-v"></i>
                                         </button>
@@ -108,7 +108,22 @@
                   border: 0; border-radius: 0; width: 114px; text-align: center; padding: 10px 0;">Dalam proses</span>
                                 </td>
                                 <td>
-                                    <button class="btn btn-sm btn-light"><i class="fas fa-ellipsis-h"></i></button>
+                                <div class="dropdown">
+                                        <button class="btn btn-sm btn-light" type="button"
+                                            id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <li><a class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#lihatDetailModal">Lihat
+                                                    Detail</a></li>
+                                            <li><a class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#modifikasiModal">Modifikasi</a>
+                                            </li>
+                                            <li><a class="dropdown-item text-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#batalkanModal">Batalkan</a></li>
+                                        </ul>
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
@@ -119,7 +134,22 @@
                                 <td><span class="btn btn-success fw-semibold" style="background-color: rgba(40, 167, 69, 0.25); color: rgb(40, 167, 69); 
                   border: 0; border-radius: 0; width: 114px; text-align: center; padding: 10px 0;">Selesai</span></td>
                                 <td>
-                                    <button class="btn btn-sm btn-light"><i class="fas fa-ellipsis-h"></i></button>
+                                <div class="dropdown">
+                                        <button class="btn btn-sm btn-light" type="button"
+                                            id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <li><a class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#lihatDetailModal">Lihat
+                                                    Detail</a></li>
+                                            <li><a class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#modifikasiModal">Modifikasi</a>
+                                            </li>
+                                            <li><a class="dropdown-item text-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#batalkanModal">Batalkan</a></li>
+                                        </ul>
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
@@ -131,7 +161,22 @@
                   border: 0; border-radius: 0; width: 114px; text-align: center; padding: 10px 0;">Dibatalkan</span>
                                 </td>
                                 <td>
-                                    <button class="btn btn-sm btn-light"><i class="fas fa-ellipsis-h"></i></button>
+                                <div class="dropdown">
+                                        <button class="btn btn-sm btn-light" type="button"
+                                            id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <li><a class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#lihatDetailModal">Lihat
+                                                    Detail</a></li>
+                                            <li><a class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#modifikasiModal">Modifikasi</a>
+                                            </li>
+                                            <li><a class="dropdown-item text-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#batalkanModal">Batalkan</a></li>
+                                        </ul>
+                                    </div>
                                 </td>
                             </tr>
 

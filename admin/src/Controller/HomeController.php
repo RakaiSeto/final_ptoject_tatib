@@ -129,4 +129,15 @@ class HomeController extends Controller
             'title' => 'Data Dosen'  
         ]);
     }
+
+    public function dataKelas(){
+        Helper::dumpToLog("serve data pelanggaran");
+        if (!isset($_COOKIE['user'])) {
+            header("Location: /");
+            return;
+        }
+        $this->render('admin/page/dataKelas', [
+            'title' => 'Data Kelas'  
+        ]);
+    }
 }

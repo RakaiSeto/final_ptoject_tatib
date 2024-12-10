@@ -57,6 +57,10 @@
         <a href="/dataMahasiswa" class="text-decoration-none px-3 py-3 d-block fw-bold"><i class="fas fa-book"></i> Data
             Mahasiswa</a>
         </li>
+        <?php echo $_SERVER["REQUEST_URI"] == '/dataKelas' ? '<li class="active">' : '<li>' ?>
+        <a href="/dataKelas" class="text-decoration-none px-3 py-3 d-block fw-bold"><i class="fas fa-book"></i> Data
+            Kelas</a>
+        </li>
         <?php echo $_SERVER["REQUEST_URI"] == '/informasi' ? '<li class="active">' : '<li>' ?>
         <a href="/informasi" class="text-decoration-none px-3 py-3 d-block fw-bold"><i class="fas fa-info-circle"></i>
             Informasi</a>
