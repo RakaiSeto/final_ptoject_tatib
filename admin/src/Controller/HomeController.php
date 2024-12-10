@@ -63,56 +63,6 @@ class HomeController extends Controller
         ]);
     }
 
-    public function laporkan(){
-        Helper::dumpToLog("serve laporkan");
-        if (!isset($_COOKIE['user'])) {
-            header("Location: /");
-            return;
-        }
-
-        $arrTI = [
-            '1' => [],
-            '2' => [],
-            '3' => [],
-            '4' => []
-        ];
-
-        $arrSIB = [
-            '1' => [],
-            '2' => [],
-            '3' => [],
-            '4' => []
-        ];
-
-        $arrPPLS = [
-            '1' => [],
-            '2' => []
-        ];
-
-        $kelas = new kelas();
-        $result = $kelas->getKelas(null);
-
-        foreach ($result as $key => $value) {
-//            get character in position 0 of the explode
-            $tingkat = substr(explode('-', $value->nama_kelas)[1], 0, 1);
-            if (strpos($value->nama_kelas, 'TI') !== false) {
-                $arrTI[$tingkat][] = $value;
-            } elseif (strpos($value->nama_kelas, 'SIB') !== false) {
-                $arrSIB[$tingkat][] = $value;
-            } else {
-                $arrPPLS[$tingkat][] = $value;
-            }
-        }
-
-        $role = json_decode($_COOKIE['user'], true)['role'];
-        $this->render( $role . '/page/laporkan', [
-            'title' => 'Laporkan Pelanggaran',
-            'ti' => $arrTI,
-            'sib' => $arrSIB,
-            'ppls' => $arrPPLS
-        ]);
-    }
-
     public function riwayatPelaporan(){
         Helper::dumpToLog("serve riwayat pelaporan");
         if (!isset($_COOKIE['user'])) {

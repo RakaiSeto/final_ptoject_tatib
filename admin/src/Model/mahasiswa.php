@@ -50,6 +50,45 @@ class mahasiswa
         }
     }
 
+    function getMahasiswaByKelas(?string $id_kelas) {
+        $result = [];
+
+        if (empty($id_kelas)) {
+            Helper::dumpToLog("gagal get mahasiswa");
+            return false . " kelas harus diisi";
+        } else {
+            $query = "SELECT * FROM mahasiswa WHERE id_kelas = '$id_kelas'";
+        }
+        $conn = Db::getInstance();
+        try {
+            $queryRes = $conn->query($query);
+            while ($row = $queryRes->fetch(\PDO::FETCH_ASSOC)) {
+                $temp = new mahasiswa();
+                $temp->nim = $row['nim'];
+                $temp->nama_mahasiswa = $row['nama_mahasiswa'];
+                $temp->no_telp = $row['no_telp'];
+                $temp->email = $row['email'];
+                $temp->id_kelas = $row['id_kelas'];
+                $temp->secret = $row['secret'];
+                $temp->is_active = $row['is_active'];
+                $temp->foto_mahasiswa = Helper::lastFullstopToHyphen($row['foto_mahasiswa']);
+                $temp->tanggal_lahir = $row['tanggal_lahir'];
+                $temp->jenis_kelamin = $row['jenis_kelamin'];
+                $temp->id_prodi = $row['id_prodi'];
+                $temp->password = $row['password'];
+                array_push($result, $temp);
+            }
+            if (count($result) == 0) {
+                return null;
+            }
+            Helper::dumpToLog("success get mahasiswa");
+            return $result;
+        } catch (\Throwable $th) {
+            Helper::dumpToLog("gagal get mahasiswa");
+            return false . " " . $th->getMessage();
+        }
+    }
+
     function insertMahasiswa() {
 
         $duplicate = $this->getMahasiswa($this->nim);

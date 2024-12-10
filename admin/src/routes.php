@@ -3,6 +3,7 @@
 
 use Tatib\Src\Controller\AuthController;
 use Tatib\Src\Controller\HomeController;
+use Tatib\Src\Controller\LaporanController;
 use Tatib\Src\Controller\PelanggaranController;
 use Tatib\Src\Controller\StaticController;
 use Tatib\Src\Controller\InformasiController;
@@ -19,7 +20,8 @@ $router->addRoute('GET', '/logout', AuthController::class, 'logout');
 
 $router->addRoute('GET', '/home', HomeController::class, 'home');
 $router->addRoute('GET', '/informasi', InformasiController::class, 'informasi');
-$router->addRoute('GET', '/laporkan', HomeController::class, 'laporkan');
+$router->addRoute('GET', '/laporkan', LaporanController::class, 'index');
+$router->addRoute('POST', '/getMahasiswaKelas', LaporanController::class, 'filterMahasiswa');
 $router->addRoute('GET', '/riwayatPelaporan', HomeController::class, 'riwayatPelaporan');
 $router->addRoute('GET', '/dataPelanggaran', HomeController::class, 'dataPelanggaran');
 
