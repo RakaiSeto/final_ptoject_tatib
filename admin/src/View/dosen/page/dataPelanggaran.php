@@ -20,6 +20,7 @@
             background-color: #fd7e14 !important;
             border-color: #fd7e14 !important;
             color: #fff !important;
+            font-weight: bold;
         }
 
         /* Ubah warna tab biasa */
@@ -32,16 +33,24 @@
             background-color: rgba(253, 126, 20, 0.1);
             color: #fd7e14;
         }
+
+        #dropdownButton {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+            display: inline-block;
+        }
     </style>
 </head>
 
 <body>
     <div class="main-container">
         <!-- Sidebar -->
-    <?php include('sidebar.php'); ?>
+        <?php include('sidebar.php'); ?>
 
-<!-- Navbar -->
-<?php include('navbar.php'); ?>
+        <!-- Navbar -->
+        <?php include('navbar.php'); ?>
 
         <!-- Dashboard Content -->
         <div class="content px-3 pt-3" style="margin-top: 68px;">
@@ -95,9 +104,10 @@
                                         <td>Dedi Gunawan Saputra</td>
                                         <td>Tidak menjaga nama baik Polinema</td>
                                         <td>
-                                            <button type="button" class="btn"
-                                                style="background-color: #fd7e14; color: #fff;">
-                                                <i class="bi bi-eye-fill"></i> Tinjau
+                                            <button type="button" id="btnTriggerModal" class="btn-detail"
+                                                data-bs-toggle="modal" data-bs-target="#modalTinjau"><i
+                                                    class="bi bi-eye-fill"></i>
+                                                Tinjau
                                             </button>
                                         </td>
                                     </tr>
@@ -143,33 +153,165 @@
         </div>
 
     </div>
-    </div>
-    </div>
-    </div>
+
+    <div class="modal fade" id="modalTinjau" data-bs-backdrop="static"
+        style="background-color: rgba(255, 255, 255, 0.20);" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Tinjau Pelanggaran</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="bg-body-tertiary">
+                        <div class="form-group">
+                            <div class="row mb-3">
+                                <label for="" class="col-sm-3 col-form-label text-end fw-bold">NIM</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" value="2541987544" readonly>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="" class="col-sm-3 col-form-label text-end fw-bold">Nama</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" value="No Name" readonly>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="" class="col-sm-3 col-form-label text-end fw-bold">Kelas</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" value="2E" readonly>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="" class="col-sm-3 col-form-label text-end fw-bold">Jenis
+                                    Pelanggaran</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" value="Terlambat" readonly>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="" class="col-sm-3 col-form-label text-end fw-bold">Tingkat</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" value="Ringan" readonly>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="" class="col-sm-3 col-form-label text-end fw-bold">Tanggal</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" value="28 Februari 2024" readonly>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="" class="col-sm-3 col-form-label text-end fw-bold">Catatan</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" value="Datang terlambat lebih dari 15 menit"
+                                        readonly>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="" class="col-sm-3 col-form-label text-end fw-bold">Bukti
+                                    Pelanggaran</label>
+                                <div class="col-sm-9">
+                                    <button class="btn btn-success" data-bs-toggle="modal"
+                                        data-bs-target="#buktiModal">Lihat Bukti Pelanggaran</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- berikan sanksi -->
+                <hr class="mt-1 mb-2">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div class="row mb-3">
+                            <label for="" class="col-sm-3 col-form-label text-end fw-bold">Berikan Sanksi</label>
+                            <div class="col-sm-9">
+                                <div class="dropdown">
+                                    <button
+                                        class="btn btn-light dropdown-toggle border d-flex justify-content-between align-items-center col-sm-12"
+                                        type="button" id="dropdownButton" data-bs-toggle="dropdown"
+                                        aria-expanded="false" style=""> Pilih Sanksi
+                                    </button>
+                                    <ul class="dropdown-menu col-sm-12">
+                                        <li><a class="dropdown-item" href="#"
+                                                data-value="Surat pernyataan tidak mengulangi perbuatan tersebut, dibubuhi materai, ditandatangani mahasiswa yang bersangkutan dan DPA"
+                                                onclick="updateProdiDropdown(this)">Surat pernyataan tidak mengulangi perbuatan tersebut, dibubuhi materai, ditandatangani mahasiswa yang bersangkutan dan DPA</a></li>
+                                        <li><a class="dropdown-item" href="#"
+                                                data-value="Melakukan tugas khusus, misalnya bertanggungjawab untuk memperbaiki atau membersihkan kembali, dan tugas-tugas lainnya"
+                                                onclick="updateProdiDropdown(this)">Melakukan tugas khusus, misalnya bertanggungjawab untuk memperbaiki atau membersihkan kembali, dan tugas-tugas lainnya</a></li>
+                                        <li><a class="dropdown-item" href="#"
+                                                data-value="Dikenakan penggantian kerugian atau penggantian benda/barang semacamnya"
+                                                onclick="updateProdiDropdown(this)">Dikenakan penggantian kerugian atau penggantian benda/barang semacamnya</a></li>
+                                        <li><a class="dropdown-item" href="#"
+                                                data-value="Melakukan tugas layanan sosial dalam jangka waktu tertentu"
+                                                onclick="updateProdiDropdown(this)">Melakukan tugas layanan sosial dalam jangka waktu tertentu</a></li>
+                                        <li><a class="dropdown-item" href="#"
+                                                data-value="Diberikan nilai D pada mata kuliah terkait saat melakukan pelanggaran."
+                                                onclick="updateProdiDropdown(this)">Diberikan nilai D pada mata kuliah terkait saat melakukan pelanggaran.</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="" class="col-sm-3 col-form-label text-end fw-bold">Detail Sanksi</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control dynamic-width" id="catatanSanksi" rows="3"
+                                    placeholder="Tambahkan catatan detail sanksi yang diberikan"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn-detail" style="padding: 6.5px 12px">Kirim</button>
+                </div>
+            </div>
+        </div>
 
 
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Scripts -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 
-    <script>
-        $(".sidebar ul li").on("click", function () {
-            $(".sidebar ul li.active").removeClass("active");
-            $(this).addClass("active");
-        });
+        <script>
+            $(".sidebar ul li").on("click", function () {
+                $(".sidebar ul li.active").removeClass("active");
+                $(this).addClass("active");
+            });
 
-        $(".open-btn").on("click", function () {
-            $(".sidebar").addClass("active");
-        });
+            $(".open-btn").on("click", function () {
+                $(".sidebar").addClass("active");
+            });
 
-        $(".close-btn").on("click", function () {
-            $(".sidebar").removeClass("active");
-        });
-    </script>
+            $(".close-btn").on("click", function () {
+                $(".sidebar").removeClass("active");
+            });
+
+            document.querySelectorAll('.dropdown-submenu').forEach(function (submenu) {
+                submenu.addEventListener('mouseenter', function () {
+                    const submenuMenu = submenu.querySelector('.dropdown-menu');
+                    if (submenuMenu) submenuMenu.classList.add('show');
+                });
+
+                submenu.addEventListener('mouseleave', function () {
+                    const submenuMenu = submenu.querySelector('.dropdown-menu');
+                    if (submenuMenu) submenuMenu.classList.remove('show');
+                });
+            });
+
+            function updateProdiDropdown(element) {
+                const dropdownButton = document.getElementById("dropdownButton");
+                const newText = element.textContent;
+                dropdownButton.textContent = newText; // Perbarui teks tombol
+                dropdownButton.setAttribute("title", newText); // Tooltip untuk teks lengkap
+            }
+        </script>
 </body>
 
 </html>
