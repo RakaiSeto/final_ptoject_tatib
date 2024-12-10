@@ -4,6 +4,32 @@ body {
   color: #343a40;
 }
 
+.pagination .page-link {
+  background-color: white;
+  color: gray;
+  border: 1px solid lightgray;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #fd7e14;
+  border-color: lightgray;
+  color: white;
+}
+
+
+
+
+.pagination .page-item.disabled .page-link {
+  background-color: lightgray;
+  color: gray;
+  border-color: lightgray;
+}
+
+.pagination .page-link:hover {
+  background-color: rgba(253, 126, 20, 0.5);
+  color: white;
+}
+
 #side_nav {
   position: fixed;
   top: 0;
