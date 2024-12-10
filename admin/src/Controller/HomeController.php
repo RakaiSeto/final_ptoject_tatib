@@ -9,6 +9,7 @@ use Tatib\Src\Model\kelas;
 use Tatib\Src\Model\mahasiswa;
 use Tatib\Src\Model\daftar_pelanggaran;
 
+
 class HomeController extends Controller
 {
     public function index()
@@ -154,6 +155,28 @@ class HomeController extends Controller
         }
         $this->render('admin/page/pelanggaranMahasiswa', [
             'title' => 'Data Pelanggaran'  
+        ]);
+    }
+
+    public function dataMahasiswa(){
+        Helper::dumpToLog("serve data pelanggaran");
+        if (!isset($_COOKIE['user'])) {
+            header("Location: /");
+            return;
+        }
+        $this->render('admin/page/dataMahasiswa', [
+            'title' => 'Data Mahasiswa'  
+        ]);
+    }
+
+    public function dataDosen(){
+        Helper::dumpToLog("serve data pelanggaran");
+        if (!isset($_COOKIE['user'])) {
+            header("Location: /");
+            return;
+        }
+        $this->render('admin/page/dataDosen', [
+            'title' => 'Data Dosen'  
         ]);
     }
 }

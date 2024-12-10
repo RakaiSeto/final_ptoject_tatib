@@ -24,9 +24,9 @@ $router->addRoute('GET', '/riwayatPelaporan', HomeController::class, 'riwayatPel
 $router->addRoute('GET', '/dataPelanggaran', HomeController::class, 'dataPelanggaran');
 
 
-$router->addRoute('GET', '/dataDosen', PelanggaranController::class, 'dataDosen');
-$router->addRoute('GET', '/dataMahasiswa', PelanggaranController::class, 'dataMahasiswa');
-$router->addRoute('GET', '/pelanggaranMahasiswa', PelanggaranController::class, 'pelanggaranMahasiswa');
+$router->addRoute('GET', '/dataDosen', HomeController::class, 'dataDosen');
+$router->addRoute('GET', '/dataMahasiswa', HomeController::class, 'dataMahasiswa');
+$router->addRoute('GET', '/pelanggaranMahasiswa', HomeController::class, 'pelanggaranMahasiswa');
 
 
 // Add a new route for serving static files
