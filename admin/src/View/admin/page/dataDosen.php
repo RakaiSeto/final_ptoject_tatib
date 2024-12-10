@@ -35,7 +35,10 @@
                 </nav>
             </div>
 
-            <div class="bg-white">
+            <button class="btn btn-success my-2" data-bs-toggle="modal" data-bs-target="#tambahModal"><i
+                    class="fas fa-plus me-2"></i>Tambah Data Dosen</button>
+
+            <div class="bg-white" style="border: 1px solid rgba(0, 0, 0, 0.1);">
                 <div class="filter-bar d-flex align-items-center gap-2">
 
                     <!-- <span><i class="fas fa-filter"></i> Filter</span> -->
@@ -419,6 +422,76 @@
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control" value="28 Februari 2024"
                                                     readonly>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="" class="col-sm-3 col-form-label text-end fw-bold">Email</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" value="naed@example.com"
+                                                    readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-outline-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn-detail" onclick="confirmSave()">Save
+                                            changes</button>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal edit data mahasiswa -->
+                <div class="modal fade" id="tambahModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true" data-bs-backdrop="static" style="background-color: rgba(255, 255, 255, 0.20);">
+                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                        <div class="modal-content" style="background-color: #F5F5F5">
+                            <div class="modal-header">
+                                <h5 class="modal-title fw-bold" id="exampleModalLabel">Edit Data Mahasiswa</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="bg-body-tertiary">
+
+                                    <div class="form-group">
+                                        <div class="row mb-3">
+                                            <label for="" class="col-sm-3 col-form-label text-end fw-bold">NIP</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="" class="col-sm-3 col-form-label text-end fw-bold">Nama</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="" class="col-sm-3 col-form-label text-end fw-bold">Jenis
+                                                Kelamin</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for=""
+                                                class="col-sm-3 col-form-label text-end fw-bold">Jabatan</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="" class="col-sm-3 col-form-label text-end fw-bold">Tanggal
+                                                Lahir</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control">
                                             </div>
                                         </div>
                                         <div class="row mb-3">
