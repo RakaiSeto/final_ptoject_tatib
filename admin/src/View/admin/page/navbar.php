@@ -4,7 +4,6 @@
             <button class="btn px-0 py-0 open-btn">
                 <i class="fas fa-stream me-2 d-md-none"></i>
             </button>
-            <?php session_start(); ?>
             <span class="fw-medium" style="font-size: 28px"><?php echo $title; ?></span>
             <div class="d-flex ms-auto">
                 <li class="nav-item dropdown">
