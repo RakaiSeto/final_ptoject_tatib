@@ -35,8 +35,13 @@
                 </nav>
             </div>
 
+            <button class="btn btn-success my-2" data-bs-toggle="modal" data-bs-target="#tambahModal"><i
+                    class="fas fa-plus me-2"></i>Tambah Data Mahasiswa</button>
+
             <div class="bg-white">
                 <div class="filter-bar d-flex align-items-center gap-2">
+
+
 
                     <!-- <span><i class="fas fa-filter"></i> Filter</span> -->
 
@@ -119,6 +124,9 @@
                     <thead>
                         <tr>
                             <th>
+                                NO
+                            </th>
+                            <th>
                                 NIM
                             </th>
                             <th>
@@ -128,13 +136,13 @@
                                 Jenis Kelamin
                             </th>
                             <th>
-                                Kelas
-                            </th>
-                            <th>
                                 Prodi
                             </th>
                             <th>
-                                Alamat
+                                Kelas
+                            </th>
+                            <th>
+                                Tanggal Lahir
                             </th>
                             <th>
                                 Aksi
@@ -142,25 +150,18 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <?php
+                        // Ambil data kelas dari model
+                        // Misal: $kelasList adalah hasil query ke database untuk mengambil data kelas
+                        foreach ($mahasiswaList as $index => $mhs) { ?>
                         <tr>
-                            <td>
-                                2341720015
-                            </td>
-                            <td>
-                                Yudi Setiawan
-                            </td>
-                            <td>
-                                Laki-laki
-                            </td>
-                            <td>
-                                2C
-                            </td>
-                            <td>
-                                TI
-                            </td>
-                            <td>
-                                Pasuruan
-                            </td>
+                            <td><?= $index + 1 ?></td>
+                            <td><?= $mhs->nim ?></td>
+                            <td><?= $mhs->nama_mahasiswa ?></td>
+                            <td><?= $mhs->jenis_kelamin == 1 ? 'Laki-laki' : 'Perempuan' ?></td>
+                            <td><?= $mhs->id_prodi ?></td>
+                            <td><?= $mhs->id_kelas ?></td>
+                            <td><?= date('d-m-Y', strtotime($mhs->tanggal_lahir)) ?></td>
                             <td>
                                 <button class="btn btn-info btn-sm" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal">
@@ -178,6 +179,8 @@
                                 </button>
                             </td>
                         </tr>
+                        <?php } ?>
+
                     </tbody>
                 </table>
                 <nav>
@@ -226,7 +229,9 @@
                                                     style="border-radius: 4px; border: 1px solid rgba(0, 0, 0, 0.1);">
                                                     <!-- Gambar dan Tombol -->
                                                     <div class="col-12 col-md-3">
-                                                        <img alt="Profile Picture" src="../img/fotoagung.jpeg"
+
+                                                        <img alt="Profile Picture"
+                                                            src="<?php echo \Tatib\Src\Core\Helper::getProfilePicture(); ?>"
                                                             class="img-fluid rounded mb-2"
                                                             style="max-width: 100%; height: auto;" />
                                                         <!-- <button class="btn-generate mt-2" data-bs-toggle="modal"

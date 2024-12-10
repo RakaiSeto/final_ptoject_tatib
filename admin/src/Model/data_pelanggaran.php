@@ -75,12 +75,12 @@ data_pelanggaran
 
     public function insertDataPelanggaran() {
         $rand = Helper::randomAlphaNum();
-        $fullId = "PLG-$this->nim_terlapor-" . $rand;
+        $fullId = 'PEL' . date('dmy') . '-' . Helper::randomAlphaNum();
         $conn = Db::getInstance();
         try {
-            $query = "INSERT INTO data_pelanggaran VALUES (?,?,?,?,?,?,?,?,?)";
+            $query = "INSERT INTO data_pelanggaran VALUES (?,?,?,?,?,?,?,?,?,?)";
             $stmt = $conn->prepare($query);
-            $stmt->execute([$fullId, $this->jenis_pelanggaran, $this->kronologi, $this->tautan_bukti, $this->nip_pelapor, $this->nim_terlapor, $this->is_verified, $this->is_banding, $this->is_done]);
+            $stmt->execute([$fullId, $this->jenis_pelanggaran, $this->kronologi, $this->tautan_bukti, $this->nip_pelapor, $this->nim_terlapor, $this->is_verified, $this->is_banding, $this->is_done, $this->datetime]);
             Helper::dumpToLog("success insert data pelanggaran $rand");
             return true;
         } catch (\PDOException $th) {

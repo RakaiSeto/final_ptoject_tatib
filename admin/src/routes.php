@@ -7,6 +7,8 @@ use Tatib\Src\Controller\LaporanController;
 use Tatib\Src\Controller\PelanggaranController;
 use Tatib\Src\Controller\StaticController;
 use Tatib\Src\Controller\InformasiController;
+use Tatib\Src\Controller\KelasController;
+use Tatib\Src\Controller\MahasiswaController;
 use Tatib\Src\Router;
 
 $router = new Router();
@@ -22,13 +24,16 @@ $router->addRoute('GET', '/home', HomeController::class, 'home');
 $router->addRoute('GET', '/informasi', InformasiController::class, 'informasi');
 $router->addRoute('GET', '/laporkan', LaporanController::class, 'index');
 $router->addRoute('POST', '/getMahasiswaKelas', LaporanController::class, 'filterMahasiswa');
+$router->addRoute('POST', '/doLaporkan', LaporanController::class, 'doLaporkan');
 $router->addRoute('GET', '/riwayatPelaporan', HomeController::class, 'riwayatPelaporan');
 $router->addRoute('GET', '/dataPelanggaran', HomeController::class, 'dataPelanggaran');
 
 
 $router->addRoute('GET', '/dataDosen', HomeController::class, 'dataDosen');
-$router->addRoute('GET', '/dataMahasiswa', HomeController::class, 'dataMahasiswa');
+$router->addRoute('GET', '/dataMahasiswa', MahasiswaController::class, 'dataMahasiswa');
+$router->addRoute('GET', '/dataKelas', KelasController::class, 'daftarKelas');
 $router->addRoute('GET', '/pelanggaranMahasiswa', HomeController::class, 'pelanggaranMahasiswa');
+
 
 
 // Add a new route for serving static files
