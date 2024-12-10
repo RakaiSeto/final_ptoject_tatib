@@ -1,0 +1,286 @@
+/* <style> */
+body {
+    background: #f8f9fa;
+    color: #343a40;
+  }
+  
+  #side_nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    background: #ffffff;
+    /* z-index: 1051; */
+    border-right: 1px solid #dee2e6;
+    /* background: #ffffff;
+      min-width: 250px;
+      max-width: 250px;
+      height: 100%;
+      transition: all 0.3s; */
+  }
+  
+  .modal {
+    z-index: 1100;
+    /* background: (255, 255, 255, 0.25); */
+  }
+  
+  .sidebar.active {
+    z-index: 1060;
+    left: 0; /* Sidebar muncul */
+  }
+  
+  .content {
+    background-color: #f8f9fa;
+    min-height: 100vh;
+    /* width: 100%; */
+    margin-left: 250px;
+    /* margin-top: 56px; */
+    width: calc(100% - 250px);
+    transition: margin-left 0.3s ease;
+    /* background-color: #f8f9fa; */
+    /* min-height: 100vh; */
+  }
+  
+  hr.h-color {
+    background: #e7e3e0;
+  }
+  
+  .sidebar {
+    border-right: 1px solid #dee2e6;
+  }
+  
+  .sidebar li.active {
+    background: #fd7e14;
+    border-radius: 8px;
+  }
+  
+  .sidebar li.active a,
+  .sidebar li.active a:hover {
+    color: #ffffff;
+  }
+  
+  .sidebar li a {
+    color: #6c757d;
+  }
+  
+  /* Menyembunyikan submenu secara default */
+  .sidebar .submenu {
+    display: none;
+    padding-left: 20px;
+  }
+  
+  /* Ketika submenu ditampilkan */
+  .sidebar .submenu.show {
+    display: block;
+  }
+  
+  .dropdown-menu {
+    min-width: 200px;
+  }
+  
+  /* Highlight untuk submenu yang aktif */
+  .sidebar .submenu li.active-submenu {
+    background-color: #fd7e14; /* Warna highlight untuk submenu */
+    color: #ffffff; /* Warna teks pada submenu aktif */
+    border-radius: 5px;
+  }
+  
+  /* Menu dengan dropdown yang tidak akan memiliki highlight saat diklik */
+  .sidebar .dropdown-toggle {
+    background: transparent; /* Menghilangkan highlight pada menu dropdown */
+    color: #6c757d; /* Warna teks default */
+  }
+  
+  /* Menjaga highlight submenu dan menu parent */
+  .sidebar .submenu li.active,
+  .sidebar li.active > a {
+    background-color: #fd7e14;
+    color: #ffffff;
+  }
+  
+  .dropdown-item {
+    font-size: 14px;
+    padding: 10px 15px;
+  }
+  
+  .form-select {
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 250px;
+    width: calc(100% - 250px);
+    z-index: 1050;
+    background-color: #ffffff;
+    border-bottom: 1px solid #dee2e6;
+  }
+  
+  li {
+    list-style: none;
+  }
+  
+  .btn-detail {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #fd7e14;
+    color: #fff;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+  }
+  
+  .btn-detail:hover {
+    background-color: #e96b0c;
+  }
+  
+  #userDropdown img {
+    /* Do not scale the image */
+    object-fit: cover;
+    object-position: top;
+    width: 50px;
+    top: 0px;
+  }
+  
+  .biodata,
+  .warning {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  .biodata img {
+    border-radius: 5px;
+  }
+  
+  .biodata table {
+    width: 100%;
+  }
+  
+  .biodata table td {
+    padding: 5px 0;
+  }
+  
+  .btn-generate {
+    background-color: #ff7a00;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  
+  .warning {
+    color: #fff;
+  }
+  
+  .bg-white {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  @media (max-width: 767px) {
+    #side_nav {
+      left: -250px; /* Menyembunyikan sidebar pada layar kecil */
+      position: absolute;
+      z-index: 1051; /* Sidebar tetap memiliki z-index lebih tinggi saat tidak aktif */
+    }
+  
+    #side_nav.active {
+      left: 0; /* Sidebar muncul pada layar kecil */
+      z-index: 1060; /* Pastikan sidebar muncul di atas navbar */
+    }
+  
+    .content {
+      margin-left: 0;
+      width: 100%; /* Konten mengambil seluruh lebar */
+    }
+  
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%; /* Navbar mengambil seluruh lebar */
+      z-index: 1050; /* Z-index navbar lebih rendah dari sidebar */
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .navbar-nav {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      z-index: 1051;
+    }
+  }
+  /* </style> */
+  
+  /*  */
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* margin-bottom: 20px; */
+    background-color: #fff;
+    padding: 10px 20px;
+    border-bottom: 1px solid #dee2e6;
+  }
+  .header h1 {
+    font-size: 24px;
+    color: #343a40;
+  }
+  .header img {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+  }
+  .table th,
+  .table td {
+    vertical-align: middle;
+  }
+  .btn-detail {
+    background-color: #fd7e14;
+    color: #fff;
+  }
+  .btn-detail:hover {
+    background-color: #e96b0c;
+  }
+  .form-select {
+    width: 100%;
+    max-width: 300px;
+  }
+  @media (max-width: 768px) {
+    .sidebar {
+      height: auto;
+      border-right: none;
+    }
+    .header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .header img {
+      margin-top: 10px;
+    }
+  }
+  
+  /* submenu */
+  /* Highlight untuk menu utama yang aktif */
+  .active-menu {
+    background-color: transparent; /* Menu utama tidak di-highlight */
+    color: #000000; /* Warna teks normal */
+  }
+  
+  /* Highlight untuk submenu yang aktif */
+  .active-submenu {
+    background-color: #fd7e14; /* Warna highlight untuk submenu */
+    color: #ffffff; /* Warna teks pada submenu aktif */
+    border-radius: 5px;
+  }
+  
