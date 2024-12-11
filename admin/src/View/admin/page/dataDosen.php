@@ -118,26 +118,27 @@
 
 
 
-                <table class="table table-responsive table-bordered">
+                <table class="table table-responsive table-bordered ">
                     <thead>
                         <tr>
                             <th>
-                                NIM
+                                NO
                             </th>
                             <th>
-                                Nama
+                                NIP
                             </th>
                             <th>
-                                Jenis Kelamin
+                                Nama Dosen
                             </th>
                             <th>
-                                Kelas
+                                Role
+                            </th>
+
+                            <th>
+                                Email
                             </th>
                             <th>
-                                Prodi
-                            </th>
-                            <th>
-                                Alamat
+                                No Telepon
                             </th>
                             <th>
                                 Aksi
@@ -145,25 +146,19 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <?php
+                        // Ambil data kelas dari model
+                        // Misal: $kelasList adalah hasil query ke database untuk mengambil data kelas
+                        foreach ($dosenList as $index => $dosen) { ?>
                         <tr>
-                            <td>
-                                2341720015
-                            </td>
-                            <td>
-                                Yudi Setiawan
-                            </td>
-                            <td>
-                                Laki-laki
-                            </td>
-                            <td>
-                                2C
-                            </td>
-                            <td>
-                                TI
-                            </td>
-                            <td>
-                                Pasuruan
-                            </td>
+                            <td><?= $index + 1 ?></td>
+                            <td><?= $dosen->nip ?></td>
+                            <td><?= $dosen->nama_pegawai ?></td>
+                            <td><?= $dosen->role ?></td>
+                            <td><?= $dosen->email ?></td>
+                            <td><?= $dosen->no_telp ?></td>
+                            <!--  -->
+
                             <td>
                                 <button class="btn btn-info btn-sm" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal">
@@ -181,6 +176,7 @@
                                 </button>
                             </td>
                         </tr>
+                        <?php } ?>
                     </tbody>
                 </table>
                 <nav>
@@ -238,42 +234,44 @@
                                                     </div>
                                                     <div class="col-12 col-md-9">
                                                         <table class="ml-3 table table-responsive table-hover">
+                                                            <?php
+                                                            // Ambil data kelas dari model
+                                                            // Misal: $kelasList adalah hasil query ke database untuk mengambil data kelas
+                                                            foreach ($dosenList as $index => $dosen) { ?>
+
                                                             <tr>
                                                                 <td>Nama</td>
-                                                                <td>: Agung Fradiansyah</td>
+                                                                <td> : <?= $dosen->nama_pegawai ?></td>
                                                             </tr>
                                                             <tr>
-                                                                <td>NIM</td>
-                                                                <td>: 2341720025</td>
+                                                                <td>NIP</td>
+                                                                <td>: <?= $dosen->nip ?></td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Kelas</td>
-                                                                <td>: 2E</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Prodi</td>
-                                                                <td>: Teknik Informatika</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Jurusan</td>
-                                                                <td>: Teknologi Informasi</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>TTL</td>
-                                                                <td>: 28, Februari 2024</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Jenis Kelamin</td>
-                                                                <td>: Laki-laki</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Alamat</td>
-                                                                <td>: Pasuruan</td>
+                                                                <td>Role</td>
+                                                                <td>: <?= $dosen->role ?></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Email</td>
-                                                                <td>: agungfradiansyah@gmail.com</td>
+                                                                <td>: <?= $dosen->email ?></td>
                                                             </tr>
+                                                            <tr>
+                                                                <td>No Telepon</td>
+                                                                <td>: <?= $dosen->no_telp ?></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Prodi</td>
+                                                                <td>: <?= $dosen->prodi ?> </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Jabatan</td>
+                                                                <td>:
+                                                                    <?= $dosen->is_dpa ? 'Dosen Pembimbing Akademik (DPA)' : ($dosen->is_kps ? 'Ketua Program Studi (KPS)' : 'Dosen') ?>
+                                                                </td>
+                                                            </tr>
+
+
+                                                            <?php } ?>
                                                         </table>
                                                     </div>
                                                 </div>

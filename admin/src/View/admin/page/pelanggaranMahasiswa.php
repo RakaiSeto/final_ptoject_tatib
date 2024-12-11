@@ -178,7 +178,28 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <?php
+                        // Ambil data kelas dari model
+                        // Misal: $kelasList adalah hasil query ke database untuk mengambil data kelas
+                        foreach ($pelanggaranList as $index => $PelanggaranMahasiswa) { ?>
                         <tr>
+                            <td><?= $index + 1 ?></td>
+                            <td><?= $PelanggaranMahasiswa->jenis_pelanggaran ?></td>
+                            <td><?= $PelanggaranMahasiswa->kronologi ?></td>
+                            <td>
+                                <button class="btn btn-warning btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#editModal">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-danger btn-sm">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <?php } ?>
+
+
+                        <!-- <tr>
                             <td>1</td>
                             <td>12345678</td>
                             <td>No Name</td>
@@ -187,7 +208,7 @@
                             <td>4</td>
                             <td><button class="btn-detail" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal">Lihat</button></td>
-                        </tr>
+                        </tr> -->
                     </tbody>
                 </table>
 

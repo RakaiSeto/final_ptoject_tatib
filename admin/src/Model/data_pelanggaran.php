@@ -5,8 +5,7 @@ namespace Tatib\Src\Model;
 use Tatib\Src\Core\Db;
 use Tatib\Src\Core\Helper;
 
-class
-data_pelanggaran
+class data_pelanggaran
 {
     public $kode_pelanggaran, $jenis_pelanggaran, $kronologi, $tautan_bukti, $nip_pelapor, $nim_terlapor, $is_verified, $is_banding, $is_done, $datetime;
 

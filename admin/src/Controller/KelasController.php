@@ -28,9 +28,9 @@ class KelasController extends Controller
     }
 
     public function tambahKelas()
-    {
+{
     Helper::dumpToLog("serve tambah kelas");
-    
+
     // Cek apakah pengguna sudah login
     if (!isset($_COOKIE['user'])) {
         header("Location: /");
@@ -40,10 +40,36 @@ class KelasController extends Controller
     // Mendapatkan role pengguna dari cookie
     $role = json_decode($_COOKIE['user'], true)['role'];
 
-    // Render halaman tambah kelas berdasarkan role pengguna
-    // Pastikan file tambahKelas.php berisi form untuk menambah kelas
-    $this->render($role . '/page/tambahKelas', ['title' => 'Tambah Kelas']);
+    // Jika form disubmit
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        // Ambil data dari form
+        $id_kelas = $_POST['id_kelas'];
+        $nama_kelas = $_POST['nama_kelas'];
+        $nip_dpa = $_POST['nip_dpa'];
+
+        // Membuat objek kelas
+        $kelas = new kelas();
+        $kelas->id_kelas = $id_kelas;
+        $kelas->nama_kelas = $nama_kelas;
+        $kelas->nip_dpa = $nip_dpa;
+
+        // Menyimpan data kelas ke database
+        $result = $kelas->insertKelas();
+
+        if ($result === true) {
+            // Redirect atau tampilkan pesan sukses
+            Helper::dumpToLog("Kelas berhasil ditambahkan");
+            header("Location: /kelas"); // Redirect ke halaman daftar kelas
+            exit;
+        } else {
+            // Tampilkan pesan error
+            Helper::dumpToLog("Gagal menambahkan kelas: $result");
+        }
     }
+
+    // Render halaman tambah kelas berdasarkan role pengguna
+    $this->render($role . '/page/dataKelas', ['title' => 'Tambah Kelas']);
+}
 
     
 

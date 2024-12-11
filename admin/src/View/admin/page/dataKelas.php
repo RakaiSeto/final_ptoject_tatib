@@ -182,35 +182,37 @@
 
                 <!-- Modal untuk tambah kelas -->
                 <!-- Modal untuk tambah kelas -->
-                <div class="modal fade" id="tambahKelasModal" tabindex="-1" aria-labelledby="tambahKelasModalLabel"
+                <div class="modal fade" id="tambahModal" tabindex="-1" aria-labelledby="tambahModalLabel"
                     aria-hidden="true">
-                    <div class="modal-dialog">
+                    <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="tambahKelasModalLabel">Tambah Kelas</h5>
+                                <h5 class="modal-title" id="tambahModalLabel">Tambah Kelas</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form id="tambahKelasForm">
-                                    <div class="form-group">
-                                        <label for="id_kelas">ID Kelas</label>
-                                        <input type="text" name="id_kelas" id="id_kelas" class="form-control" required>
+                                <form action="/kelas/tambah" method="POST">
+                                    <div class="mb-3">
+                                        <label for="id_kelas" class="form-label">ID Kelas</label>
+                                        <input type="text" class="form-control" id="id_kelas" name="id_kelas" required>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="nama_kelas">Nama Kelas</label>
-                                        <input type="text" name="nama_kelas" id="nama_kelas" class="form-control"
+                                    <div class="mb-3">
+                                        <label for="nama_kelas" class="form-label">Nama Kelas</label>
+                                        <input type="text" class="form-control" id="nama_kelas" name="nama_kelas"
                                             required>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="nip_dpa">NIP DPA</label>
-                                        <input type="text" name="nip_dpa" id="nip_dpa" class="form-control" required>
+                                    <div class="mb-3">
+                                        <label for="nip_dpa" class="form-label">NIP DPA</label>
+                                        <input type="text" class="form-control" id="nip_dpa" name="nip_dpa" required>
                                     </div>
-                                    <div id="error-message" class="text-danger" style="display:none;"></div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Tutup</button>
-                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                            data-bs-dismiss="modal">Close</button>
+                                        <form action="/kelas/tambah" method="POST">
+                                            <!-- Form fields here -->
+                                            <button type="submit" class="btn btn-primary">Tambah Kelas</button>
+                                        </form>
                                     </div>
                                 </form>
                             </div>

@@ -9,6 +9,8 @@ use Tatib\Src\Controller\StaticController;
 use Tatib\Src\Controller\InformasiController;
 use Tatib\Src\Controller\KelasController;
 use Tatib\Src\Controller\MahasiswaController;
+use Tatib\Src\Controller\DosenController;
+use Tatib\Src\Controller\DataPelanggaranController;
 use Tatib\Src\Router;
 
 $router = new Router();
@@ -28,11 +30,15 @@ $router->addRoute('POST', '/doLaporkan', LaporanController::class, 'doLaporkan')
 $router->addRoute('GET', '/riwayatPelaporan', HomeController::class, 'riwayatPelaporan');
 $router->addRoute('GET', '/dataPelanggaran', HomeController::class, 'dataPelanggaran');
 
+// $router->post('/kelas/tambah', [KelasController::class, 'tambahKelas']);
+
 
 $router->addRoute('GET', '/dataDosen', HomeController::class, 'dataDosen');
+$router->addRoute('GET', '/dataDosen', DosenController::class, 'dataDosen');
 $router->addRoute('GET', '/dataMahasiswa', MahasiswaController::class, 'dataMahasiswa');
 $router->addRoute('GET', '/dataKelas', KelasController::class, 'daftarKelas');
 $router->addRoute('GET', '/pelanggaranMahasiswa', HomeController::class, 'pelanggaranMahasiswa');
+$router->addRoute('GET', '/dataPelanggaran', DataPelanggaranController::class, 'dataPelanggaran');
 
 
 
