@@ -37,7 +37,7 @@ $router->addRoute('GET', '/dataDosen', HomeController::class, 'dataDosen');
 $router->addRoute('GET', '/dataDosen', DosenController::class, 'dataDosen');
 $router->addRoute('GET', '/dataMahasiswa', MahasiswaController::class, 'dataMahasiswa');
 $router->addRoute('GET', '/dataKelas', KelasController::class, 'daftarKelas');
-$router->addRoute('GET', '/pelanggaranMahasiswa', HomeController::class, 'pelanggaranMahasiswa');
+$router->addRoute('GET', '/pelanggaranMahasiswa', DataPelanggaranController::class, 'dataPelanggaran');
 $router->addRoute('GET', '/dataPelanggaran', DataPelanggaranController::class, 'dataPelanggaran');
 
 
