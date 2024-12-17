@@ -30,8 +30,15 @@ $router->addRoute('POST', '/doLaporkan', LaporanController::class, 'doLaporkan')
 $router->addRoute('GET', '/riwayatPelaporan', HomeController::class, 'riwayatPelaporan');
 $router->addRoute('GET', '/dataPelanggaran', HomeController::class, 'dataPelanggaran');
 
-// $router->post('/kelas/tambah', [KelasController::class, 'tambahKelas']);
+$router->addRoute('POST', '/kelas/tambah', KelasController::class, 'tambahKelas');
+// $router->addRoute('POST', '/kelas/edit', KelasController::class, 'editKelas');
+$router->addRoute('GET', '/kelas/delete', KelasController::class, 'deleteKelas');
 
+$router->addRoute('POST', '/mahasiswa/tambah', MahasiswaController::class, 'tambahMahasiswa');
+$router->addRoute('POST', '/dosen/tambah', DosenController::class, 'tambahDosen');
+
+// $router->addRoute('POST', '/dosen/tambah', DosenController::class, 'tambahDosen');
+// $router->post('/kelas/tambah', [KelasController::class, 'tambahKelas']);
 
 $router->addRoute('GET', '/dataDosen', HomeController::class, 'dataDosen');
 $router->addRoute('GET', '/dataDosen', DosenController::class, 'dataDosen');
@@ -39,8 +46,6 @@ $router->addRoute('GET', '/dataMahasiswa', MahasiswaController::class, 'dataMaha
 $router->addRoute('GET', '/dataKelas', KelasController::class, 'daftarKelas');
 $router->addRoute('GET', '/pelanggaranMahasiswa', DataPelanggaranController::class, 'dataPelanggaran');
 $router->addRoute('GET', '/dataPelanggaran', DataPelanggaranController::class, 'dataPelanggaran');
-
-
 
 // Add a new route for serving static files
 $router->addRoute('GET', '/public/[A-Za-z]+/[A-Za-z0-9\(\)-]+-[A-Za-z]+', StaticController::class, 'serveFile');

@@ -101,4 +101,27 @@ class kelas
             return false . " " . $th->getMessage();
         }
     }
+
+
+    public function getAllDpa()
+    {
+        // Query untuk mengambil DPA berdasarkan nilai is_dpa = 1
+        $query = "SELECT nip, nama_pegawai FROM pegawai WHERE is_dpa = 1";
+        
+        // Menjalankan query
+        $conn = Db::getInstance();  // Pastikan ini mengarah ke koneksi database yang benar
+        try {
+            $queryRes = $conn->query($query);
+            $result = [];
+            while ($row = $queryRes->fetch(\PDO::FETCH_ASSOC)) {
+                $result[] = $row;  // Menyimpan hasil query ke dalam array
+            }
+            return $result;  // Mengembalikan daftar DPA
+        } catch (\PDOException $th) {
+            Helper::dumpToLog("Gagal mengambil DPA: " . $th->getMessage());
+            return false . " " . $th->getMessage();
+        }
+    }
+    
+    
 }

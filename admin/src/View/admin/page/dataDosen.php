@@ -35,7 +35,7 @@
                 </nav>
             </div>
 
-            <button class="btn btn-success my-2" data-bs-toggle="modal" data-bs-target="#tambahModal"><i
+            <button class="btn btn-success my-2" data-bs-toggle="modal" data-bs-target="#tambahDosenModal"><i
                     class="fas fa-plus me-2"></i>Tambah Data Dosen</button>
 
             <div class="bg-white" style="border: 1px solid rgba(0, 0, 0, 0.1);">
@@ -162,9 +162,10 @@
                             <td>
                                 <button class="btn btn-info btn-sm" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal">
-                                    <i class="fas fa-eye">
-                                    </i>
+                                    <i class="fas fa-eye"></i>
                                 </button>
+
+
                                 <button class="btn btn-warning btn-sm" data-bs-toggle="modal"
                                     data-bs-target="#editModal">
                                     <i class="fas fa-edit">
@@ -203,171 +204,62 @@
                 </nav>
 
                 <!-- Modal lihat biodata-->
+
+                <!-- Modal lihat biodata-->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true" data-bs-backdrop="static" style="background-color: rgba(255, 255, 255, 0.20);">
                     <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
-                        <div class="modal-content" style="background-color: #F5F5F5">
+                        <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title fw-bold" id="exampleModalLabel">Detail Mahasiswa</h5>
+                                <h5 class="modal-title fw-bold" id="exampleModalLabel">Detail Pegawai</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <div class="bg-body-tertiary">
-                                    <div class="row">
-                                        <div class="col-12 col-lg-12 mb-4 mb-md-0">
-                                            <div class="bg-white">
-
-                                                <h5 class="modal-title fw-bold mb-4" id="exampleModalLabel">Data
-                                                    Mahasiswa
-                                                </h5>
-                                                <div class="row g-3 flex-column flex-md-row align-items-center p-2"
-                                                    style="border-radius: 4px; border: 1px solid rgba(0, 0, 0, 0.1);">
-                                                    <!-- Gambar dan Tombol -->
-                                                    <div class="col-12 col-md-3">
-                                                        <img alt="Profile Picture" src="../img/fotoagung.jpeg"
-                                                            class="img-fluid rounded mb-2"
-                                                            style="max-width: 100%; height: auto;" />
-                                                        <!-- <button class="btn-generate mt-2" data-bs-toggle="modal"
-                                                            data-bs-target="#QRCodeModal">Generate QR
-                                                            Code</button> -->
-                                                    </div>
-                                                    <div class="col-12 col-md-9">
-                                                        <table class="ml-3 table table-responsive table-hover">
-                                                            <?php
-                                                            // Ambil data kelas dari model
-                                                            // Misal: $kelasList adalah hasil query ke database untuk mengambil data kelas
-                                                            foreach ($dosenList as $index => $dosen) { ?>
-
-                                                            <tr>
-                                                                <td>Nama</td>
-                                                                <td> : <?= $dosen->nama_pegawai ?></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>NIP</td>
-                                                                <td>: <?= $dosen->nip ?></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Role</td>
-                                                                <td>: <?= $dosen->role ?></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Email</td>
-                                                                <td>: <?= $dosen->email ?></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>No Telepon</td>
-                                                                <td>: <?= $dosen->no_telp ?></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Prodi</td>
-                                                                <td>: <?= $dosen->prodi ?> </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Jabatan</td>
-                                                                <td>:
-                                                                    <?= $dosen->is_dpa ? 'Dosen Pembimbing Akademik (DPA)' : ($dosen->is_kps ? 'Ketua Program Studi (KPS)' : 'Dosen') ?>
-                                                                </td>
-                                                            </tr>
-
-
-                                                            <?php } ?>
-                                                        </table>
-                                                    </div>
-                                                </div>
-
-                                                <h5 class="modal-title fw-bold my-4" id="exampleModalLabel">Pelanggaran
-                                                    Terbaru
-                                                </h5>
-                                                <div class="row g-3 flex-column flex-md-row align-items-center p-2"
-                                                    style="border-radius: 4px; border: 1px solid rgba(0, 0, 0, 0.1);">
-                                                    <table class="table table-responsive table-hover table-bordered">
-                                                        <tr>
-                                                            <th>NO</th>
-                                                            <th>Jenis Pelanggaran</th>
-                                                            <th>Tingkat</th>
-                                                            <th>Tanggal</th>
-                                                            <th>Aksi</th>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>1</td>
-                                                            <td>Merokok di kawasan kampus</td>
-                                                            <td>4</td>
-                                                            <td>19/11/2024</td>
-                                                            <td><button class="btn-detail" data-bs-toggle="modal"
-                                                                    data-bs-target="#exampleModal">Lihat</button></td>
-                                                        </tr>
-                                                    </table>
-                                                </div>
-
-                                                <h5 class="modal-title fw-bold my-4" id="exampleModalLabel">Riwayat
-                                                    Pelanggaran
-                                                </h5>
-                                                <div class="row g-3 flex-column flex-md-row align-items-center p-2"
-                                                    style="border-radius: 4px; border: 1px solid rgba(0, 0, 0, 0.1);">
-                                                    <table class="table table-responsive table-hover table-bordered">
-                                                        <tr>
-                                                            <th>NO</th>
-                                                            <th>Jenis Pelanggaran</th>
-                                                            <th>Tingkat</th>
-                                                            <th>Tanggal</th>
-                                                            <th>Aksi</th>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>1</td>
-                                                            <td>Merokok di kawasan kampus</td>
-                                                            <td>4</td>
-                                                            <td>19/11/2024</td>
-                                                            <td><button class="btn-detail" data-bs-toggle="modal"
-                                                                    data-bs-target="#exampleModal">Lihat</button></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>1</td>
-                                                            <td>Merokok di kawasan kampus</td>
-                                                            <td>4</td>
-                                                            <td>19/11/2024</td>
-                                                            <td><button class="btn-detail" data-bs-toggle="modal"
-                                                                    data-bs-target="#exampleModal">Lihat</button></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>1</td>
-                                                            <td>Merokok di kawasan kampus</td>
-                                                            <td>4</td>
-                                                            <td>19/11/2024</td>
-                                                            <td><button class="btn-detail" data-bs-toggle="modal"
-                                                                    data-bs-target="#exampleModal">Lihat</button></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>1</td>
-                                                            <td>Merokok di kawasan kampus</td>
-                                                            <td>4</td>
-                                                            <td>19/11/2024</td>
-                                                            <td><button class="btn-detail" data-bs-toggle="modal"
-                                                                    data-bs-target="#exampleModal">Lihat</button></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>1</td>
-                                                            <td>Merokok di kawasan kampus</td>
-                                                            <td>4</td>
-                                                            <td>19/11/2024</td>
-                                                            <td><button class="btn-detail" data-bs-toggle="modal"
-                                                                    data-bs-target="#exampleModal">Lihat</button></td>
-                                                        </tr>
-                                                    </table>
-                                                </div>
-
-                                            </div>
-
-                                        </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <img id="pegawaiFoto" alt="Profile Picture" class="img-fluid rounded mb-2"
+                                            style="max-width: 100%; height: auto;">
+                                    </div>
+                                    <div class="col-md-9">
+                                        <table class="table table-hover">
+                                            <tr>
+                                                <td>Nama</td>
+                                                <td>: <span id="pegawaiNama"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>NIP</td>
+                                                <td>: <span id="pegawaiNIP"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Role</td>
+                                                <td>: <span id="pegawaiRole"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Email</td>
+                                                <td>: <span id="pegawaiEmail"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>No Telepon</td>
+                                                <td>: <span id="pegawaiTelp"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Prodi</td>
+                                                <td>: <span id="pegawaiProdi"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Jabatan</td>
+                                                <td>: <span id="pegawaiJabatan"></span></td>
+                                            </tr>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
-
                 </div>
+
+
 
                 <!-- Modal edit data mahasiswa -->
                 <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -446,74 +338,78 @@
                 </div>
 
                 <!-- Modal edit data mahasiswa -->
-                <div class="modal fade" id="tambahModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                <!-- <button class="btn btn-success my-2" data-bs-toggle="modal" data-bs-target="#tambahDosenModal"><i
+                        class="fas fa-plus me-2"></i>Tambah Data Dosen</button> -->
+
+
+                <div class="modal fade" id="tambahDosenModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true" data-bs-backdrop="static" style="background-color: rgba(255, 255, 255, 0.20);">
                     <div class="modal-dialog modal-lg modal-dialog-centered">
-                        <div class="modal-content" style="background-color: #F5F5F5">
+                        <div class="modal-content" style="background-color:#FFF">
                             <div class="modal-header">
-                                <h5 class="modal-title fw-bold" id="exampleModalLabel">Edit Data Mahasiswa</h5>
+                                <h5 class="modal-title fw-bold" id="exampleModalLabel">Tambah Data Dosen</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <div class="bg-body-tertiary">
-
-                                    <div class="form-group">
-                                        <div class="row mb-3">
-                                            <label for="" class="col-sm-3 col-form-label text-end fw-bold">NIP</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control">
-                                            </div>
+                                <form method="POST" action="/dosen/tambah">
+                                    <div class="modal-body">
+                                        <!-- Form input fields -->
+                                        <div class="form-group">
+                                            <label for="nip" class="col-form-label fw-semibold">NIP</label>
+                                            <input type="text" name="nip" class="form-control" required
+                                                placholder="Masukkan NIP">
                                         </div>
-                                        <div class="row mb-3">
-                                            <label for="" class="col-sm-3 col-form-label text-end fw-bold">Nama</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control">
-                                            </div>
+                                        <div class="form-group">
+                                            <label for="nama_pegawai" class="col-form-label fw-semibold">Nama
+                                                Dosen</label>
+                                            <input type="text" name="nama_pegawai" class="form-control" required
+                                                placholder="Masukkan Nama Dosen">
                                         </div>
-                                        <div class="row mb-3">
-                                            <label for="" class="col-sm-3 col-form-label text-end fw-bold">Jenis
-                                                Kelamin</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control">
-                                            </div>
+                                        <div class="form-group">
+                                            <label for="role" class="col-form-label fw-semibold">Role</label>
+                                            <input type="text" name="role" class="form-control" required
+                                                placholder="Masukkan Role">
                                         </div>
-                                        <div class="row mb-3">
-                                            <label for=""
-                                                class="col-sm-3 col-form-label text-end fw-bold">Jabatan</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control">
-                                            </div>
+                                        <div class="form-group">
+                                            <label for="email" class="col-form-label fw-semibold">Email</label>
+                                            <input type="email" name="email" class="form-control" required
+                                                placholder="Masukkan Email">
                                         </div>
-                                        <div class="row mb-3">
-                                            <label for="" class="col-sm-3 col-form-label text-end fw-bold">Tanggal
-                                                Lahir</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control">
-                                            </div>
+                                        <div class="form-group">
+                                            <label for="no_telp" class="col-form-label fw-semibold">No Telp</label>
+                                            <input type="text" name="no_telp" class="form-control" required
+                                                placholder="Masukkan No Telp">
                                         </div>
-                                        <div class="row mb-3">
-                                            <label for="" class="col-sm-3 col-form-label text-end fw-bold">Email</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" value="naed@example.com"
-                                                    readonly>
-                                            </div>
+                                        <div class="form-group">
+                                            <label for="prodi" class="col-form-label fw-semibold">Prodi</label>
+                                            <input type="text" name="prodi" class="form-control" required
+                                                placholder="Masukkan Prodi">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="password" class="col-form-label fw-semibold">Password</label>
+                                            <input type="password" name="password" class="form-control" required
+                                                placholder="Masukkan Password">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="jabatan" class="col-form-label fw-semibold me-3">Jabatan
+                                            </label>
+                                            <input type="checkbox" name="dpa" value="1"> DPA
+                                            <input type="checkbox" name="kps" value="1"> KPS
                                         </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-outline-secondary"
                                             data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn-detail" onclick="confirmSave()">Save
-                                            changes</button>
+                                        <button type="submit" class="btn-detail py-2">Tambah</button>
                                     </div>
-
-                                </div>
-
+                                </form>
 
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
 
 
@@ -556,6 +452,28 @@
             } else {
                 alert("Perubahan data dibatalkan.");
             }
+        }
+
+        function getDosenDetails(button) {
+            var dosenId = button.getAttribute('data-id'); // Ambil ID dosen dari tombol yang diklik
+
+            // Kirim permintaan AJAX untuk mendapatkan data dosen berdasarkan ID
+            fetch('/dosen/detail/' + dosenId)
+                .then(response => response.json())
+                .then(data => {
+                    // Setelah data diterima, tampilkan di modal
+                    document.getElementById('dosen-nama').innerText = data.nama_pegawai;
+                    document.getElementById('dosen-nip').innerText = data.nip;
+                    document.getElementById('dosen-role').innerText = data.role;
+                    document.getElementById('dosen-email').innerText = data.email;
+                    document.getElementById('dosen-no-telp').innerText = data.no_telp;
+                    document.getElementById('dosen-prodi').innerText = data.prodi;
+                    document.getElementById('dosen-jabatan').innerText = data.is_dpa ?
+                        'Dosen Pembimbing Akademik (DPA)' : (data.is_kps ? 'Ketua Program Studi (KPS)' : 'Dosen');
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
         }
         </script>
 </body>

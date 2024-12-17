@@ -7,7 +7,8 @@ use Tatib\Src\Core\Helper;
 
 class pegawai
 {
-    public $nip, $nama_pegawai, $role, $email, $no_telp, $prodi, $is_dpa, $is_kps, $pegawai;
+    public $nip, $nama_pegawai, $role, $email, $no_telp, $prodi, $is_dpa, $is_kps, $password, $pegawai ;
+    // public $nip, $nama_pegawai, $role, $email, $no_telp, $prodi, ;
 
     function __construct() {
     }
@@ -48,19 +49,42 @@ class pegawai
         }
     }
 
+    // function insertPegawai()
+    // {
+    //     $duplicate =$this->getPegawai($this->nip);
+    //     if ($duplicate != null) {
+    //         Helper::dumpToLog("duplicate key pegawai $this->nama_pegawai");
+    //         return "duplicate";
+    //     }
+
+    //     $query = "INSERT INTO pegawai VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+    //     $conn = Db::getInstance();
+    //     try {
+    //         $stmt = $conn->prepare($query);
+    //         $stmt->execute([$this->nip, $this->nama_pegawai, $this->role, $this->email, $this->no_telp, $this->prodi, $this->is_dpa, $this->is_kps]);
+    //         Helper::dumpToLog("success insert pegawai $this->nama_pegawai");
+    //         return true;
+    //     } catch (\PDOException $e) {
+    //         Helper::dumpToLog("error insert pegawai: " . $e->getMessage());
+    //         return false . " " . $e->getMessage();
+    //     }
+    // }
+
     function insertPegawai()
     {
-        $duplicate =$this->getPegawai($this->nip);
+        $duplicate = $this->getPegawai($this->nip);
         if ($duplicate != null) {
             Helper::dumpToLog("duplicate key pegawai $this->nama_pegawai");
             return "duplicate";
         }
 
-        $query = "INSERT INTO pegawai VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+        // Hash the password before storing it
+        $hashedPassword = password_hash($this->password, PASSWORD_DEFAULT);
+        $query = "INSERT INTO pegawai (nip, nama_pegawai, role, email, no_telp, prodi, is_dpa, is_kps, password) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $conn = Db::getInstance();
         try {
             $stmt = $conn->prepare($query);
-            $stmt->execute([$this->nip, $this->nama_pegawai, $this->role, $this->email, $this->no_telp, $this->prodi, $this->is_dpa, $this->is_kps]);
+            $stmt->execute([$this->nip, $this->nama_pegawai, $this->role, $this->email, $this->no_telp, $this->prodi, $this->is_dpa, $this->is_kps, $hashedPassword]);
             Helper::dumpToLog("success insert pegawai $this->nama_pegawai");
             return true;
         } catch (\PDOException $e) {

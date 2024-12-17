@@ -35,7 +35,7 @@
                 </nav>
             </div>
 
-            <button class="btn btn-success my-2" data-bs-toggle="modal" data-bs-target="#tambahModal"><i
+            <button class="btn btn-success my-2" data-bs-toggle="modal" data-bs-target="#tambahKelasModal"><i
                     class="fas fa-plus me-2"></i>Tambah Data Kelas</button>
 
             <div class="bg-white" style="border: 1px solid rgba(0, 0, 0, 0.1);">
@@ -116,8 +116,6 @@
                     </div>
                 </div>
 
-
-
                 <table class="table table-responsive table-bordered">
                     <thead>
                         <tr>
@@ -149,10 +147,13 @@
                                     data-bs-target="#editModal" onclick="editKelas('<?= $kelas->id_kelas ?>')">
                                     <i class="fas fa-edit"></i>
                                 </button>
-                                <button class="btn btn-danger btn-sm">
+                                <!-- Link untuk menghapus kelas -->
+                                <a href="/kelas/delete/<?= $kelas->id_kelas ?>" class="btn btn-danger btn-sm"
+                                    onclick="return confirm('Apakah Anda yakin ingin menghapus kelas ini?');">
                                     <i class="fas fa-trash"></i>
-                                </button>
+                                </a>
                             </td>
+
                         </tr>
                         <?php } ?>
                     </tbody>
@@ -180,211 +181,168 @@
                     </ul>
                 </nav>
 
-                <!-- Modal untuk tambah kelas -->
-                <!-- Modal untuk tambah kelas -->
-                <div class="modal fade" id="tambahModal" tabindex="-1" aria-labelledby="tambahModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
+                <!-- Modal TAMBAH data mahasiswa -->
+                <div class="modal fade" id="tambahKelasModal" tabindex="-1" aria-labelledby="tambahKelasModalLabel"
+                    aria-hidden="true" data-bs-backdrop="static" style="background-color: rgba(255, 255, 255, 0.20);">
+                    <div class="modal-dialog modal-lg modal-dialog-centered static">
                         <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="tambahModalLabel">Tambah Kelas</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="/kelas/tambah" method="POST">
+                            <form action="/kelas/tambah" method="POST">
+                                <div class="modal-header">
+                                    <h5 class="modal-title fw-bold" id="tambahKelasModalLabel">Tambah Data Kelas</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
                                     <div class="mb-3">
-                                        <label for="id_kelas" class="form-label">ID Kelas</label>
-                                        <input type="text" class="form-control" id="id_kelas" name="id_kelas" required>
+                                        <label for="id_kelas" class="form-label fw-bold">ID Kelas</label>
+                                        <input type="text" class="form-control" id="id_kelas" name="id_kelas" required
+                                            placeholder="Masukkan ID Kelas : (TI-1A)">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="nama_kelas" class="form-label">Nama Kelas</label>
+                                        <label for="nama_kelas" class="form-label fw-bold">Nama Kelas</label>
                                         <input type="text" class="form-control" id="nama_kelas" name="nama_kelas"
-                                            required>
+                                            required placeholder="Masukkan Nama Kelas : (TI-1A)">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="nip_dpa" class="form-label">NIP DPA</label>
-                                        <input type="text" class="form-control" id="nip_dpa" name="nip_dpa" required>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Close</button>
-                                        <form action="/kelas/tambah" method="POST">
-                                            <!-- Form fields here -->
-                                            <button type="submit" class="btn btn-primary">Tambah Kelas</button>
-                                        </form>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-
-
-                <!-- Modal edit data mahasiswa -->
-                <div class="modal fade" id="tambahModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true" data-bs-backdrop="static" style="background-color: rgba(255, 255, 255, 0.20);">
-                    <div class="modal-dialog modal-lg modal-dialog-centered">
-                        <div class="modal-content" style="background-color: #F5F5F5">
-                            <div class="modal-header">
-                                <h5 class="modal-title fw-bold" id="exampleModalLabel">Tambah Data Mahasiswa</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="bg-body-tertiary">
-
-                                    <div class="form-group">
-                                        <div class="row mb-3">
-                                            <label for="" class="col-sm-3 col-form-label text-end fw-bold">ID
-                                                Kelas</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" placeholder="Program Studi">
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <label for="" class="col-sm-3 col-form-label text-end fw-bold">Nama
-                                                Kelas</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" placeholder="Nama Kelas">
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <label for="" class="col-sm-3 col-form-label text-end fw-bold">DPA</label>
-                                            <div class="col-sm-9">
-                                                <select class="form-control">
-                                                    <option value="" selected disabled>Pilih DPA</option>
-                                                    <option value="1234567">Dr. Arif Budiman - Teknik Informatika
-                                                    </option>
-                                                    <option value="2345678">Prof. Anita Sari - Sistem Informasi</option>
-                                                    <option value="3456789">Dr. Bambang Hartono - Teknik Komputer
-                                                    </option>
-                                                    <option value="4567890">Dr. Cahyo Wibowo - Teknik Informatika
-                                                    </option>
-                                                    <option value="5678901">Dr. Dita Maharani - Sistem Informasi
-                                                    </option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-outline-secondary"
-                                            data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn-detail">Tambah</button>
+                                        <label for="nip_dpa" class="form-label fw-bold">DPA</label>
+                                        <select class="form-select" id="nip_dpa" name="nip_dpa" required>
+                                            <option value="" disabled selected>Pilih DPA</option>
+                                            <?php foreach ($dpaList as $dpa) { ?>
+                                            <option value="<?= $dpa['nip'] ?>"><?= $dpa['nip'] ?> -
+                                                <?= $dpa['nama_pegawai'] ?></option>
+                                            <?php } ?>
+                                        </select>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Modal edit data mahasiswa -->
-                <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true" data-bs-backdrop="static" style="background-color: rgba(255, 255, 255, 0.20);">
-                    <div class="modal-dialog modal-lg modal-dialog-centered">
-                        <div class="modal-content" style="background-color: #F5F5F5">
-                            <div class="modal-header">
-                                <h5 class="modal-title fw-bold" id="exampleModalLabel">Edit Data Mahasiswa</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="bg-body-tertiary">
-
-                                    <div class="form-group">
-                                        <div class="row mb-3">
-                                            <label for="" class="col-sm-3 col-form-label text-end fw-bold">ID
-                                                Kelas</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" value="Teknik Informatika">
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <label for="" class="col-sm-3 col-form-label text-end fw-bold">Nama
-                                                Kelas</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" value="1">
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <label for="" class="col-sm-3 col-form-label text-end fw-bold">DPA</label>
-                                            <div class="col-sm-9">
-                                                <select class="form-control">
-                                                    <option value="" selected disabled>Pilih DPA</option>
-                                                    <option value="1234567">Dr. Arif Budiman - Teknik Informatika
-                                                    </option>
-                                                    <option value="2345678">Prof. Anita Sari - Sistem Informasi</option>
-                                                    <option value="3456789">Dr. Bambang Hartono - Teknik Komputer
-                                                    </option>
-                                                    <option value="4567890">Dr. Cahyo Wibowo - Teknik Informatika
-                                                    </option>
-                                                    <option value="5678901">Dr. Dita Maharani - Sistem Informasi
-                                                    </option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-outline-secondary"
-                                                data-bs-dismiss="modal">Close</button>
-                                            <button type="button" class="btn-detail" onclick="confirmSave()">Save
-                                                changes</button>
-                                        </div>
-
-                                    </div>
-
-
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Tutup</button>
+                                    <button type="submit" class="btn-detail py-2">Tambah</button>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
-
-
+                <!-- Pesan Error (jika ada) -->
+                <?php if (isset($error_message)) { ?>
+                <div class="alert alert-danger">
+                    <?= $error_message ?>
+                </div>
+                <?php } ?>
             </div>
 
-            <!-- Scripts -->
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+            <!-- <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                <button type="submit" class="btn btn-primary">Tambah</button>
+            </div> -->
+            </form>
+        </div>
+    </div>
+    </div>
 
 
-            <script>
-            $(".sidebar ul li").on("click", function() {
-                $(".sidebar ul li.active").removeClass("active");
-                $(this).addClass("active");
-            });
+    <!-- Modal edit data mahasiswa -->
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+        data-bs-backdrop="static" style="background-color: rgba(255, 255, 255, 0.20);">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content" style="background-color: #F5F5F5">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" id="exampleModalLabel">Edit Data Mahasiswa</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="bg-body-tertiary">
 
-            $(".open-btn").on("click", function() {
-                $(".sidebar").addClass("active");
-            });
+                        <div class="form-group">
+                            <div class="row mb-3">
+                                <label for="" class="col-sm-3 col-form-label text-end fw-bold">ID
+                                    Kelas</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" value="Teknik Informatika">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="" class="col-sm-3 col-form-label text-end fw-bold">Nama
+                                    Kelas</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" value="1">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="" class="col-sm-3 col-form-label text-end fw-bold">DPA</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control">
+                                        <option value="" selected disabled>Pilih DPA</option>
+                                        <option value="1234567">Dr. Arif Budiman - Teknik Informatika
+                                        </option>
+                                        <option value="2345678">Prof. Anita Sari - Sistem Informasi</option>
+                                        <option value="3456789">Dr. Bambang Hartono - Teknik Komputer
+                                        </option>
+                                        <option value="4567890">Dr. Cahyo Wibowo - Teknik Informatika
+                                        </option>
+                                        <option value="5678901">Dr. Dita Maharani - Sistem Informasi
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-secondary"
+                                    data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn-detail" onclick="confirmSave()">Save
+                                    changes</button>
+                            </div>
 
-            $(".close-btn").on("click", function() {
-                $(".sidebar").removeClass("active");
-            });
+                        </div>
 
-            //js for modal edit
-            function confirmSave() {
-                const userConfirmed = confirm("Apakah anda yakin ingin mengubah data Mahasiswa?");
-                if (userConfirmed) {
-                    alert("Data telah berhasil disimpan!"); // Lakukan aksi penyimpanan data di sini
 
-                    // Menutup modal menggunakan Bootstrap instance
-                    const modal = bootstrap.Modal.getInstance(document.getElementById('editModal'));
-                    modal.hide();
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                    // Hapus backdrop secara manual jika masih ada
-                    const backdrops = document.querySelectorAll('.modal-backdrop');
-                    backdrops.forEach((backdrop) => backdrop.remove()); // Hapus semua elemen backdrop
-                } else {
-                    alert("Perubahan data dibatalkan.");
-                }
-            }
-            </script>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <script>
+    $(".sidebar ul li").on("click", function() {
+        $(".sidebar ul li.active").removeClass("active");
+        $(this).addClass("active");
+    });
+
+    $(".open-btn").on("click", function() {
+        $(".sidebar").addClass("active");
+    });
+
+    $(".close-btn").on("click", function() {
+        $(".sidebar").removeClass("active");
+    });
+
+    //js for modal edit
+    function confirmSave() {
+        const userConfirmed = confirm("Apakah anda yakin ingin mengubah data Mahasiswa?");
+        if (userConfirmed) {
+            alert("Data telah berhasil disimpan!"); // Lakukan aksi penyimpanan data di sini
+
+            // Menutup modal menggunakan Bootstrap instance
+            const modal = bootstrap.Modal.getInstance(document.getElementById('editModal'));
+            modal.hide();
+
+            // Hapus backdrop secara manual jika masih ada
+            const backdrops = document.querySelectorAll('.modal-backdrop');
+            backdrops.forEach((backdrop) => backdrop.remove()); // Hapus semua elemen backdrop
+        } else {
+            alert("Perubahan data dibatalkan.");
+        }
+    }
+    </script>
 </body>
 
 </html>

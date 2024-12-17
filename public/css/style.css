@@ -16,9 +16,6 @@ body {
   color: white;
 }
 
-
-
-
 .pagination .page-item.disabled .page-link {
   background-color: lightgray;
   color: gray;
@@ -251,7 +248,10 @@ li {
 .table td {
   vertical-align: middle;
 }
-.btn-detail {
+/* Override the default btn-primary class */
+/* Override the default btn-primary class */
+
+.btn .btn-detail {
   background-color: #fd7e14;
   color: #fff;
 }

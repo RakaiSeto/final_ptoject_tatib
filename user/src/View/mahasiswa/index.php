@@ -271,8 +271,8 @@
                             <li>Berkomunikasi dengan tidak sopan, baik tertulis
                                 atau tidak tertulis kepada mahasiswa, dosen, karyawan, atau orang lain <i
                                     class="bi bi-x-circle-fill me-2"></i></li>
-                            <li><i class="bi bi-x-circle-fill me-2"></i>Larangan merokok di area kampus.</li>
-                            <li><i class="bi bi-x-circle-fill me-2"></i>Tidak melakukan plagiasi.</li>
+                            <li>Larangan merokok di area kampus.<i class="bi bi-x-circle-fill me-2"></i></li>
+                            <li>Tidak melakukan plagiasi. <i class="bi bi-x-circle-fill me-2"></i> </li>
                         </ul>
                         <a href="/login" class="btn btn-primary btn-l mt-3">Selengkapnya</a>
                     </div>

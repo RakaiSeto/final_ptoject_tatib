@@ -38,7 +38,7 @@
             <button class="btn btn-success my-2" data-bs-toggle="modal" data-bs-target="#tambahModal"><i
                     class="fas fa-plus me-2"></i>Tambah Data Mahasiswa</button>
 
-            <div class="bg-white">
+            <div class="bg-white" style="border: 1px solid rgba(0, 0, 0, 0.1);">
                 <div class="filter-bar d-flex align-items-center gap-2">
 
 
