@@ -1,0 +1,22 @@
+{
+    "sqltools.connections": [
+        {
+            "mssqlOptions": {
+                "appName": "SQLTools",
+                "useUTC": true,
+                "encrypt": false,
+                "abortTransactionOnError": false
+            },
+            "previewLimit": 50,
+            "server": "195.85.19.218",
+            "port": 1433,
+            "driver": "MSSQL",
+            "name": "pbltatib",
+            "database": "pbltatib",
+            "username": "PBL_ADMIN",
+            "password": "TatibPastiBisa123",
+            "connectionTimeout": 10,
+            "group": "kuliah"
+        }
+    ]
+}

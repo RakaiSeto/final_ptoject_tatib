@@ -24,7 +24,7 @@ class DataPelanggaranController extends Controller
         $role = json_decode($_COOKIE['user'], true)['role'];
 
         // Render halaman daftar kelas berdasarkan role pengguna
-        $this->render($role . '/page/pelanggaranMahasiswa', ['pelanggaranList' => $result, 'title' => 'Data Pelanggaran Mahasiswa']);
+        $this->render($role . '/page/dataPelanggaran', ['pelanggaranList' => $result, 'title' => 'Data Pelanggaran Mahasiswa']);
     }
 }
 

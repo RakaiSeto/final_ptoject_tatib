@@ -1,15 +1,18 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
+    <title><?= $title ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="/public/css/style-css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" rel="stylesheet" />
 
@@ -30,7 +33,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Data Dosen</li>
+                        <li class="breadcrumb-item active" aria-current="page"><?= $title ?></li>
                     </ol>
                 </nav>
             </div>
@@ -143,8 +146,8 @@
                 </div>
 
 
-
-                <table class="table table-responsive table-bordered">
+                <div class="table-responsive" style="overflow-x: auto; width: 100%;">
+                    <table class="table table-bordered" style="min-width: 1500px;">
                     <thead>
                         <tr>
                             <th>
@@ -154,16 +157,16 @@
                                 Nama
                             </th>
                             <th>
-                                Jenis Kelamin
+                                Email
                             </th>
                             <th>
-                                Jabatan
+                                No Telp
                             </th>
                             <th>
-                                Tanggal Lahir
+                                Prodi
                             </th>
                             <th>
-                                Alamat
+                                Role
                             </th>
                             <th>
                                 Aksi
@@ -171,24 +174,36 @@
                         </tr>
                     </thead>
                     <tbody>
+
+                        <?php foreach ($dosen as $d) : ?>
                         <tr>
                             <td>
-                                2341720015
+                                <?= $d->nip ?>
                             </td>
                             <td>
-                                Yudi Setiawan
+                                <?= $d->nama_pegawai ?>
                             </td>
                             <td>
-                                Laki-laki
+                                <?= $d->email ?>
                             </td>
                             <td>
-                                Dosen Pengajar
+                                <?= $d->no_telp ?>
                             </td>
                             <td>
-                                28, Februari 1889
+                                <?= $d->prodi ?>
                             </td>
                             <td>
-                                Malang
+                                <?php if ($d->is_kps == 1) : ?>
+                                    <?php if ($d->is_dpa == 1) : ?>
+                                        KPS dan DPA
+                                    <?php else : ?>
+                                        KPS
+                                    <?php endif; ?>
+                                <?php elseif ($d->is_dpa == 1) : ?>
+                                    DPA
+                                <?php else : ?>
+                                    Dosen Pengajar
+                                <?php endif; ?>
                             </td>
                             <td>
                                 <button class="btn btn-info btn-sm" data-bs-toggle="modal"
@@ -207,8 +222,10 @@
                                 </button>
                             </td>
                         </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
+                </div>
                 <nav>
                     <ul class="pagination justify-content-center">
                         <li class="page-item disabled">

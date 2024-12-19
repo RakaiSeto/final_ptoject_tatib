@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +11,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="/public/css/style-css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
@@ -18,10 +22,16 @@
     
     <!-- Navbar -->
     <?php require_once 'navbar.php'; ?>
-
-
+    
     <!-- Dashboard Content -->
     <div class="content px-3 pt-3" style="margin-top: 60px;">
+    <?php
+      // session_start();
+      if (!empty($_SESSION['Error'])) {
+          echo '<div class="alert alert-danger" role="alert">' . $_SESSION['Error'] . '</div>';
+      }
+      unset($_SESSION['Error'])
+    ?>
       <!-- Cards -->
       <div class="row mb-3">
         <!-- Card 1 -->

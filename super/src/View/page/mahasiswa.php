@@ -1,15 +1,18 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
+    <title><?= $title ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="/public/css/style-css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" rel="stylesheet" />
 
@@ -30,7 +33,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Data Mahasiswa</li>
+                        <li class="breadcrumb-item active" aria-current="page"><?= $title ?></li>
                     </ol>
                 </nav>
             </div>
@@ -144,71 +147,46 @@
 
 
 
-                <table class="table table-responsive table-bordered">
-                    <thead>
-                        <tr>
-                            <th>
-                                NIM
-                            </th>
-                            <th>
-                                Nama
-                            </th>
-                            <th>
-                                Jenis Kelamin
-                            </th>
-                            <th>
-                                Kelas
-                            </th>
-                            <th>
-                                Prodi
-                            </th>
-                            <th>
-                                Alamat
-                            </th>
-                            <th>
-                                Aksi
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                2341720015
-                            </td>
-                            <td>
-                                Yudi Setiawan
-                            </td>
-                            <td>
-                                Laki-laki
-                            </td>
-                            <td>
-                                2C
-                            </td>
-                            <td>
-                                TI
-                            </td>
-                            <td>
-                                Pasuruan
-                            </td>
-                            <td>
-                                <button class="btn btn-info btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">
-                                    <i class="fas fa-eye">
-                                    </i>
-                                </button>
-                                <button class="btn btn-warning btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#editModal">
-                                    <i class="fas fa-edit">
-                                    </i>
-                                </button>
-                                <button class="btn btn-danger btn-sm">
-                                    <i class="fas fa-trash">
-                                    </i>
-                                </button>
-                            </td>
-                        </tr>
+                <div class="table-responsive" style="overflow-x: auto; width: 100%;">
+                    <table class="table table-bordered" style="min-width: 1500px;">
+                        <thead>
+                            <tr>
+                                <th>NIM</th>
+                                <th>Nama</th>
+                                <th>Jenis Kelamin</th>
+                                <th>Email</th>
+                                <th>No Telp</th>
+                                <th>Kelas</th>
+                                <th>Prodi</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($mahasiswa as $m) : ?>
+                            <tr>
+                                <td><?= $m->nim ?></td>
+                                <td><?= $m->nama_mahasiswa ?></td>
+                                <td><?= ($m->jenis_kelamin == '1') ? 'Laki-laki' : 'Perempuan' ?></td>
+                                <td><?= $m->email ?></td>
+                                <td><?= $m->no_telp ?></td>
+                                <td><?= $m->id_kelas ?></td>
+                                <td><?= $m->id_prodi ?></td>
+                                <td>
+                                    <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editModal">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn btn-danger btn-sm">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
-                </table>
+                    </table>
+                </div>
                 <nav>
                     <ul class="pagination justify-content-center">
                         <li class="page-item disabled">
