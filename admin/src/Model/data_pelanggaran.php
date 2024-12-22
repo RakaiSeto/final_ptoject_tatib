@@ -9,7 +9,7 @@ class data_pelanggaran
 {
      public $kode_pelanggaran, $jenis_pelanggaran, $kronologi, $tautan_bukti, $nip_pelapor, 
            $nim_terlapor, $is_verified, $is_banding, $is_done, $datetime, 
-           $nim, $nama_mahasiswa, $tingkat_pelanggaran;
+           $nim, $nama_mahasiswa, $tingkat_pelanggaran, $nama_pegawai;
 
     public function __construct() {}
     
@@ -18,9 +18,10 @@ class data_pelanggaran
         $query = "
             SELECT dp.kode_pelanggaran, dp.jenis_pelanggaran, dp.kronologi, dp.tautan_bukti, 
                    dp.nip_pelapor, dp.nim_terlapor, dp.is_verified, dp.is_banding, dp.is_done, dp.datetime,
-                   m.nim, m.nama_mahasiswa, dpl.tingkat_pelanggaran
+                   m.nim, m.nama_mahasiswa, dpl.tingkat_pelanggaran, p.nama_pegawai
             FROM data_pelanggaran dp
             LEFT JOIN mahasiswa m ON dp.nim_terlapor = m.nim
+            LEFT JOIN pegawai p ON dp.nip_pelapor = p.nip
             LEFT JOIN daftar_pelanggaran dpl ON dp.kode_pelanggaran = dpl.kode_pelanggaran
         ";
         if (!empty($kode_pelanggaran)) {
@@ -48,6 +49,7 @@ class data_pelanggaran
                 $temp->nim = $row['nim'];
                 $temp->nama_mahasiswa = $row['nama_mahasiswa'];
                 $temp->tingkat_pelanggaran = $row['tingkat_pelanggaran'];
+                $temp->nama_pegawai = $row['nama_pegawai'];  // Menambahkan nama pegawai
                 $result[] = $temp;
             }
             return $result ?: null;

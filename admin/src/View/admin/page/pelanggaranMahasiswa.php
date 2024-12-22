@@ -144,7 +144,7 @@
                             <th>Nama Mahasiswa</th>
                             <th>Tanggal</th>
                             <th>Jenis Pelanggaran</th>
-                            <th>Tingkat</th>
+                            <th>Dosen Pelapor</th>
                             <th>Detail</th>
                         </tr>
                     </thead>
@@ -159,7 +159,7 @@
                             <td><?= $PelanggaranMahasiswa->nama_mahasiswa ?></td>
                             <td><?= date('l, d M Y', strtotime($PelanggaranMahasiswa->datetime)) ?></td>
                             <td><?= $PelanggaranMahasiswa->jenis_pelanggaran ?></td>
-                            <td><?= $PelanggaranMahasiswa->nip_pelapor?></td>
+                            <td><?= $PelanggaranMahasiswa->nama_pegawai?></td>
                             <td>
                                 <button class="btn-detail btn-sm" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal">lihat detail
