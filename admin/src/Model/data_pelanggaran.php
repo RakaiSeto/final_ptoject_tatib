@@ -7,23 +7,33 @@ use Tatib\Src\Core\Helper;
 
 class data_pelanggaran
 {
-    public $kode_pelanggaran, $jenis_pelanggaran, $kronologi, $tautan_bukti, $nip_pelapor, $nim_terlapor, $is_verified, $is_banding, $is_done, $datetime;
+     public $kode_pelanggaran, $jenis_pelanggaran, $kronologi, $tautan_bukti, $nip_pelapor, 
+           $nim_terlapor, $is_verified, $is_banding, $is_done, $datetime, 
+           $nim, $nama_mahasiswa, $tingkat_pelanggaran;
 
     public function __construct() {}
-
+    
     public function getDataPelanggaran(?string $kode_pelanggaran) {
         $result = [];
-
-        if (empty($kode_pelanggaran)) {
-            $query = "SELECT * FROM data_pelanggaran";
-        } else {
-            $query = "SELECT * FROM data_pelanggaran WHERE kode_pelanggaran = '$kode_pelanggaran'";
+        $query = "
+            SELECT dp.kode_pelanggaran, dp.jenis_pelanggaran, dp.kronologi, dp.tautan_bukti, 
+                   dp.nip_pelapor, dp.nim_terlapor, dp.is_verified, dp.is_banding, dp.is_done, dp.datetime,
+                   m.nim, m.nama_mahasiswa, dpl.tingkat_pelanggaran
+            FROM data_pelanggaran dp
+            LEFT JOIN mahasiswa m ON dp.nim_terlapor = m.nim
+            LEFT JOIN daftar_pelanggaran dpl ON dp.kode_pelanggaran = dpl.kode_pelanggaran
+        ";
+        if (!empty($kode_pelanggaran)) {
+            $query .= " WHERE dp.kode_pelanggaran = :kode_pelanggaran";
         }
-
         $conn = Db::getInstance();
         try {
-            $queryRes = $conn->query($query);
-            while ($row = $queryRes->fetch(\PDO::FETCH_ASSOC)) {
+            $stmt = $conn->prepare($query);
+            if (!empty($kode_pelanggaran)) {
+                $stmt->bindParam(':kode_pelanggaran', $kode_pelanggaran);
+            }
+            $stmt->execute();
+            while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
                 $temp = new data_pelanggaran();
                 $temp->kode_pelanggaran = $row['kode_pelanggaran'];
                 $temp->jenis_pelanggaran = $row['jenis_pelanggaran'];
@@ -35,16 +45,18 @@ class data_pelanggaran
                 $temp->is_banding = $row['is_banding'];
                 $temp->is_done = $row['is_done'];
                 $temp->datetime = $row['datetime'];
-                array_push($result, $temp);
+                $temp->nim = $row['nim'];
+                $temp->nama_mahasiswa = $row['nama_mahasiswa'];
+                $temp->tingkat_pelanggaran = $row['tingkat_pelanggaran'];
+                $result[] = $temp;
             }
-            if (count($result) == 0) {
-                return null;
-            }
-            return $result;
+            return $result ?: null;
         } catch (\PDOException $th) {
             return false . " " . $th->getMessage();
         }
     }
+    
+    
 
     public function getByNimTerlapor(string $nim_terlapor) {
         $query = "SELECT * FROM data_pelanggaran WHERE nim_terlapor = '$nim_terlapor'";

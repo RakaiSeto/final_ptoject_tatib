@@ -24,7 +24,7 @@ class MahasiswaController extends Controller
         $role = json_decode($_COOKIE['user'], true)['role'];
 
         // Render halaman daftar kelas berdasarkan role pengguna
-        $this->render($role . '/page/dataMahasiswa', ['mahasiswaList' => $result, 'title' => 'Data Kelas']);
+        $this->render($role . '/page/dataMahasiswa', ['mahasiswaList' => $result, 'title' => 'Data Mahasiswa']);
     }
 }
 

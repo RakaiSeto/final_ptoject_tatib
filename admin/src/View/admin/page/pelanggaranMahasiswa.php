@@ -13,31 +13,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" rel="stylesheet" />
 
-    <style>
-    .pagination .page-link {
-        background-color: white;
-        color: gray;
-        border: 1px solid lightgray;
-    }
-
-    .pagination .page-item.active .page-link {
-        background-color: #fd7e14;
-        border-color: lightgray;
-        color: white;
-    }
-
-    .pagination .page-item.disabled .page-link {
-        background-color: lightgray;
-        color: gray;
-        border-color: lightgray;
-    }
-
-    .pagination .page-link:hover {
-        background-color: rgba(253, 126, 20, 0.5);
-        color: white;
-    }
-    </style>
-
 </head>
 
 <body>
@@ -62,10 +37,6 @@
             <div class="bg-white">
                 <h5 class="fw-bold">Laporan Pelanggaran</h5>
                 <div class="filter-bar d-flex align-items-center gap-2">
-
-
-
-                    <!-- <span><i class="fas fa-filter"></i> Filter</span> -->
 
                     <form class="form-inline">
                         <div class="input-group">
@@ -184,31 +155,19 @@
                         foreach ($pelanggaranList as $index => $PelanggaranMahasiswa) { ?>
                         <tr>
                             <td><?= $index + 1 ?></td>
+                            <td><?= $PelanggaranMahasiswa->nim ?></td>
+                            <td><?= $PelanggaranMahasiswa->nama_mahasiswa ?></td>
+                            <td><?= date('l, d M Y', strtotime($PelanggaranMahasiswa->datetime)) ?></td>
                             <td><?= $PelanggaranMahasiswa->jenis_pelanggaran ?></td>
-                            <td><?= $PelanggaranMahasiswa->kronologi ?></td>
+                            <td><?= $PelanggaranMahasiswa->nip_pelapor?></td>
                             <td>
-                                <button class="btn btn-warning btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#editModal">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button class="btn btn-danger btn-sm">
-                                    <i class="fas fa-trash"></i>
+                                <button class="btn-detail btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">lihat detail
                                 </button>
                             </td>
                         </tr>
                         <?php } ?>
 
-
-                        <!-- <tr>
-                            <td>1</td>
-                            <td>12345678</td>
-                            <td>No Name</td>
-                            <td>19/11/2024</td>
-                            <td>Merokok di kawasan kampus</td>
-                            <td>4</td>
-                            <td><button class="btn-detail" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">Lihat</button></td>
-                        </tr> -->
                     </tbody>
                 </table>
 
@@ -368,18 +327,18 @@
     });
 
 
-    // $(".sidebar ul li").on("click", function() {
-    //     $(".sidebar ul li.active").removeClass("active");
-    //     $(this).addClass("active");
-    // });
+    $(".sidebar ul li").on("click", function() {
+        $(".sidebar ul li.active").removeClass("active");
+        $(this).addClass("active");
+    });
 
-    // $(".open-btn").on("click", function() {
-    //     $(".sidebar").addClass("active");
-    // });
+    $(".open-btn").on("click", function() {
+        $(".sidebar").addClass("active");
+    });
 
-    // $(".close-btn").on("click", function() {
-    //     $(".sidebar").removeClass("active");
-    // });
+    $(".close-btn").on("click", function() {
+        $(".sidebar").removeClass("active");
+    });
     </script>
 </body>
 
