@@ -123,66 +123,57 @@
                 <table class="table table-responsive table-bordered">
                     <thead>
                         <tr>
-                            <th>
-                                NO
-                            </th>
-                            <th>
-                                NIM
-                            </th>
-                            <th>
-                                Nama
-                            </th>
-                            <th>
-                                Jenis Kelamin
-                            </th>
-                            <th>
-                                Prodi
-                            </th>
-                            <th>
-                                Kelas
-                            </th>
-                            <th>
-                                Tanggal Lahir
-                            </th>
-                            <th>
-                                Aksi
-                            </th>
+                            <th>NO</th>
+                            <th>NIM</th>
+                            <th>Nama</th>
+                            <th>Jenis Kelamin</th>
+                            <th>Prodi</th>
+                            <th>Kelas</th>
+                            <th>Tanggal Lahir</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php
-                        // Ambil data kelas dari model
-                        // Misal: $kelasList adalah hasil query ke database untuk mengambil data kelas
-                        foreach ($mahasiswaList as $index => $mhs) { ?>
+                        <?php if (!empty($mahasiswaList)) { ?>
+                        <?php foreach ($mahasiswaList as $index => $mhs) { ?>
                         <tr>
                             <td><?= $index + 1 ?></td>
-                            <td><?= $mhs->nim ?></td>
-                            <td><?= $mhs->nama_mahasiswa ?></td>
+                            <td><?= htmlspecialchars($mhs->nim) ?></td>
+                            <td><?= htmlspecialchars($mhs->nama_mahasiswa) ?></td>
                             <td><?= $mhs->jenis_kelamin == 1 ? 'Laki-laki' : 'Perempuan' ?></td>
-                            <td><?= $mhs->id_prodi ?></td>
-                            <td><?= $mhs->id_kelas ?></td>
+                            <td><?= htmlspecialchars($mhs->id_prodi) ?></td>
+                            <td><?= htmlspecialchars($mhs->id_kelas) ?></td>
                             <td><?= date('d-m-Y', strtotime($mhs->tanggal_lahir)) ?></td>
                             <td>
                                 <button class="btn btn-info btn-sm" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal">
-                                    <i class="fas fa-eye">
-                                    </i>
+                                    <i class="fas fa-eye"></i>
                                 </button>
                                 <button class="btn btn-warning btn-sm" data-bs-toggle="modal"
                                     data-bs-target="#editModal">
-                                    <i class="fas fa-edit">
-                                    </i>
+                                    <i class="fas fa-edit"></i>
                                 </button>
-                                <button class="btn btn-danger btn-sm">
-                                    <i class="fas fa-trash">
-                                    </i>
-                                </button>
+                                <!-- Form hapus -->
+                                <form method="POST" action="/mahasiswa/delete" style="display:inline;">
+                                    <input type="hidden" name="nim" value="<?= htmlspecialchars($mhs->nim) ?>">
+                                    <button type="submit" class="btn btn-danger btn-sm"
+                                        onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                         <?php } ?>
-
+                        <?php } else { ?>
+                        <tr>
+                            <td colspan="8" class="text-center">Tidak ada data mahasiswa.</td>
+                        </tr>
+                        <?php } ?>
                     </tbody>
+
                 </table>
+
+
                 <nav>
                     <ul class="pagination justify-content-center">
                         <li class="page-item disabled">
@@ -489,6 +480,13 @@
                 backdrops.forEach((backdrop) => backdrop.remove()); // Hapus semua elemen backdrop
             } else {
                 alert("Perubahan data dibatalkan.");
+            }
+        }
+
+
+        function confirmDelete(nim) {
+            if (confirm('Apakah Anda yakin ingin menghapus data mahasiswa ini?')) {
+                window.location.href = `/mahasiswa/delete?nim=${nim}`;
             }
         }
         </script>

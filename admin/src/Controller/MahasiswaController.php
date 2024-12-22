@@ -26,6 +26,43 @@ class MahasiswaController extends Controller
         // Render halaman daftar kelas berdasarkan role pengguna
         $this->render($role . '/page/dataMahasiswa', ['mahasiswaList' => $result, 'title' => 'Data Mahasiswa']);
     }
+
+    public function deleteMahasiswa()
+{
+    // Validasi metode HTTP
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        http_response_code(405);
+        echo "Method Not Allowed";
+        return;
+    }
+
+    // Ambil parameter NIM dari request
+    $nim = $_POST['nim'] ?? null;
+
+    if (!$nim) {
+        Helper::dumpToLog("Parameter NIM tidak ditemukan.");
+        header("Location: /mahasiswa");
+        exit;
+    }
+
+    Helper::dumpToLog("Parameter NIM yang diterima: " . $nim);
+
+    // Memanggil model untuk menghapus data mahasiswa
+    $model = new mahasiswa();
+    $result = $model->deleteMahasiswa($nim);
+
+    if ($result === true) {
+        Helper::dumpToLog("Mahasiswa dengan NIM $nim berhasil dihapus.");
+    } else {
+        Helper::dumpToLog("Gagal menghapus mahasiswa dengan NIM $nim.");
+    }
+
+    // Redirect kembali ke halaman mahasiswa
+    header("Location: /mahasiswa");
+    exit;
 }
+
+}
+
 
 ?>

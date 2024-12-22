@@ -131,23 +131,29 @@ class mahasiswa
     }
 
     function deleteMahasiswa(string $nim)
-    {
-        $check = $this->getMahasiswa($nim);
-        if ($check == null) {
-            Helper::dumpToLog("mahasiswa $nim tidak ditemukan");
-            return '0';
-        }
-
-        $query = "DELETE FROM mahasiswa WHERE nim = ?";
-        $conn = Db::getInstance();
-        try {
-            $stmt = $conn->prepare($query);
-            $stmt->execute([$nim]);
-            Helper::dumpToLog("success delete mahasiswa $nim");
-            return true;
-        } catch (\PDOException $th) {
-            Helper::dumpToLog("gagal delete mahasiswa $nim: " . $th->getMessage());
-            return false . " " . $th->getMessage();
-        }
+{
+    if (empty($nim)) {
+        Helper::dumpToLog("Parameter NIM kosong.");
+        return false;
     }
+
+    $check = $this->getMahasiswa($nim);
+    if ($check == null) {
+        Helper::dumpToLog("Mahasiswa dengan NIM $nim tidak ditemukan.");
+        return false;
+    }
+
+    $query = "DELETE FROM mahasiswa WHERE nim = ?";
+    $conn = Db::getInstance();
+    try {
+        $stmt = $conn->prepare($query);
+        $stmt->execute([$nim]);
+        Helper::dumpToLog("Berhasil menghapus mahasiswa dengan NIM $nim.");
+        return true;
+    } catch (\PDOException $e) {
+        Helper::dumpToLog("Gagal menghapus mahasiswa dengan NIM $nim: " . $e->getMessage());
+        return false;
+    }
+}
+
 }

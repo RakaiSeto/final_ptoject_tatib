@@ -35,6 +35,8 @@ $router->addRoute('POST', '/kelas/tambah', KelasController::class, 'tambahKelas'
 $router->addRoute('GET', '/kelas/delete', KelasController::class, 'deleteKelas');
 
 $router->addRoute('POST', '/mahasiswa/tambah', MahasiswaController::class, 'tambahMahasiswa');
+$router->addRoute('POST', '/mahasiswa/delete', MahasiswaController::class, 'deleteMahasiswa');
+
 $router->addRoute('POST', '/dosen/tambah', DosenController::class, 'tambahDosen');
 
 // $router->addRoute('POST', '/dosen/tambah', DosenController::class, 'tambahDosen');
