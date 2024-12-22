@@ -68,16 +68,26 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Merokok di kawasan kampus</td>
-                                <td>3</td>
-                                <td>19/11/2024</td>
-                                <td><button class="btn-detail" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal">Lihat Detail</button></td>
-                            </tr>
-
+                            <?php 
+    // Cek apakah ada data pelanggaran
+    $pelanggaran = []; // Ganti dengan query atau data dari database
+    if (empty($pelanggaran)) {
+        echo '<tr><td colspan="5" class="text-center">Tidak ada pelanggaran</td></tr>';
+    } else {
+        // Jika ada pelanggaran, tampilkan data
+        foreach ($pelanggaran as $index => $data) {
+            echo '<tr>';
+            echo '<td>' . ($index + 1) . '</td>';
+            echo '<td>' . $data['jenis_pelanggaran'] . '</td>';
+            echo '<td>' . $data['tingkat'] . '</td>';
+            echo '<td>' . $data['tanggal'] . '</td>';
+            echo '<td><button class="btn-detail" data-bs-toggle="modal" data-bs-target="#exampleModal">Lihat Detail</button></td>';
+            echo '</tr>';
+        }
+    }
+    ?>
                         </tbody>
+
                     </table>
                 </div>
 

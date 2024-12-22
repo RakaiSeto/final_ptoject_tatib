@@ -217,11 +217,8 @@
                             </div>
                             <div class="modal-body">
                                 <div class="row">
-                                    <div class="col-md-3">
-                                        <img id="pegawaiFoto" alt="Profile Picture" class="img-fluid rounded mb-2"
-                                            style="max-width: 100%; height: auto;">
-                                    </div>
-                                    <div class="col-md-9">
+
+                                    <div class="col-md-12">
                                         <table class="table table-hover">
                                             <tr>
                                                 <td>Nama</td>
