@@ -1,4 +1,4 @@
-<div class="sidebar" id="side_nav">
+<div class="sidebar" id="side_nav" style="z-index: 1000;">
     <div class="header-box px-5 pt-3 pb-2 d-flex justify-content-between">
         <img alt="Logo E-Tatib" src="/public/img/logo-svg" />
         <button class="btn d-md-none d-block close-btn px-1 py-0 text-dark">

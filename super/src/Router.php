@@ -17,7 +17,6 @@ class Router
     public function dispatch($method, $uri)
     {
         foreach ($this->routes as $route => $target) {
-            Helper::dumpToLog($route . ' => ' . $uri);
             if (preg_match('#^' . $route . '$#', $uri)) {
                 $controller = $target['controller'];
                 $action = $target['action'];
