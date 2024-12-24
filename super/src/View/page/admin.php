@@ -365,6 +365,9 @@ session_start();
             });
 
             $('#btn-search').click(function() {
+                $('#loading-spinner').removeClass('d-none');
+                $('#loading-spinner').addClass('d-flex');
+
                 $('#myTable').DataTable().ajax.reload();
             });
         });

@@ -64,6 +64,15 @@ session_start();
         .dataTables_scrollBody::-webkit-scrollbar-thumb:hover {
             background: #555;
         }
+
+        .dataTables_wrapper {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        #myTable {
+            width: 100% !important;
+        }
     </style>
 
 </head>

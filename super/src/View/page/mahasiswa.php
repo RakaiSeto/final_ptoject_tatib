@@ -8,14 +8,47 @@ session_start();
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><?= $title ?></title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="/public/css/style-css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" rel="stylesheet" />
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- DataTables with Bootstrap 5 CSS -->
+    <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
 
+    <style>
+        /* Custom Scrollbar Style */
+        .dataTables_scrollBody {
+            overflow-x: auto;
+        }
+
+        .dataTables_scrollBody::-webkit-scrollbar {
+            height: 12px;
+        }
+
+        .dataTables_scrollBody::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .dataTables_scrollBody::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 6px;
+        }
+
+        .dataTables_scrollBody::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        .dataTables_wrapper {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        #myTable {
+            width: 100% !important;
+        }
+    </style>
 
 </head>
 
@@ -28,7 +61,10 @@ session_start();
         <?php require_once 'navbar.php'; ?>
 
         <!--Content -->
-        <div class="content px-3 pt-3 " style="margin-top: 56px;    ">
+        <div class="content px-3 pt-3 " style="margin-top: 56px;">
+            <div class="text-center position-fixed d-none justify-content-center align-items-center top-50 start-50 translate-middle bg-white bg-opacity-50 w-100 h-100" id="loading-spinner" style="z-index: 999; display: none;">
+                <img src="/public/img/spinner-svg" alt="Loading..." class="mx-auto d-block" style="width: 15%; height: 15%;">
+            </div>
             <div class="bg-white p-2 my-2" style="color: #b1b1b1; border-radius: 5px">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
@@ -45,111 +81,56 @@ session_start();
                         Tambah Mahasiswa
                     </button>
                 </div>
-                <div class="filter-bar d-flex align-items-center gap-2">
 
-                    <!-- <span><i class="fas fa-filter"></i> Filter</span> -->
+                <div class="filter-bar w-100 p-2 bg-body-tertiary shadow-sm rounded align-items-center gap-2 mb-3 mt-1">
+                    <h5 class="ms-2 mt-1">Filter</h5>
+                    <hr class="my-2">
+                    <div class="row">
 
-                    <form class="form-inline">
-                        <div class="input-group">
-                            <span class="input-group-text" id="basic-addon1">
-                                <i class="fas fa-search"></i>
-                            </span>
-                            <input type="text" class="form-control" placeholder="Cari" aria-label="Username"
-                                aria-describedby="basic-addon1">
-                            <div class="btn-group">
-                                <button type="button" class=" btn dropdown-toggle border" data-bs-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false"><i class="bi bi-sliders me-1"></i>
-                                    Filter
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-right p-4" style="min-width: 300px;">
-                                    <form id="filterForm">
-
-                                        <!-- Filter by Date -->
-                                        <div class="mb-3">
-                                            <label for="fromDate" class="form-label">Dari</label>
-                                            <input type="date" id="fromDate" class="form-control">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="toDate" class="form-label">Sampai</label>
-                                            <input type="date" id="toDate" class="form-control">
-                                        </div>
-
-                                        <!-- Filter by Tingkat -->
-                                        <div class="mb-3">
-                                            <label for="tingkat" class="form-label">Tingkat Pelanggaran</label>
-                                            <select id="tingkat" class="form-select">
-                                                <option value="" selected disabled>Pilih Tingkat</option>
-                                                <option value="1">Pelanggaran Tingkat 1</option>
-                                                <option value="2">Pelanggaran Tingkat 2</option>
-                                                <option value="3">Pelanggaran Tingkat 3</option>
-                                                <option value="4">Pelanggaran Tingkat 4</option>
-                                                <option value="4">Pelanggaran Tingkat 5</option>
-                                            </select>
-                                        </div>
-
-                                        <!-- Filter by Prodi -->
-                                        <div class="mb-3">
-                                            <label for="prodi" class="form-label">Prodi</label>
-                                            <select id="prodi" class="form-select">
-                                                <option value="" selected disabled>Pilih Prodi</option>
-                                                <option value="TI">Teknik Informatika</option>
-                                                <option value="SI">Sistem Informasi Bisnis</option>
-                                                <option value="TK">PPLS</option>
-                                            </select>
-                                        </div>
-
-                                        <!-- Filter by Kelas -->
-                                        <div class="mb-3">
-                                            <label for="kelas" class="form-label">Tingkat Kelas</label>
-                                            <select id="kelas" class="form-select">
-                                                <option value="" selected disabled>Pilih Tingkat Kelas</option>
-                                                <option value="Kelas1">Tingkat 1</option>
-                                                <option value="Kelas2">Tingkat 2</option>
-                                                <option value="Kelas3">Tingkat 3</option>
-                                                <option value="Kelas4">Tingkat 4</option>
-                                            </select>
-                                        </div>
-
-                                        <!-- Filter by Kelas -->
-                                        <div class="mb-3">
-                                            <label for="kelas" class="form-label">Kelas</label>
-                                            <select id="kelas" class="form-select">
-                                                <option value="" selected disabled>Pilih Kelas</option>
-                                                <option value="A">Kelas A</option>
-                                                <option value="B">Kelas B</option>
-                                                <option value="C">Kelas C</option>
-                                            </select>
-                                        </div>
-
-                                        <!-- Buttons -->
-                                        <div class="d-flex justify-content-between">
-                                            <button type="reset" class="btn btn-secondary">Reset</button>
-                                            <button type="submit" class="btn-detail">Apply</button>
-                                        </div>
-                                    </form>
-                                </div>
+                        <div class="col-md-4">
+                            <div class="d-flex flex-column">
+                                <label for="prodi" class="form-label ps-2">Kelas</label>
+                                <select id="kelas" class="form-select w-100" style="box-sizing: border-box; max-width: 100%;">
+                                    <option value="" selected>Pilih Kelas</option>
+                                    <?php foreach ($kelas as $k) : ?>
+                                        <option value="<?= $k->id_kelas ?>"><?= $k->nama_kelas ?></option>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
                         </div>
-                    </form>
-                    <div class="ms-auto d-flex align-items-center">
-                        <div class="d-flex justify-content-between align-items-center mt-3 mb-2">
-                            <div class="d-flex align-items-center gap-2">
-                                <label for="rowsPerPage" class="form-label mb-0">Baris per halaman:</label>
-                                <select id="rowsPerPage" class="form-select" style="width: auto;">
-                                    <option value="10">10</option>
-                                    <option value="15">15</option>
-                                    <option value="20">20</option>
+
+                        <div class="col-md-4">
+                            <div class="d-flex flex-column">
+                                <label for="prodi" class="form-label ps-2">Kategori</label>
+                                <select id="kategori" class="form-select w-100" style="box-sizing: border-box; max-width: 100%;">
+                                    <option value="" selected disabled>Pilih Kategori</option>
+                                    <option value="nim">NIM</option>
+                                    <option value="nama_mahasiswa">Nama Mahasiswa</option>
                                 </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="d-flex flex-column">
+                                <label for="prodi" class="form-label ps-2">Keyword</label>
+                                <input type="text" id="keyword" class="form-control" placeholder="Cari" aria-label="Username"
+                                    aria-describedby="basic-addon1">
+                                </input>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            <div class="d-flex flex-column">
+                                <button type="submit" id="btn-search" class="btn-detail">Search</button>
                             </div>
                         </div>
                     </div>
                 </div>
-
-
-
-                <div class="table-responsive" style="overflow-x: auto; width: 100%;">
-                    <table class="table table-bordered" style="min-width: 1500px;">
-                        <thead>
+                <!-- Table -->
+                <div class="table-responsive" style="overflow-x: auto; min-width: 100%;">
+                    <table id="myTable" class="table table-striped table-bordered">
+                        <thead class="text-center">
                             <tr>
                                 <th>NIM</th>
                                 <th>Nama</th>
@@ -158,57 +139,14 @@ session_start();
                                 <th>No Telp</th>
                                 <th>Kelas</th>
                                 <th>Prodi</th>
-                                <th>Aksi</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($mahasiswa as $m) : ?>
-                            <tr>
-                                <td><?= $m->nim ?></td>
-                                <td><?= $m->nama_mahasiswa ?></td>
-                                <td><?= ($m->jenis_kelamin == '1') ? 'Laki-laki' : 'Perempuan' ?></td>
-                                <td><?= $m->email ?></td>
-                                <td><?= $m->no_telp ?></td>
-                                <td><?= $m->id_kelas ?></td>
-                                <td><?= $m->id_prodi ?></td>
-                                <td>
-                                    <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
-                                    <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editModal">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                    <button class="btn btn-danger btn-sm">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
+
+                        </tbody>
                     </table>
                 </div>
-                <nav>
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#">‹</a>
-                        </li>
-                        <li class="page-item active">
-                            <a class="page-link" href="#">1</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">2</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">4</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">›</a>
-                        </li>
-                    </ul>
-                </nav>
 
                 <!-- Modal lihat biodata-->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -233,7 +171,7 @@ session_start();
                                                     style="border-radius: 4px; border: 1px solid rgba(0, 0, 0, 0.1);">
                                                     <!-- Gambar dan Tombol -->
                                                     <div class="col-12 col-md-3">
-                                                        <img alt="Profile Picture" src="../img/fotoagung.jpeg"
+                                                        <img alt="Profile Picture" src="/public/img/fotoagung-jpeg"
                                                             class="img-fluid rounded mb-2"
                                                             style="max-width: 100%; height: auto;" />
                                                         <!-- <button class="btn-generate mt-2" data-bs-toggle="modal"
@@ -452,150 +390,247 @@ session_start();
                 </div>
                 <!-- Modal tambah data mahasiswa -->
                 <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true" data-bs-backdrop="static" style="background-color: rgba(255, 255, 255, 0.20);">
-                        <div class="modal-dialog modal-lg modal-dialog-centered">
-                            <div class="modal-content" style="background-color: #F5F5F5">
-                                <div class="modal-header">
-                                    <h5 class="modal-title fw-bold" id="addModalLabel">Tambah Data Mahasiswa</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="bg-body-tertiary">
-                                        <div class="form-group">
-                                            <div class="row mb-3">
-                                                <label for="addNim" class="col-sm-3 col-form-label text-end fw-bold">NIM</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" id="addNim" class="form-control" placeholder="Masukkan NIM">
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3">
-                                                <label for="addNama" class="col-sm-3 col-form-label text-end fw-bold">Nama</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" id="addNama" class="form-control" placeholder="Masukkan Nama">
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3">
-                                                <label for="addKelas" class="col-sm-3 col-form-label text-end fw-bold">Kelas</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" id="addKelas" class="form-control" placeholder="Masukkan Kelas">
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3">
-                                                <label for="addProdi" class="col-sm-3 col-form-label text-end fw-bold">Prodi</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" id="addProdi" class="form-control" placeholder="Masukkan Prodi">
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3">
-                                                <label for="addJenisKelamin" class="col-sm-3 col-form-label text-end fw-bold">Jenis Kelamin</label>
-                                                <div class="col-sm-9">
-                                                    <select id="addJenisKelamin" class="form-control">
-                                                        <option value="" selected disabled>Pilih Jenis Kelamin</option>
-                                                        <option value="Laki-laki">Laki-laki</option>
-                                                        <option value="Perempuan">Perempuan</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3">
-                                                <label for="addTanggalLahir" class="col-sm-3 col-form-label text-end fw-bold">Tanggal Lahir</label>
-                                                <div class="col-sm-9">
-                                                    <input type="date" id="addTanggalLahir" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3">
-                                                <label for="addEmail" class="col-sm-3 col-form-label text-end fw-bold">Email</label>
-                                                <div class="col-sm-9">
-                                                    <input type="email" id="addEmail" class="form-control" placeholder="Masukkan Email">
-                                                </div>
+                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                        <div class="modal-content" style="background-color: #F5F5F5">
+                            <div class="modal-header">
+                                <h5 class="modal-title fw-bold" id="addModalLabel">Tambah Data Mahasiswa</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="bg-body-tertiary">
+                                    <div class="form-group">
+                                        <div class="row mb-3">
+                                            <label for="addNim" class="col-sm-3 col-form-label text-end fw-bold">NIM</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" id="addNim" class="form-control" placeholder="Masukkan NIM">
                                             </div>
                                         </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary" onclick="addData()">Tambah</button>
+                                        <div class="row mb-3">
+                                            <label for="addNama" class="col-sm-3 col-form-label text-end fw-bold">Nama</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" id="addNama" class="form-control" placeholder="Masukkan Nama">
+                                            </div>
                                         </div>
+                                        <div class="row mb-3">
+                                            <label for="addKelas" class="col-sm-3 col-form-label text-end fw-bold">Kelas</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" id="addKelas" class="form-control" placeholder="Masukkan Kelas">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="addProdi" class="col-sm-3 col-form-label text-end fw-bold">Prodi</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" id="addProdi" class="form-control" placeholder="Masukkan Prodi">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="addJenisKelamin" class="col-sm-3 col-form-label text-end fw-bold">Jenis Kelamin</label>
+                                            <div class="col-sm-9">
+                                                <select id="addJenisKelamin" class="form-control">
+                                                    <option value="" selected disabled>Pilih Jenis Kelamin</option>
+                                                    <option value="Laki-laki">Laki-laki</option>
+                                                    <option value="Perempuan">Perempuan</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="addTanggalLahir" class="col-sm-3 col-form-label text-end fw-bold">Tanggal Lahir</label>
+                                            <div class="col-sm-9">
+                                                <input type="date" id="addTanggalLahir" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="addEmail" class="col-sm-3 col-form-label text-end fw-bold">Email</label>
+                                            <div class="col-sm-9">
+                                                <input type="email" id="addEmail" class="form-control" placeholder="Masukkan Email">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary" onclick="addData()">Tambah</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
             </div>
 
 
         </div>
 
         <!-- Scripts -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <!-- Bootstrap JS -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- DataTables JS -->
+        <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+        <!-- DataTables with Bootstrap 5 JS -->
+        <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 
 
         <script>
-        $(".sidebar ul li").on("click", function() {
-            $(".sidebar ul li.active").removeClass("active");
-            $(this).addClass("active");
-        });
+            $(document).ready(function() {
 
-        $(".open-btn").on("click", function() {
-            $(".sidebar").addClass("active");
-        });
+                // spinner
+                $('#loading-spinner').removeClass('d-none');
+                $('#loading-spinner').addClass('d-flex');
 
-        $(".close-btn").on("click", function() {
-            $(".sidebar").removeClass("active");
-        });
+                $('#myTable').DataTable({
+                    "lengthMenu": [10, 15, 20],
+                    "pageLength": 10,
+                    "paging": true,
+                    "info": true,
+                    "searching": false,
+                    "responsive": true,
+                    "scrollX": true,
+                    "order": [
+                        [1, 'asc']
+                    ],
+                    ajax: {
+                        url: '/getDataMahasiswa',
+                        type: 'POST',
+                        data: function() {
+                            return {
+                                kategori: $('#kategori').val(),
+                                value: $('#keyword').val(),
+                                kelas: $('#kelas').val()
+                            };
+                        },
+                        dataSrc: function(json) {
+                            $('#loading-spinner').removeClass('d-flex');
+                            $('#loading-spinner').addClass('d-none');
+                            return json;
+                        }
+                    },
+                    columns: [{
+                            data: 'nim'
+                        },
+                        {
+                            data: 'nama_mahasiswa'
+                        },
+                        {
+                            data: 'jenis_kelamin'
+                        },
+                        {
+                            data: 'email'
+                        },
+                        {
+                            data: 'no_telp'
+                        },
+                        {
+                            data: 'id_kelas'
+                        },
+                        {
+                            data: 'id_prodi'
+                        },
+                        {
+                            data: 'aksi'
+                        }
+                    ],
+                    "dom": "<'row'" +
+                        "<'col-sm-6 d-flex align-items-center justify-conten-start'l>" +
+                        "<'col-sm-6 d-flex align-items-center justify-content-end'f>" +
+                        ">" +
 
-        //js for modal edit
-        function confirmSave() {
-            const userConfirmed = confirm("Apakah anda yakin ingin mengubah data Mahasiswa?");
-            if (userConfirmed) {
-                alert("Data telah berhasil disimpan!"); // Lakukan aksi penyimpanan data di sini
+                        "<'table-responsive'tr>" +
 
-                // Menutup modal menggunakan Bootstrap instance
-                const modal = bootstrap.Modal.getInstance(document.getElementById('editModal'));
-                modal.hide();
+                        "<'row'" +
+                        "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
+                        "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
+                        ">",
+                    // make sure td and th white-space no wrap
+                    "columnDefs": [{
+                            "className": "text-nowrap",
+                            "targets": "_all"
+                        },
+                        {
+                            "className": "dt-center",
+                            "targets": "_all"
+                        },
+                        {
+                            "orderable": false,
+                            "targets": "_all"
+                        }
+                    ],
+                });
 
-                // Hapus backdrop secara manual jika masih ada
-                const backdrops = document.querySelectorAll('.modal-backdrop');
-                backdrops.forEach((backdrop) => backdrop.remove()); // Hapus semua elemen backdrop
-            } else {
-                alert("Perubahan data dibatalkan.");
-            }
-        }
+                $('#btn-search').click(function() {
+                    $('#loading-spinner').removeClass('d-none');
+                    $('#loading-spinner').addClass('d-flex');
 
-        // tambah data mahasiswa
-        function addData() {
-            // Ambil nilai dari input field
-            const nim = document.getElementById('addNim').value;
-            const nama = document.getElementById('addNama').value;
-            const kelas = document.getElementById('addKelas').value;
-            const prodi = document.getElementById('addProdi').value;
-            const jenisKelamin = document.getElementById('addJenisKelamin').value;
-            const tanggalLahir = document.getElementById('addTanggalLahir').value;
-            const email = document.getElementById('addEmail').value;
-
-            // Validasi sederhana
-            if (!nim || !nama || !kelas || !prodi || !jenisKelamin || !tanggalLahir || !email) {
-                alert('Semua data wajib diisi!');
-                return;
-            }
-
-            // Lakukan logika penyimpanan data (bisa menggunakan AJAX atau langsung ditambahkan ke tabel)
-            console.log({
-                nim,
-                nama,
-                kelas,
-                prodi,
-                jenisKelamin,
-                tanggalLahir,
-                email
+                    $('#myTable').DataTable().ajax.reload();
+                });
             });
 
-            // Tutup modal
-            const modal = bootstrap.Modal.getInstance(document.getElementById('addModal'));
-            modal.hide();
+            $(".sidebar ul li").on("click", function() {
+                $(".sidebar ul li.active").removeClass("active");
+                $(this).addClass("active");
+            });
 
-            // Reset form
-            document.getElementById('addModal').querySelectorAll('input, select').forEach(input => input.value = '');
-        }
+            $(".open-btn").on("click", function() {
+                $(".sidebar").addClass("active");
+            });
+
+            $(".close-btn").on("click", function() {
+                $(".sidebar").removeClass("active");
+            });
+
+            //js for modal edit
+            function confirmSave() {
+                const userConfirmed = confirm("Apakah anda yakin ingin mengubah data Mahasiswa?");
+                if (userConfirmed) {
+                    alert("Data telah berhasil disimpan!"); // Lakukan aksi penyimpanan data di sini
+
+                    // Menutup modal menggunakan Bootstrap instance
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('editModal'));
+                    modal.hide();
+
+                    // Hapus backdrop secara manual jika masih ada
+                    const backdrops = document.querySelectorAll('.modal-backdrop');
+                    backdrops.forEach((backdrop) => backdrop.remove()); // Hapus semua elemen backdrop
+                } else {
+                    alert("Perubahan data dibatalkan.");
+                }
+            }
+
+            // tambah data mahasiswa
+            function addData() {
+                // Ambil nilai dari input field
+                const nim = document.getElementById('addNim').value;
+                const nama = document.getElementById('addNama').value;
+                const kelas = document.getElementById('addKelas').value;
+                const prodi = document.getElementById('addProdi').value;
+                const jenisKelamin = document.getElementById('addJenisKelamin').value;
+                const tanggalLahir = document.getElementById('addTanggalLahir').value;
+                const email = document.getElementById('addEmail').value;
+
+                // Validasi sederhana
+                if (!nim || !nama || !kelas || !prodi || !jenisKelamin || !tanggalLahir || !email) {
+                    alert('Semua data wajib diisi!');
+                    return;
+                }
+
+                // Lakukan logika penyimpanan data (bisa menggunakan AJAX atau langsung ditambahkan ke tabel)
+                console.log({
+                    nim,
+                    nama,
+                    kelas,
+                    prodi,
+                    jenisKelamin,
+                    tanggalLahir,
+                    email
+                });
+
+                // Tutup modal
+                const modal = bootstrap.Modal.getInstance(document.getElementById('addModal'));
+                modal.hide();
+
+                // Reset form
+                document.getElementById('addModal').querySelectorAll('input, select').forEach(input => input.value = '');
+            }
         </script>
 </body>
 

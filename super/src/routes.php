@@ -23,8 +23,10 @@ $router->addRoute('POST', '/doChangePassword', AuthController::class, 'doChangeP
 $router->addRoute('GET', '/informasi', InformasiController::class, 'informasi');
 
 $router->addRoute('GET', '/dataDosen', DosenController::class, 'dosen');
+$router->addRoute('POST', '/getDataDosen', DosenController::class, 'getDataDosen');
 
 $router->addRoute('GET', '/dataMahasiswa', MahasiswaController::class, 'mahasiswa');
+$router->addRoute('POST', '/getDataMahasiswa', MahasiswaController::class, 'getDataMahasiswa');
 
 $router->addRoute('GET', '/dataAdmin', AdminController::class, 'admin');
 $router->addRoute('POST', '/getDataAdmin', AdminController::class, 'getDataAdmin');

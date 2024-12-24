@@ -7,18 +7,35 @@ use Tatib\Src\Core\Helper;
 
 class mahasiswa
 {
-    public $nim, $nama_mahasiswa, $no_telp, $email, $id_kelas, $secret, $is_active, $foto_mahasiswa, $tanggal_lahir, $jenis_kelamin, $id_prodi, $password;
+    public $nim, $nama_mahasiswa, $no_telp, $email, $id_kelas, $secret, $is_active, $foto_mahasiswa, $tanggal_lahir, $jenis_kelamin, $id_prodi, $password, $aksi;
 
     function __construct() {}
 
-    function getMahasiswa(?string $nim = null)
+    function getMahasiswa(?string $nim = null, ?string $kategori = null, ?string $value = null, ?string $kelas = null)
     {
         $result = [];
 
-        if (empty($nim)) {
-            $query = "SELECT * FROM mahasiswa";
+        if ($kategori != null && $value != null) {
+            if (empty($nim)) {
+                $query = "SELECT * FROM mahasiswa WHERE lower($kategori) LIKE lower('%$value%')";
+            } else {
+                $query = "SELECT * FROM mahasiswa WHERE nim = '$nim' AND lower($kategori) LIKE lower('%$value%')";
+            }
+            if ($kelas != null) {
+                $query .= " AND id_kelas = '$kelas'";
+            }
         } else {
-            $query = "SELECT * FROM mahasiswa WHERE nim = '$nim'";
+            if (empty($nim)) {
+                $query = "SELECT * FROM mahasiswa";
+                if ($kelas != null) {
+                    $query .= " WHERE id_kelas = '$kelas'";
+                }
+            } else {
+                $query = "SELECT * FROM mahasiswa WHERE nim = '$nim'";
+                if ($kelas != null) {
+                    $query .= " AND id_kelas = '$kelas'";
+                }
+            }
         }
         $conn = Db::getInstance();
         try {

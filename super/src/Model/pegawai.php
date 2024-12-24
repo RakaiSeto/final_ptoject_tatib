@@ -49,7 +49,7 @@ class pegawai
         }
     }
 
-    function getPegawaiByRole(string $role, ?string $nip = null, ?string $kategori = null, ?string $value = null)
+    function getPegawaiByRole(string $role, ?string $nip = null, ?string $kategori = null, ?string $value = null, ?string $switchrole = null)
     {
         $result = [];
 
@@ -63,6 +63,12 @@ class pegawai
             $query = "SELECT * FROM pegawai WHERE lower(role) = '$role'";
         } else {
             $query = "SELECT * FROM pegawai WHERE nip = '$nip' AND role = '$role'";
+        }
+
+        if ($switchrole == "DPA") {
+            $query .= " AND is_dpa = 1";
+        } else if ($switchrole == "KPS") {
+            $query .= " AND is_kps = 1";
         }
         $conn = Db::getInstance();
         try {
