@@ -8,13 +8,47 @@ session_start();
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><?= $title ?></title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="/public/css/style-css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" rel="stylesheet" />
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- DataTables with Bootstrap 5 CSS -->
+    <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+
+    <style>
+        /* Custom Scrollbar Style */
+        .dataTables_scrollBody {
+            overflow-x: auto;
+        }
+
+        .dataTables_scrollBody::-webkit-scrollbar {
+            height: 12px;
+        }
+
+        .dataTables_scrollBody::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .dataTables_scrollBody::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 6px;
+        }
+
+        .dataTables_scrollBody::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        .dataTables_wrapper {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        #myTable {
+            width: 100% !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -25,8 +59,12 @@ session_start();
         <!-- Navbar -->
         <?php require_once 'navbar.php'; ?>
 
-        <!--Content -->
+        <!-- spinner -->
         <div class="content px-3 pt-3" style="margin-top: 56px;">
+            <div class="text-center position-fixed d-none justify-content-center align-items-center top-50 start-50 translate-middle bg-white bg-opacity-50 w-100 h-100" id="loading-spinner" style="z-index: 999; display: none;">
+                <img src="/public/img/spinner-svg" alt="Loading..." class="mx-auto d-block" style="width: 15%; height: 15%;">
+            </div>
+
             <div class="bg-white p-2 my-2" style="color: #b1b1b1; border-radius: 5px">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
@@ -44,65 +82,57 @@ session_start();
                     </button>
                 </div>
 
+                <div class="filter-bar w-100 p-2 bg-body-tertiary shadow-sm rounded align-items-center gap-2 mb-3 mt-1">
+                    <h5 class="ms-2 mt-1">Filter</h5>
+                    <hr class="my-2">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="d-flex flex-column">
+                                <label for="prodi" class="form-label ps-2">Kategori</label>
+                                <select id="kategori" class="form-select w-100" style="box-sizing: border-box; max-width: 100%;">
+                                    <option value="" selected disabled>Pilih Kategori</option>
+                                    <option value="nip">NIP Admin</option>
+                                    <option value="nama_pegawai">Nama Admin</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="d-flex flex-column">
+                                <label for="prodi" class="form-label ps-2">Keyword</label>
+                                <input type="text" id="keyword" class="form-control" placeholder="Cari" aria-label="Username"
+                                    aria-describedby="basic-addon1">
+                                </input>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            <div class="d-flex flex-column">
+                                <button type="submit" id="btn-search" class="btn-detail">Search</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!-- Table -->
-                <div class="table-responsive" style="overflow-x: auto; width: 100%;">
-                    <table class="table table-bordered" style="min-width: 1500px;">
-                        <thead>
+                <div class="table-responsive" style="overflow-x: auto; min-width: 100%;">
+                    <table id="myTable" class="table table-striped table-bordered">
+                        <thead class="text-center">
                             <tr>
                                 <th>NIP</th>
                                 <th>Nama</th>
                                 <th>Email</th>
                                 <th>No Telp</th>
                                 <th>Prodi</th>
-                                <th>Aksi</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($admin as $a) : ?>
-                                <tr>
-                                    <td><?= $a->nip ?></td>
-                                    <td><?= $a->nama_pegawai ?></td>
-                                    <td><?= $a->email ?></td>
-                                    <td><?= $a->no_telp ?></td>
-                                    <td><?= $a->prodi ?></td>
-                                    <td>
-                                        <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editModal">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button class="btn btn-danger btn-sm">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
+
                         </tbody>
                     </table>
                 </div>
             </div>
-
-            
-            <nav>
-                <ul class="pagination justify-content-center">
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#">‹</a>
-                    </li>
-                    <li class="page-item active">
-                        <a class="page-link" href="#">1</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">2</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">3</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">4</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">›</a>
-                    </li>
-                </ul>
-            </nav>
 
             <!-- Modal Edit Data Admin -->
             <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true" data-bs-backdrop="static">
@@ -245,13 +275,99 @@ session_start();
     </div>
 
     <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <!-- DataTables with Bootstrap 5 JS -->
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 
 
     <script>
+        $(document).ready(function() {
+
+            // spinner
+            $('#loading-spinner').removeClass('d-none');
+            $('#loading-spinner').addClass('d-flex');
+
+            $('#myTable').DataTable({
+                "lengthMenu": [10, 15, 20],
+                "pageLength": 10,
+                "paging": true,
+                "info": true,
+                "searching": false,
+                "responsive": true,
+                "scrollX": true,
+                "order": [
+                    [1, 'asc']
+                ],
+                ajax: {
+                    url: '/getDataAdmin',
+                    type: 'POST',
+                    data: function() {
+                        return {
+                            kategori: $('#kategori').val(),
+                            value: $('#keyword').val()
+                        };
+                    },
+                    dataSrc: function(json) {
+                        $('#loading-spinner').removeClass('d-flex');
+                        $('#loading-spinner').addClass('d-none');
+                        return json;
+                    }
+                },
+                columns: [{
+                        data: 'nip'
+                    },
+                    {
+                        data: 'nama_pegawai'
+                    },
+                    {
+                        data: 'email'
+                    },
+                    {
+                        data: 'no_telp'
+                    },
+                    {
+                        data: 'prodi'
+                    },
+                    {
+                        data: 'action'
+                    }
+                ],
+                "dom": "<'row'" +
+                    "<'col-sm-6 d-flex align-items-center justify-conten-start'l>" +
+                    "<'col-sm-6 d-flex align-items-center justify-content-end'f>" +
+                    ">" +
+
+                    "<'table-responsive'tr>" +
+
+                    "<'row'" +
+                    "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
+                    "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
+                    ">",
+                // make sure td and th white-space no wrap
+                "columnDefs": [{
+                        "className": "text-nowrap",
+                        "targets": "_all"
+                    },
+                    {
+                        "className": "dt-center",
+                        "targets": "_all"
+                    },
+                    {
+                        "orderable": false,
+                        "targets": "_all"
+                    }
+                ],
+            });
+
+            $('#btn-search').click(function() {
+                $('#myTable').DataTable().ajax.reload();
+            });
+        });
         $(".sidebar ul li").on("click", function() {
             $(".sidebar ul li.active").removeClass("active");
             $(this).addClass("active");

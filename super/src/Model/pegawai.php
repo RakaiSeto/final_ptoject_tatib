@@ -7,7 +7,7 @@ use Tatib\Src\Core\Helper;
 
 class pegawai
 {
-    public $nip, $nama_pegawai, $role, $email, $no_telp, $prodi, $is_dpa, $is_kps, $password, $pegawai ;
+    public $nip, $nama_pegawai, $role, $email, $no_telp, $prodi, $is_dpa, $is_kps, $password, $pegawai, $action;
     // public $nip, $nama_pegawai, $role, $email, $no_telp, $prodi, ;
 
     function __construct() {
@@ -49,11 +49,17 @@ class pegawai
         }
     }
 
-    function getPegawaiByRole(string $role, ?string $nip = null)
+    function getPegawaiByRole(string $role, ?string $nip = null, ?string $kategori = null, ?string $value = null)
     {
         $result = [];
 
-        if (empty($nip)) {
+        if ($kategori != null && $value != null) {
+            if (empty($nip)) {
+                $query = "SELECT * FROM pegawai WHERE lower(role) = '$role' AND lower($kategori) LIKE '%$value%'";
+            } else {
+                $query = "SELECT * FROM pegawai WHERE nip = '$nip' AND lower(role) = '$role' AND lower($kategori) LIKE '%$value%'";
+            }
+        } else if (empty($nip)) {
             $query = "SELECT * FROM pegawai WHERE lower(role) = '$role'";
         } else {
             $query = "SELECT * FROM pegawai WHERE nip = '$nip' AND role = '$role'";

@@ -27,6 +27,7 @@ $router->addRoute('GET', '/dataDosen', DosenController::class, 'dosen');
 $router->addRoute('GET', '/dataMahasiswa', MahasiswaController::class, 'mahasiswa');
 
 $router->addRoute('GET', '/dataAdmin', AdminController::class, 'admin');
+$router->addRoute('POST', '/getDataAdmin', AdminController::class, 'getDataAdmin');
 
 $router->addRoute('GET', '/dataPelanggaran', PelanggaranController::class, 'pelanggaran');
 $router->addRoute('POST', '/getDataPelanggaran', PelanggaranController::class, 'getDataPelanggaran');

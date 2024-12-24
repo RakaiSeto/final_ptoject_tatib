@@ -92,62 +92,7 @@ session_start();
             </div>
 
             <div class="bg-white">
-                <h4 class="fw-semibold">Laporan Pelanggaran</h4>
-                <!-- <div class="filter-bar w-100 p-2 bg-body-tertiary shadow-sm rounded align-items-center gap-2 mb-3 mt-1">
-                    <h5 class="fw-bold ms-2">Filter</h5>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="d-flex flex-column">
-                                <label for="tanggal" class="form-label ps-2 fw-bold">Tanggal Mulai</label>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id="tanggal" placeholder="Pilih Tanggal" aria-label="Tanggal" aria-describedby="basic-addon2">
-                                    <span class="input-group-text" id="basic-addon2"><i class="bi bi-calendar"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="d-flex flex-column">
-                                <label for="tanggal" class="form-label ps-2 fw-bold">Tanggal Akhir</label>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id="tanggal" placeholder="Pilih Tanggal" aria-label="Tanggal" aria-describedby="basic-addon2">
-                                    <span class="input-group-text" id="basic-addon2"><i class="bi bi-calendar"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mt-2">
-                        <div class="col-md-4">
-                            <div class="d-flex flex-column">
-                                <label for="prodi" class="form-label ps-2 fw-bold">Kategori</label>
-                                <select id="prodi" class="form-select w-100" style="box-sizing: border-box; max-width: 100%;">
-                                    <option value="" selected disabled>Pilih Prodi</option>
-                                    <option value="kode">Teknik Informatika</option>
-                                    <option value="nip">Sistem Informasi Bisnis</option>
-                                    <option value="nim">PPLS</option>
-                                    <option value="tingkat">PPLS</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <div class="d-flex flex-column">
-                                <label for="prodi" class="form-label ps-2 fw-bold">Keyword</label>
-                                <input type="text" class="form-control" placeholder="Cari" aria-label="Username"
-                                    aria-describedby="basic-addon1">
-                                </input>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <div class="d-flex flex-column">
-                                <label for="prodi" class="form-label ps-2 fw-bold">.</label>
-                                <button type="submit" class="btn-detail">Apply</button>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-                
+                <h4 class="fw-semibold">Laporan Pelanggaran</h4>                
                 <div class="filter-bar w-100 p-2 bg-body-tertiary shadow-sm rounded align-items-center gap-2 mb-3 mt-1">
                     <h5 class="ms-2 mt-1">Filter</h5>
                     <hr class="my-2">
