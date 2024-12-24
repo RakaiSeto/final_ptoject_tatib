@@ -171,7 +171,7 @@ session_start();
                                                     style="border-radius: 4px; border: 1px solid rgba(0, 0, 0, 0.1);">
                                                     <!-- Gambar dan Tombol -->
                                                     <div class="col-12 col-md-3">
-                                                        <img alt="Profile Picture" src="/public/img/fotoagung-jpeg"
+                                                        <img alt="Profile Picture" id="detail-foto" src="/public/img/fotoagung-jpeg"
                                                             class="img-fluid rounded mb-2"
                                                             style="max-width: 100%; height: auto;" />
                                                         <!-- <button class="btn-generate mt-2" data-bs-toggle="modal"
@@ -182,39 +182,38 @@ session_start();
                                                         <table class="ml-3 table table-responsive table-hover">
                                                             <tr>
                                                                 <td>Nama</td>
-                                                                <td>: Agung Fradiansyah</td>
+                                                                <td id="detail-nama">: Agung Fradiansyah</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>NIM</td>
-                                                                <td>: 2341720025</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Kelas</td>
-                                                                <td>: 2E</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Prodi</td>
-                                                                <td>: Teknik Informatika</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Jurusan</td>
-                                                                <td>: Teknologi Informasi</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>TTL</td>
-                                                                <td>: 28, Februari 2024</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Jenis Kelamin</td>
-                                                                <td>: Laki-laki</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Alamat</td>
-                                                                <td>: Pasuruan</td>
+                                                                <td id="detail-nim">: 2341720025</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Email</td>
-                                                                <td>: agungfradiansyah@gmail.com</td>
+                                                                <td id="detail-email">: agungfradiansyah@gmail.com</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>No Telp</td>
+                                                                <td id="detail-no-telp">: 081234567890</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Kelas</td>
+                                                                <td id="detail-kelas">: 2E</td>
+                                                            <tr>
+                                                                <td>Prodi</td>
+                                                                <td id="detail-prodi">: Teknik Informatika</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Jurusan</td>
+                                                                <td id="detail-jurusan">: Teknologi Informasi</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Tanggal Lahir</td>
+                                                                <td id="detail-tanggal-lahir">: 28, Februari 2024</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Jenis Kelamin</td>
+                                                                <td id="detail-jenis-kelamin">: Laki-laki</td>
                                                             </tr>
                                                         </table>
                                                     </div>
@@ -226,21 +225,15 @@ session_start();
                                                 <div class="row g-3 flex-column flex-md-row align-items-center p-2"
                                                     style="border-radius: 4px; border: 1px solid rgba(0, 0, 0, 0.1);">
                                                     <table class="table table-responsive table-hover table-bordered">
-                                                        <tr>
-                                                            <th>NO</th>
+                                                        <thead>
                                                             <th>Jenis Pelanggaran</th>
                                                             <th>Tingkat</th>
                                                             <th>Tanggal</th>
                                                             <th>Aksi</th>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>1</td>
-                                                            <td>Merokok di kawasan kampus</td>
-                                                            <td>4</td>
-                                                            <td>19/11/2024</td>
-                                                            <td><button class="btn-detail" data-bs-toggle="modal"
-                                                                    data-bs-target="#exampleModal">Lihat</button></td>
-                                                        </tr>
+                                                        </thead>
+                                                        <tbody id="pelanggaran-terbaru">
+
+                                                        </tbody>
                                                     </table>
                                                 </div>
 
@@ -250,53 +243,18 @@ session_start();
                                                 <div class="row g-3 flex-column flex-md-row align-items-center p-2"
                                                     style="border-radius: 4px; border: 1px solid rgba(0, 0, 0, 0.1);">
                                                     <table class="table table-responsive table-hover table-bordered">
-                                                        <tr>
-                                                            <th>NO</th>
-                                                            <th>Jenis Pelanggaran</th>
-                                                            <th>Tingkat</th>
-                                                            <th>Tanggal</th>
-                                                            <th>Aksi</th>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>1</td>
-                                                            <td>Merokok di kawasan kampus</td>
-                                                            <td>4</td>
-                                                            <td>19/11/2024</td>
-                                                            <td><button class="btn-detail" data-bs-toggle="modal"
-                                                                    data-bs-target="#exampleModal">Lihat</button></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>1</td>
-                                                            <td>Merokok di kawasan kampus</td>
-                                                            <td>4</td>
-                                                            <td>19/11/2024</td>
-                                                            <td><button class="btn-detail" data-bs-toggle="modal"
-                                                                    data-bs-target="#exampleModal">Lihat</button></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>1</td>
-                                                            <td>Merokok di kawasan kampus</td>
-                                                            <td>4</td>
-                                                            <td>19/11/2024</td>
-                                                            <td><button class="btn-detail" data-bs-toggle="modal"
-                                                                    data-bs-target="#exampleModal">Lihat</button></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>1</td>
-                                                            <td>Merokok di kawasan kampus</td>
-                                                            <td>4</td>
-                                                            <td>19/11/2024</td>
-                                                            <td><button class="btn-detail" data-bs-toggle="modal"
-                                                                    data-bs-target="#exampleModal">Lihat</button></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>1</td>
-                                                            <td>Merokok di kawasan kampus</td>
-                                                            <td>4</td>
-                                                            <td>19/11/2024</td>
-                                                            <td><button class="btn-detail" data-bs-toggle="modal"
-                                                                    data-bs-target="#exampleModal">Lihat</button></td>
-                                                        </tr>
+                                                        <thead>
+                                                            <tr>
+                                                                <th>NO</th>
+                                                                <th>Jenis Pelanggaran</th>
+                                                                <th>Tingkat</th>
+                                                                <th>Tanggal</th>
+                                                                <th>Aksi</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="riwayat-pelanggaran">
+
+                                                        </tbody>
                                                     </table>
                                                 </div>
 
@@ -311,6 +269,77 @@ session_start();
 
                     </div>
 
+                </div>
+
+                <!-- Modal lihat biodata-->
+                <div class="modal fade" id="modalDetailPelanggaran" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true" data-bs-backdrop="static" style="background-color: rgba(255, 255, 255, 0.20);">
+                    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content" style="background-color: #F5F5F5">
+                            <div class="modal-header">
+                                <h5 class="modal-title fw-bold" id="exampleModalLabel">Detail Pelanggaran</h5>
+                                <button type="button" class="btn-close" id="close-modal-detail-pelanggaran"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="bg-body-tertiary">
+                                    <div class="row">
+                                        <div class="col-12 col-lg-12 mb-4 mb-md-0">
+                                            <div class="bg-white">
+
+                                                <h5 class="modal-title fw-bold mb-4" id="exampleModalLabel">Data
+                                                    Pelanggaran
+                                                </h5>
+                                                <div class="row g-3 flex-column flex-md-row align-items-center p-2"
+                                                    style="border-radius: 4px; border: 1px solid rgba(0, 0, 0, 0.1);">
+                                                    <!-- Gambar dan Tombol -->
+                                                    <div class="col-12 col-md-3">
+                                                        <img alt="Profile Picture" id="foto-pelanggaran" src="/public/img/fotoagung-jpeg"
+                                                            class="img-fluid rounded mb-2"
+                                                            style="max-width: 100%; height: auto;" />
+                                                        <!-- <button class="btn-generate mt-2" data-bs-toggle="modal"
+                                                            data-bs-target="#QRCodeModal">Generate QR
+                                                            Code</button> -->
+                                                    </div>
+                                                    <div class="col-12 col-md-9">
+                                                        <table class="ml-3 table table-responsive table-hover">
+                                                            <tr>
+                                                                <td>Kode Pelanggaran</td>
+                                                                <td id="kode-pelanggaran">: 1234567890</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Nama Pelanggaran</td>
+                                                                <td id="nama-pelanggaran">: Datang terlambat lebih dari 15 menit</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Tingkat Pelanggaran</td>
+                                                                <td id="tingkat-pelanggaran">: 1234567890</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>NIP Dosen</td>
+                                                                <td id="nip-dosen-pelanggaran">: 1234567890</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Tanggal</td>
+                                                                <td id="tanggal-pelanggaran">: 28, Februari 2024</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Kronologi</td>
+                                                                <td id="kronologi-pelanggaran">: Datang terlambat lebih dari 15 menit</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Status</td>
+                                                                <td id="status-pelanggaran">: Belum dikonfirmasi</td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Modal edit data mahasiswa -->
@@ -472,7 +501,90 @@ session_start();
 
 
         <script>
+            function getDetailMahasiswa(nim) {
+                $('#loading-spinner').removeClass('d-none');
+                $('#loading-spinner').addClass('d-flex');
+
+                $('#modalDetailPelanggaran').modal('hide');
+                $.ajax({
+                    url: '/getDetailMahasiswa',
+                    type: 'POST',
+                    data: {
+                        nim: nim
+                    },
+                    success: function(response) {
+                        json = JSON.parse(response);
+                        $('#detail-foto').attr('src', json.mahasiswa.foto_mahasiswa);
+                        $('#detail-nama').text(': ' + json.mahasiswa.nama_mahasiswa);
+                        $('#detail-nim').text(': ' + json.mahasiswa.nim);
+                        $('#detail-email').text(': ' + json.mahasiswa.email);
+                        $('#detail-no-telp').text(': ' + json.mahasiswa.no_telp);
+                        $('#detail-kelas').text(': ' + json.mahasiswa.id_kelas);
+                        $('#detail-prodi').text(': ' + json.mahasiswa.id_prodi);
+                        $('#detail-tanggal-lahir').text(': ' + json.mahasiswa.tanggal_lahir);
+                        $('#detail-jenis-kelamin').text(': ' + json.mahasiswa.jenis_kelamin);
+
+                        $('#riwayat-pelanggaran').empty();
+                        $('#pelanggaran-terbaru').empty();
+                        if (json.pelanggaran != null) {
+                            for (let i = 1; i <= json.pelanggaran.length; i++) {
+                                $('#riwayat-pelanggaran').append('<tr><td>' + i + '</td><td>' + json.pelanggaran[i - 1].jenis_pelanggaran + '</td><td>' + json.pelanggaran[i - 1].tingkat_pelanggaran + '</td><td>' + json.pelanggaran[i - 1].datetime + '</td><td><button class="btn-detail-pelanggaran btn btn-primary" onclick="getDetailPelanggaran(\'' + json.pelanggaran[i - 1].kode_pelanggaran + '\')">Lihat</button></td></tr>');
+                            }
+                            $('#pelanggaran-terbaru').append('<tr><td>' + json.pelanggaran[0].jenis_pelanggaran + '</td><td>' + json.pelanggaran[0].tingkat_pelanggaran + '</td><td>' + json.pelanggaran[0].datetime + '</td><td><button class="btn-detail-pelanggaran btn btn-primary" onclick="getDetailPelanggaran(\'' + json.pelanggaran[0].kode_pelanggaran + '\')">Lihat</button></td></tr>');
+                        } else {
+                            $('#riwayat-pelanggaran').append('<tr><td colspan="5" class="text-center">Tidak ada pelanggaran</td></tr>');
+                            $('#pelanggaran-terbaru').append('<tr><td colspan="5" class="text-center">Tidak ada pelanggaran</td></tr>');
+                        }
+
+                        $('#exampleModal').modal('show');
+                    },
+                    complete: function() {
+                        $('#loading-spinner').removeClass('d-flex');
+                        $('#loading-spinner').addClass('d-none');
+                    }
+                });
+            };
+
+            function getDetailPelanggaran(id_pelanggaran) {
+                $('#loading-spinner').removeClass('d-none');
+                $('#loading-spinner').addClass('d-flex');
+
+                $.ajax({
+                    url: '/detailPelanggaran',
+                    type: 'POST',
+                    data: {
+                        kode_pelanggaran: id_pelanggaran
+                    },
+                    success: function(response) {
+                        json = JSON.parse(response);
+
+                        $('#kode-pelanggaran').text(': ' + json[0].kode_pelanggaran);
+                        $('#nama-pelanggaran').text(': ' + json[0].jenis_pelanggaran);
+                        $('#tingkat-pelanggaran').text(': ' + json[0].tingkat_pelanggaran);
+                        $('#nip-dosen-pelanggaran').text(': ' + json[0].nip_pelapor);
+                        $('#tanggal-pelanggaran').text(': ' + json[0].datetime);
+                        $('#kronologi-pelanggaran').text(': ' + json[0].kronologi);
+                        $('#status-pelanggaran').html(': ' + json[0].status);
+                        if (json[0].tautan_bukti != "-") {
+                            $('#foto-pelanggaran').attr('src', json[0].tautan_bukti);
+                        } else {
+                            $('#foto-pelanggaran').attr('src', '/public/img/default-pp-png');
+                        }
+
+                        $('#close-modal-detail-pelanggaran').attr('onclick', 'getDetailMahasiswa(' + json[0].nim_terlapor + ')');
+
+                        $('#loading-spinner').removeClass('d-flex');
+                        $('#loading-spinner').addClass('d-none');
+
+                        $('#exampleModal').modal('hide');
+                        $('#modalDetailPelanggaran').modal('show');
+                    }
+                });
+            }
+
             $(document).ready(function() {
+                // get detail mahasiswa
+
 
                 // spinner
                 $('#loading-spinner').removeClass('d-none');
@@ -564,6 +676,8 @@ session_start();
                     $('#myTable').DataTable().ajax.reload();
                 });
             });
+
+
 
             $(".sidebar ul li").on("click", function() {
                 $(".sidebar ul li.active").removeClass("active");

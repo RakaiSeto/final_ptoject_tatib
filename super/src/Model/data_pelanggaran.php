@@ -114,7 +114,7 @@ class data_pelanggaran
             return false . " " . $th->getMessage();
         }
     }
-
+    
     public function insertDataPelanggaran()
     {
         $rand = Helper::randomAlphaNum();
