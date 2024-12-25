@@ -149,7 +149,7 @@ class pegawai
             return '0';
         }
 
-        $query = "UPDATE pegawai SET nama = ?, role = ?, email = ?, no_telp = ?, prodi = ?, is_dpa = ?, is_kps = ? WHERE nip = ?";
+        $query = "UPDATE pegawai SET nama_pegawai = ?, role = ?, email = ?, no_telp = ?, prodi = ?, is_dpa = ?, is_kps = ? WHERE nip = ?";
         $conn = Db::getInstance();
         try {
             $stmt = $conn->prepare($query);

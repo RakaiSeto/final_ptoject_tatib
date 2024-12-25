@@ -31,6 +31,10 @@ $router->addRoute('POST', '/getDetailMahasiswa', MahasiswaController::class, 'ge
 
 $router->addRoute('GET', '/dataAdmin', AdminController::class, 'admin');
 $router->addRoute('POST', '/getDataAdmin', AdminController::class, 'getDataAdmin');
+$router->addRoute('POST', '/getDetailAdmin', AdminController::class, 'getDetailAdmin');
+$router->addRoute('POST', '/doInsertAdmin', AdminController::class, 'doInsertAdmin');
+$router->addRoute('POST', '/doUpdateAdmin', AdminController::class, 'doUpdateAdmin');
+$router->addRoute('POST', '/doDeleteAdmin', AdminController::class, 'doDeleteAdmin');
 
 $router->addRoute('GET', '/dataPelanggaran', PelanggaranController::class, 'pelanggaran');
 $router->addRoute('POST', '/getDataPelanggaran', PelanggaranController::class, 'getDataPelanggaran');

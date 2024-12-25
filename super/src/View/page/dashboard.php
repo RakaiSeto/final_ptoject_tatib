@@ -330,7 +330,7 @@ session_start();
                                     <button
                                         class="btn btn-light dropdown-toggle border d-flex justify-content-between align-items-center col-sm-12"
                                         type="button" id="dropdownButton" data-bs-toggle="dropdown"
-                                        aria-expanded="false" style=""> Pilih Sanksi
+                                        aria-expanded="false"> Pilih Sanksi
                                     </button>
                                     <ul class="dropdown-menu col-sm-12">
                                         <li><a class="dropdown-item" href="#"

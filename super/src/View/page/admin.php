@@ -18,41 +18,41 @@ session_start();
     <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
 
     <style>
-    /* Custom Scrollbar Style */
-    .dataTables_scrollBody {
-        overflow-x: auto;
-    }
+        /* Custom Scrollbar Style */
+        .dataTables_scrollBody {
+            overflow-x: auto;
+        }
 
-    .dataTables_scrollBody::-webkit-scrollbar {
-        height: 12px;
-    }
+        .dataTables_scrollBody::-webkit-scrollbar {
+            height: 12px;
+        }
 
-    .dataTables_scrollBody::-webkit-scrollbar-track {
-        background: #f1f1f1;
-    }
+        .dataTables_scrollBody::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
 
-    .dataTables_scrollBody::-webkit-scrollbar-thumb {
-        background: #888;
-        border-radius: 6px;
-    }
+        .dataTables_scrollBody::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 6px;
+        }
 
-    .dataTables_scrollBody::-webkit-scrollbar-thumb:hover {
-        background: #555;
-    }
+        .dataTables_scrollBody::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
 
-    .dataTables_wrapper {
-        width: 100%;
-        overflow-x: auto;
-    }
+        .dataTables_wrapper {
+            width: 100%;
+            overflow-x: auto;
+        }
 
-    .dataTables_wrapper .dataTables_paginate .paginate_button {
-        margin-top: 10px;
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
+            margin-top: 10px;
 
-    }
+        }
 
-    #myTable {
-        width: 100% !important;
-    }
+        #myTable {
+            width: 100% !important;
+        }
     </style>
 </head>
 
@@ -81,6 +81,9 @@ session_start();
                 </nav>
             </div>
 
+            <?php if (isset($_SESSION['error'])): ?>
+                <div class="alert alert-danger" role="alert">sdf</div>
+            <?php endif; ?>
             <!-- Button Tambah Admin -->
             <div class="text-start mb-3">
                 <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addModal"><i
@@ -151,73 +154,66 @@ session_start();
                 <div class="modal-dialog modal-lg modal-dialog-centered">
                     <div class="modal-content" style="background-color: #F5F5F5;">
                         <div class="modal-header">
-                            <h5 class="modal-title fw-bold" id="editModalLabel">Edit Data Admin</h5>
+                            <h5 class="modal-title fw-bold" id="addModalLabel">Edit Data Admin</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
+                            <div id="edit-result" class="alert alert-danger d-none" role="alert">sdf</div>
                             <div class="form-group">
                                 <!-- NIP -->
                                 <div class="row mb-3">
-                                    <label for="editNip" class="col-sm-3 col-form-label text-end fw-bold">NIP</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="editNip" value="1234652783726"
-                                            readonly disabled>
+                                    <label for="addNip" class="col-sm-2 col-form-label text-start fw-bold">NIP</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" id="editNip" readonly class="form-control" placeholder="Masukkan NIP">
                                     </div>
                                 </div>
                                 <!-- Nama -->
                                 <div class="row mb-3">
-                                    <label for="editNama" class="col-sm-3 col-form-label text-end fw-bold">Nama</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="editNama" value="Yudi Setiawan">
+                                    <label for="addNama" class="col-sm-2 col-form-label text-start fw-bold">Nama</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" id="editNama" class="form-control"
+                                            placeholder="Masukkan Nama">
                                     </div>
                                 </div>
                                 <!-- Jenis Kelamin -->
                                 <div class="row mb-3">
-                                    <label for="editJenisKelamin" class="col-sm-3 col-form-label text-end fw-bold">Jenis
-                                        Kelamin</label>
-                                    <div class="col-sm-9">
-                                        <select class="form-control" id="editJenisKelamin">
-                                            <option value="Laki-laki" selected>Laki-laki</option>
-                                            <option value="Perempuan">Perempuan</option>
+                                    <label for="addRole" class="col-sm-2 col-form-label text-start fw-bold">Role</label>
+                                    <div class="col-sm-10">
+                                        <select id="editRole" class="form-control">
+                                            <option value="" selected disabled>Pilih Role</option>
+                                            <option value="admin-TI">Admin TI</option>
+                                            <option value="admin-SIB">Admin SIB</option>
+                                            <option value="super">Superadmin</option>
                                         </select>
                                     </div>
                                 </div>
                                 <!-- Email -->
                                 <div class="row mb-3">
-                                    <label for="editEmail"
-                                        class="col-sm-3 col-form-label text-end fw-bold">Email</label>
-                                    <div class="col-sm-9">
-                                        <input type="email" class="form-control" id="editEmail"
-                                            value="Yudisetiawan@gmail.com">
+                                    <label for="addEmail" class="col-sm-2 col-form-label text-start fw-bold">Email</label>
+                                    <div class="col-sm-10">
+                                        <input type="email" id="editEmail" class="form-control"
+                                            placeholder="Masukkan Email">
                                     </div>
                                 </div>
-                                <!-- Tempat, Tanggal Lahir -->
+                                <!-- No Telp -->
                                 <div class="row mb-3">
-                                    <label for="editTtl" class="col-sm-3 col-form-label text-end fw-bold">Tempat,
-                                        Tanggal Lahir</label>
-                                    <div class="col-sm-5">
-                                        <input type="text" class="form-control" id="editTempat" value="Malang"
-                                            placeholder="Tempat">
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <input type="date" class="form-control" id="editTanggal" value="1899-02-28">
+                                    <label for="addNoTelp" class="col-sm-2 col-form-label text-start fw-bold">No Telp</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" id="editNoTelp" class="form-control" placeholder="Masukkan No Telp">
                                     </div>
                                 </div>
-                                <!-- Alamat -->
-                                <div class="row mb-3">
-                                    <label for="editAlamat"
-                                        class="col-sm-3 col-form-label text-end fw-bold">Alamat</label>
-                                    <div class="col-sm-9">
-                                        <textarea class="form-control" id="editAlamat" rows="3">Pasuruan</textarea>
-                                    </div>
-                                </div>
+
+                                <input type="hidden" name="role" id="editRoleHidden">
+                                <input type="hidden" name="nama" id="editNamaHidden">
+                                <input type="hidden" name="email" id="editEmailHidden">
+                                <input type="hidden" name="no_telp" id="editNoTelpHidden">
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-secondary"
-                                data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" onclick="saveAdminChanges()">Save
-                                Changes</button>
+                            <!-- Modal Footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-secondary"
+                                    data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" disabled id="btn-edit">Edit</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -233,61 +229,48 @@ session_start();
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
+                            <div id="add-result" class="alert alert-danger d-none" role="alert">sdf</div>
                             <div class="form-group">
                                 <!-- NIP -->
                                 <div class="row mb-3">
-                                    <label for="addNip" class="col-sm-3 col-form-label text-end fw-bold">NIP</label>
-                                    <div class="col-sm-9">
+                                    <label for="addNip" class="col-sm-2 col-form-label text-start fw-bold">NIP</label>
+                                    <div class="col-sm-10">
                                         <input type="text" id="addNip" class="form-control" placeholder="Masukkan NIP">
                                     </div>
                                 </div>
                                 <!-- Nama -->
                                 <div class="row mb-3">
-                                    <label for="addNama" class="col-sm-3 col-form-label text-end fw-bold">Nama</label>
-                                    <div class="col-sm-9">
+                                    <label for="addNama" class="col-sm-2 col-form-label text-start fw-bold">Nama</label>
+                                    <div class="col-sm-10">
                                         <input type="text" id="addNama" class="form-control"
                                             placeholder="Masukkan Nama">
                                     </div>
                                 </div>
                                 <!-- Jenis Kelamin -->
                                 <div class="row mb-3">
-                                    <label for="addJenisKelamin" class="col-sm-3 col-form-label text-end fw-bold">Jenis
-                                        Kelamin</label>
-                                    <div class="col-sm-9">
-                                        <select id="addJenisKelamin" class="form-control">
-                                            <option value="" selected disabled>Pilih Jenis Kelamin</option>
-                                            <option value="Laki-laki">Laki-laki</option>
-                                            <option value="Perempuan">Perempuan</option>
+                                    <label for="addRole" class="col-sm-2 col-form-label text-start fw-bold">Role</label>
+                                    <div class="col-sm-10">
+                                        <select id="addRole" class="form-control">
+                                            <option value="" selected disabled>Pilih Role</option>
+                                            <option value="admin-TI">Admin TI</option>
+                                            <option value="admin-SIB">Admin SIB</option>
+                                            <option value="super">Superadmin</option>
                                         </select>
                                     </div>
                                 </div>
                                 <!-- Email -->
                                 <div class="row mb-3">
-                                    <label for="addEmail" class="col-sm-3 col-form-label text-end fw-bold">Email</label>
-                                    <div class="col-sm-9">
+                                    <label for="addEmail" class="col-sm-2 col-form-label text-start fw-bold">Email</label>
+                                    <div class="col-sm-10">
                                         <input type="email" id="addEmail" class="form-control"
                                             placeholder="Masukkan Email">
                                     </div>
                                 </div>
-                                <!-- Tempat, Tanggal Lahir -->
+                                <!-- No Telp -->
                                 <div class="row mb-3">
-                                    <label for="addTtl" class="col-sm-3 col-form-label text-end fw-bold">Tempat, Tanggal
-                                        Lahir</label>
-                                    <div class="col-sm-5">
-                                        <input type="text" id="addTempat" class="form-control"
-                                            placeholder="Masukkan Tempat Lahir">
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <input type="date" id="addTanggal" class="form-control">
-                                    </div>
-                                </div>
-                                <!-- Alamat -->
-                                <div class="row mb-3">
-                                    <label for="addAlamat"
-                                        class="col-sm-3 col-form-label text-end fw-bold">Alamat</label>
-                                    <div class="col-sm-9">
-                                        <textarea id="addAlamat" class="form-control" rows="3"
-                                            placeholder="Masukkan Alamat"></textarea>
+                                    <label for="addNoTelp" class="col-sm-2 col-form-label text-start fw-bold">No Telp</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" id="addNoTelp" class="form-control" placeholder="Masukkan No Telp">
                                     </div>
                                 </div>
                             </div>
@@ -295,7 +278,7 @@ session_start();
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline-secondary"
                                     data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" onclick="addData()">Tambah</button>
+                                <button type="button" class="btn btn-primary" disabled id="btn-add">Tambah</button>
                             </div>
                         </div>
                     </div>
@@ -316,188 +299,297 @@ session_start();
 
 
     <script>
-    $(document).ready(function() {
+        function deleteAdmin(nip) {
+            if (confirm('Apakah anda yakin ingin menghapus data admin ini?')) {
+                // redirect to /doDeleteAdmin with nip as body as POST  
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = '/doDeleteAdmin';
 
-        // spinner
-        $('#loading-spinner').removeClass('d-none');
-        $('#loading-spinner').addClass('d-flex');
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = 'nip';
+                input.value = nip;
 
-        $('#myTable').DataTable({
-            "lengthMenu": [10, 15, 20],
-            "pageLength": 10,
-            "paging": true,
-            "info": true,
-            "searching": false,
-            "responsive": true,
-            "scrollX": true,
-            "order": [
-                [1, 'asc']
-            ],
-            ajax: {
-                url: '/getDataAdmin',
-                type: 'POST',
-                data: function() {
-                    return {
-                        kategori: $('#kategori').val(),
-                        value: $('#keyword').val()
-                    };
-                },
-                dataSrc: function(json) {
-                    $('#loading-spinner').removeClass('d-flex');
-                    $('#loading-spinner').addClass('d-none');
-                    return json;
-                }
-            },
-            columns: [{
-                    data: null,
-                    render: function(data, type, row, meta) {
-                        return meta.row + 1; // Nomor urut berdasarkan indeks baris
-                    },
-                },
-                {
-                    data: 'nip'
-                },
-                {
-                    data: 'nama_pegawai'
-                },
-                {
-                    data: 'email'
-                },
-                {
-                    data: 'no_telp'
-                },
-                {
-                    data: 'prodi'
-                },
-                {
-                    data: 'action'
-                }
-            ],
-            "dom": "<'row'" +
-                "<'col-sm-6 d-flex align-items-center justify-conten-start'l>" +
-                "<'col-sm-6 d-flex align-items-center justify-content-end'f>" +
-                ">" +
+                form.appendChild(input);
+                document.body.appendChild(form);
+                form.submit();
+            }
+        }
 
-                "<'table-responsive'tr>" +
-
-                "<'row'" +
-                "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
-                "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
-                ">",
-            // make sure td and th white-space no wrap
-            "columnDefs": [{
-                    "className": "text-nowrap",
-                    "targets": "_all"
-                },
-                {
-                    "className": "dt-center",
-                    "targets": "_all"
-                },
-                {
-                    "orderable": false,
-                    "targets": "_all"
-                }
-            ],
-        });
-
-        $('#btn-search').click(function() {
+        $(document).ready(function() {
+            // spinner
             $('#loading-spinner').removeClass('d-none');
             $('#loading-spinner').addClass('d-flex');
 
-            $('#myTable').DataTable().ajax.reload();
+            $('#myTable').DataTable({
+                "lengthMenu": [10, 15, 20],
+                "pageLength": 10,
+                "paging": true,
+                "info": true,
+                "searching": false,
+                "responsive": true,
+                "scrollX": true,
+                "order": [
+                    [1, 'asc']
+                ],
+                ajax: {
+                    url: '/getDataAdmin',
+                    type: 'POST',
+                    data: function() {
+                        return {
+                            kategori: $('#kategori').val(),
+                            value: $('#keyword').val()
+                        };
+                    },
+                    dataSrc: function(json) {
+                        $('#loading-spinner').removeClass('d-flex');
+                        $('#loading-spinner').addClass('d-none');
+                        return json;
+                    }
+                },
+                columns: [{
+                        data: null,
+                        render: function(data, type, row, meta) {
+                            return meta.row + 1; // Nomor urut berdasarkan indeks baris
+                        },
+                    },
+                    {
+                        data: 'nip'
+                    },
+                    {
+                        data: 'nama_pegawai'
+                    },
+                    {
+                        data: 'email'
+                    },
+                    {
+                        data: 'no_telp'
+                    },
+                    {
+                        data: 'prodi'
+                    },
+                    {
+                        data: 'action'
+                    }
+                ],
+                "dom": "<'row'" +
+                    "<'col-sm-6 d-flex align-items-center justify-conten-start'l>" +
+                    "<'col-sm-6 d-flex align-items-center justify-content-end'f>" +
+                    ">" +
+
+                    "<'table-responsive'tr>" +
+
+                    "<'row'" +
+                    "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
+                    "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
+                    ">",
+                // make sure td and th white-space no wrap
+                "columnDefs": [{
+                        "className": "text-nowrap",
+                        "targets": "_all"
+                    },
+                    {
+                        "className": "dt-center",
+                        "targets": "_all"
+                    },
+                    {
+                        "orderable": false,
+                        "targets": "_all"
+                    }
+                ],
+            });
+
+            $('#btn-search').click(function() {
+                $('#loading-spinner').removeClass('d-none');
+                $('#loading-spinner').addClass('d-flex');
+
+                $('#myTable').DataTable().ajax.reload();
+            });
+
+            $('#myTable').on('click', '.btn-edit', function() {
+                $('#loading-spinner').removeClass('d-none');
+                $('#loading-spinner').addClass('d-flex');
+
+                $('#editNamaHidden, #editRoleHidden, #editEmailHidden, #editNoTelpHidden').val('');
+
+                let nip = $(this).data('nip');
+                $.ajax({
+                    url: '/getDetailAdmin',
+                    type: 'POST',
+                    data: {
+                        nip: nip
+                    },
+                    success: function(response) {
+                        json = JSON.parse(response);
+
+                        if (json != null) {
+                            $('#editNip').val(json.nip);
+                            $('#editNama').val(json.nama_pegawai);
+                            let role = json.role;
+                            if (role == 'super') {
+                                role = 'super';
+                            } else {
+                                let prodi = json.prodi;
+                                role = role.toLowerCase() + '-' + prodi;
+                            }
+                            $('#editRole').val(role);
+                            $('#editEmail').val(json.email);
+                            $('#editNoTelp').val(json.no_telp);
+
+                            $('#editNamaHidden').val(json.nama_pegawai);
+                            $('#editRoleHidden').val(role);
+                            $('#editEmailHidden').val(json.email);
+                            $('#editNoTelpHidden').val(json.no_telp);
+                        } else {
+                            $('#edit-result').removeClass('d-none');
+                            $('#edit-result').text('Gagal mengambil data admin');
+                        }
+
+                        $('#loading-spinner').removeClass('d-flex');
+                        $('#loading-spinner').addClass('d-none');
+
+                        $('#editModal').modal('show');
+                    }
+                });
+            });
+
+            $('#addNip, #addNama, #addRole, #addEmail, #addNoTelp').on('input', function() {
+                if ($('#addNip').val() != '' && $('#addNama').val() != '' && $('#addRole').val() != '' && $('#addEmail').val() != '' && $('#addNoTelp').val() != '') {
+                    $('#btn-add').prop('disabled', false);
+                } else {
+                    $('#btn-add').prop('disabled', true);
+                }
+            });
+
+            $('#btn-add').click(function() {
+                let data = {
+                    nip: $('#addNip').val(),
+                    nama: $('#addNama').val(),
+                    role: $('#addRole').val(),
+                    email: $('#addEmail').val(),
+                    no_telp: $('#addNoTelp').val(),
+                    prodi: null
+                };
+                if ($('#addRole').val() == 'super') {
+                    data.prodi = null;
+                    data.role = 'super';
+                } else {
+                    let arrTemp = $('#addRole').val().split('-');
+                    data.prodi = arrTemp[1];
+                    data.role = arrTemp[0];
+                }
+
+                $.ajax({
+                    url: '/doInsertAdmin',
+                    type: 'POST',
+                    data: data,
+                    success: function(response) {
+                        if (response == 'success') {
+                            $('#add-result').addClass('d-none');
+                            $('#addNip, #addNama, #addRole, #addEmail, #addNoTelp').val('');
+                            $('#addModal').modal('hide');
+
+                            $('#loading-spinner').removeClass('d-none');
+                            $('#loading-spinner').addClass('d-flex');
+                            $('#myTable').DataTable().ajax.reload();
+                        } else {
+                            $('#add-result').removeClass('d-none');
+                            $('#add-result').text(response);
+                        }
+                    }
+                });
+            });
+
+            $('#editNama, #editRole, #editEmail, #editNoTelp').on('input', function() {
+                let isChanged = false;
+
+                    // Cek apakah ada minimal satu field yang diubah
+                if ($('#editNama').val() != $('#editNamaHidden').val() ||
+                    $('#editRole').val() != $('#editRoleHidden').val() ||
+                    $('#editEmail').val() != $('#editEmailHidden').val() ||
+                    $('#editNoTelp').val() != $('#editNoTelpHidden').val()) {
+                    isChanged = true;
+                }
+
+                // Cek apakah semua field terisi
+                let isFilled = $('#editNama').val() != '' &&
+                    $('#editRole').val() != '' &&
+                    $('#editEmail').val() != '' &&
+                    $('#editNoTelp').val() != '';
+
+                $('#btn-edit').prop('disabled', !(isChanged && isFilled));
+            });
+
+            $('#btn-edit').click(function() {
+                let data = {
+                    nip: $('#editNip').val(),
+                    nama: $('#editNama').val(),
+                    role: $('#editRole').val(),
+                    email: $('#editEmail').val(),
+                    no_telp: $('#editNoTelp').val(),
+                    prodi: null
+                };
+                if ($('#editRole').val() == 'super') {
+                    data.prodi = null;
+                    data.role = 'super';
+                } else {
+                    let arrTemp = $('#editRole').val().split('-');
+                    data.prodi = arrTemp[1];
+                    data.role = arrTemp[0];
+                }
+
+                $.ajax({
+                    url: '/doUpdateAdmin',
+                    type: 'POST',
+                    data: data,
+                    success: function(response) {
+                        if (response == 'success') {
+                            $('#edit-result').addClass('d-none');
+                            $('#editNip, #editNama, #editRole, #editEmail, #editNoTelp').val('');
+                            $('#editModal').modal('hide');
+
+                            $('#loading-spinner').removeClass('d-none');
+                            $('#loading-spinner').addClass('d-flex');
+                            $('#myTable').DataTable().ajax.reload();
+                        } else {
+                            $('#edit-result').removeClass('d-none');
+                            $('#edit-result').text(response);
+                        }
+                    }
+                });
+            });
         });
-    });
-    $(".sidebar ul li").on("click", function() {
-        $(".sidebar ul li.active").removeClass("active");
-        $(this).addClass("active");
-    });
-
-    $(".open-btn").on("click", function() {
-        $(".sidebar").addClass("active");
-    });
-
-    $(".close-btn").on("click", function() {
-        $(".sidebar").removeClass("active");
-    });
-
-    //js for modal edit
-    function confirmSave() {
-        const userConfirmed = confirm("Apakah anda yakin ingin mengubah data Mahasiswa?");
-        if (userConfirmed) {
-            alert("Data telah berhasil disimpan!"); // Lakukan aksi penyimpanan data di sini
-
-            // Menutup modal menggunakan Bootstrap instance
-            const modal = bootstrap.Modal.getInstance(document.getElementById('editModal'));
-            modal.hide();
-
-            // Hapus backdrop secara manual jika masih ada
-            const backdrops = document.querySelectorAll('.modal-backdrop');
-            backdrops.forEach((backdrop) => backdrop.remove()); // Hapus semua elemen backdrop
-        } else {
-            alert("Perubahan data dibatalkan.");
-        }
-    }
-
-    function addData() {
-        // Ambil nilai dari input field
-        const nip = document.getElementById('addNip').value;
-        const nama = document.getElementById('addNama').value;
-        const jenisKelamin = document.getElementById('addJenisKelamin').value;
-        const email = document.getElementById('addEmail').value;
-        const tempatLahir = document.getElementById('addTempat').value;
-        const tanggalLahir = document.getElementById('addTanggal').value;
-        const alamat = document.getElementById('addAlamat').value;
-
-        // Validasi sederhana untuk memastikan semua data diisi
-        if (!nip || !nama || !jenisKelamin || !email || !tempatLahir || !tanggalLahir || !alamat) {
-            alert('Semua data wajib diisi!');
-            return;
-        }
-
-        // Simulasi penyimpanan data (misalnya menambahkannya ke tabel admin)
-        console.log({
-            nip,
-            nama,
-            jenisKelamin,
-            email,
-            tempatLahir,
-            tanggalLahir,
-            alamat
+        $(".sidebar ul li").on("click", function() {
+            $(".sidebar ul li.active").removeClass("active");
+            $(this).addClass("active");
         });
 
-        // Menambahkan data ke tabel admin secara dinamis
-        const table = document.querySelector('table tbody');
-        const newRow = table.insertRow();
+        $(".open-btn").on("click", function() {
+            $(".sidebar").addClass("active");
+        });
 
-        // Menambahkan data ke kolom tabel
-        newRow.innerHTML = `
-                <td>${nip}</td>
-                <td>${nama}</td>
-                <td>${jenisKelamin}</td>
-                <td>${email}</td>
-                <td>${tempatLahir}, ${tanggalLahir}</td>
-                <td>${alamat}</td>
-                <td>
-                    <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        <i class="fas fa-eye"></i>
-                    </button>
-                    <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editModal">
-                        <i class="fas fa-edit"></i>
-                    </button>
-                    <button class="btn btn-danger btn-sm">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </td>
-            `;
+        $(".close-btn").on("click", function() {
+            $(".sidebar").removeClass("active");
+        });
 
-        // Tutup modal
-        const modal = bootstrap.Modal.getInstance(document.getElementById('addModal'));
-        modal.hide();
+        //js for modal edit
+        function confirmSave() {
+            const userConfirmed = confirm("Apakah anda yakin ingin mengubah data Mahasiswa?");
+            if (userConfirmed) {
+                alert("Data telah berhasil disimpan!"); // Lakukan aksi penyimpanan data di sini
 
-        // Reset form setelah data ditambahkan
-        document.getElementById('addModal').querySelectorAll('input, select, textarea').forEach(input => input.value =
-            '');
-    }
+                // Menutup modal menggunakan Bootstrap instance
+                const modal = bootstrap.Modal.getInstance(document.getElementById('editModal'));
+                modal.hide();
+
+                // Hapus backdrop secara manual jika masih ada
+                const backdrops = document.querySelectorAll('.modal-backdrop');
+                backdrops.forEach((backdrop) => backdrop.remove()); // Hapus semua elemen backdrop
+            } else {
+                alert("Perubahan data dibatalkan.");
+            }
+        }
     </script>
 </body>
 
