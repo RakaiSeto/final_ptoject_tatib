@@ -571,7 +571,7 @@ session_start();
                 "responsive": true,
                 "scrollX": true,
                 "order": [
-                    [1, 'asc']
+                    [0, 'asc']
                 ],
                 ajax: {
                     url: '/getDataDosen',
