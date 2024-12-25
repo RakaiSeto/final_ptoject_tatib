@@ -82,7 +82,8 @@ session_start();
             </div>
 
             <?php if (isset($_SESSION['error'])): ?>
-                <div class="alert alert-danger" role="alert">sdf</div>
+                <div class="alert alert-danger" role="alert"><?= $_SESSION['error'] ?></div>
+                <?php unset($_SESSION['error']); ?>
             <?php endif; ?>
             <!-- Button Tambah Admin -->
             <div class="text-start mb-3">
@@ -185,7 +186,7 @@ session_start();
                                             <option value="admin-SIB">Admin SIB</option>
                                             <option value="super">Superadmin</option>
                                         </select>
-                                    </div>
+                                       </div>
                                 </div>
                                 <!-- Email -->
                                 <div class="row mb-3">
@@ -501,7 +502,7 @@ session_start();
                 });
             });
 
-            $('#editNama, #editRole, #editEmail, #editNoTelp').on('input', function() {
+            $('#editNama, #editRole, #editEmail, #editNoTelp').on('input change', function() {
                 let isChanged = false;
 
                     // Cek apakah ada minimal satu field yang diubah

@@ -215,10 +215,6 @@ session_start();
                                                                 <td id="detail-prodi">: Teknik Informatika</td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Jurusan</td>
-                                                                <td id="detail-jurusan">: Teknologi Informasi</td>
-                                                            </tr>
-                                                            <tr>
                                                                 <td>Tanggal Lahir</td>
                                                                 <td id="detail-tanggal-lahir">: 28, Februari 2024</td>
                                                             </tr>
@@ -368,50 +364,55 @@ session_start();
 
                                     <div class="form-group">
                                         <div class="row mb-3">
-                                            <label for="" class="col-sm-3 col-form-label text-end fw-bold">NIM</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" value="2541987544" readonly
+                                            <label for="" class="col-sm-2 col-form-label text-end fw-bold">NIM</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" placeholder="Masukkan NIM disini" readonly
                                                     disabled>
                                             </div>
                                         </div>
                                         <div class="row mb-3">
-                                            <label for="" class="col-sm-3 col-form-label text-end fw-bold">Nama</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" value="aseppppppp">
+                                            <label for="" class="col-sm-2 col-form-label text-end fw-bold">Nama</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" placeholder="Masukkan Nama disini">
                                             </div>
                                         </div>
                                         <div class="row mb-3">
-                                            <label for="" class="col-sm-3 col-form-label text-end fw-bold">Kelas</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" value="2E">
+                                            <label for="" class="col-sm-2 col-form-label text-end fw-bold">Jenis Kelamin</label>
+                                            <div class="col-sm-10">
+                                                <!-- use radio -->
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="jenis_kelamin" id="jenis_kelamin" value="Laki-laki">
+                                                    <label class="form-check-label" for="jenis_kelamin">Laki-laki</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="jenis_kelamin" id="jenis_kelamin" value="Perempuan">
+                                                    <label class="form-check-label" for="jenis_kelamin">Perempuan</label>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row mb-3">
-                                            <label for="" class="col-sm-3 col-form-label text-end fw-bold">Prodi</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" value="Teknik Informatika">
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <label for="" class="col-sm-3 col-form-label text-end fw-bold">Jenis
-                                                Kelamin</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" value="Laki-laki">
+                                            <label for="" class="col-sm-2 col-form-label text-end fw-bold">Kelas</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" placeholder="Masukkan Kelas disini">
                                             </div>
                                         </div>
                                         <div class="row mb-3">
                                             <label for="" class="col-sm-3 col-form-label text-end fw-bold">Tanggal
                                                 Lahir</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" value="28 Februari 2024"
-                                                    readonly>
+                                            <div class="col-sm-10">
+                                                <input type="date" class="form-control" placeholder="Masukkan Tanggal Lahir disini">
                                             </div>
                                         </div>
                                         <div class="row mb-3">
-                                            <label for="" class="col-sm-3 col-form-label text-end fw-bold">Email</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" value="naed@example.com"
-                                                    readonly>
+                                            <label for="" class="col-sm-2 col-form-label text-end fw-bold">Email</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" placeholder="Masukkan Email disini">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="" class="col-sm-2 col-form-label text-end fw-bold">No Telp<label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" placeholder="Masukkan No Telp disini">
                                             </div>
                                         </div>
                                     </div>

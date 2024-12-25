@@ -117,7 +117,7 @@ class LaporanController extends Controller
         $tmpFilePath = $_FILES['bukti']['tmp_name'];
 
         // Store the file in a directory
-        $uploadDir = __DIR__ . '/../../../public/img/';
+        $uploadDir = __DIR__ . '/../../../public/bukti/';
         $uploadFilePath = $uploadDir . $fileName . '.' . $fileExtension;
 
         // Move the file from the temporary path to the upload directory

@@ -108,7 +108,6 @@ class AdminController extends Controller
     public function doDeleteAdmin()
     {
         $admin = new pegawai();
-        Helper::dumpToLog(json_encode($_POST));
         $result = $admin->deletePegawai($_POST['nip']);
         if ($result != true) {
             session_start();

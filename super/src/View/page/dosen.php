@@ -18,41 +18,41 @@ session_start();
     <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
 
     <style>
-    /* Custom Scrollbar Style */
-    .dataTables_scrollBody {
-        overflow-x: auto;
-    }
+        /* Custom Scrollbar Style */
+        .dataTables_scrollBody {
+            overflow-x: auto;
+        }
 
-    .dataTables_scrollBody::-webkit-scrollbar {
-        height: 12px;
-    }
+        .dataTables_scrollBody::-webkit-scrollbar {
+            height: 12px;
+        }
 
-    .dataTables_scrollBody::-webkit-scrollbar-track {
-        background: #f1f1f1;
-    }
+        .dataTables_scrollBody::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
 
-    .dataTables_scrollBody::-webkit-scrollbar-thumb {
-        background: #888;
-        border-radius: 6px;
-    }
+        .dataTables_scrollBody::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 6px;
+        }
 
-    .dataTables_scrollBody::-webkit-scrollbar-thumb:hover {
-        background: #555;
-    }
+        .dataTables_scrollBody::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
 
-    .dataTables_wrapper {
-        width: 100%;
-        overflow-x: auto;
-    }
+        .dataTables_wrapper {
+            width: 100%;
+            overflow-x: auto;
+        }
 
-    .dataTables_wrapper .dataTables_paginate .paginate_button {
-        margin-top: 10px;
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
+            margin-top: 10px;
 
-    }
+        }
 
-    #myTable {
-        width: 100% !important;
-    }
+        #myTable {
+            width: 100% !important;
+        }
     </style>
 </head>
 
@@ -65,7 +65,7 @@ session_start();
         <?php require_once 'navbar.php'; ?>
 
         <!--Content -->
-        <div class="content px-3 pt-3 " style="margin-top: 56px;    ">
+        <div class="content px-3 pt-3 " style="margin-top: 56px;">
             <div class="text-center position-fixed d-none justify-content-center align-items-center top-50 start-50 translate-middle bg-white bg-opacity-50 w-100 h-100"
                 id="loading-spinner" style="z-index: 999; display: none;">
                 <img src="/public/img/spinner-svg" alt="Loading..." class="mx-auto d-block"
@@ -319,9 +319,10 @@ session_start();
                 </div>
 
                 <!-- Add Modal -->
-                <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
+                <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true" data-bs-backdrop="static" style="background-color: rgba(255, 255, 255, 0.20);">
+                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                        <div class="modal-content" style="background-color: #F5F5F5">
                             <!-- Modal Header -->
                             <div class="modal-header">
                                 <h5 class="modal-title" id="addModalLabel">Tambah Data Dosen</h5>
@@ -330,56 +331,63 @@ session_start();
                             </div>
                             <!-- Modal Body -->
                             <div class="modal-body">
-                                <form id="addDosenForm">
-                                    <!-- Input NIP -->
-                                    <div class="mb-3">
-                                        <label for="nip" class="form-label">NIP</label>
-                                        <input type="text" class="form-control" id="nip" name="nip"
-                                            placeholder="Masukkan NIP" required>
+                                <div id="add-result" class="alert alert-danger d-none" role="alert">sdf</div>
+                                <div class="form-group">
+                                    <div class="row mb-3">
+                                        <label for="" class="col-sm-2 col-form-label text-end fw-bold">NIP</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" id="addNip" class="form-control" placeholder="Masukkan NIP disini">
+                                        </div>
                                     </div>
-                                    <!-- Input Nama -->
-                                    <div class="mb-3">
-                                        <label for="nama" class="form-label">Nama</label>
-                                        <input type="text" class="form-control" id="nama" name="nama"
-                                            placeholder="Masukkan Nama" required>
+                                    <div class="row mb-3">
+                                        <label for="" class="col-sm-2 col-form-label text-end fw-bold">Nama</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" id="addNama" class="form-control" placeholder="Masukkan Nama disini">
+                                        </div>
                                     </div>
-                                    <!-- Input Jenis Kelamin -->
-                                    <div class="mb-3">
-                                        <label for="jenisKelamin" class="form-label">Jenis Kelamin</label>
-                                        <select class="form-select" id="jenisKelamin" name="jenisKelamin" required>
-                                            <option value="" disabled selected>Pilih Jenis Kelamin</option>
-                                            <option value="Laki-laki">Laki-laki</option>
-                                            <option value="Perempuan">Perempuan</option>
-                                        </select>
+                                    <div class="row mb-3">
+                                        <label for="" class="col-sm-2 col-form-label text-end fw-bold">Email</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" id="addEmail" class="form-control" placeholder="Masukkan Email disini">
+                                        </div>
                                     </div>
-                                    <!-- Input Jabatan -->
-                                    <div class="mb-3">
-                                        <label for="jabatan" class="form-label">Jabatan</label>
-                                        <select class="form-select" id="jabatan" name="jabatan" required>
-                                            <option value="" disabled selected>Pilih Jabatan</option>
-                                            <option value="Dosen Pengajar">Dosen Pengajar</option>
-                                            <option value="DPA">DPA</option>
-                                            <option value="KPS">KPS</option>
-                                        </select>
+                                    <div class="row mb-3">
+                                        <label for="" class="col-sm-2 col-form-label text-end fw-bold">No Telp</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" id="addNoTelp" class="form-control" placeholder="Masukkan No Telp disini">
+                                        </div>
                                     </div>
-                                    <!-- Input Tanggal Lahir -->
-                                    <div class="mb-3">
-                                        <label for="tanggalLahir" class="form-label">Tanggal Lahir</label>
-                                        <input type="date" class="form-control" id="tanggalLahir" name="tanggalLahir"
-                                            required>
+                                    <div class="row mb-3">
+                                        <label for="" class="col-sm-2 col-form-label text-end fw-bold">Jabatan</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" id="addJabatan">
+                                                <option value="" disabled selected>Pilih Jabatan</option>
+                                                <option value="DOSEN">Dosen Pengajar</option>
+                                                <option value="KPS-TI">KPS-TI</option>
+                                                <option value="KPS-SIB">KPS-SIB</option>
+                                                <option value="KPS-PPLS">KPS-PPLS</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                    <!-- Input Alamat -->
-                                    <div class="mb-3">
-                                        <label for="alamat" class="form-label">Alamat</label>
-                                        <textarea class="form-control" id="alamat" name="alamat" rows="3"
-                                            placeholder="Masukkan Alamat" required></textarea>
+                                    <div class="row mb-3">
+                                        <label for="" class="col-sm-2 col-form-label text-end fw-bold">DPA</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" id="addDpa">
+                                                <option value="false" selected>Bukan DPA</option>
+                                                <?php foreach ($kelas as $k) : ?>
+                                                    <?php if ($k->nip_dpa == '' || $k->nip_dpa == null) : ?>
+                                                        <option value="<?= $k->id_kelas ?>"><?= $k->nama_kelas ?></option>
+                                                    <?php endif; ?>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
                                     </div>
-                                </form>
+                                </div>
                             </div>
                             <!-- Modal Footer -->
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                <button type="submit" class="btn btn-success" form="addDosenForm">Simpan</button>
+                                <button type="submit" id="btn-add" class="btn btn-success" disabled>Simpan</button>
                             </div>
                         </div>
                     </div>
@@ -392,68 +400,73 @@ session_start();
                     <div class="modal-dialog modal-lg modal-dialog-centered">
                         <div class="modal-content" style="background-color: #F5F5F5">
                             <div class="modal-header">
-                                <h5 class="modal-title fw-bold" id="exampleModalLabel">Edit Data Mahasiswa</h5>
+                                <h5 class="modal-title fw-bold" id="exampleModalLabel">Edit Data Dosen</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <div class="bg-body-tertiary">
-
-                                    <div class="form-group">
-                                        <div class="row mb-3">
-                                            <label for="" class="col-sm-3 col-form-label text-end fw-bold">NIM</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" value="2541987544">
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <label for="" class="col-sm-3 col-form-label text-end fw-bold">Nama</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" value="aseppppppp">
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <label for="" class="col-sm-3 col-form-label text-end fw-bold">Kelas</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" value="2E">
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <label for="" class="col-sm-3 col-form-label text-end fw-bold">Prodi</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" value="Teknik Informatika">
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <label for="" class="col-sm-3 col-form-label text-end fw-bold">Jenis
-                                                Kelamin</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" value="Laki-laki">
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <label for="" class="col-sm-3 col-form-label text-end fw-bold">Tanggal
-                                                Lahir</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" value="28 Februari 2024"
-                                                    readonly>
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <label for="" class="col-sm-3 col-form-label text-end fw-bold">Email</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" value="naed@example.com"
-                                                    readonly>
-                                            </div>
+                                <div id="edit-result" class="alert alert-danger d-none" role="alert">sdf</div>
+                                <div class="form-group">
+                                    <div class="row mb-3">
+                                        <label for="" class="col-sm-2 col-form-label text-end fw-bold">NIP</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" id="editNip" class="form-control" readonly placeholder="Masukkan NIP disini">
                                         </div>
                                     </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-outline-secondary"
-                                            data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn-detail" onclick="confirmSave()">Save
-                                            changes</button>
+                                    <div class="row mb-3">
+                                        <label for="" class="col-sm-2 col-form-label text-end fw-bold">Nama</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" id="editNama" class="form-control" placeholder="Masukkan Nama disini">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="" class="col-sm-2 col-form-label text-end fw-bold">Email</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" id="editEmail" class="form-control" placeholder="Masukkan Email disini">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="" class="col-sm-2 col-form-label text-end fw-bold">No Telp</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" id="editNoTelp" class="form-control" placeholder="Masukkan No Telp disini">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="" class="col-sm-2 col-form-label text-end fw-bold">Jabatan</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" id="editJabatan">
+                                                <option value="" disabled selected>Pilih Jabatan</option>
+                                                <option value="DOSEN">Dosen Pengajar</option>
+                                                <option value="KPS-TI">KPS-TI</option>
+                                                <option value="KPS-SIB">KPS-SIB</option>
+                                                <option value="KPS-PPLS">KPS-PPLS</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="" class="col-sm-2 col-form-label text-end fw-bold">DPA</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" id="editDpa">
+                                                <option value="false" selected>Bukan DPA</option>
+                                                <?php foreach ($kelas as $k) : ?>
+                                                    <option value="<?= $k->id_kelas ?>"><?= $k->nama_kelas ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="button" id="btn-edit" class="btn btn-primary"
+                                        disabled>Save changes</button>
+                                </div>
+
+                                <input type="hidden" id="editNamaHidden" name="nama">
+                                <input type="hidden" id="editEmailHidden" name="email">
+                                <input type="hidden" id="editNoTelpHidden" name="no_telp">
+                                <input type="hidden" id="editJabatanHidden" name="jabatan">
+                                <input type="hidden" id="editDpaHidden" name="dpa">
                             </div>
                         </div>
                     </div>
@@ -557,166 +570,401 @@ session_start();
 
 
         <script>
-        $(document).ready(function() {
-            // spinner
-            $('#loading-spinner').removeClass('d-none');
-            $('#loading-spinner').addClass('d-flex');
+            function deleteDosen(nip) {
+                if (confirm('Apakah anda yakin ingin menghapus data dosen ini?')) {
+                    // redirect to /doDeleteAdmin with nip as body as POST  
+                    const form = document.createElement('form');
+                    form.method = 'POST';
+                    form.action = '/doDeleteDosen';
 
-            $('#myTable').DataTable({
-                "lengthMenu": [10, 15, 20],
-                "pageLength": 10,
-                "paging": true,
-                "info": true,
-                "searching": false,
-                "responsive": true,
-                "scrollX": true,
-                "order": [
-                    [0, 'asc']
-                ],
-                ajax: {
-                    url: '/getDataDosen',
-                    type: 'POST',
-                    data: function() {
-                        return {
-                            kategori: $('#kategori').val(),
-                            value: $('#keyword').val(),
-                            role: $('#switchrole').val()
-                        };
-                    },
-                    dataSrc: function(json) {
-                        $('#loading-spinner').removeClass('d-flex');
-                        $('#loading-spinner').addClass('d-none');
-                        return json;
-                    }
-                },
-                columns: [{
-                        data: null,
-                        render: function(data, type, row, meta) {
-                            return meta.row + 1; // Nomor urut berdasarkan indeks baris
+                    const input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = 'nip';
+                    input.value = nip;
+
+                    form.appendChild(input);
+                    document.body.appendChild(form);
+                    form.submit();
+                }
+            }
+
+            async function getKelasTanpaDPA(kelasDPA) {
+                return new Promise((resolve, reject) => {
+                    $.ajax({
+                        url: '/getKelasTanpaDPA',
+                        type: 'POST',
+                        data: {
+                            exception: kelasDPA
                         },
-                    }, {
-                        data: 'nip'
-                    },
-                    {
-                        data: 'nama_pegawai'
-                    },
-                    {
-                        data: 'email'
-                    },
-                    {
-                        data: 'no_telp'
-                    },
-                    {
-                        data: 'role'
-                    },
-                    {
-                        data: 'is_dpa'
-                    },
-                    {
-                        data: 'action'
-                    }
-                ],
-                "dom": "<'row'" +
-                    "<'col-sm-6 d-flex align-items-center justify-conten-start'l>" +
-                    "<'col-sm-6 d-flex align-items-center justify-content-end'f>" +
-                    ">" +
+                        success: function(response) {
+                            let json = JSON.parse(response);
+                            // change option value
+                            $('#editDpa').empty();
+                            $('#editDpa').append('<option value="false" selected>Bukan DPA</option>');
+                            json.forEach(function(kelas) {
+                                $('#editDpa').append('<option value="' + kelas.id_kelas + '">' + kelas.nama_kelas + '</option>');
+                            });
 
-                    "<'table-responsive'tr>" +
+                            $('#addDpa').empty();
+                            $('#addDpa').append('<option value="false" selected>Bukan DPA</option>');
+                            json.forEach(function(kelas) {
+                                $('#addDpa').append('<option value="' + kelas.id_kelas + '">' + kelas.nama_kelas + '</option>');
+                            });
+                            resolve();
+                        },
+                        error: function(error) {
+                            reject(error);
+                        }
+                    });
+                });
+            }
 
-                    "<'row'" +
-                    "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
-                    "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
-                    ">",
-                // make sure td and th white-space no wrap
-                "columnDefs": [{
-                        "className": "text-nowrap",
-                        "targets": "_all"
-                    },
-                    {
-                        "className": "dt-center",
-                        "targets": "_all"
-                    },
-                    {
-                        "orderable": false,
-                        "targets": "_all"
-                    }
-                ],
-            });
-
-            $('#btn-search').click(function() {
+            $(document).ready(function() {
+                // spinner
                 $('#loading-spinner').removeClass('d-none');
                 $('#loading-spinner').addClass('d-flex');
 
-                $('#myTable').DataTable().ajax.reload();
+                var t = $('#myTable').DataTable({
+                    "lengthMenu": [10, 15, 20],
+                    "pageLength": 10,
+                    "paging": true,
+                    "info": true,
+                    "searching": false,
+                    "responsive": true,
+                    "scrollX": true,
+                    "order": [
+                        [2, 'asc']
+                    ],
+                    ajax: {
+                        url: '/getDataDosen',
+                        type: 'POST',
+                        data: function() {
+                            return {
+                                kategori: $('#kategori').val(),
+                                value: $('#keyword').val(),
+                                role: $('#switchrole').val()
+                            };
+                        },
+                        dataSrc: function(json) {
+                            $('#loading-spinner').removeClass('d-flex');
+                            $('#loading-spinner').addClass('d-none');
+                            return json;
+                        }
+                    },
+                    columns: [{
+                            data: 'nip'
+                        }, {
+                            data: 'nip'
+                        },
+                        {
+                            data: 'nama_pegawai'
+                        },
+                        {
+                            data: 'email'
+                        },
+                        {
+                            data: 'no_telp'
+                        },
+                        {
+                            data: 'role'
+                        },
+                        {
+                            data: 'is_dpa'
+                        },
+                        {
+                            data: 'action'
+                        }
+                    ],
+                    "dom": "<'row'" +
+                        "<'col-sm-6 d-flex align-items-center justify-conten-start'l>" +
+                        "<'col-sm-6 d-flex align-items-center justify-content-end'f>" +
+                        ">" +
+
+                        "<'table-responsive'tr>" +
+
+                        "<'row'" +
+                        "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
+                        "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
+                        ">",
+                    // make sure td and th white-space no wrap
+                    "columnDefs": [{
+                            "className": "text-nowrap",
+                            "targets": "_all"
+                        },
+                        {
+                            "className": "numbering",
+                            "targets": 0
+                        },
+                        {
+                            "className": "dt-center",
+                            "targets": "_all"
+                        },
+                        {
+                            "orderable": false,
+                            "targets": "_all"
+                        }
+                    ],
+                });
+
+                t.on('order.dt search.dt', function() {
+                    t.column(0, {
+                        search: 'applied',
+                        order: 'applied'
+                    }).nodes().each(function(cell, i) {
+                        cell.innerHTML = i + 1;
+                    });
+                }).draw();
+
+
+                $('#btn-search').click(function() {
+                    $('#loading-spinner').removeClass('d-none');
+                    $('#loading-spinner').addClass('d-flex');
+
+                    $('#myTable').DataTable().ajax.reload();
+                });
+
+                $('#myTable').on('click', '.btn-edit', async function() {
+                    $('#loading-spinner').removeClass('d-none');
+                    $('#loading-spinner').addClass('d-flex');
+
+                    $('#editNamaHidden, #editRoleHidden, #editEmailHidden, #editNoTelpHidden').val('');
+
+                    let nip = $(this).data('nip');
+                    $.ajax({
+                        url: '/getDetailDosen',
+                        type: 'POST',
+                        data: {
+                            nip: nip
+                        },
+                        success: async function(response) {
+                            let json = JSON.parse(response);
+
+                            if (json != null) {
+                                $('#editNip').val(json.pegawai.nip);
+                                $('#editNama').val(json.pegawai.nama_pegawai);
+                                is_kps = json.pegawai.is_kps;
+                                if (is_kps == 1) {
+                                    prodi = json.pegawai.prodi;
+                                    $('#editJabatan').val('KPS-' + prodi);
+                                } else {
+                                    $('#editJabatan').val('DOSEN');
+                                }
+                                if (json.kelas != null) {
+                                    await getKelasTanpaDPA(json.kelas.id_kelas);
+                                    $('#editDpa').val(json.kelas.id_kelas);
+                                } else {
+                                    await getKelasTanpaDPA(null);
+                                    $('#editDpa').val('false');
+                                }
+                                $('#editEmail').val(json.pegawai.email);
+                                $('#editNoTelp').val(json.pegawai.no_telp);
+
+                                $('#editNamaHidden').val(json.pegawai.nama_pegawai);
+                                if (is_kps == 1) {
+                                    prodi = json.pegawai.prodi;
+                                    $('#editJabatanHidden').val('KPS-' + prodi);
+                                } else {
+                                    $('#editJabatanHidden').val('DOSEN');
+                                }
+                                if (json.kelas != null) {
+                                    $('#editDpaHidden').val(json.kelas.id_kelas);
+                                } else {
+                                    $('#editDpaHidden').val('false');
+                                }
+                                $('#editEmailHidden').val(json.pegawai.email);
+                                $('#editNoTelpHidden').val(json.pegawai.no_telp);
+                            } else {
+                                $('#edit-result').removeClass('d-none');
+                                $('#edit-result').text('Gagal mengambil data dosen');
+                            }
+
+                            $('#loading-spinner').removeClass('d-flex');
+                            $('#loading-spinner').addClass('d-none');
+
+                            $('#editModal').modal('show');
+                        }
+                    });
+                });
+
+                $('#addNip, #addNama, #addJabatan, #addDpa, #addEmail, #addNoTelp').on('input change', function() {
+                    let isFilled = ($('#addNip').val() != '' && $('#addNip').val() != null) &&
+                        ($('#addNama').val() != '' && $('#addNama').val() != null) &&
+                        ($('#addJabatan').val() != '' && $('#addJabatan').val() != null) &&
+                        ($('#addDpa').val() != '' && $('#addDpa').val() != null) &&
+                        ($('#addEmail').val() != '' && $('#addEmail').val() != null) &&
+                        ($('#addNoTelp').val() != '' && $('#addNoTelp').val() != null);
+
+                    $('#btn-add').prop('disabled', !isFilled);
+                });
+
+                $('#btn-add').on('click', function() {
+                    let data = {
+                        nip: $('#addNip').val(),
+                        nama: $('#addNama').val(),
+                        jabatan: $('#addJabatan').val(),
+                        dpa: $('#addDpa').val(),
+                        email: $('#addEmail').val(),
+                        no_telp: $('#addNoTelp').val(),
+                        prodi: ''
+                    };
+                    if (data.jabatan.includes('KPS-')) {
+                        data.prodi = data.jabatan.split('-')[1];
+                    }
+
+                    $.ajax({
+                        url: '/doInsertDosen',
+                        type: 'POST',
+                        data: data,
+                        success: function(response) {
+                            if (response == 'success') {
+                                $('#add-result').addClass('d-none');
+                                $('#addNip, #addNama, #addRole, #addEmail, #addNoTelp').val('');
+                                $('#addModal').modal('hide');
+
+                                $('#loading-spinner').removeClass('d-none');
+                                $('#loading-spinner').addClass('d-flex');
+
+                                
+
+                                $('#myTable').DataTable().ajax.reload();
+                            } else {
+                                $('#add-result').removeClass('d-none');
+                                $('#add-result').text(response);
+                            }
+                        }
+                    });
+                });
+
+                $('#editNama, #editJabatan, #editDpa, #editEmail, #editNoTelp').on('input change', function() {
+                    let isChanged = false;
+
+                    if ($('#editNama').val() != $('#editNamaHidden').val() ||
+                        $('#editJabatan').val() != $('#editJabatanHidden').val() ||
+                        $('#editDpa').val() != $('#editDpaHidden').val() ||
+                        $('#editEmail').val() != $('#editEmailHidden').val() ||
+                        $('#editNoTelp').val() != $('#editNoTelpHidden').val()) {
+                        isChanged = true;
+                    }
+
+                    let isFilled = $('#editNama').val() != '' &&
+                        $('#editJabatan').val() != '' &&
+                        $('#editEmail').val() != '' &&
+                        $('#editNoTelp').val() != '';
+
+                    $('#btn-edit').prop('disabled', !(isChanged && isFilled));
+                });
+
+                $('#btn-edit').on('click', function() {
+                    $('#loading-spinner').removeClass('d-none');
+                    $('#loading-spinner').addClass('d-flex');
+
+                    const nip = $('#editNip').val();
+                    const nama = $('#editNama').val();
+                    const jabatan = $('#editJabatan').val();
+                    const dpa = $('#editDpa').val();
+                    const email = $('#editEmail').val();
+                    const no_telp = $('#editNoTelp').val();
+                    const prodi = '';
+                    if (jabatan.includes('KPS-')) {
+                        prodi = jabatan.split('-')[1];
+                    }
+
+                    $.ajax({
+                        url: '/doUpdateDosen',
+                        type: 'POST',
+                        data: {
+                            nip: nip,
+                            nama: nama,
+                            jabatan: jabatan,
+                            dpa: dpa,
+                            email: email,
+                            no_telp: no_telp,
+                            prodi: prodi
+                        },
+                        success: function(response) {
+                            if (response == 'success') {
+                                $('#edit-result').addClass('d-none');
+                                $('#editNip, #editNama, #editJabatan, #editDpa, #editEmail, #editNoTelp').val('');
+                                $('#editModal').modal('hide');
+
+                                $('#loading-spinner').removeClass('d-none');
+                                $('#loading-spinner').addClass('d-flex');
+                                $('#myTable').DataTable().ajax.reload();
+                            } else {
+                                $('#edit-result').removeClass('d-none');
+                                $('#edit-result').text(response);
+                            }
+                        }
+                    });
+                });
             });
-        });
 
-        $(".sidebar ul li").on("click", function() {
-            $(".sidebar ul li.active").removeClass("active");
-            $(this).addClass("active");
-        });
+            $(".sidebar ul li").on("click", function() {
+                $(".sidebar ul li.active").removeClass("active");
+                $(this).addClass("active");
+            });
 
-        $(".open-btn").on("click", function() {
-            $(".sidebar").addClass("active");
-        });
+            $(".open-btn").on("click", function() {
+                $(".sidebar").addClass("active");
+            });
 
-        $(".close-btn").on("click", function() {
-            $(".sidebar").removeClass("active");
-        });
+            $(".close-btn").on("click", function() {
+                $(".sidebar").removeClass("active");
+            });
 
-        //js for modal edit
-        function confirmSave() {
-            const userConfirmed = confirm("Apakah anda yakin ingin mengubah data Mahasiswa?");
-            if (userConfirmed) {
-                alert("Data telah berhasil disimpan!"); // Lakukan aksi penyimpanan data di sini
+            //js for modal edit
+            function confirmSave() {
+                const userConfirmed = confirm("Apakah anda yakin ingin mengubah data Mahasiswa?");
+                if (userConfirmed) {
+                    alert("Data telah berhasil disimpan!"); // Lakukan aksi penyimpanan data di sini
 
-                // Menutup modal menggunakan Bootstrap instance
-                const modal = bootstrap.Modal.getInstance(document.getElementById('editModal'));
+                    // Menutup modal menggunakan Bootstrap instance
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('editModal'));
+                    modal.hide();
+
+                    // Hapus backdrop secara manual jika masih ada
+                    const backdrops = document.querySelectorAll('.modal-backdrop');
+                    backdrops.forEach((backdrop) => backdrop.remove()); // Hapus semua elemen backdrop
+                } else {
+                    alert("Perubahan data dibatalkan.");
+                }
+            }
+
+            // tambah data mahasiswa
+            function addData() {
+                // Ambil nilai dari input field
+                const nim = document.getElementById('addNim').value;
+                const nama = document.getElementById('addNama').value;
+                const kelas = document.getElementById('addKelas').value;
+                const prodi = document.getElementById('addProdi').value;
+                const jenisKelamin = document.getElementById('addJenisKelamin').value;
+                const tanggalLahir = document.getElementById('addTanggalLahir').value;
+                const email = document.getElementById('addEmail').value;
+
+                // Validasi sederhana
+                if (!nim || !nama || !kelas || !prodi || !jenisKelamin || !tanggalLahir || !email) {
+                    alert('Semua data wajib diisi!');
+                    return;
+                }
+
+                // Lakukan logika penyimpanan data (bisa menggunakan AJAX atau langsung ditambahkan ke tabel)
+                console.log({
+                    nim,
+                    nama,
+                    kelas,
+                    prodi,
+                    jenisKelamin,
+                    tanggalLahir,
+                    email
+                });
+
+                // Tutup modal
+                const modal = bootstrap.Modal.getInstance(document.getElementById('addModal'));
                 modal.hide();
 
-                // Hapus backdrop secara manual jika masih ada
-                const backdrops = document.querySelectorAll('.modal-backdrop');
-                backdrops.forEach((backdrop) => backdrop.remove()); // Hapus semua elemen backdrop
-            } else {
-                alert("Perubahan data dibatalkan.");
+                // Reset form
+                document.getElementById('addModal').querySelectorAll('input, select').forEach(input => input.value = '');
             }
-        }
-
-        // tambah data mahasiswa
-        function addData() {
-            // Ambil nilai dari input field
-            const nim = document.getElementById('addNim').value;
-            const nama = document.getElementById('addNama').value;
-            const kelas = document.getElementById('addKelas').value;
-            const prodi = document.getElementById('addProdi').value;
-            const jenisKelamin = document.getElementById('addJenisKelamin').value;
-            const tanggalLahir = document.getElementById('addTanggalLahir').value;
-            const email = document.getElementById('addEmail').value;
-
-            // Validasi sederhana
-            if (!nim || !nama || !kelas || !prodi || !jenisKelamin || !tanggalLahir || !email) {
-                alert('Semua data wajib diisi!');
-                return;
-            }
-
-            // Lakukan logika penyimpanan data (bisa menggunakan AJAX atau langsung ditambahkan ke tabel)
-            console.log({
-                nim,
-                nama,
-                kelas,
-                prodi,
-                jenisKelamin,
-                tanggalLahir,
-                email
-            });
-
-            // Tutup modal
-            const modal = bootstrap.Modal.getInstance(document.getElementById('addModal'));
-            modal.hide();
-
-            // Reset form
-            document.getElementById('addModal').querySelectorAll('input, select').forEach(input => input.value = '');
-        }
         </script>
 </body>
 

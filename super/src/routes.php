@@ -24,6 +24,11 @@ $router->addRoute('GET', '/informasi', InformasiController::class, 'informasi');
 
 $router->addRoute('GET', '/dataDosen', DosenController::class, 'dosen');
 $router->addRoute('POST', '/getDataDosen', DosenController::class, 'getDataDosen');
+$router->addRoute('POST', '/getDetailDosen', DosenController::class, 'getDetailDosen');
+$router->addRoute('POST', '/doInsertDosen', DosenController::class, 'doInsertDosen');
+$router->addRoute('POST', '/doUpdateDosen', DosenController::class, 'doUpdateDosen');
+$router->addRoute('POST', '/doDeleteDosen', DosenController::class, 'doDeleteDosen');
+$router->addRoute('POST', '/getKelasTanpaDPA', DosenController::class, 'getKelasTanpaDPA');
 
 $router->addRoute('GET', '/dataMahasiswa', MahasiswaController::class, 'mahasiswa');
 $router->addRoute('POST', '/getDataMahasiswa', MahasiswaController::class, 'getDataMahasiswa');
