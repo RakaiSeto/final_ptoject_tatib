@@ -33,6 +33,9 @@ $router->addRoute('POST', '/getKelasTanpaDPA', DosenController::class, 'getKelas
 $router->addRoute('GET', '/dataMahasiswa', MahasiswaController::class, 'mahasiswa');
 $router->addRoute('POST', '/getDataMahasiswa', MahasiswaController::class, 'getDataMahasiswa');
 $router->addRoute('POST', '/getDetailMahasiswa', MahasiswaController::class, 'getDetailMahasiswa');
+$router->addRoute('POST', '/doInsertMahasiswa', MahasiswaController::class, 'doInsertMahasiswa');
+$router->addRoute('POST', '/doUpdateMahasiswa', MahasiswaController::class, 'doUpdateMahasiswa');
+$router->addRoute('POST', '/doDeleteMahasiswa', MahasiswaController::class, 'doDeleteMahasiswa');
 
 $router->addRoute('GET', '/dataAdmin', AdminController::class, 'admin');
 $router->addRoute('POST', '/getDataAdmin', AdminController::class, 'getDataAdmin');

@@ -33,7 +33,7 @@ class MahasiswaController extends Controller
             echo json_encode([]);
         } else {
             foreach ($result as $row) {
-                $row->aksi = '<button class="btn btn-primary btn-detail" onclick="getDetailMahasiswa(' . $row->nim . ')">Detail</button>';
+                $row->aksi = '<button class="btn btn-primary btn-detail me-1" onclick="getDetailMahasiswa(' . $row->nim . ')">Detail</button><button class="btn btn-warning btn-edit me-1" data-nim="' . $row->nim . '">Edit</button><button class="btn btn-danger btn-delete" onclick="deleteMahasiswa(' . $row->nim . ')">Delete</button>';
                 $row->jenis_kelamin = $row->jenis_kelamin == 1 ? 'Laki-laki' : 'Perempuan';
             }
 
@@ -61,5 +61,60 @@ class MahasiswaController extends Controller
             }
         }  
         echo json_encode($result);
+    }
+
+    public function doInsertMahasiswa()
+    {
+        $model = new mahasiswa();
+        $model->nim = $_POST['nim'];
+        $model->nama_mahasiswa = strtoupper($_POST['nama']);
+        $model->id_kelas = $_POST['kelas'];
+        $model->id_prodi = $_POST['prodi'];
+        $model->jenis_kelamin = $_POST['jenis_kelamin'] == '1' ? 1 : 0;
+        $model->tanggal_lahir = $_POST['tanggal_lahir'];
+        $model->email = $_POST['email'];
+        $model->no_telp = $_POST['no_telp'];
+        $model->foto_mahasiswa = 'public/img/' . $_POST['nim'] . '.jpg';
+        $array_nama = explode(' ', $_POST['nama']);
+        $model->password = Helper::encrypt($_POST['nim'] . end($array_nama));
+        $model->is_active = 1;
+        $model->secret = '';
+        $result = $model->insertMahasiswa();
+        if ($result != true) {
+            echo $result;
+        } else {
+            echo 'success';
+        }
+    }
+
+    public function doUpdateMahasiswa()
+    {
+        $model = new mahasiswa();
+        $mahasiswa = $model->getMahasiswa($_POST['nim'])[0];
+        $mahasiswa->nama_mahasiswa = $_POST['nama'];
+        $mahasiswa->id_kelas = $_POST['kelas'];
+        $mahasiswa->id_prodi = $_POST['prodi'];
+        $mahasiswa->jenis_kelamin = $_POST['jenis_kelamin'] == '1' ? 1 : 0;
+        $mahasiswa->tanggal_lahir = $_POST['tanggal_lahir'];
+        $mahasiswa->email = $_POST['email'];
+        $mahasiswa->no_telp = $_POST['no_telp'];
+        $result = $mahasiswa->updateMahasiswa($_POST['nim']);
+        if ($result != true) {
+            echo $result;
+        } else {
+            echo 'success';
+        }
+    }
+
+    public function doDeleteMahasiswa()
+    {
+        $model = new mahasiswa();
+        $result = $model->deleteMahasiswa($_POST['nim']);
+        if ($result != true) {
+            session_start();
+            $_SESSION['error'] = $result;
+        }
+
+        header("Location: /dataMahasiswa");
     }
 }

@@ -334,31 +334,31 @@ session_start();
                                 <div id="add-result" class="alert alert-danger d-none" role="alert">sdf</div>
                                 <div class="form-group">
                                     <div class="row mb-3">
-                                        <label for="" class="col-sm-2 col-form-label text-end fw-bold">NIP</label>
+                                        <label for="" class="col-sm-2 col-form-label text-start fw-bold">NIP</label>
                                         <div class="col-sm-10">
                                             <input type="text" id="addNip" class="form-control" placeholder="Masukkan NIP disini">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
-                                        <label for="" class="col-sm-2 col-form-label text-end fw-bold">Nama</label>
+                                        <label for="" class="col-sm-2 col-form-label text-start fw-bold">Nama</label>
                                         <div class="col-sm-10">
                                             <input type="text" id="addNama" class="form-control" placeholder="Masukkan Nama disini">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
-                                        <label for="" class="col-sm-2 col-form-label text-end fw-bold">Email</label>
+                                        <label for="" class="col-sm-2 col-form-label text-start fw-bold">Email</label>
                                         <div class="col-sm-10">
                                             <input type="text" id="addEmail" class="form-control" placeholder="Masukkan Email disini">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
-                                        <label for="" class="col-sm-2 col-form-label text-end fw-bold">No Telp</label>
+                                        <label for="" class="col-sm-2 col-form-label text-start fw-bold">No Telp</label>
                                         <div class="col-sm-10">
                                             <input type="text" id="addNoTelp" class="form-control" placeholder="Masukkan No Telp disini">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
-                                        <label for="" class="col-sm-2 col-form-label text-end fw-bold">Jabatan</label>
+                                        <label for="" class="col-sm-2 col-form-label text-start fw-bold">Jabatan</label>
                                         <div class="col-sm-10">
                                             <select class="form-control" id="addJabatan">
                                                 <option value="" disabled selected>Pilih Jabatan</option>
@@ -370,7 +370,7 @@ session_start();
                                         </div>
                                     </div>
                                     <div class="row mb-3">
-                                        <label for="" class="col-sm-2 col-form-label text-end fw-bold">DPA</label>
+                                        <label for="" class="col-sm-2 col-form-label text-start fw-bold">DPA</label>
                                         <div class="col-sm-10">
                                             <select class="form-control" id="addDpa">
                                                 <option value="false" selected>Bukan DPA</option>
@@ -408,31 +408,31 @@ session_start();
                                 <div id="edit-result" class="alert alert-danger d-none" role="alert">sdf</div>
                                 <div class="form-group">
                                     <div class="row mb-3">
-                                        <label for="" class="col-sm-2 col-form-label text-end fw-bold">NIP</label>
+                                        <label for="" class="col-sm-2 col-form-label text-start fw-bold">NIP</label>
                                         <div class="col-sm-10">
                                             <input type="text" id="editNip" class="form-control" readonly placeholder="Masukkan NIP disini">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
-                                        <label for="" class="col-sm-2 col-form-label text-end fw-bold">Nama</label>
+                                        <label for="" class="col-sm-2 col-form-label text-start fw-bold">Nama</label>
                                         <div class="col-sm-10">
                                             <input type="text" id="editNama" class="form-control" placeholder="Masukkan Nama disini">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
-                                        <label for="" class="col-sm-2 col-form-label text-end fw-bold">Email</label>
+                                        <label for="" class="col-sm-2 col-form-label text-start fw-bold">Email</label>
                                         <div class="col-sm-10">
                                             <input type="text" id="editEmail" class="form-control" placeholder="Masukkan Email disini">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
-                                        <label for="" class="col-sm-2 col-form-label text-end fw-bold">No Telp</label>
+                                        <label for="" class="col-sm-2 col-form-label text-start fw-bold">No Telp</label>
                                         <div class="col-sm-10">
                                             <input type="text" id="editNoTelp" class="form-control" placeholder="Masukkan No Telp disini">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
-                                        <label for="" class="col-sm-2 col-form-label text-end fw-bold">Jabatan</label>
+                                        <label for="" class="col-sm-2 col-form-label text-start fw-bold">Jabatan</label>
                                         <div class="col-sm-10">
                                             <select class="form-control" id="editJabatan">
                                                 <option value="" disabled selected>Pilih Jabatan</option>
@@ -444,7 +444,7 @@ session_start();
                                         </div>
                                     </div>
                                     <div class="row mb-3">
-                                        <label for="" class="col-sm-2 col-form-label text-end fw-bold">DPA</label>
+                                        <label for="" class="col-sm-2 col-form-label text-start fw-bold">DPA</label>
                                         <div class="col-sm-10">
                                             <select class="form-control" id="editDpa">
                                                 <option value="false" selected>Bukan DPA</option>
@@ -713,6 +713,7 @@ session_start();
                     }).nodes().each(function(cell, i) {
                         cell.innerHTML = i + 1;
                     });
+                    t.columns.adjust();
                 }).draw();
 
 
@@ -823,8 +824,6 @@ session_start();
 
                                 $('#loading-spinner').removeClass('d-none');
                                 $('#loading-spinner').addClass('d-flex');
-
-                                
 
                                 $('#myTable').DataTable().ajax.reload();
                             } else {

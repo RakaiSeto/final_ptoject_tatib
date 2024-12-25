@@ -24,17 +24,21 @@ class mahasiswa
             if ($kelas != null) {
                 $query .= " AND id_kelas = '$kelas'";
             }
+            $query .= " AND is_active = 1";
         } else {
             if (empty($nim)) {
                 $query = "SELECT * FROM mahasiswa";
                 if ($kelas != null) {
-                    $query .= " WHERE id_kelas = '$kelas'";
+                    $query .= " WHERE id_kelas = '$kelas' AND is_active = 1";
+                } else {
+                    $query .= " WHERE is_active = 1";
                 }
             } else {
                 $query = "SELECT * FROM mahasiswa WHERE nim = '$nim'";
                 if ($kelas != null) {
                     $query .= " AND id_kelas = '$kelas'";
                 }
+                $query .= " AND is_active = 1";
             }
         }
         $conn = Db::getInstance();
@@ -74,7 +78,7 @@ class mahasiswa
             Helper::dumpToLog("gagal get mahasiswa");
             return false . " kelas harus diisi";
         } else {
-            $query = "SELECT * FROM mahasiswa WHERE id_kelas = '$id_kelas'";
+            $query = "SELECT * FROM mahasiswa WHERE id_kelas = '$id_kelas' AND is_active = 1";
         }
         $conn = Db::getInstance();
         try {
@@ -113,11 +117,11 @@ class mahasiswa
             Helper::dumpToLog("duplicate key mahasiswa $this->nim");
             return "duplicate";
         }
-        $query = "INSERT INTO mahasiswa VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $query = "INSERT INTO mahasiswa (nim, nama_mahasiswa, no_telp, email, id_kelas, secret, foto_mahasiswa, tanggal_lahir, jenis_kelamin, id_prodi, password, is_active) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $conn = Db::getInstance();
         try {
             $stmt = $conn->prepare($query);
-            $stmt->execute([$this->nim, $this->nama_mahasiswa, $this->no_telp, $this->email, $this->id_kelas, $this->secret, $this->is_active, $this->foto_mahasiswa, $this->tanggal_lahir, $this->jenis_kelamin, $this->id_prodi, $this->password]);
+            $stmt->execute([$this->nim, $this->nama_mahasiswa, $this->no_telp, $this->email, $this->id_kelas, $this->secret, $this->foto_mahasiswa, $this->tanggal_lahir, $this->jenis_kelamin, $this->id_prodi, $this->password, $this->is_active]);
             Helper::dumpToLog("success insert mahasiswa $this->nim");
             return true;
         } catch (\PDOException $th) {
@@ -155,7 +159,7 @@ class mahasiswa
             return '0';
         }
 
-        $query = "DELETE FROM mahasiswa WHERE nim = ?";
+        $query = "UPDATE mahasiswa SET is_active = 0 WHERE nim = ?";
         $conn = Db::getInstance();
         try {
             $stmt = $conn->prepare($query);

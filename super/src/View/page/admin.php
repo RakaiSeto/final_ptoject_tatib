@@ -186,7 +186,7 @@ session_start();
                                             <option value="admin-SIB">Admin SIB</option>
                                             <option value="super">Superadmin</option>
                                         </select>
-                                       </div>
+                                    </div>
                                 </div>
                                 <!-- Email -->
                                 <div class="row mb-3">
@@ -323,7 +323,7 @@ session_start();
             $('#loading-spinner').removeClass('d-none');
             $('#loading-spinner').addClass('d-flex');
 
-            $('#myTable').DataTable({
+            var t = $('#myTable').DataTable({
                 "lengthMenu": [10, 15, 20],
                 "pageLength": 10,
                 "paging": true,
@@ -332,7 +332,7 @@ session_start();
                 "responsive": true,
                 "scrollX": true,
                 "order": [
-                    [1, 'asc']
+                    [2, 'asc']
                 ],
                 ajax: {
                     url: '/getDataAdmin',
@@ -350,10 +350,7 @@ session_start();
                     }
                 },
                 columns: [{
-                        data: null,
-                        render: function(data, type, row, meta) {
-                            return meta.row + 1; // Nomor urut berdasarkan indeks baris
-                        },
+                        data: 'nip',
                     },
                     {
                         data: 'nip'
@@ -400,6 +397,16 @@ session_start();
                     }
                 ],
             });
+
+            t.on('order.dt search.dt', function() {
+                t.column(0, {
+                    search: 'applied',
+                    order: 'applied'
+                }).nodes().each(function(cell, i) {
+                    cell.innerHTML = i + 1;
+                });
+                t.columns.adjust();
+            }).draw();
 
             $('#btn-search').click(function() {
                 $('#loading-spinner').removeClass('d-none');
@@ -505,7 +512,7 @@ session_start();
             $('#editNama, #editRole, #editEmail, #editNoTelp').on('input change', function() {
                 let isChanged = false;
 
-                    // Cek apakah ada minimal satu field yang diubah
+                // Cek apakah ada minimal satu field yang diubah
                 if ($('#editNama').val() != $('#editNamaHidden').val() ||
                     $('#editRole').val() != $('#editRoleHidden').val() ||
                     $('#editEmail').val() != $('#editEmailHidden').val() ||
