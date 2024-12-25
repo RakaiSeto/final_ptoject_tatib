@@ -20,29 +20,6 @@ session_start();
 
 
     <style>
-    .pagination .page-link {
-        background-color: white;
-        color: gray;
-        border: 1px solid lightgray;
-    }
-
-    .pagination .page-item.active .page-link {
-        background-color: #fd7e14;
-        border-color: lightgray;
-        color: white;
-    }
-
-    .pagination .page-item.disabled .page-link {
-        background-color: lightgray;
-        color: gray;
-        border-color: lightgray;
-    }
-
-    .pagination .page-link:hover {
-        background-color: rgba(253, 126, 20, 0.5);
-        color: white;
-    }
-
     /* Custom Scrollbar Style */
     .dataTables_scrollBody {
         overflow-x: auto;
@@ -63,6 +40,11 @@ session_start();
 
     .dataTables_scrollBody::-webkit-scrollbar-thumb:hover {
         background: #555;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+        margin-top: 10px;
+
     }
     </style>
 
@@ -150,13 +132,13 @@ session_start();
                     </div>
                 </div> -->
 
-                <div class="filter-bar w-100 p-2 bg-body-tertiary shadow-sm rounded align-items-center gap-2 mb-3 mt-1">
-                    <h5 class="ms-2 mt-1">Filter</h5>
+                <div class="filter-bar w-100 rounded align-items-center gap-2 mb-3 mt-1">
+                    <h5 class="mt-1 fw-semibold">Filter</h5>
                     <hr class="my-2">
                     <div class="row">
                         <div class="col-md-3">
                             <div class="d-flex flex-column">
-                                <label for="tanggal" class="form-label ps-2">Tanggal Mulai</label>
+                                <label for="tanggal" class="form-label">Tanggal Mulai</label>
                                 <div class="input-group">
                                     <input type="date" class="form-control" id="tanggal_mulai"
                                         placeholder="Pilih Tanggal" aria-label="Tanggal"
@@ -166,7 +148,7 @@ session_start();
                         </div>
                         <div class="col-md-3">
                             <div class="d-flex flex-column">
-                                <label for="tanggal" class="form-label ps-2">Tanggal Akhir</label>
+                                <label for="tanggal" class="form-label">Tanggal Akhir</label>
                                 <div class="input-group">
                                     <input type="date" class="form-control" id="tanggal_akhir"
                                         placeholder="Pilih Tanggal" aria-label="Tanggal"
@@ -177,7 +159,7 @@ session_start();
 
                         <div class="col-md-3">
                             <div class="d-flex flex-column">
-                                <label for="prodi" class="form-label ps-2">Kategori</label>
+                                <label for="prodi" class="form-label">Kategori</label>
                                 <select id="kategori" class="form-select w-100"
                                     style="box-sizing: border-box; max-width: 100%;">
                                     <option value="" selected disabled>Pilih Kategori</option>
@@ -191,13 +173,15 @@ session_start();
 
                         <div class="col-md-3">
                             <div class="d-flex flex-column">
-                                <label for="prodi" class="form-label ps-2">Keyword</label>
+                                <label for="prodi" class="form-label">Keyword</label>
                                 <input type="text" id="keyword" class="form-control" placeholder="Cari"
                                     aria-label="Username" aria-describedby="basic-addon1">
                                 </input>
+
                             </div>
                         </div>
                     </div>
+
                     <div class="row mt-3">
                         <div class="col-md-12">
                             <div class="d-flex flex-column">
@@ -207,8 +191,8 @@ session_start();
                     </div>
                 </div>
 
-                <div class="table-responsive" style="overflow-x: auto; width: 100%;">
-                    <table id="myTable" class="table table-striped table-bordered">
+                <div class="table-responsive" style="overflow-x: auto; width: 100%; min-width: 720px;">
+                    <table id="myTable" class="table table-striped table-bordered" style="width: 100%;">
                         <thead class="text-center">
                             <tr>
                                 <th>Kode Pelanggaran</th>
