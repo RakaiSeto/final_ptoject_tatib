@@ -18,36 +18,41 @@ session_start();
     <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
 
     <style>
-        /* Custom Scrollbar Style */
-        .dataTables_scrollBody {
-            overflow-x: auto;
-        }
+    /* Custom Scrollbar Style */
+    .dataTables_scrollBody {
+        overflow-x: auto;
+    }
 
-        .dataTables_scrollBody::-webkit-scrollbar {
-            height: 12px;
-        }
+    .dataTables_scrollBody::-webkit-scrollbar {
+        height: 12px;
+    }
 
-        .dataTables_scrollBody::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
+    .dataTables_scrollBody::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
 
-        .dataTables_scrollBody::-webkit-scrollbar-thumb {
-            background: #888;
-            border-radius: 6px;
-        }
+    .dataTables_scrollBody::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 6px;
+    }
 
-        .dataTables_scrollBody::-webkit-scrollbar-thumb:hover {
-            background: #555;
-        }
+    .dataTables_scrollBody::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
 
-        .dataTables_wrapper {
-            width: 100%;
-            overflow-x: auto;
-        }
+    .dataTables_wrapper {
+        width: 100%;
+        overflow-x: auto;
+    }
 
-        #myTable {
-            width: 100% !important;
-        }
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+        margin-top: 10px;
+
+    }
+
+    #myTable {
+        width: 100% !important;
+    }
     </style>
 
 </head>
@@ -62,8 +67,10 @@ session_start();
 
         <!--Content -->
         <div class="content px-3 pt-3 " style="margin-top: 56px;">
-            <div class="text-center position-fixed d-none justify-content-center align-items-center top-50 start-50 translate-middle bg-white bg-opacity-50 w-100 h-100" id="loading-spinner" style="z-index: 999; display: none;">
-                <img src="/public/img/spinner-svg" alt="Loading..." class="mx-auto d-block" style="width: 15%; height: 15%;">
+            <div class="text-center position-fixed d-none justify-content-center align-items-center top-50 start-50 translate-middle bg-white bg-opacity-50 w-100 h-100"
+                id="loading-spinner" style="z-index: 999; display: none;">
+                <img src="/public/img/spinner-svg" alt="Loading..." class="mx-auto d-block"
+                    style="width: 15%; height: 15%;">
             </div>
             <div class="bg-white p-2 my-2" style="color: #b1b1b1; border-radius: 5px">
                 <nav aria-label="breadcrumb">
@@ -74,15 +81,16 @@ session_start();
                 </nav>
             </div>
 
+            <div class="text-start mb-2">
+                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addModal">
+                    <i class="fas fa-plus"></i>
+                    Tambah Mahasiswa
+                </button>
+            </div>
+
             <div class="bg-white">
                 <!-- Button Tambah Mahasiswa -->
-                <div class="text-start mb-3">
-                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addModal">
-                        Tambah Mahasiswa
-                    </button>
-                </div>
-
-                <div class="filter-bar w-100 p-2 bg-body-tertiary shadow-sm rounded align-items-center gap-2 mb-3 mt-1">
+                <div class="filter-bar w-100 rounded align-items-center gap-2 mb-3 mt-1">
                     <h5 class="ms-2 mt-1">Filter</h5>
                     <hr class="my-2">
                     <div class="row">
@@ -90,10 +98,11 @@ session_start();
                         <div class="col-md-4">
                             <div class="d-flex flex-column">
                                 <label for="prodi" class="form-label ps-2">Kelas</label>
-                                <select id="kelas" class="form-select w-100" style="box-sizing: border-box; max-width: 100%;">
+                                <select id="kelas" class="form-select w-100"
+                                    style="box-sizing: border-box; max-width: 100%;">
                                     <option value="" selected>Pilih Kelas</option>
                                     <?php foreach ($kelas as $k) : ?>
-                                        <option value="<?= $k->id_kelas ?>"><?= $k->nama_kelas ?></option>
+                                    <option value="<?= $k->id_kelas ?>"><?= $k->nama_kelas ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
@@ -102,7 +111,8 @@ session_start();
                         <div class="col-md-4">
                             <div class="d-flex flex-column">
                                 <label for="prodi" class="form-label ps-2">Kategori</label>
-                                <select id="kategori" class="form-select w-100" style="box-sizing: border-box; max-width: 100%;">
+                                <select id="kategori" class="form-select w-100"
+                                    style="box-sizing: border-box; max-width: 100%;">
                                     <option value="" selected disabled>Pilih Kategori</option>
                                     <option value="nim">NIM</option>
                                     <option value="nama_mahasiswa">Nama Mahasiswa</option>
@@ -113,8 +123,8 @@ session_start();
                         <div class="col-md-4">
                             <div class="d-flex flex-column">
                                 <label for="prodi" class="form-label ps-2">Keyword</label>
-                                <input type="text" id="keyword" class="form-control" placeholder="Cari" aria-label="Username"
-                                    aria-describedby="basic-addon1">
+                                <input type="text" id="keyword" class="form-control" placeholder="Cari"
+                                    aria-label="Username" aria-describedby="basic-addon1">
                                 </input>
                             </div>
                         </div>
@@ -132,6 +142,7 @@ session_start();
                     <table id="myTable" class="table table-striped table-bordered">
                         <thead class="text-center">
                             <tr>
+                                <th>No</th>
                                 <th>NIM</th>
                                 <th>Nama</th>
                                 <th>Jenis Kelamin</th>
@@ -330,7 +341,8 @@ session_start();
                                         <div class="row mb-3">
                                             <label for="" class="col-sm-3 col-form-label text-end fw-bold">NIM</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" value="2541987544" readonly disabled>
+                                                <input type="text" class="form-control" value="2541987544" readonly
+                                                    disabled>
                                             </div>
                                         </div>
                                         <div class="row mb-3">
@@ -389,42 +401,53 @@ session_start();
                     </div>
                 </div>
                 <!-- Modal tambah data mahasiswa -->
-                <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true" data-bs-backdrop="static" style="background-color: rgba(255, 255, 255, 0.20);">
+                <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true"
+                    data-bs-backdrop="static" style="background-color: rgba(255, 255, 255, 0.20);">
                     <div class="modal-dialog modal-lg modal-dialog-centered">
                         <div class="modal-content" style="background-color: #F5F5F5">
                             <div class="modal-header">
                                 <h5 class="modal-title fw-bold" id="addModalLabel">Tambah Data Mahasiswa</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <div class="bg-body-tertiary">
                                     <div class="form-group">
                                         <div class="row mb-3">
-                                            <label for="addNim" class="col-sm-3 col-form-label text-end fw-bold">NIM</label>
+                                            <label for="addNim"
+                                                class="col-sm-3 col-form-label text-end fw-bold">NIM</label>
                                             <div class="col-sm-9">
-                                                <input type="text" id="addNim" class="form-control" placeholder="Masukkan NIM">
+                                                <input type="text" id="addNim" class="form-control"
+                                                    placeholder="Masukkan NIM">
                                             </div>
                                         </div>
                                         <div class="row mb-3">
-                                            <label for="addNama" class="col-sm-3 col-form-label text-end fw-bold">Nama</label>
+                                            <label for="addNama"
+                                                class="col-sm-3 col-form-label text-end fw-bold">Nama</label>
                                             <div class="col-sm-9">
-                                                <input type="text" id="addNama" class="form-control" placeholder="Masukkan Nama">
+                                                <input type="text" id="addNama" class="form-control"
+                                                    placeholder="Masukkan Nama">
                                             </div>
                                         </div>
                                         <div class="row mb-3">
-                                            <label for="addKelas" class="col-sm-3 col-form-label text-end fw-bold">Kelas</label>
+                                            <label for="addKelas"
+                                                class="col-sm-3 col-form-label text-end fw-bold">Kelas</label>
                                             <div class="col-sm-9">
-                                                <input type="text" id="addKelas" class="form-control" placeholder="Masukkan Kelas">
+                                                <input type="text" id="addKelas" class="form-control"
+                                                    placeholder="Masukkan Kelas">
                                             </div>
                                         </div>
                                         <div class="row mb-3">
-                                            <label for="addProdi" class="col-sm-3 col-form-label text-end fw-bold">Prodi</label>
+                                            <label for="addProdi"
+                                                class="col-sm-3 col-form-label text-end fw-bold">Prodi</label>
                                             <div class="col-sm-9">
-                                                <input type="text" id="addProdi" class="form-control" placeholder="Masukkan Prodi">
+                                                <input type="text" id="addProdi" class="form-control"
+                                                    placeholder="Masukkan Prodi">
                                             </div>
                                         </div>
                                         <div class="row mb-3">
-                                            <label for="addJenisKelamin" class="col-sm-3 col-form-label text-end fw-bold">Jenis Kelamin</label>
+                                            <label for="addJenisKelamin"
+                                                class="col-sm-3 col-form-label text-end fw-bold">Jenis Kelamin</label>
                                             <div class="col-sm-9">
                                                 <select id="addJenisKelamin" class="form-control">
                                                     <option value="" selected disabled>Pilih Jenis Kelamin</option>
@@ -434,21 +457,26 @@ session_start();
                                             </div>
                                         </div>
                                         <div class="row mb-3">
-                                            <label for="addTanggalLahir" class="col-sm-3 col-form-label text-end fw-bold">Tanggal Lahir</label>
+                                            <label for="addTanggalLahir"
+                                                class="col-sm-3 col-form-label text-end fw-bold">Tanggal Lahir</label>
                                             <div class="col-sm-9">
                                                 <input type="date" id="addTanggalLahir" class="form-control">
                                             </div>
                                         </div>
                                         <div class="row mb-3">
-                                            <label for="addEmail" class="col-sm-3 col-form-label text-end fw-bold">Email</label>
+                                            <label for="addEmail"
+                                                class="col-sm-3 col-form-label text-end fw-bold">Email</label>
                                             <div class="col-sm-9">
-                                                <input type="email" id="addEmail" class="form-control" placeholder="Masukkan Email">
+                                                <input type="email" id="addEmail" class="form-control"
+                                                    placeholder="Masukkan Email">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary" onclick="addData()">Tambah</button>
+                                        <button type="button" class="btn btn-outline-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary"
+                                            onclick="addData()">Tambah</button>
                                     </div>
                                 </div>
                             </div>
@@ -472,165 +500,171 @@ session_start();
 
 
         <script>
-            $(document).ready(function() {
+        $(document).ready(function() {
 
-                // spinner
+            // spinner
+            $('#loading-spinner').removeClass('d-none');
+            $('#loading-spinner').addClass('d-flex');
+
+            $('#myTable').DataTable({
+                "lengthMenu": [10, 15, 20],
+                "pageLength": 10,
+                "paging": true,
+                "info": true,
+                "searching": false,
+                "responsive": true,
+                "scrollX": true,
+                "order": [
+                    [0, 'asc']
+                ],
+                ajax: {
+                    url: '/getDataMahasiswa',
+                    type: 'POST',
+                    data: function() {
+                        return {
+                            kategori: $('#kategori').val(),
+                            value: $('#keyword').val(),
+                            kelas: $('#kelas').val()
+                        };
+                    },
+                    dataSrc: function(json) {
+                        $('#loading-spinner').removeClass('d-flex');
+                        $('#loading-spinner').addClass('d-none');
+                        return json;
+                    }
+                },
+                columns: [{
+                        data: null,
+                        render: function(data, type, row, meta) {
+                            return meta.row + 1; // Nomor urut berdasarkan indeks baris
+                        },
+                    },
+                    {
+                        data: 'nim'
+                    },
+                    {
+                        data: 'nama_mahasiswa'
+                    },
+                    {
+                        data: 'jenis_kelamin'
+                    },
+                    {
+                        data: 'email'
+                    },
+                    {
+                        data: 'no_telp'
+                    },
+                    {
+                        data: 'id_kelas'
+                    },
+                    {
+                        data: 'id_prodi'
+                    },
+                    {
+                        data: 'aksi'
+                    }
+                ],
+                "dom": "<'row'" +
+                    "<'col-sm-6 d-flex align-items-center justify-conten-start'l>" +
+                    "<'col-sm-6 d-flex align-items-center justify-content-end'f>" +
+                    ">" +
+
+                    "<'table-responsive'tr>" +
+
+                    "<'row'" +
+                    "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
+                    "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
+                    ">",
+                // make sure td and th white-space no wrap
+                "columnDefs": [{
+                        "className": "text-nowrap",
+                        "targets": "_all"
+                    },
+                    {
+                        "className": "dt-center",
+                        "targets": "_all"
+                    },
+                    {
+                        "orderable": false,
+                        "targets": "_all"
+                    }
+                ],
+            });
+
+            $('#btn-search').click(function() {
                 $('#loading-spinner').removeClass('d-none');
                 $('#loading-spinner').addClass('d-flex');
 
-                $('#myTable').DataTable({
-                    "lengthMenu": [10, 15, 20],
-                    "pageLength": 10,
-                    "paging": true,
-                    "info": true,
-                    "searching": false,
-                    "responsive": true,
-                    "scrollX": true,
-                    "order": [
-                        [1, 'asc']
-                    ],
-                    ajax: {
-                        url: '/getDataMahasiswa',
-                        type: 'POST',
-                        data: function() {
-                            return {
-                                kategori: $('#kategori').val(),
-                                value: $('#keyword').val(),
-                                kelas: $('#kelas').val()
-                            };
-                        },
-                        dataSrc: function(json) {
-                            $('#loading-spinner').removeClass('d-flex');
-                            $('#loading-spinner').addClass('d-none');
-                            return json;
-                        }
-                    },
-                    columns: [{
-                            data: 'nim'
-                        },
-                        {
-                            data: 'nama_mahasiswa'
-                        },
-                        {
-                            data: 'jenis_kelamin'
-                        },
-                        {
-                            data: 'email'
-                        },
-                        {
-                            data: 'no_telp'
-                        },
-                        {
-                            data: 'id_kelas'
-                        },
-                        {
-                            data: 'id_prodi'
-                        },
-                        {
-                            data: 'aksi'
-                        }
-                    ],
-                    "dom": "<'row'" +
-                        "<'col-sm-6 d-flex align-items-center justify-conten-start'l>" +
-                        "<'col-sm-6 d-flex align-items-center justify-content-end'f>" +
-                        ">" +
-
-                        "<'table-responsive'tr>" +
-
-                        "<'row'" +
-                        "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
-                        "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
-                        ">",
-                    // make sure td and th white-space no wrap
-                    "columnDefs": [{
-                            "className": "text-nowrap",
-                            "targets": "_all"
-                        },
-                        {
-                            "className": "dt-center",
-                            "targets": "_all"
-                        },
-                        {
-                            "orderable": false,
-                            "targets": "_all"
-                        }
-                    ],
-                });
-
-                $('#btn-search').click(function() {
-                    $('#loading-spinner').removeClass('d-none');
-                    $('#loading-spinner').addClass('d-flex');
-
-                    $('#myTable').DataTable().ajax.reload();
-                });
+                $('#myTable').DataTable().ajax.reload();
             });
+        });
 
-            $(".sidebar ul li").on("click", function() {
-                $(".sidebar ul li.active").removeClass("active");
-                $(this).addClass("active");
-            });
+        $(".sidebar ul li").on("click", function() {
+            $(".sidebar ul li.active").removeClass("active");
+            $(this).addClass("active");
+        });
 
-            $(".open-btn").on("click", function() {
-                $(".sidebar").addClass("active");
-            });
+        $(".open-btn").on("click", function() {
+            $(".sidebar").addClass("active");
+        });
 
-            $(".close-btn").on("click", function() {
-                $(".sidebar").removeClass("active");
-            });
+        $(".close-btn").on("click", function() {
+            $(".sidebar").removeClass("active");
+        });
 
-            //js for modal edit
-            function confirmSave() {
-                const userConfirmed = confirm("Apakah anda yakin ingin mengubah data Mahasiswa?");
-                if (userConfirmed) {
-                    alert("Data telah berhasil disimpan!"); // Lakukan aksi penyimpanan data di sini
+        //js for modal edit
+        function confirmSave() {
+            const userConfirmed = confirm("Apakah anda yakin ingin mengubah data Mahasiswa?");
+            if (userConfirmed) {
+                alert("Data telah berhasil disimpan!"); // Lakukan aksi penyimpanan data di sini
 
-                    // Menutup modal menggunakan Bootstrap instance
-                    const modal = bootstrap.Modal.getInstance(document.getElementById('editModal'));
-                    modal.hide();
-
-                    // Hapus backdrop secara manual jika masih ada
-                    const backdrops = document.querySelectorAll('.modal-backdrop');
-                    backdrops.forEach((backdrop) => backdrop.remove()); // Hapus semua elemen backdrop
-                } else {
-                    alert("Perubahan data dibatalkan.");
-                }
-            }
-
-            // tambah data mahasiswa
-            function addData() {
-                // Ambil nilai dari input field
-                const nim = document.getElementById('addNim').value;
-                const nama = document.getElementById('addNama').value;
-                const kelas = document.getElementById('addKelas').value;
-                const prodi = document.getElementById('addProdi').value;
-                const jenisKelamin = document.getElementById('addJenisKelamin').value;
-                const tanggalLahir = document.getElementById('addTanggalLahir').value;
-                const email = document.getElementById('addEmail').value;
-
-                // Validasi sederhana
-                if (!nim || !nama || !kelas || !prodi || !jenisKelamin || !tanggalLahir || !email) {
-                    alert('Semua data wajib diisi!');
-                    return;
-                }
-
-                // Lakukan logika penyimpanan data (bisa menggunakan AJAX atau langsung ditambahkan ke tabel)
-                console.log({
-                    nim,
-                    nama,
-                    kelas,
-                    prodi,
-                    jenisKelamin,
-                    tanggalLahir,
-                    email
-                });
-
-                // Tutup modal
-                const modal = bootstrap.Modal.getInstance(document.getElementById('addModal'));
+                // Menutup modal menggunakan Bootstrap instance
+                const modal = bootstrap.Modal.getInstance(document.getElementById('editModal'));
                 modal.hide();
 
-                // Reset form
-                document.getElementById('addModal').querySelectorAll('input, select').forEach(input => input.value = '');
+                // Hapus backdrop secara manual jika masih ada
+                const backdrops = document.querySelectorAll('.modal-backdrop');
+                backdrops.forEach((backdrop) => backdrop.remove()); // Hapus semua elemen backdrop
+            } else {
+                alert("Perubahan data dibatalkan.");
             }
+        }
+
+        // tambah data mahasiswa
+        function addData() {
+            // Ambil nilai dari input field
+            const nim = document.getElementById('addNim').value;
+            const nama = document.getElementById('addNama').value;
+            const kelas = document.getElementById('addKelas').value;
+            const prodi = document.getElementById('addProdi').value;
+            const jenisKelamin = document.getElementById('addJenisKelamin').value;
+            const tanggalLahir = document.getElementById('addTanggalLahir').value;
+            const email = document.getElementById('addEmail').value;
+
+            // Validasi sederhana
+            if (!nim || !nama || !kelas || !prodi || !jenisKelamin || !tanggalLahir || !email) {
+                alert('Semua data wajib diisi!');
+                return;
+            }
+
+            // Lakukan logika penyimpanan data (bisa menggunakan AJAX atau langsung ditambahkan ke tabel)
+            console.log({
+                nim,
+                nama,
+                kelas,
+                prodi,
+                jenisKelamin,
+                tanggalLahir,
+                email
+            });
+
+            // Tutup modal
+            const modal = bootstrap.Modal.getInstance(document.getElementById('addModal'));
+            modal.hide();
+
+            // Reset form
+            document.getElementById('addModal').querySelectorAll('input, select').forEach(input => input.value = '');
+        }
         </script>
 </body>
 
