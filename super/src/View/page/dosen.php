@@ -65,7 +65,7 @@ session_start();
         <?php require_once 'navbar.php'; ?>
 
         <!--Content -->
-        <div class="content px-3 pt-3 " style="margin-top: 56px;">
+        <div class="content px-3 pt-3 " style="margin-top: 56px;    ">
             <div class="text-center position-fixed d-none justify-content-center align-items-center top-50 start-50 translate-middle bg-white bg-opacity-50 w-100 h-100"
                 id="loading-spinner" style="z-index: 999; display: none;">
                 <img src="/public/img/spinner-svg" alt="Loading..." class="mx-auto d-block"
@@ -142,7 +142,7 @@ session_start();
                     <table id="myTable" class="table table-striped table-bordered">
                         <thead class="text-center">
                             <tr>
-                                <th>NO</th>
+                                <th>No</th>
                                 <th>NIP</th>
                                 <th>Nama</th>
                                 <th>Email</th>
@@ -594,8 +594,7 @@ session_start();
                         render: function(data, type, row, meta) {
                             return meta.row + 1; // Nomor urut berdasarkan indeks baris
                         },
-                    },
-                    {
+                    }, {
                         data: 'nip'
                     },
                     {
