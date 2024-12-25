@@ -195,6 +195,7 @@ session_start();
                     <table id="myTable" class="table table-striped table-bordered" style="width: 100%;">
                         <thead class="text-center">
                             <tr>
+                                <th>No</th>
                                 <th>Kode Pelanggaran</th>
                                 <th>Mahasiswa</th>
                                 <th>Dosen Pelapor</th>
@@ -366,7 +367,7 @@ session_start();
             "responsive": true,
             "scrollX": true,
             "order": [
-                [3, 'desc']
+                [0, 'asc']
             ],
             ajax: {
                 url: '/getDataPelanggaran',
@@ -386,6 +387,12 @@ session_start();
                 }
             },
             columns: [{
+                    data: null,
+                    render: function(data, type, row, meta) {
+                        return meta.row + 1; // Nomor urut berdasarkan indeks baris
+                    },
+                },
+                {
                     data: 'kode_pelanggaran'
                 },
                 {
