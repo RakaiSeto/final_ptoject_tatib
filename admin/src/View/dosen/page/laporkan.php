@@ -495,17 +495,17 @@
                     document.getElementById('kirim').disabled = !(nim && pelanggaran && keterangan && tgl && bukti);
                 }
 
-                document.getElementById('kirim').addEventListener('click', function () {
+                document.getElementById('kirim').addEventListener('click', function() {
                     document.getElementById('alertSuccess').style.display = 'none'; // Pastikan alert tidak muncul sebelum waktunya
                     debounceAjax();
                 });
 
                 function debounce(func, wait, immediate) {
                     var timeout;
-                    return function () {
+                    return function() {
                         var context = this,
                             args = arguments;
-                        var later = function () {
+                        var later = function() {
                             timeout = null;
                             if (!immediate) func.apply(context, args);
                         };
@@ -516,7 +516,7 @@
                     };
                 };
 
-                var debounceAjax = debounce(function () {
+                var debounceAjax = debounce(function() {
                     const nim = document.getElementById("studentInfo").attributes["data-nim"].value;
                     const pelanggaran = document.getElementById("modalPilihPelanggaran").attributes[
                         "data-selected-pelanggaran"].value;
@@ -536,12 +536,12 @@
                         contentType: false,
                         processData: false,
                         data: formData,
-                        success: function (response) {
+                        success: function(response) {
                             // Simpan flag ke localStorage
                             localStorage.setItem('showAlertSuccess', 'true');
                             location.reload(); // Reload halaman
                         },
-                        error: function (xhr, status, error) {
+                        error: function(xhr, status, error) {
                             let alert = document.getElementById('alert-ajax');
                             let decodedResponse = JSON.parse(xhr.responseText);
                             alert.innerText = 'Error: ' + decodedResponse.message;
@@ -550,7 +550,16 @@
                     })
                 }, 500, false)
 
-                document.addEventListener('DOMContentLoaded', function () {
+                document.addEventListener('DOMContentLoaded', function() {
+                    var today = new Date();
+
+                    var dd = String(today.getDate()).padStart(2, '0');
+                    var mm = String(today.getMonth() + 1).padStart(2, '0');
+                    var yyyy = today.getFullYear();
+
+                    today = yyyy + '-' + mm + '-' + dd;
+
+                    document.getElementById('tanggal').setAttribute("max", today);
 
                     if (localStorage.getItem('showAlertSuccess') === 'true') {
                         // Tampilkan alert sukses
@@ -565,8 +574,8 @@
                         }, 1500);
                     }
                     // Event handler untuk memilih pelanggaran di dalam modal
-                    document.querySelectorAll('.tingkat-row').forEach(function (row) {
-                        row.addEventListener('click', function () {
+                    document.querySelectorAll('.tingkat-row').forEach(function(row) {
+                        row.addEventListener('click', function() {
                             // Ambil elemen input dan tombol
                             const inputField = document.getElementById('inputPelanggaran');
                             const buttonTrigger = document.getElementById('btnTriggerModal');
@@ -576,7 +585,7 @@
                                 .innerText; // Ambil tingkat
                             document.getElementById("modalPilihPelanggaran").attributes[
                                 "data-selected-pelanggaran"].value = row.attributes[
-                                    'data-pelanggaran'].value;
+                                'data-pelanggaran'].value;
                             inputField.value = `${row.innerText} (${tingkat})`;
                             inputField.classList.remove('hidden'); // Tampilkan input field
 
@@ -611,23 +620,23 @@
                 };
 
                 // Tambahkan fungsi batal
-                document.getElementById("batal").addEventListener("click", function () {
+                document.getElementById("batal").addEventListener("click", function() {
                     document.getElementById("reportCard").classList.add("hidden");
                 });
 
 
-                document.querySelectorAll('.dropdown-submenu').forEach(function (submenu) {
-                    submenu.addEventListener('mouseenter', function () {
+                document.querySelectorAll('.dropdown-submenu').forEach(function(submenu) {
+                    submenu.addEventListener('mouseenter', function() {
                         const submenuMenu = submenu.querySelector('.dropdown-menu');
                         if (submenuMenu) submenuMenu.classList.add('show');
                     })
 
-                    submenu.addEventListener('mouseclick', function (e) {
+                    submenu.addEventListener('mouseclick', function(e) {
                         const submenuMenu = submenu.querySelector('.dropdown-menu');
                         if (submenuMenu) submenuMenu.classList.add('show');
                     });
 
-                    submenu.addEventListener('mouseleave', function () {
+                    submenu.addEventListener('mouseleave', function() {
                         const submenuMenu = submenu.querySelector('.dropdown-menu');
                         if (submenuMenu) submenuMenu.classList.remove('show');
                     });
@@ -647,8 +656,8 @@
                     dropdownButton.textContent = element.textContent;
                 }
 
-                $(document).ready(function () {
-                    $('#prodi_select').on('change', function () {
+                $(document).ready(function() {
+                    $('#prodi_select').on('change', function() {
                         console.log($(this).val())
                         const selectedValue = $(this).val();
                         if (selectedValue === 'ti') {
@@ -674,22 +683,22 @@
                 }
 
 
-                $(".sidebar ul li").on("click", function () {
+                $(".sidebar ul li").on("click", function() {
                     $(".sidebar ul li.active").removeClass("active");
                     $(this).addClass("active");
                 });
 
-                $(".open-btn").on("click", function () {
+                $(".open-btn").on("click", function() {
                     $(".sidebar").addClass("active");
                 });
 
-                $(".close-btn").on("click", function () {
+                $(".close-btn").on("click", function() {
                     $(".sidebar").removeClass("active");
                 });
 
                 //dropdown
-                $(document).ready(function () {
-                    $('.dropdown-submenu a.test').on("click", function (e) {
+                $(document).ready(function() {
+                    $('.dropdown-submenu a.test').on("click", function(e) {
                         $(this).next('ul').toggle();
                         e.stopPropagation();
                         e.preventDefault();
@@ -698,7 +707,7 @@
 
                 //
                 document.querySelectorAll('#prodiOptions .dropdown-item').forEach(item => {
-                    item.addEventListener('click', function () {
+                    item.addEventListener('click', function() {
                         const selectedValue = this.getAttribute(
                             'data-value'); // Ambil data-value dari item
                         document.getElementById('prodiInput').value =
@@ -708,7 +717,7 @@
 
 
                 //tombol filter
-                document.getElementById('filterBtn').addEventListener('click', function () {
+                document.getElementById('filterBtn').addEventListener('click', function() {
                     let selectedProdi = document.getElementById('prodi_select').value;
                     if (selectedProdi === 'ti') {
                         var selectedKelas = document.getElementById('dropdownTIButton').getAttribute(
@@ -727,7 +736,7 @@
                         data: {
                             kelas: selectedKelas,
                         },
-                        success: function (response) {
+                        success: function(response) {
                             document.getElementById('alert-ajax').classList.add('hidden');
                             let decodedResponse = JSON.parse(response);
                             const table = document.getElementById('filterTableBody');
@@ -739,7 +748,7 @@
                                     <td>${item.nama_mahasiswa}</td>
                                     <td>${item.id_kelas}</td>
                                 `;
-                                row.onclick = function () {
+                                row.onclick = function() {
                                     clickMahasiswa(row)
                                 };
                                 row.classList.add('mahasiswaRow');
@@ -751,7 +760,7 @@
                             });
                             document.getElementById('filterTable').classList.remove('hidden');
                         },
-                        error: function (xhr, status, error) {
+                        error: function(xhr, status, error) {
                             let alert = document.getElementById('alert-ajax');
                             let decodedResponse = JSON.parse(xhr.responseText);
                             alert.innerText = 'Error: ' + decodedResponse.message;
