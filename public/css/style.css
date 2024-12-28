@@ -275,3 +275,39 @@ li {
     margin-top: 10px;
   }
 }
+
+ /* Custom Scrollbar Style */
+ .dataTables_scrollBody {
+  overflow-x: auto;
+}
+
+.dataTables_scrollBody::-webkit-scrollbar {
+  height: 12px;
+}
+
+.dataTables_scrollBody::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.dataTables_scrollBody::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 6px;
+}
+
+.dataTables_scrollBody::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.dataTables_wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  margin-top: 10px;
+
+}
+
+#myTable {
+  width: 100% !important;
+}

@@ -11,7 +11,8 @@ use Tatib\Src\Model\mahasiswa;
 
 class LaporanController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         Helper::dumpToLog("serve laporkan");
         if (!isset($_COOKIE['user'])) {
             header("Location: /");
@@ -55,7 +56,7 @@ class LaporanController extends Controller
         $result = $kelas->getKelas(null);
 
         foreach ($result as $key => $value) {
-//            get character in position 0 of the explode
+            //            get character in position 0 of the explode
             $tingkat = substr(explode('-', $value->nama_kelas)[1], 0, 1);
             if (strpos($value->nama_kelas, 'TI') !== false) {
                 $arrTI[$tingkat][] = $value;
@@ -67,7 +68,7 @@ class LaporanController extends Controller
         }
 
         $role = json_decode($_COOKIE['user'], true)['role'];
-        $this->render( $role . '/page/laporkan', [
+        $this->render($role . '/page/laporkan', [
             'title' => 'Laporkan Pelanggaran',
             'ti' => $arrTI,
             'sib' => $arrSIB,
@@ -76,8 +77,9 @@ class LaporanController extends Controller
         ]);
     }
 
-    public function filterMahasiswa() {
-//return error to ajax
+    public function filterMahasiswa()
+    {
+        //return error to ajax
         if (!isset($_COOKIE['user'])) {
             header("Location: /");
             return;
@@ -101,7 +103,8 @@ class LaporanController extends Controller
     }
 
 
-    public function doLaporkan() {
+    public function doLaporkan()
+    {
         Helper::dumpToLog(json_encode($_POST));
         $kode_pelanggaran = 'PEL' . date('dmy') . '-' . Helper::randomAlphaNum();
         $date = $_POST['date'];
@@ -109,7 +112,7 @@ class LaporanController extends Controller
         $jenisPelanggaran = $_POST['pelanggaran'];
         $kronologi = $_POST['kronologi'];
         $nip = json_decode($_COOKIE['user'], true)['nip'];
-        
+
         $fileName = $kode_pelanggaran . '-BUKTI';
         $fileExtension = pathinfo($_FILES['bukti']['name'], PATHINFO_EXTENSION);
 
@@ -147,5 +150,33 @@ class LaporanController extends Controller
             Helper::dumpToLog("Gagal Melaporkan $nim, gagal upload file");
             echo "Error uploading file!";
         }
+    }
+
+    public function getDataPelanggaran()
+    {
+        $role = '';
+        if (json_decode($_COOKIE['user'])->is_dpa == 'true') {
+            $role = 'dpa';
+        } else if (json_decode($_COOKIE['user'])->is_kps == 'true') {
+            $role = 'kps';
+        } else if (json_decode($_COOKIE['user'])->is_admin == 'true') {
+            $role = 'admin';
+        }
+        $keyword = '';
+        if (json_decode($_COOKIE['user'])->is_dpa == 'true') {
+            $kelas = new kelas();
+            $result = $kelas->getKelasByDpa(json_decode($_COOKIE['user'])->nip);
+            $keyword = $result[0]->id_kelas;
+        } else if (json_decode($_COOKIE['user'])->is_kps == 'true' || json_decode($_COOKIE['user'])->is_admin == 'true') {
+            $keyword = json_decode($_COOKIE['user'])->prodi;
+        }
+
+        $model = new data_pelanggaran();
+        $result = $model->getDataPelanggaranByRole(
+            $role,
+            $keyword,
+            $_POST['verify'] == 'false'
+        );
+        echo json_encode($result);
     }
 }

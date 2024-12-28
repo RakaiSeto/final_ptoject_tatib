@@ -28,10 +28,11 @@ $router->addRoute('GET', '/laporkan', LaporanController::class, 'index');
 $router->addRoute('POST', '/getMahasiswaKelas', LaporanController::class, 'filterMahasiswa');
 $router->addRoute('POST', '/doLaporkan', LaporanController::class, 'doLaporkan');
 $router->addRoute('GET', '/riwayatPelaporan', HomeController::class, 'riwayatPelaporan');
+
 $router->addRoute('GET', '/dataPelanggaran', HomeController::class, 'dataPelanggaran');
+$router->addRoute('POST', '/getDataPelanggaran', LaporanController::class, 'getDataPelanggaran');
 
 $router->addRoute('POST', '/kelas/tambah', KelasController::class, 'tambahKelas');
-// $router->addRoute('POST', '/kelas/edit', KelasController::class, 'editKelas');
 $router->addRoute('GET', '/kelas/delete', KelasController::class, 'deleteKelas');
 
 $router->addRoute('POST', '/mahasiswa/tambah', MahasiswaController::class, 'tambahMahasiswa');
@@ -39,15 +40,10 @@ $router->addRoute('POST', '/mahasiswa/delete', MahasiswaController::class, 'dele
 
 $router->addRoute('POST', '/dosen/tambah', DosenController::class, 'tambahDosen');
 
-// $router->addRoute('POST', '/dosen/tambah', DosenController::class, 'tambahDosen');
-// $router->post('/kelas/tambah', [KelasController::class, 'tambahKelas']);
-
 $router->addRoute('GET', '/dataDosen', HomeController::class, 'dataDosen');
 $router->addRoute('GET', '/dataDosen', DosenController::class, 'dataDosen');
 $router->addRoute('GET', '/dataMahasiswa', MahasiswaController::class, 'dataMahasiswa');
 $router->addRoute('GET', '/dataKelas', KelasController::class, 'daftarKelas');
-// $router->addRoute('GET', '/pelanggaranMahasiswa', DataPelanggaranController::class, 'dataPelanggaran');
-// $router->addRoute('GET', '/dataPelanggaran', DataPelanggaranController::class, 'dataPelanggaran');
 
 
 $router->addRoute('GET', '/pelanggaranMahasiswa', PelanggaranController::class, 'pelanggaran');
