@@ -66,18 +66,10 @@ class LaporanController extends Controller
                 $arrPPLS[$tingkat][] = $value;
             }
         }
-        // Mengambil data pengguna dari cookie
-        $user = json_decode($_COOKIE['user'], true);
-        $role = $user['role'] ?? null;
-        $nip = $user['nip']; // Ambil NIP dari cookie untuk mendapatkan nama pegawai
-        $namaPegawai = \Tatib\Src\Model\pegawai::getNamaPegawaiByNIP($nip); // Ambil nama pegawai berdasarkan NIP
-    
-
+        
         $role = json_decode($_COOKIE['user'], true)['role'];
         $this->render($role . '/page/laporkan', [
             'title' => 'Laporkan Pelanggaran',
-            'namaPegawai' => $namaPegawai,  // Kirim nama pegawai ke view
-        'role' => $role,
             'ti' => $arrTI,
             'sib' => $arrSIB,
             'ppls' => $arrPPLS,

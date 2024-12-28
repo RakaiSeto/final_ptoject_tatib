@@ -15,8 +15,7 @@ class PelanggaranController extends Controller
     }
 
     // Ambil data pengguna dari cookie
-    $user = json_decode($_COOKIE['user'], true);
-    $role = $user['role'] ?? null;
+    $role = json_decode($_COOKIE['user'], true)['role'];
 
     // Pastikan role adalah 'dosen' atau 'admin'
     if (!in_array($role, ['dosen', 'admin'])) {
@@ -24,23 +23,14 @@ class PelanggaranController extends Controller
         return;
     }
 
-    // Ambil NIP pengguna untuk mencari nama pegawai
-    $nip = $user['nip'];
-    $namaPegawai = \Tatib\Src\Model\pegawai::getNamaPegawaiByNIP($nip);
-
     // Ambil data pelanggaran
     $pelanggaran = new data_pelanggaran();
     $data = $pelanggaran->getDataPelanggaran();
 
-    // Pilih template berdasarkan peran
-    $template = $role === 'admin' ? 'admin/page/pelanggaranMahasiswa' : 'dosen/page/pelanggaranMahasiswa';
-
     // Kirim data ke tampilan
-    $this->render($template, [
+    $this->render($role . '/page/pelanggaranMahasiswa', [
         'title' => 'Data Pelanggaran',
-        'data' => $data,
-        'namaPegawai' => $namaPegawai, // Kirim nama pegawai
-        'role' => $role // Kirim role pengguna
+        'data' => $data
     ]);
 }
 

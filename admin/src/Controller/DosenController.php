@@ -21,8 +21,6 @@ class DosenController extends Controller
     // Mengambil data pengguna dari cookie
     $user = json_decode($_COOKIE['user'], true);
     $role = $user['role'] ?? null;
-    $nip = $user['nip']; // Ambil NIP dari cookie untuk mendapatkan nama pegawai
-    $namaPegawai = \Tatib\Src\Model\pegawai::getNamaPegawaiByNIP($nip); // Ambil nama pegawai berdasarkan NIP
 
     // Memanggil model pegawai untuk mengambil data dosen
     $model = new pegawai();
@@ -31,9 +29,7 @@ class DosenController extends Controller
     // Render halaman data dosen berdasarkan role pengguna
     $this->render($role . '/page/dataDosen', [
         'dosenList' => $result, 
-        'title' => 'Data Dosen',
-        'namaPegawai' => $namaPegawai,  // Kirim nama pegawai ke view
-        'role' => $role  // Kirim role pengguna ke view
+        'title' => 'Data Dosen'
     ]);
 }
 

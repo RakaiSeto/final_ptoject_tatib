@@ -75,4 +75,19 @@ class Helper
     public static function lastHyphenToFullstop($string) {
         return preg_replace('/-([^-]+)$/', '.-$1', $string); // outputs "logo.svg"
     }
+
+    public static function getRole() {
+        if (json_decode($_COOKIE['user'])->is_dpa == 'true' && json_decode($_COOKIE['user'])->is_kps == 'true') {
+            $role = 'dpa-kps';
+        } else if (json_decode($_COOKIE['user'])->is_dpa == 'true') {
+            $role = 'dpa';
+        } else if (json_decode($_COOKIE['user'])->is_kps == 'true') {
+            $role = 'kps';
+        } else if (json_decode($_COOKIE['user'])->is_admin == 'true') {
+            $role = 'admin';
+        } else {
+            $role = 'dosen';
+        }
+        return $role;
+    }
 }

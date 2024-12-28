@@ -9,8 +9,8 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown"
                         role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="ms-2"><?php echo $namaPegawai; ?></span> <!-- Nama Pegawai -->
-                        <span class="ms-2 me-2 text-muted">/<?php echo $role; ?></span> <!-- Role Pengguna -->
+                        <span class="ms-2"><?php echo json_decode($_COOKIE['user'])->nama_pegawai; ?></span> <!-- Nama Pegawai -->
+                        <span class="ms-2 me-2 text-muted">/ <?php echo \Tatib\Src\Core\Helper::getRole(); ?></span> <!-- Role Pengguna -->
 
                         <img src="<?php echo \Tatib\Src\Core\Helper::getProfilePicture(); ?>" alt="User Profile Picture"
                             class="rounded-circle" width="50" height="50" />
