@@ -18,6 +18,12 @@ class KelasController extends Controller
             return;
         }
     
+        // Mengambil data pengguna dari cookie
+    $user = json_decode($_COOKIE['user'], true);
+    $role = $user['role'] ?? null;
+    $nip = $user['nip']; // Ambil NIP dari cookie untuk mendapatkan nama pegawai
+    $namaPegawai = \Tatib\Src\Model\pegawai::getNamaPegawaiByNIP($nip); // Ambil nama pegawai berdasarkan NIP
+
         // Memanggil model kelas untuk mengambil data kelas
         $model = new kelas();
         $result = $model->getKelas(null);  // null berarti ambil semua kelas
@@ -32,7 +38,9 @@ class KelasController extends Controller
         $this->render($role . '/page/dataKelas', [
             'kelasList' => $result,
             'dpaList' => $dpaList,  // Pastikan data DPA dikirim ke halaman
-            'title' => 'Data Kelas'
+            'title' => 'Data Kelas',
+            'namaPegawai' => $namaPegawai,  // Kirim nama pegawai ke view
+        'role' => $role  // Kirim role pengguna ke view
         ]);
     }
     

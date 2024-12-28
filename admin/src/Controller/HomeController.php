@@ -23,38 +23,64 @@ class HomeController extends Controller
     }
 
     public function home()
-    {
-        Helper::dumpToLog("serve home");
-        if (!isset($_COOKIE['user'])) {
-            header("Location: /");
-            return;
-        }
-        $role = json_decode($_COOKIE['user'], true)['role'];
-        $this->render($role . '/page/dashboard', [
-            'title' => 'Dashboard'
-        ]);
+{
+    Helper::dumpToLog("serve home");
+    if (!isset($_COOKIE['user'])) {
+        header("Location: /");
+        return;
     }
 
-    public function informasi(){
-        Helper::dumpToLog("serve informasi");
-        if (!isset($_COOKIE['user'])) {
-            header("Location: /");
-            return;
-        }
-        $this->render('dosen/page/informasi', [
-            'title' => 'Informasi Tata Tertib'
-        ]);
-    }
+    $user = json_decode($_COOKIE['user'], true);
+    $nip = $user['nip']; // Ambil NIP dari cookie
+    $namaPegawai = \Tatib\Src\Model\pegawai::getNamaPegawaiByNIP($nip); // Ambil nama pegawai berdasarkan NIP
 
+    $role = $user['role'];
+    $this->render($role . '/page/dashboard', [
+        'title' => 'Dashboard',
+        'namaPegawai' => $namaPegawai, // Kirim nama pegawai ke view
+        'role' => $role // Kirim role ke view
+    ]);
+}
+
+    // public function home()
+    // {
+    //     Helper::dumpToLog("serve home");
+    //     if (!isset($_COOKIE['user'])) {
+    //         header("Location: /");
+    //         return;
+    //     }
+    //     $role = json_decode($_COOKIE['user'], true)['role'];
+    //     $this->render($role . '/page/dashboard', [
+    //         'title' => 'Dashboard'
+    //     ]);
+    // }
+
+    // public function informasi(){
+    //     Helper::dumpToLog("serve informasi");
+    //     if (!isset($_COOKIE['user'])) {
+    //         header("Location: /");
+    //         return;
+    //     }
+    //     $this->render('dosen/page/informasi', [
+    //         'title' => 'Informasi Tata Tertib'
+    //     ]);
+    // }
+    
     public function riwayatPelaporan(){
         Helper::dumpToLog("serve riwayat pelaporan");
         if (!isset($_COOKIE['user'])) {
             header("Location: /");
             return;
         }
+        $user = json_decode($_COOKIE['user'], true);
+    $nip = $user['nip']; // Ambil NIP dari cookie
+    $namaPegawai = \Tatib\Src\Model\pegawai::getNamaPegawaiByNIP($nip); // Ambil nama pegawai berdasarkan NIP
+    $role = $user['role'];
 
         $this->render('dosen/page/riwayatPelaporan', [
-            'title' => 'Riwayat Pelaporan'  
+            'title' => 'Riwayat Pelaporan' ,
+            'namaPegawai' => $namaPegawai, // Kirim nama pegawai ke view
+        'role' => $role // Kirim role ke view
         ]);
     }
 
@@ -64,8 +90,15 @@ class HomeController extends Controller
             header("Location: /");
             return;
         }
+        $user = json_decode($_COOKIE['user'], true);
+    $nip = $user['nip']; // Ambil NIP dari cookie
+    $namaPegawai = \Tatib\Src\Model\pegawai::getNamaPegawaiByNIP($nip); // Ambil nama pegawai berdasarkan NIP
+    $role = $user['role'];
+
         $this->render('dosen/page/dataPelanggaran', [
-            'title' => 'Data Pelanggaran'  
+            'title' => 'Data Pelanggaran'  ,
+            'namaPegawai' => $namaPegawai, // Kirim nama pegawai ke view
+        'role' => $role // Kirim role ke view
         ]);
     }
 
@@ -75,8 +108,16 @@ class HomeController extends Controller
             header("Location: /");
             return;
         }
+
+        $user = json_decode($_COOKIE['user'], true);
+    $nip = $user['nip']; // Ambil NIP dari cookie
+    $namaPegawai = \Tatib\Src\Model\pegawai::getNamaPegawaiByNIP($nip); // Ambil nama pegawai berdasarkan NIP
+    $role = $user['role'];
+
         $this->render('dosen/page/gantiPassword', [
-            'title' => 'Ganti Password'  
+            'title' => 'Ganti Password',
+            'namaPegawai' => $namaPegawai, // Kirim nama pegawai ke view
+        'role' => $role // Kirim role ke view  
         ]);
     }
 
@@ -86,8 +127,15 @@ class HomeController extends Controller
             header("Location: /");
             return;
         }
+        $user = json_decode($_COOKIE['user'], true);
+    $nip = $user['nip']; // Ambil NIP dari cookie
+    $namaPegawai = \Tatib\Src\Model\pegawai::getNamaPegawaiByNIP($nip); // Ambil nama pegawai berdasarkan NIP
+    $role = $user['role'];
+
         $this->render('admin/page/pelanggaranMahasiswa', [
-            'title' => 'Data Pelanggaran'  
+            'title' => 'Data Pelanggaran' ,
+            'namaPegawai' => $namaPegawai, // Kirim nama pegawai ke view
+        'role' => $role // Kirim role ke view 
         ]);
     }
 
@@ -97,8 +145,15 @@ class HomeController extends Controller
             header("Location: /");
             return;
         }
+        $user = json_decode($_COOKIE['user'], true);
+    $nip = $user['nip']; // Ambil NIP dari cookie
+    $namaPegawai = \Tatib\Src\Model\pegawai::getNamaPegawaiByNIP($nip); // Ambil nama pegawai berdasarkan NIP
+    $role = $user['role'];
+
         $this->render('admin/page/dataMahasiswa', [
-            'title' => 'Data Mahasiswa'  
+            'title' => 'Data Mahasiswa',
+            'namaPegawai' => $namaPegawai, // Kirim nama pegawai ke view
+        'role' => $role // Kirim role ke view  
         ]);
     }
 
@@ -108,8 +163,15 @@ class HomeController extends Controller
             header("Location: /");
             return;
         }
+        $user = json_decode($_COOKIE['user'], true);
+    $nip = $user['nip']; // Ambil NIP dari cookie
+    $namaPegawai = \Tatib\Src\Model\pegawai::getNamaPegawaiByNIP($nip); // Ambil nama pegawai berdasarkan NIP
+    $role = $user['role'];
+
         $this->render('admin/page/dataDosen', [
-            'title' => 'Data Dosen'  
+            'title' => 'Data Dosen' ,
+            'namaPegawai' => $namaPegawai, // Kirim nama pegawai ke view
+        'role' => $role // Kirim role ke view 
         ]);
     }
 
@@ -119,8 +181,15 @@ class HomeController extends Controller
             header("Location: /");
             return;
         }
+        $user = json_decode($_COOKIE['user'], true);
+    $nip = $user['nip']; // Ambil NIP dari cookie
+    $namaPegawai = \Tatib\Src\Model\pegawai::getNamaPegawaiByNIP($nip); // Ambil nama pegawai berdasarkan NIP
+    $role = $user['role'];
+
         $this->render('admin/page/dataKelas', [
-            'title' => 'Data Kelas'  
+            'title' => 'Data Kelas',
+            'namaPegawai' => $namaPegawai, // Kirim nama pegawai ke view
+        'role' => $role // Kirim role ke view  
         ]);
     }
 }

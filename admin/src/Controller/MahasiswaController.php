@@ -9,23 +9,33 @@ use Tatib\Src\Model\mahasiswa;
 class MahasiswaController extends Controller
 {
     public function dataMahasiswa()
-    {
-        Helper::dumpToLog("serve mahasiswa");
-        if (!isset($_COOKIE['user'])) {
-            header("Location: /");
-            return;
-        }
+{
+    Helper::dumpToLog("serve mahasiswa");
 
-        // Memanggil model kelas untuk mengambil data kelas
-        $model = new mahasiswa();
-        $result = $model->getMahasiswa(null);  // null berarti ambil semua kelas
-
-        // Mendapatkan role pengguna dari cookie
-        $role = json_decode($_COOKIE['user'], true)['role'];
-
-        // Render halaman daftar kelas berdasarkan role pengguna
-        $this->render($role . '/page/dataMahasiswa', ['mahasiswaList' => $result, 'title' => 'Data Mahasiswa']);
+    // Cek apakah cookie 'user' ada
+    if (!isset($_COOKIE['user'])) {
+        header("Location: /");
+        return;
     }
+
+    // Mengambil data pengguna dari cookie
+    $user = json_decode($_COOKIE['user'], true);
+    $role = $user['role'] ?? null;
+    $nip = $user['nip']; // Ambil NIP dari cookie untuk mendapatkan nama pegawai
+    $namaPegawai = \Tatib\Src\Model\pegawai::getNamaPegawaiByNIP($nip); // Ambil nama pegawai berdasarkan NIP
+
+    // Memanggil model mahasiswa untuk mengambil data mahasiswa
+    $model = new mahasiswa();
+    $result = $model->getMahasiswa(null);  // null berarti ambil semua mahasiswa
+
+    // Render halaman data mahasiswa berdasarkan role pengguna
+    $this->render($role . '/page/dataMahasiswa', [
+        'mahasiswaList' => $result, 
+        'title' => 'Data Mahasiswa',
+        'namaPegawai' => $namaPegawai,  // Kirim nama pegawai ke view
+        'role' => $role  // Kirim role pengguna ke view
+    ]);
+}
 
     public function deleteMahasiswa()
 {

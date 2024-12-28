@@ -49,26 +49,6 @@ class pegawai
         }
     }
 
-    // function insertPegawai()
-    // {
-    //     $duplicate =$this->getPegawai($this->nip);
-    //     if ($duplicate != null) {
-    //         Helper::dumpToLog("duplicate key pegawai $this->nama_pegawai");
-    //         return "duplicate";
-    //     }
-
-    //     $query = "INSERT INTO pegawai VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
-    //     $conn = Db::getInstance();
-    //     try {
-    //         $stmt = $conn->prepare($query);
-    //         $stmt->execute([$this->nip, $this->nama_pegawai, $this->role, $this->email, $this->no_telp, $this->prodi, $this->is_dpa, $this->is_kps]);
-    //         Helper::dumpToLog("success insert pegawai $this->nama_pegawai");
-    //         return true;
-    //     } catch (\PDOException $e) {
-    //         Helper::dumpToLog("error insert pegawai: " . $e->getMessage());
-    //         return false . " " . $e->getMessage();
-    //     }
-    // }
 
     function insertPegawai()
     {
@@ -132,5 +112,18 @@ class pegawai
             Helper::dumpToLog("error delete pegawai $nip: " . $e->getMessage());
             return false . " " . $e->getMessage();
         }
+    }
+
+    // Fungsi untuk mendapatkan nama pegawai berdasarkan NIP
+    public static function getNamaPegawaiByNIP($nip)
+    {
+        $pegawai = new pegawai();
+        $result = $pegawai->getPegawai($nip);
+
+        // Pastikan ada data pegawai yang ditemukan
+        if ($result && count($result) > 0) {
+            return $result[0]->nama_pegawai;
+        }
+        return null; // Jika tidak ditemukan
     }
 }

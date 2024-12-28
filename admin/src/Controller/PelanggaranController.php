@@ -8,31 +8,42 @@ use Tatib\Src\Model\data_pelanggaran;
 class PelanggaranController extends Controller
 {
     public function pelanggaran()
-    {
-        if (!isset($_COOKIE['user'])) {
-            header("Location: /");
-            return;
-        }
-
-        $user = json_decode($_COOKIE['user'], true);
-        $role = $user['role'] ?? null;
-
-        if (!in_array($role, ['dosen', 'admin'])) {
-            header("Location: /");
-            return;
-        }
-
-        $pelanggaran = new data_pelanggaran();
-        $data = $pelanggaran->getDataPelanggaran();
-
-        // Pilih template berdasarkan peran
-        $template = $role === 'admin' ? 'admin/page/pelanggaranMahasiswa' : 'dosen/page/pelanggaranMahasiswa';
-
-        $this->render($template, [
-            'title' => 'Data Pelanggaran',
-            'data' => $data
-        ]);
+{
+    if (!isset($_COOKIE['user'])) {
+        header("Location: /");
+        return;
     }
+
+    // Ambil data pengguna dari cookie
+    $user = json_decode($_COOKIE['user'], true);
+    $role = $user['role'] ?? null;
+
+    // Pastikan role adalah 'dosen' atau 'admin'
+    if (!in_array($role, ['dosen', 'admin'])) {
+        header("Location: /");
+        return;
+    }
+
+    // Ambil NIP pengguna untuk mencari nama pegawai
+    $nip = $user['nip'];
+    $namaPegawai = \Tatib\Src\Model\pegawai::getNamaPegawaiByNIP($nip);
+
+    // Ambil data pelanggaran
+    $pelanggaran = new data_pelanggaran();
+    $data = $pelanggaran->getDataPelanggaran();
+
+    // Pilih template berdasarkan peran
+    $template = $role === 'admin' ? 'admin/page/pelanggaranMahasiswa' : 'dosen/page/pelanggaranMahasiswa';
+
+    // Kirim data ke tampilan
+    $this->render($template, [
+        'title' => 'Data Pelanggaran',
+        'data' => $data,
+        'namaPegawai' => $namaPegawai, // Kirim nama pegawai
+        'role' => $role // Kirim role pengguna
+    ]);
+}
+
 
     
     public function getDataPelanggaran()
