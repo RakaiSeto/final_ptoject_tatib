@@ -106,7 +106,7 @@ session_start();
                                 <select id="kelas" class="form-select w-100"
                                     style="box-sizing: border-box; max-width: 100%;">
                                     <option value="" selected>Pilih Kelas</option>
-                                    <?php foreach ($kelas as $k) : ?>
+                                    <?php foreach ($kelasList as $k) : ?>
                                     <option value="<?= $k->id_kelas ?>"><?= $k->nama_kelas ?></option>
                                     <?php endforeach; ?>
                                 </select>

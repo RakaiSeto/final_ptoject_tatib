@@ -34,8 +34,8 @@ $router->addRoute('POST', '/kelas/tambah', KelasController::class, 'tambahKelas'
 // $router->addRoute('POST', '/kelas/edit', KelasController::class, 'editKelas');
 $router->addRoute('GET', '/kelas/delete', KelasController::class, 'deleteKelas');
 
-$router->addRoute('POST', '/mahasiswa/tambah', MahasiswaController::class, 'tambahMahasiswa');
-$router->addRoute('POST', '/mahasiswa/delete', MahasiswaController::class, 'deleteMahasiswa');
+// $router->addRoute('POST', '/mahasiswa/tambah', MahasiswaController::class, 'tambahMahasiswa');
+// $router->addRoute('POST', '/mahasiswa/delete', MahasiswaController::class, 'deleteMahasiswa');
 
 $router->addRoute('POST', '/dosen/tambah', DosenController::class, 'tambahDosen');
 
@@ -44,7 +44,7 @@ $router->addRoute('POST', '/dosen/tambah', DosenController::class, 'tambahDosen'
 
 $router->addRoute('GET', '/dataDosen', HomeController::class, 'dataDosen');
 $router->addRoute('GET', '/dataDosen', DosenController::class, 'dataDosen');
-$router->addRoute('GET', '/dataMahasiswa', MahasiswaController::class, 'dataMahasiswa');
+// $router->addRoute('GET', '/mahasiswa', MahasiswaController::class, 'mahasiswa');
 $router->addRoute('GET', '/dataKelas', KelasController::class, 'daftarKelas');
 // $router->addRoute('GET', '/pelanggaranMahasiswa', DataPelanggaranController::class, 'dataPelanggaran');
 // $router->addRoute('GET', '/dataPelanggaran', DataPelanggaranController::class, 'dataPelanggaran');
@@ -53,6 +53,14 @@ $router->addRoute('GET', '/dataKelas', KelasController::class, 'daftarKelas');
 $router->addRoute('GET', '/pelanggaranMahasiswa', PelanggaranController::class, 'pelanggaran');
 $router->addRoute('POST', '/getDataPelanggaran', PelanggaranController::class, 'getDataPelanggaran');
 $router->addRoute('POST', '/detailPelanggaran', PelanggaranController::class, 'detailPelanggaran');
+
+
+$router->addRoute('GET', '/mahasiswa', MahasiswaController::class, 'mahasiswa');
+$router->addRoute('POST', '/getDataMahasiswa', MahasiswaController::class, 'getDataMahasiswa');
+$router->addRoute('POST', '/getDetailMahasiswa', MahasiswaController::class, 'getDetailMahasiswa');
+$router->addRoute('POST', '/doInsertMahasiswa', MahasiswaController::class, 'doInsertMahasiswa');
+$router->addRoute('POST', '/doUpdateMahasiswa', MahasiswaController::class, 'doUpdateMahasiswa');
+$router->addRoute('POST', '/doDeleteMahasiswa', MahasiswaController::class, 'doDeleteMahasiswa');
 
 // Add a new route for serving static files
 $router->addRoute('GET', '/public/[A-Za-z]+/[A-Za-z0-9\(\)-]+-[A-Za-z]+', StaticController::class, 'serveFile');

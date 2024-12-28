@@ -117,13 +117,13 @@
             <!-- Graphs -->
             <div class="row">
                 <div class="col-md-8 col-12">
-                    <div class="biodata">
+                    <div class="bg-white">
                         <p class="fw-medium mb-3" style="font-size: 20px">Statistik Data Pelanggaran</p>
                         <div id="myPlot" style="width:100%;max-width:100%"></div>
                     </div>
                 </div>
                 <div class="col-md-4 col-12">
-                    <div class="biodata">
+                    <div class="bg-white">
                         <p class="fw-medium mb-3" style="font-size: 20px">Total Pelanggaran</p>
                         <div id="myPlot1" style="width:100%;max-width:100%"></div>
                     </div>

@@ -53,8 +53,8 @@
         <a href="/dataDosen" class="text-decoration-none px-3 py-3 d-block fw-bold"><i class="fas fa-book"></i> Data
             Dosen</a>
         </li>
-        <?php echo $_SERVER["REQUEST_URI"] == '/dataMahasiswa' ? '<li class="active">' : '<li>' ?>
-        <a href="/dataMahasiswa" class="text-decoration-none px-3 py-3 d-block fw-bold"><i class="fas fa-book"></i> Data
+        <?php echo $_SERVER["REQUEST_URI"] == '/mahasiswa' ? '<li class="active">' : '<li>' ?>
+        <a href="/mahasiswa" class="text-decoration-none px-3 py-3 d-block fw-bold"><i class="fas fa-book"></i> Data
             Mahasiswa</a>
         </li>
         <?php echo $_SERVER["REQUEST_URI"] == '/dataKelas' ? '<li class="active">' : '<li>' ?>
