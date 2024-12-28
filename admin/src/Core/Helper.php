@@ -83,7 +83,7 @@ class Helper
             $role = 'dpa';
         } else if (json_decode($_COOKIE['user'])->is_kps == 'true') {
             $role = 'kps';
-        } else if (json_decode($_COOKIE['user'])->is_admin == 'true') {
+        } else if (json_decode($_COOKIE['user'])->role == 'admin') {
             $role = 'admin';
         } else {
             $role = 'dosen';
