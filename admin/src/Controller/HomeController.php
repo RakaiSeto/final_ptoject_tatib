@@ -29,25 +29,8 @@ class HomeController extends Controller
             header("Location: /");
             return;
         }
-//
-//        $cookieArray = json_decode($_COOKIE['user'], true);
-//        $mahasiswa = new mahasiswa();
-//        $result = $mahasiswa->getMahasiswa($cookieArray['nim']);
-//        if ($result == null) {
-//            session_start();
-//            $_SESSION['Error'] = "Mahasiswa $cookieArray[nim] tidak ditemukan";
-//            header("Location: /");
-//            return;
-//        }
-//
-//        if (!Helper::checkFileExist($result[0]->foto_mahasiswa)) {
-//            $result[0]->foto_mahasiswa = "/public/img/default-pp.png";
-//        }
-//        $result[0]->foto_mahasiswa = Helper::lastFullstopToHyphen($result[0]->foto_mahasiswa);
-
         $role = json_decode($_COOKIE['user'], true)['role'];
         $this->render($role . '/page/dashboard', [
-//            'profile' => $result[0],
             'title' => 'Dashboard'
         ]);
     }

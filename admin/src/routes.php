@@ -54,7 +54,6 @@ $router->addRoute('GET', '/pelanggaranMahasiswa', PelanggaranController::class, 
 $router->addRoute('POST', '/getDataPelanggaran', PelanggaranController::class, 'getDataPelanggaran');
 $router->addRoute('POST', '/detailPelanggaran', PelanggaranController::class, 'detailPelanggaran');
 
-
 // Add a new route for serving static files
 $router->addRoute('GET', '/public/[A-Za-z]+/[A-Za-z0-9\(\)-]+-[A-Za-z]+', StaticController::class, 'serveFile');
 

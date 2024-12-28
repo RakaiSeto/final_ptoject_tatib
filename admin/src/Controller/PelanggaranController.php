@@ -13,14 +13,28 @@ class PelanggaranController extends Controller
             header("Location: /");
             return;
         }
+
+        $user = json_decode($_COOKIE['user'], true);
+        $role = $user['role'] ?? null;
+
+        if (!in_array($role, ['dosen', 'admin'])) {
+            header("Location: /");
+            return;
+        }
+
         $pelanggaran = new data_pelanggaran();
         $data = $pelanggaran->getDataPelanggaran();
-        $this->render('admin/page/pelanggaranMahasiswa', [
+
+        // Pilih template berdasarkan peran
+        $template = $role === 'admin' ? 'admin/page/pelanggaranMahasiswa' : 'dosen/page/pelanggaranMahasiswa';
+
+        $this->render($template, [
             'title' => 'Data Pelanggaran',
             'data' => $data
         ]);
     }
 
+    
     public function getDataPelanggaran()
     {
         $pelanggaran = new data_pelanggaran();
