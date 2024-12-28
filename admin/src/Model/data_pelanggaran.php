@@ -80,7 +80,7 @@ class data_pelanggaran
             }
         }
 
-        $query .= " ORDER BY dat.datetime DESC";        
+        $query .= " ORDER BY dat.datetime DESC";
 
         $conn = Db::getInstance();
         try {
@@ -120,7 +120,16 @@ class data_pelanggaran
         $conn = Db::getInstance();
         $result = [];
         try {
-            if ($role == 'dpa') {
+            if ($role == 'dpa-kps') {
+                $arrKelas = explode($keyword, '-');
+                $prodi = end($arrKelas);
+
+                $query = "SELECT dat.datetime, mah.nama_mahasiswa, daf.deskripsi, mah.nim, dat.kode_pelanggaran, dat.is_verified, dat.is_banding, dat.is_done FROM data_pelanggaran dat
+                LEFT JOIN mahasiswa mah ON dat.nim_terlapor = mah.nim
+                LEFT JOIN daftar_pelanggaran daf ON dat.jenis_pelanggaran = daf.kode_pelanggaran
+                WHERE lower(mah.id_kelas) like lower('%$keyword%') OR
+                lower(mah.id_prodi) like lower ('%$prodi%')";   
+            } else if ($role == 'dpa') {
                 $query = "SELECT dat.datetime, mah.nama_mahasiswa, daf.deskripsi, mah.nim, dat.kode_pelanggaran, dat.is_verified, dat.is_banding, dat.is_done FROM data_pelanggaran dat
                 LEFT JOIN mahasiswa mah ON dat.nim_terlapor = mah.nim
                 LEFT JOIN daftar_pelanggaran daf ON dat.jenis_pelanggaran = daf.kode_pelanggaran
@@ -137,7 +146,7 @@ class data_pelanggaran
             }
 
             $query .= " ORDER BY dat.is_done, dat.datetime DESC";
-            
+
             $queryRes = $conn->query($query);
             while ($row = $queryRes->fetch(\PDO::FETCH_ASSOC)) {
                 $temp = [];
@@ -148,12 +157,16 @@ class data_pelanggaran
                 $temp['kode_pelanggaran'] = $row['kode_pelanggaran'];
                 if ($row['is_done'] == 1) {
                     $temp['status'] = '<span class="badge bg-success">Selesai</span>';
+                    $temp['aksi'] = '<button class="btn btn-primary" onclick="detailPelanggaran(\''. $row['kode_pelanggaran'] . '\'">Detail</button>';
                 } else if ($row['is_banding'] == 1 && $row['is_verified'] == 0) {
                     $temp['status'] = '<span class="badge bg-warning">Banding</span>';
+                    $temp['aksi'] = '<button class="btn btn-warning" onclick="bandingPelanggaran(\''. $row['kode_pelanggaran'] . '\'">Lihat Banding</button>';
                 } else if ($row['is_verified'] == 1) {
                     $temp['status'] = '<span class="badge bg-info">Proses</span>';
+                    $temp['aksi'] = '<button class="btn btn-primary" onclick="detailPelanggaran(\''. $row['kode_pelanggaran'] . '\'">Detail</button>';
                 } else {
-                    $temp['status'] = '<span class="badge bg-danger">Menunggu Verifikasi </span>';
+                    $temp['status'] = '<span class="badge bg-danger">Menunggu Verifikasi</span>';
+                    $temp['aksi'] = '<button class="btn btn-success" onclick="verifikasiPelanggaran(\''. $row['kode_pelanggaran'] . '\'">Verifikasi</button>';
                 }
                 array_push($result, $temp);
             }
@@ -163,7 +176,7 @@ class data_pelanggaran
             return false . " " . $th->getMessage();
         }
     }
-    
+
     public function insertDataPelanggaran()
     {
         $rand = Helper::randomAlphaNum();

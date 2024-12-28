@@ -66,7 +66,7 @@ class LaporanController extends Controller
                 $arrPPLS[$tingkat][] = $value;
             }
         }
-        
+
         $role = json_decode($_COOKIE['user'], true)['role'];
         $this->render($role . '/page/laporkan', [
             'title' => 'Laporkan Pelanggaran',
@@ -154,14 +154,7 @@ class LaporanController extends Controller
 
     public function getDataPelanggaran()
     {
-        $role = '';
-        if (json_decode($_COOKIE['user'])->is_dpa == 'true') {
-            $role = 'dpa';
-        } else if (json_decode($_COOKIE['user'])->is_kps == 'true') {
-            $role = 'kps';
-        } else if (json_decode($_COOKIE['user'])->is_admin == 'true') {
-            $role = 'admin';
-        }
+        $role = Helper::getRole();
         $keyword = '';
         if (json_decode($_COOKIE['user'])->is_dpa == 'true') {
             $kelas = new kelas();
@@ -175,7 +168,7 @@ class LaporanController extends Controller
         $result = $model->getDataPelanggaranByRole(
             $role,
             $keyword,
-            $_POST['verify'] == 'false'
+            $_POST['verify'] ?? 'false'
         );
         echo json_encode($result);
     }

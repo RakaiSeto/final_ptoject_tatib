@@ -19,7 +19,7 @@
         <a href="/riwayatPelaporan" class="text-decoration-none px-3 py-3 d-block fw-bold"><i
                 class="fas fa-info-circle"></i> Riwayat Pelaporan</a>
         </li>
-        <?php if (json_decode($_COOKIE['user'], true)['is_dpa'] == true || json_decode($_COOKIE['user'], true)['is_kps'] == true || strtolower(json_decode($_COOKIE['user'], true)['role']) == 'admin') { ?>
+        <?php if (json_decode($_COOKIE['user'], true)['is_dpa'] == true) { ?>
         <?= $_SERVER["REQUEST_URI"] == '/dataPelanggaran' ? '<li class="active">' : '<li>' ?>
         <a href="/dataPelanggaran" class="text-decoration-none px-3 py-3 d-block fw-bold"><i class="fas fa-print"></i>
             Data Pelanggaran</a>

@@ -759,7 +759,7 @@ session_start();
                 });
 
                 t.on('order.dt search.dt', function() {
-                    t.column(0, {
+                    t.column(0, {   
                         search: 'applied',
                         order: 'applied'
                     }).nodes().each(function(cell, i) {
