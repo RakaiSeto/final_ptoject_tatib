@@ -114,6 +114,55 @@ class data_pelanggaran
             return false . " " . $th->getMessage();
         }
     }
+
+    public function getDataPelanggaranByRole(string $role, string $keyword, bool $verify)
+    {
+        $conn = Db::getInstance();
+        $result = [];
+        try {
+            if ($role == 'dpa') {
+                $query = "SELECT dat.datetime, mah.nama_mahasiswa, daf.deskripsi, mah.nim, dat.kode_pelanggaran, dat.is_verified, dat.is_banding, dat.is_done FROM data_pelanggaran dat
+                LEFT JOIN mahasiswa mah ON dat.nim_terlapor = mah.nim
+                LEFT JOIN daftar_pelanggaran daf ON dat.jenis_pelanggaran = daf.kode_pelanggaran
+                WHERE lower(mah.id_kelas) like lower('%$keyword%')";
+            } else if ($role == 'kps' || $role == 'admin') {
+                $query = "SELECT dat.datetime, mah.nama_mahasiswa, daf.deskripsi, mah.nim, dat.kode_pelanggaran, dat.is_verified, dat.is_banding, dat.is_done FROM data_pelanggaran dat
+                LEFT JOIN mahasiswa mah ON dat.nim_terlapor = mah.nim
+                LEFT JOIN daftar_pelanggaran daf ON dat.jenis_pelanggaran = daf.kode_pelanggaran
+                WHERE lower(mah.id_prodi) like lower('%$keyword%')";
+            }
+
+            if ($verify == 'true') {
+                $query .= " AND dat.is_verified = 0";
+            }
+
+            $query .= " ORDER BY dat.is_done, dat.datetime DESC";
+            
+            $queryRes = $conn->query($query);
+            while ($row = $queryRes->fetch(\PDO::FETCH_ASSOC)) {
+                $temp = [];
+                $temp['datetime'] = date('d-m-Y', strtotime($row['datetime']));
+                $temp['nama_mahasiswa'] = $row['nama_mahasiswa'];
+                $temp['deskripsi'] = $row['deskripsi'];
+                $temp['nim'] = $row['nim'];
+                $temp['kode_pelanggaran'] = $row['kode_pelanggaran'];
+                if ($row['is_done'] == 1) {
+                    $temp['status'] = '<span class="badge bg-success">Selesai</span>';
+                } else if ($row['is_banding'] == 1 && $row['is_verified'] == 0) {
+                    $temp['status'] = '<span class="badge bg-warning">Banding</span>';
+                } else if ($row['is_verified'] == 1) {
+                    $temp['status'] = '<span class="badge bg-info">Proses</span>';
+                } else {
+                    $temp['status'] = '<span class="badge bg-danger">Menunggu Verifikasi </span>';
+                }
+                array_push($result, $temp);
+            }
+            return $result;
+        } catch (\PDOException $th) {
+            Helper::dumpToLog("gagal mengambil data pelanggaran: " . $th->getMessage());
+            return false . " " . $th->getMessage();
+        }
+    }
     
     public function insertDataPelanggaran()
     {

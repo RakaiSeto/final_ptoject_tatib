@@ -42,7 +42,7 @@ class kelas
         }
     }
 
-    function getKelasByDpa(string $nip_dpa) {
+    public function getKelasByDpa(string $nip_dpa) {
         $result = [];
         $query = "SELECT * FROM kelas WHERE nip_dpa = '$nip_dpa'";
         $conn = Db::getInstance();

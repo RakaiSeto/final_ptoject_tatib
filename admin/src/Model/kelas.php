@@ -42,6 +42,29 @@ class kelas
         }
     }
 
+    public function getKelasByDpa(string $nip_dpa) {
+        $result = [];
+        $query = "SELECT * FROM kelas WHERE nip_dpa = '$nip_dpa'";
+        $conn = Db::getInstance();
+        try {
+            $queryRes = $conn->query($query);
+            if ($queryRes->rowCount() == 0) {
+                return null;
+            }
+            while ($row = $queryRes->fetch(\PDO::FETCH_ASSOC)) {
+                $temp = new kelas();
+                $temp->id_kelas = $row['id_kelas'];
+                $temp->nama_kelas = $row['nama_kelas'];
+                $temp->nip_dpa = $row['nip_dpa'];
+                array_push($result, $temp);
+            }
+            return $result;
+        } catch (\PDOException $th) {
+            Helper::dumpToLog("gagal get kelas by dpa: " . $th->getMessage());
+            return false . " " . $th->getMessage();
+        }
+    }
+
     function insertKelas() {
 
         $duplicate = $this->getKelas($this->id_kelas);
