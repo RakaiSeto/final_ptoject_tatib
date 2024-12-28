@@ -25,6 +25,13 @@
             Data Pelanggaran</a>
         </li>
         <?php } ?>
+        <?php if (json_decode($_COOKIE['user'], true)['is_dpa'] == true || json_decode($_COOKIE['user'], true)['is_kps'] == true) { ?>
+        <?= $_SERVER["REQUEST_URI"] == '/pelanggaranMahasiswa' ? '<li class="active">' : '<li>' ?>
+        <a href="/pelanggaranMahasiswa" class="text-decoration-none px-3 py-3 d-block fw-bold"><i
+                class="fas fa-flag"></i>
+            Pelanggaran Mahasiswa</a>
+        </li>
+        <?php } ?>
         <?= $_SERVER["REQUEST_URI"] == '/informasi' ? '<li class="active">' : '<li>' ?>
         <a href="/informasi" class="text-decoration-none px-3 py-3 d-block fw-bold"><i class="fas fa-info-circle"></i>
             Informasi</a>

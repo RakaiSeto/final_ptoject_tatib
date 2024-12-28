@@ -7,18 +7,39 @@ use Tatib\Src\Core\Helper;
 
 class mahasiswa
 {
-    public $nim, $nama_mahasiswa, $no_telp, $email, $id_kelas, $secret, $is_active, $foto_mahasiswa, $tanggal_lahir, $jenis_kelamin, $id_prodi, $password;
+    public $nim, $nama_mahasiswa, $no_telp, $email, $id_kelas, $secret, $is_active, $foto_mahasiswa, $tanggal_lahir, $jenis_kelamin, $id_prodi, $password, $aksi;
 
     function __construct() {}
 
-    function getMahasiswa(?string $nim)
+    function getMahasiswa(?string $nim = null, ?string $kategori = null, ?string $value = null, ?string $kelas = null)
     {
         $result = [];
 
-        if (empty($nim)) {
-            $query = "SELECT * FROM mahasiswa";
+        if ($kategori != null && $value != null) {
+            if (empty($nim)) {
+                $query = "SELECT * FROM mahasiswa WHERE lower($kategori) LIKE lower('%$value%')";
+            } else {
+                $query = "SELECT * FROM mahasiswa WHERE nim = '$nim' AND lower($kategori) LIKE lower('%$value%')";
+            }
+            if ($kelas != null) {
+                $query .= " AND id_kelas = '$kelas'";
+            }
+            $query .= " AND is_active = 1";
         } else {
-            $query = "SELECT * FROM mahasiswa WHERE nim = '$nim'";
+            if (empty($nim)) {
+                $query = "SELECT * FROM mahasiswa";
+                if ($kelas != null) {
+                    $query .= " WHERE id_kelas = '$kelas' AND is_active = 1";
+                } else {
+                    $query .= " WHERE is_active = 1";
+                }
+            } else {
+                $query = "SELECT * FROM mahasiswa WHERE nim = '$nim'";
+                if ($kelas != null) {
+                    $query .= " AND id_kelas = '$kelas'";
+                }
+                $query .= " AND is_active = 1";
+            }
         }
         $conn = Db::getInstance();
         try {
@@ -57,7 +78,7 @@ class mahasiswa
             Helper::dumpToLog("gagal get mahasiswa");
             return false . " kelas harus diisi";
         } else {
-            $query = "SELECT * FROM mahasiswa WHERE id_kelas = '$id_kelas'";
+            $query = "SELECT * FROM mahasiswa WHERE id_kelas = '$id_kelas' AND is_active = 1";
         }
         $conn = Db::getInstance();
         try {
@@ -96,11 +117,11 @@ class mahasiswa
             Helper::dumpToLog("duplicate key mahasiswa $this->nim");
             return "duplicate";
         }
-        $query = "INSERT INTO mahasiswa VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $query = "INSERT INTO mahasiswa (nim, nama_mahasiswa, no_telp, email, id_kelas, secret, foto_mahasiswa, tanggal_lahir, jenis_kelamin, id_prodi, password, is_active) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $conn = Db::getInstance();
         try {
             $stmt = $conn->prepare($query);
-            $stmt->execute([$this->nim, $this->nama_mahasiswa, $this->no_telp, $this->email, $this->id_kelas, $this->secret, $this->is_active, $this->foto_mahasiswa, $this->tanggal_lahir, $this->jenis_kelamin, $this->id_prodi, $this->password]);
+            $stmt->execute([$this->nim, $this->nama_mahasiswa, $this->no_telp, $this->email, $this->id_kelas, $this->secret, $this->foto_mahasiswa, $this->tanggal_lahir, $this->jenis_kelamin, $this->id_prodi, $this->password, $this->is_active]);
             Helper::dumpToLog("success insert mahasiswa $this->nim");
             return true;
         } catch (\PDOException $th) {
@@ -131,29 +152,23 @@ class mahasiswa
     }
 
     function deleteMahasiswa(string $nim)
-{
-    if (empty($nim)) {
-        Helper::dumpToLog("Parameter NIM kosong.");
-        return false;
-    }
+    {
+        $check = $this->getMahasiswa($nim);
+        if ($check == null) {
+            Helper::dumpToLog("mahasiswa $nim tidak ditemukan");
+            return '0';
+        }
 
-    $check = $this->getMahasiswa($nim);
-    if ($check == null) {
-        Helper::dumpToLog("Mahasiswa dengan NIM $nim tidak ditemukan.");
-        return false;
+        $query = "UPDATE mahasiswa SET is_active = 0 WHERE nim = ?";
+        $conn = Db::getInstance();
+        try {
+            $stmt = $conn->prepare($query);
+            $stmt->execute([$nim]);
+            Helper::dumpToLog("success delete mahasiswa $nim");
+            return true;
+        } catch (\PDOException $th) {
+            Helper::dumpToLog("gagal delete mahasiswa $nim: " . $th->getMessage());
+            return false . " " . $th->getMessage();
+        }
     }
-
-    $query = "DELETE FROM mahasiswa WHERE nim = ?";
-    $conn = Db::getInstance();
-    try {
-        $stmt = $conn->prepare($query);
-        $stmt->execute([$nim]);
-        Helper::dumpToLog("Berhasil menghapus mahasiswa dengan NIM $nim.");
-        return true;
-    } catch (\PDOException $e) {
-        Helper::dumpToLog("Gagal menghapus mahasiswa dengan NIM $nim: " . $e->getMessage());
-        return false;
-    }
-}
-
 }

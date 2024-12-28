@@ -106,7 +106,7 @@ session_start();
                                 <select id="kelas" class="form-select w-100"
                                     style="box-sizing: border-box; max-width: 100%;">
                                     <option value="" selected>Pilih Kelas</option>
-                                    <?php foreach ($kelas as $k) : ?>
+                                    <?php foreach ($kelasList as $k) : ?>
                                     <option value="<?= $k->id_kelas ?>"><?= $k->nama_kelas ?></option>
                                     <?php endforeach; ?>
                                 </select>
@@ -393,7 +393,7 @@ session_start();
                                         <div class="col-sm-10">
                                             <select id="editKelas" class="form-control">
                                                 <option value="" selected disabled>Pilih Kelas</option>
-                                                <?php foreach ($kelas as $k) : ?>
+                                                <?php foreach ($kelasList as $k) : ?>
                                                 <option value="<?= $k->id_kelas ?>"><?= $k->nama_kelas ?></option>
                                                 <?php endforeach; ?>
                                             </select>
@@ -486,7 +486,7 @@ session_start();
                                         <div class="col-sm-10">
                                             <select id="addKelas" class="form-control">
                                                 <option value="" selected disabled>Pilih Kelas</option>
-                                                <?php foreach ($kelas as $k) : ?>
+                                                <?php foreach ($kelasList as $k) : ?>
                                                 <option value="<?= $k->id_kelas ?>"><?= $k->nama_kelas ?></option>
                                                 <?php endforeach; ?>
                                             </select>
