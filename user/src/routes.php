@@ -20,6 +20,8 @@ $router->addRoute('GET', '/logout', AuthController::class, 'logout');
 $router->addRoute('GET', '/home', HomeController::class, 'home');
 $router->addRoute('GET', '/informasi', InformasiController::class, 'informasi');
 $router->addRoute('GET', '/dataPelanggaran', PelanggaranController::class, 'index');
+$router->addRoute('POST', '/detailPelanggaran', PelanggaranController::class, 'detailPelanggaran');
+$router->addRoute('POST', '/ajuBanding', PelanggaranController::class, 'ajuBanding');
 $router->addRoute('GET', '/cetakSurat', HomeController::class, 'cetakSurat');
 $router->addRoute('GET', '/gantiPassword', HomeController::class, 'gantiPassword');
 

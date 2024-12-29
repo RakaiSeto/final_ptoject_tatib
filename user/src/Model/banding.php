@@ -7,7 +7,7 @@ use Tatib\Src\Core\Helper;
 
 class banding
 {
-    public $id_banding, $tautan_banding, $is_accepted, $datetime;
+    public $id_banding, $tautan_banding, $is_accepted, $datetime, $deskripsi;
 
     public function __construct()
     {
@@ -32,6 +32,7 @@ class banding
                 $temp->tautan_banding = $row['tautan_banding'];
                 $temp->is_accepted = $row['is_accepted'];
                 $temp->datetime = $row['datetime'];
+                $temp->deskripsi = $row['deskripsi'];
                 array_push($result, $temp);
             }
             if (count($result) == 0) {
@@ -49,9 +50,9 @@ class banding
     {
         $conn = Db::getInstance();
         try {
-            $query = "INSERT INTO banding VALUES (?,?,?,?)";
+            $query = "INSERT INTO banding VALUES (?,?,?,?,?)";
             $stmt = $conn->prepare($query);
-            $stmt->execute([$this->id_banding, $this->tautan_banding, $this->is_accepted, $this->datetime]);
+            $stmt->execute([$this->id_banding, $this->tautan_banding, $this->is_accepted, $this->datetime, $this->deskripsi]);
             Helper::dumpToLog("sukses insert banding");
             return true;
         } catch (\Throwable $th) {
@@ -69,9 +70,9 @@ class banding
         }
         $conn = Db::getInstance();
         try {
-            $query = "UPDATE banding SET tautan_banding = ?, is_accepted = ?, datetime = ? WHERE id_banding = ?";
+            $query = "UPDATE banding SET tautan_banding = ?, is_accepted = ?, datetime = ?, deskripsi = ? WHERE id_banding = ?";
             $stmt = $conn->prepare($query);
-            $stmt->execute([$this->tautan_banding, $this->is_accepted, $this->datetime, $id_banding]);
+            $stmt->execute([$this->tautan_banding, $this->is_accepted, $this->datetime, $this->deskripsi, $id_banding]);
             Helper::dumpToLog("sukses update banding $id_banding");
             return true;
         } catch (\Throwable $th) {

@@ -8,7 +8,7 @@ use Tatib\Src\Core\Helper;
 class
 data_pelanggaran
 {
-    public $kode_pelanggaran, $jenis_pelanggaran, $kronologi, $tautan_bukti, $nip_pelapor, $nim_terlapor, $is_verified, $is_banding, $is_done, $datetime;
+    public $kode_pelanggaran, $jenis_pelanggaran, $kronologi, $tautan_bukti, $nip_pelapor, $nim_terlapor, $is_verified, $is_banding, $is_done, $datetime, $nama_pelanggaran, $deskripsi, $tingkat_pelanggaran;
 
     public function __construct() {}
 
@@ -16,9 +16,9 @@ data_pelanggaran
         $result = [];
 
         if (empty($kode_pelanggaran)) {
-            $query = "SELECT * FROM data_pelanggaran";
+            $query = "SELECT data_pelanggaran.*, daftar_pelanggaran.nama_pelanggaran, daftar_pelanggaran.deskripsi, daftar_pelanggaran.tingkat_pelanggaran FROM data_pelanggaran left join daftar_pelanggaran on data_pelanggaran.jenis_pelanggaran = daftar_pelanggaran.kode_pelanggaran";
         } else {
-            $query = "SELECT * FROM data_pelanggaran WHERE kode_pelanggaran = '$kode_pelanggaran'";
+            $query = "SELECT data_pelanggaran.*, daftar_pelanggaran.nama_pelanggaran, daftar_pelanggaran.deskripsi, daftar_pelanggaran.tingkat_pelanggaran FROM data_pelanggaran left join daftar_pelanggaran on data_pelanggaran.jenis_pelanggaran = daftar_pelanggaran.kode_pelanggaran WHERE data_pelanggaran.kode_pelanggaran = '$kode_pelanggaran'";
         }
 
         $conn = Db::getInstance();
@@ -35,7 +35,10 @@ data_pelanggaran
                 $temp->is_verified = $row['is_verified'];
                 $temp->is_banding = $row['is_banding'];
                 $temp->is_done = $row['is_done'];
-                $temp->datetime = $row['datetime'];
+                $temp->datetime = date('d-m-Y', strtotime($row['datetime']));
+                $temp->nama_pelanggaran = $row['nama_pelanggaran'];
+                $temp->deskripsi = $row['deskripsi'];
+                $temp->tingkat_pelanggaran = $row['tingkat_pelanggaran'];
                 array_push($result, $temp);
             }
             if (count($result) == 0) {
@@ -48,10 +51,11 @@ data_pelanggaran
     }
 
     public function getByNimTerlapor(string $nim_terlapor) {
-        $query = "SELECT * FROM data_pelanggaran WHERE nim_terlapor = '$nim_terlapor'";
+        $query = "SELECT data_pelanggaran.*, daftar_pelanggaran.nama_pelanggaran, daftar_pelanggaran.deskripsi, daftar_pelanggaran.tingkat_pelanggaran FROM data_pelanggaran left join daftar_pelanggaran on data_pelanggaran.jenis_pelanggaran = daftar_pelanggaran.kode_pelanggaran WHERE nim_terlapor = '$nim_terlapor' and (is_verified = 1 or is_banding = 1)";
 
         $conn = Db::getInstance();
         try {
+            $result = [];
             $queryRes = $conn->query($query);
             while ($row = $queryRes->fetch(\PDO::FETCH_ASSOC)) {
                 $temp = new data_pelanggaran();
@@ -64,10 +68,13 @@ data_pelanggaran
                 $temp->is_verified = $row['is_verified'];
                 $temp->is_banding = $row['is_banding'];
                 $temp->is_done = $row['is_done'];
-                $temp->datetime = $row['datetime'];
-                return $temp;
+                $temp->datetime = date('d-m-Y', strtotime($row['datetime']));
+                $temp->nama_pelanggaran = $row['nama_pelanggaran'];
+                $temp->deskripsi = $row['deskripsi'];
+                $temp->tingkat_pelanggaran = $row['tingkat_pelanggaran'];
+                array_push($result, $temp);
             }
-            return null;
+            return $result;
         } catch (\PDOException $th) {
             return false . " " . $th->getMessage();
         }
