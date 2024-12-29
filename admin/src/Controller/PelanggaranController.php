@@ -91,4 +91,13 @@ class PelanggaranController extends Controller
         }
         echo json_encode($data);
     }
+
+    public function tolakPelanggaran()
+    {
+        $pelanggaran = new data_pelanggaran();
+        $data = $pelanggaran->getDetailPelanggaran($_POST['kode_pelanggaran']);
+        $data[0]->is_done = 1;
+        $data[0]->updateDataPelanggaran($_POST['kode_pelanggaran']);
+        echo "success";
+    }
 }

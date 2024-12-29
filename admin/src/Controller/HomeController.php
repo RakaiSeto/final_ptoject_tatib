@@ -102,7 +102,7 @@ class HomeController extends Controller
         $result = $model->getDataPelanggaranByRole(
             $role,
             $keyword,
-            $_POST['verify'] == 'false'
+            $_POST['verify'] ?? 'false'
         );
 
         $this->render('dosen/page/dataPelanggaran', [

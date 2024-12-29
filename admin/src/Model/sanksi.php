@@ -7,7 +7,7 @@ use Tatib\Src\Core\Helper;
 
 class sanksi
 {
-    public $id_sanksi, $kode_pelanggaran, $nama_sanksi, $tautan_sanksi, $is_done, $datetime;
+    public $id_sanksi, $kode_pelanggaran, $nama_sanksi, $keterangan, $tautan_sanksi, $is_done, $datetime;
 
     public function __construct()
     {

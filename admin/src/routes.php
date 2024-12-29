@@ -50,6 +50,7 @@ $router->addRoute('GET', '/pelanggaranMahasiswa', PelanggaranController::class, 
 $router->addRoute('POST', '/getPelanggaranMahasiswa', PelanggaranController::class, 'getPelanggaranMahasiswa');
 $router->addRoute('POST', '/detailPelanggaran', PelanggaranController::class, 'detailPelanggaran');
 
+$router->addRoute('POST', '/tolakPelanggaran', PelanggaranController::class, 'tolakPelanggaran');
 
 $router->addRoute('GET', '/mahasiswa', MahasiswaController::class, 'mahasiswa');
 $router->addRoute('POST', '/getDataMahasiswa', MahasiswaController::class, 'getDataMahasiswa');
