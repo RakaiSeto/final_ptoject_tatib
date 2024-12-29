@@ -257,7 +257,7 @@
                 </div>
 
 
-                <div class="mb-3">
+                <div class="mb-3 d-none">
                     <h2 class="h3 mb-3" style="font-size: 20px">Riwayat Pelaporan</h2>
                     <!-- <h5 class="modal-title mb-2" id="exampleModalLabel">Riwayat Pelaporan</h5> -->
                     <select class="form-select" id="periode-select">
