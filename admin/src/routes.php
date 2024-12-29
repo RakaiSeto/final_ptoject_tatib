@@ -47,7 +47,7 @@ $router->addRoute('GET', '/dataKelas', KelasController::class, 'daftarKelas');
 
 
 $router->addRoute('GET', '/pelanggaranMahasiswa', PelanggaranController::class, 'pelanggaran');
-// $router->addRoute('POST', '/getDataPelanggaran', PelanggaranController::class, 'getDataPelanggaran');
+$router->addRoute('POST', '/getPelanggaranMahasiswa', PelanggaranController::class, 'getPelanggaranMahasiswa');
 $router->addRoute('POST', '/detailPelanggaran', PelanggaranController::class, 'detailPelanggaran');
 
 
