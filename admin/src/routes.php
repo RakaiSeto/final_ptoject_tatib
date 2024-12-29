@@ -34,6 +34,7 @@ $router->addRoute('POST', '/getDataPelanggaran', LaporanController::class, 'getD
 $router->addRoute('POST', '/detailPelanggaran', PelanggaranController::class, 'detailPelanggaran');
 $router->addRoute('POST', '/detailDone', PelanggaranController::class, 'detailDone');
 $router->addRoute('POST', '/doVerifikasi', PelanggaranController::class, 'doVerifikasi');
+$router->addRoute('POST', '/aksiBanding', PelanggaranController::class, 'aksiBanding');
 
 $router->addRoute('POST', '/kelas/tambah', KelasController::class, 'tambahKelas');
 $router->addRoute('GET', '/kelas/delete', KelasController::class, 'deleteKelas');

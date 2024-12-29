@@ -125,7 +125,7 @@ class PelanggaranController extends Controller
         }
 
         $banding = new banding();
-        $result = $banding->getBanding($_POST['kode_pelanggaran']);
+        $result = $banding->getBanding('BNG-' . $_POST['kode_pelanggaran']);
         if ($result == null) {
             $out['banding'] = null;
         } else {
@@ -161,6 +161,32 @@ class PelanggaranController extends Controller
         $data = $pelanggaran->getDetailPelanggaran($_POST['kode_pelanggaran']);
         $data[0]->is_done = 1;
         $data[0]->updateDataPelanggaran($_POST['kode_pelanggaran']);
+        echo "success";
+    }
+
+    public function aksiBanding()
+    {
+        $banding = new banding();
+        $theBanding = $banding->getBanding('BNG-' . $_POST['kode_pelanggaran']);
+        $theBanding[0]->is_accepted = $_POST['is_accepted'] == 1 ? 1 : 0;
+        $theBanding[0]->updateBanding('BNG-' . $_POST['kode_pelanggaran']);
+
+        if ($_POST['is_accepted'] == 1) {
+            $pelanggaran = new data_pelanggaran();
+            $data = $pelanggaran->getDetailPelanggaran($_POST['kode_pelanggaran']);
+            $data[0]->is_verified = 1;
+            $data[0]->is_banding = 1;
+            $data[0]->is_done = 1;
+            $data[0]->updateDataPelanggaran($_POST['kode_pelanggaran']);
+        } else {
+            $pelanggaran = new data_pelanggaran();
+            $data = $pelanggaran->getDetailPelanggaran($_POST['kode_pelanggaran']);
+            $data[0]->is_verified = 1;
+            $data[0]->is_banding = 1;
+            $data[0]->is_done = 0;
+            $data[0]->updateDataPelanggaran($_POST['kode_pelanggaran']);
+        }
+
         echo "success";
     }
 }

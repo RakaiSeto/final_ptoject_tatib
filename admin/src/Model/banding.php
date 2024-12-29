@@ -7,11 +7,9 @@ use Tatib\Src\Core\Helper;
 
 class banding
 {
-    public $id_banding, $tautan_banding, $is_accepted, $datetime;
+    public $id_banding, $tautan_banding, $is_accepted, $datetime, $deskripsi;
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     function getBanding(?string $id_banding)
     {
@@ -31,7 +29,8 @@ class banding
                 $temp->id_banding = $row['id_banding'];
                 $temp->tautan_banding = $row['tautan_banding'];
                 $temp->is_accepted = $row['is_accepted'];
-                $temp->datetime = $row['datetime'];
+                $temp->datetime = date('d-m-Y', strtotime($row['datetime']));
+                $temp->deskripsi = $row['deskripsi'];
                 array_push($result, $temp);
             }
             if (count($result) == 0) {
@@ -69,9 +68,11 @@ class banding
         }
         $conn = Db::getInstance();
         try {
+            $formattedDatetime = date('Y-m-d H:i:s', strtotime($this->datetime));
+
             $query = "UPDATE banding SET tautan_banding = ?, is_accepted = ?, datetime = ? WHERE id_banding = ?";
             $stmt = $conn->prepare($query);
-            $stmt->execute([$this->tautan_banding, $this->is_accepted, $this->datetime, $id_banding]);
+            $stmt->execute([$this->tautan_banding, $this->is_accepted, $formattedDatetime, $id_banding]);
             Helper::dumpToLog("sukses update banding $id_banding");
             return true;
         } catch (\Throwable $th) {
