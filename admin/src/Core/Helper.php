@@ -65,6 +65,7 @@ class Helper
     }
 
     public static function checkFileExist($path) {
+        Helper::dumpToLog($path);   
         return file_exists(__DIR__ . '/../../../' . $path);
     } // check file exist
 

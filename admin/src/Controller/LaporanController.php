@@ -135,7 +135,7 @@ class LaporanController extends Controller
             $data_pelanggaran->is_verified = 0;
             $data_pelanggaran->is_banding = 0;
             $data_pelanggaran->is_done = 0;
-            $data_pelanggaran->tautan_bukti = '/public/img/' . $fileName . '.' . $fileExtension;
+            $data_pelanggaran->tautan_bukti = '/public/bukti/' . $fileName . '.' . $fileExtension;
             $saveResult = $data_pelanggaran->insertDataPelanggaran();
 
             if ($saveResult == true) {
@@ -168,7 +168,7 @@ class LaporanController extends Controller
         $result = $model->getDataPelanggaranByRole(
             $role,
             $keyword,
-            $_POST['verify'] ?? 'false'
+            $_POST['verify'] ?? '-'
         );
         echo json_encode($result);
     }

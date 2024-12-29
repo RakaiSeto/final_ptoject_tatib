@@ -209,18 +209,6 @@ session_start();
                         <tbody>
 
                         </tbody>
-                        <!-- <tfoot>
-                            <tr>
-                                <th>Kode Pelanggaran</th>
-                                <th>Mahasiswa</th>
-                                <th>Dosen Pelapor</th>
-                                <th>Tanggal</th>
-                                <th>Jenis Pelanggaran</th>
-                                <th>Tingkat</th>
-                                <th>Bukti</th>
-                                <th>Detail</th>
-                            </tr>
-                        </tfoot> -->
                     </table>
                 </div>
 
