@@ -8,35 +8,35 @@ use Tatib\Src\Model\data_pelanggaran;
 class PelanggaranController extends Controller
 {
     public function pelanggaran()
-{
-    if (!isset($_COOKIE['user'])) {
-        header("Location: /");
-        return;
+    {
+        if (!isset($_COOKIE['user'])) {
+            header("Location: /");
+            return;
+        }
+
+        // Ambil data pengguna dari cookie
+        $role = json_decode($_COOKIE['user'], true)['role'];
+
+        // Pastikan role adalah 'dosen' atau 'admin'
+        if (!in_array(strtolower($role), ['dosen', 'admin'])) {
+            header("Location: /");
+            return;
+        }
+
+        // Ambil data pelanggaran
+        $pelanggaran = new data_pelanggaran();
+        $data = $pelanggaran->getDataPelanggaran();
+
+        // Kirim data ke tampilan
+        $this->render($role . '/page/pelanggaranMahasiswa', [
+            'title' => 'Data Pelanggaran',
+            'data' => $data
+        ]);
     }
 
-    // Ambil data pengguna dari cookie
-    $role = json_decode($_COOKIE['user'], true)['role'];
-
-    // Pastikan role adalah 'dosen' atau 'admin'
-    if (!in_array($role, ['dosen', 'admin'])) {
-        header("Location: /");
-        return;
-    }
-
-    // Ambil data pelanggaran
-    $pelanggaran = new data_pelanggaran();
-    $data = $pelanggaran->getDataPelanggaran();
-
-    // Kirim data ke tampilan
-    $this->render($role . '/page/pelanggaranMahasiswa', [
-        'title' => 'Data Pelanggaran',
-        'data' => $data
-    ]);
-}
 
 
-    
-    public function getDataPelanggaran()
+    public function getPelanggaranMahasiswa()
     {
         $pelanggaran = new data_pelanggaran();
 

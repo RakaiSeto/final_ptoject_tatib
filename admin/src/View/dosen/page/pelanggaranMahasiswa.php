@@ -370,7 +370,7 @@ session_start();
                 [0, 'asc']
             ],
             ajax: {
-                url: '/getDataPelanggaran',
+                url: '/getPelanggaranMahasiswa',
                 type: 'POST',
                 data: function() {
                     return {
