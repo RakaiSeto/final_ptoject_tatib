@@ -184,6 +184,6 @@ class DosenController extends Controller
         }
 
 
-        header("Location: /dataDosen");
+        header("Location: /dosen");
     }
 }
