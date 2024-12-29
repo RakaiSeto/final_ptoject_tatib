@@ -113,7 +113,7 @@ class PelanggaranController extends Controller
         $banding->tautan_banding = $tautanBanding;
         $banding->is_accepted = 0;
         $banding->datetime = date('Y-m-d H:i:s');
-        $banding->deskripsi = $_POST['deskripsi'];
+        $banding->deskripsi = $_POST['tanggapan'];
         $banding->insertBanding();
     }
 }
