@@ -7,7 +7,7 @@ use Tatib\Src\Core\Helper;
 
 class sanksi
 {
-    public $id_sanksi, $kode_pelanggaran, $nama_sanksi, $keterangan, $tautan_sanksi, $is_done, $datetime;
+    public $id_sanksi, $kode_pelanggaran, $nama_sanksi, $keterangan, $tautan_sanksi, $is_done, $datetime, $deskripsi;
 
     public function __construct()
     {
@@ -50,12 +50,12 @@ class sanksi
 
     public function insertSanksi() {
         $rand = Helper::randomAlphaNum();
-        $fullId = "SNK-" . $rand;
+        $fullId = "SNK-" . $this->kode_pelanggaran;
         $conn = Db::getInstance();
         try {
-            $query = "INSERT INTO sanksi VALUES (?,?,?,?,?,?)";
+            $query = "INSERT INTO sanksi VALUES (?,?,?,?,?,?,?)";
             $stmt = $conn->prepare($query);
-            $stmt->execute([$fullId, $this->kode_pelanggaran, $this->nama_sanksi, $this->tautan_sanksi, $this->is_done, $this->datetime]);
+            $stmt->execute([$fullId, $this->kode_pelanggaran, $this->nama_sanksi, $this->tautan_sanksi, $this->is_done, $this->datetime, $this->deskripsi]);
             Helper::dumpToLog("sukses insert sanksi $fullId");
             return true;
         } catch (\PDOException $th) {

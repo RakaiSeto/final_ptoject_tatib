@@ -259,7 +259,7 @@
                             <div class="col-sm-10">
                                 <div class="dropdown">
                                     <button
-                                        class="btn btn-light dropdown-toggle border d-flex justify-content-between align-items-center col-sm-12"
+                                        class="btn btn-light dropdown-toggle border d-flex justify-content-between align-items-center col-sm-12 overflow-hidden"
                                         type="button" id="verifikasiSanksi" data-bs-toggle="dropdown"
                                         aria-expanded="false" style=""> Pilih Sanksi
                                     </button>
@@ -287,6 +287,7 @@
                                                 onclick="updateProdiDropdown(this)">Diberikan nilai D pada mata kuliah
                                                 terkait saat melakukan pelanggaran.</a></li>
                                     </ul>
+                                    <input type="hidden" id="verifikasiKodePelanggaran" value="">
                                 </div>
                             </div>
                         </div>
@@ -307,326 +308,550 @@
         </div>
     </div>
 
-    <!-- Modal bukti pelanggaran -->
-    <div class="modal fade" id="buktiModal" tabindex="-1" aria-labelledby="buktiModalLabel"
-        aria-hidden="true" data-bs-backdrop="static" style="background-color: rgba(255, 255, 255, 0.20);">
-        <div class="modal-dialog modal-dialog-centered">
+    <div class="modal fade" id="modalDetailDone" data-bs-backdrop="static"
+        style="background-color: rgba(255, 255, 255, 0.20);" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="buktiModalLabel">Bukti Pelanggaran</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Detail Pelanggaran</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body text-center">
-                    <!-- Gambar bukti pelanggaran -->
-                    <img src="https://via.placeholder.com/600x400" id="img-bukti" class="img-fluid"
-                        alt="Bukti Pelanggaran">
+                <div class="modal-body">
+                    <div class="bg-body-tertiary p-3">
+                        <div class="form-group">
+                            <div class="row mb-3">
+                                <label for="" class="col-sm-2 col-form-label text-end fw-bold">NIM</label>
+                                <div class="col-sm-10">
+                                    <input type="text" id="doneNIM" class="form-control" value="2541987544" readonly>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="" class="col-sm-2 col-form-label text-end fw-bold">Nama</label>
+                                <div class="col-sm-10">
+                                    <input type="text" id="doneNama" class="form-control" value="No Name" readonly>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="" class="col-sm-2 col-form-label text-end fw-bold">Kelas</label>
+                                <div class="col-sm-10">
+                                    <input type="text" id="doneKelas" class="form-control" value="2E" readonly>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="" class="col-sm-2 col-form-label text-end fw-bold">Jenis
+                                    Pelanggaran</label>
+                                <div class="col-sm-10">
+                                    <input type="text" id="doneJenisPelanggaran" class="form-control" value="Terlambat" readonly>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="" class="col-sm-2 col-form-label text-end fw-bold">Tingkat</label>
+                                <div class="col-sm-10">
+                                    <input type="text" id="doneTingkat" class="form-control" value="Ringan" readonly>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="" class="col-sm-2 col-form-label text-end fw-bold">Tanggal</label>
+                                <div class="col-sm-10">
+                                    <input type="text" id="doneTanggal" class="form-control" value="28 Februari 2024" readonly>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="" class="col-sm-2 col-form-label text-end fw-bold">Catatan</label>
+                                <div class="col-sm-10">
+                                    <input type="text" id="doneCatatan" class="form-control" value="Datang terlambat lebih dari 15 menit"
+                                        readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="mt-1 mb-2">
+                        <div class="bg-body-tertiary">
+                            <div class="form-group">
+                                <h5>Banding</h5>
+                                <div class="row mb-3">
+                                    <label for="" class="col-sm-2 col-form-label text-end fw-bold">Tanggal</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" id="doneTanggalBanding"
+                                            readonly placeholder="Tanggal banding"></input>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="" class="col-sm-2 col-form-label text-end fw-bold">Catatan</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control dynamic-width" id="doneCatatanBanding" rows="3"
+                                            readonly placeholder="Tambahkan catatan detail banding yang diberikan"></textarea>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="" class="col-sm-2 col-form-label text-end fw-bold">Status</label>
+                                    <div class="col-sm-10 pt-2">
+                                        <span id="doneStatusBanding" class="badge bg-success">Diterima</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="mt-1 mb-2">
+                        <div class="bg-body-tertiary">
+                            <div class="form-group">
+                                <h5>Sanksi</h5>
+                                <div class="row mb-3">
+                                    <label for="" class="col-sm-2 col-form-label text-end fw-bold">Tanggal Sanksi</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" id="doneTanggalSanksi"
+                                            readonly placeholder="Tanggal Sanksi"></input>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="" class="col-sm-2 col-form-label text-end fw-bold">Sanksi</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" id="doneSanksi"
+                                            readonly placeholder="Sanksi"></input>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="" class="col-sm-2 col-form-label text-end fw-bold">Tautan</label>
+                                    <div class="col-sm-10">
+                                        <a href="" id="doneTautanSanksi" class="btn btn-primary" target="_blank">Lihat Sanksi</a>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="" class="col-sm-2 col-form-label text-end fw-bold">Status</label>
+                                    <div class="col-sm-10 pt-2">
+                                        <span id="doneStatusSanksi" class="badge bg-success">Diterima</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+
+        <!-- Modal bukti pelanggaran -->
+        <div class="modal fade" id="buktiModal" tabindex="-1" aria-labelledby="buktiModalLabel"
+            aria-hidden="true" data-bs-backdrop="static" style="background-color: rgba(255, 255, 255, 0.20);">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="buktiModalLabel">Bukti Pelanggaran</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <!-- Gambar bukti pelanggaran -->
+                        <img src="https://via.placeholder.com/600x400" id="img-bukti" class="img-fluid"
+                            alt="Bukti Pelanggaran">
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
 
-    <!-- Scripts -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- DataTables JS -->
-    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    <!-- DataTables with Bootstrap 5 JS -->
-    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+        <!-- Scripts -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- DataTables JS -->
+        <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+        <!-- DataTables with Bootstrap 5 JS -->
+        <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 
 
-    <script>
-        function tolakPelanggaran(kode_pelanggaran) {
-            if (confirm('Apakah Anda yakin ingin menolak pelanggaran ini?')) {
+        <script>
+            function tolakPelanggaran(kode_pelanggaran) {
+                if (confirm('Apakah Anda yakin ingin menolak pelanggaran ini?')) {
+                    $('#loading-spinner').addClass('d-flex');
+                    $('#loading-spinner').removeClass('d-none');
+                    $.ajax({
+                        url: '/tolakPelanggaran',
+                        type: 'POST',
+                        data: {
+                            kode_pelanggaran: kode_pelanggaran
+                        },
+                        success: function(response) {
+                            $('#loading-spinner').removeClass('d-flex');
+                            $('#loading-spinner').addClass('d-none');
+                            // reload page
+                            location.reload();
+                        }
+                    });
+                }
+            }
+
+            function verifikasiPelanggaran(kode_pelanggaran) {
                 $('#loading-spinner').addClass('d-flex');
                 $('#loading-spinner').removeClass('d-none');
                 $.ajax({
-                    url: '/tolakPelanggaran',
+                    url: '/detailPelanggaran',
                     type: 'POST',
                     data: {
                         kode_pelanggaran: kode_pelanggaran
                     },
                     success: function(response) {
+                        json = JSON.parse(response);
+                        $('#verifikasiNIM').val(json[0].nim_terlapor);
+                        $('#verifikasiNama').val(json[0].nama_terlapor);
+                        $('#verifikasiKelas').val(json[0].kelas);
+                        $('#verifikasiJenisPelanggaran').val(json[0].jenis_pelanggaran);
+                        $('#verifikasiTingkat').val(json[0].tingkat_pelanggaran);
+                        $('#verifikasiTanggal').val(json[0].datetime);
+                        $('#verifikasiCatatan').val(json[0].kronologi);
+
+                        $('#btn-do-verifikasi').addClass('opacity-50');
+                        $('#btn-do-verifikasi').prop('disabled', true);
+                        $('#verifikasiSanksi').attr('title', '');
+                        $('#verifikasiSanksi').text('Pilih Sanksi');
+
+                        $('#verifikasiKodePelanggaran').val(kode_pelanggaran);
+
+                        $('#loading-spinner').addClass('d-none');
+                        $('#loading-spinner').removeClass('d-flex');
+                        $('#modalVerifikasi').modal('show');
+                    }
+                });
+            };
+
+            function detailDone(kode_pelanggaran) {
+                $('#loading-spinner').addClass('d-flex');
+                $('#loading-spinner').removeClass('d-none');
+
+                $.ajax({
+                    url: '/detailDone',
+                    type: 'POST',
+                    data: {
+                        kode_pelanggaran: kode_pelanggaran
+                    },
+                    success: function(response) {
+                        json = JSON.parse(response);
+
+                        $('#doneNIM').val(json.pelanggaran.nim_terlapor);
+                        $('#doneNama').val(json.pelanggaran.nama_terlapor);
+                        $('#doneKelas').val(json.pelanggaran.kelas);
+                        $('#doneJenisPelanggaran').val(json.pelanggaran.jenis_pelanggaran);
+                        $('#doneTingkat').val(json.pelanggaran.tingkat_pelanggaran);
+                        $('#doneTanggal').val(json.pelanggaran.datetime);
+                        $('#doneCatatan').val(json.pelanggaran.kronologi);
+
+                        if (json.banding == null) {
+                            $('#doneTanggalBanding').val('-');
+                            $('#doneCatatanBanding').val('-');
+                            $('#doneStatusBanding').removeClass('badge bg-success bg-danger');
+                            $('#doneStatusBanding').addClass('badge bg-warning');
+                            $('#doneStatusBanding').text('Tidak diajukan');
+                        } else {
+                            $('#doneTanggalBanding').val(new Date(json.banding.tanggal_banding).toISOString().split('T')[0]);
+                            $('#doneCatatanBanding').val(json.banding.catatan_banding);
+                            if (json.banding.is_diterima == 1) {
+                                $('#doneStatusBanding').removeClass('badge bg-warning bg-danger');
+                                $('#doneStatusBanding').addClass('badge bg-success');
+                                $('#doneStatusBanding').text('Diterima');
+                            } else {
+                                $('#doneStatusBanding').removeClass('badge bg-success bg-warning');
+                                $('#doneStatusBanding').addClass('badge bg-danger');
+                                $('#doneStatusBanding').text('Ditolak');
+                            }
+                        }
+
+                        if (json.sanksi == null) {
+                            $('#doneTanggalSanksi').val('-');
+                            $('#doneSanksi').val('-');
+                            $('#doneTautanSanksi').attr('href', '');
+                            $('#doneTautanSanksi').addClass('disabled');
+                            $('#doneStatusSanksi').removeClass('badge bg-success bg-danger');
+                            $('#doneStatusSanksi').addClass('badge bg-warning');
+                            $('#doneStatusSanksi').text('Tidak ada sanksi');
+                        } else {
+                            $('#doneSanksi').val(json.sanksi.nama_sanksi);
+                            $('#doneTanggalSanksi').val(new Date(json.sanksi.datetime).toISOString().split('T')[0]);
+                            if (json.sanksi.tautan_sanksi != null && json.sanksi.tautan_sanksi != '') {
+                                $('#doneTautanSanksi').attr('href', json.sanksi.tautan_sanksi);
+                                $('#doneTautanSanksi').removeClass('disabled');
+                            } else {
+                                $('#doneTautanSanksi').attr('href', '');
+                                $('#doneTautanSanksi').addClass('disabled');
+                            }
+                            if (json.sanksi.is_done == 1) {
+                                $('#doneStatusSanksi').removeClass('badge bg-success bg-warning');
+                                $('#doneStatusSanksi').addClass('badge bg-success');
+                                $('#doneStatusSanksi').text('Selesai');
+                            } else {
+                                $('#doneStatusSanksi').removeClass('badge bg-success bg-warning');
+                                $('#doneStatusSanksi').addClass('badge bg-danger');
+                                $('#doneStatusSanksi').text('Belum selesai');
+                            }
+                        }
+
+                        $('#modalDetailDone').modal('show');
+
                         $('#loading-spinner').removeClass('d-flex');
                         $('#loading-spinner').addClass('d-none');
-                        // reload page
-                        location.reload();
+
                     }
                 });
             }
-        }
 
-        function verifikasiPelanggaran(kode_pelanggaran) {
-            $('#loading-spinner').addClass('d-flex');
-            $('#loading-spinner').removeClass('d-none');
-            $.ajax({
-                url: '/detailPelanggaran',
-                type: 'POST',
-                data: {
-                    kode_pelanggaran: kode_pelanggaran
-                },
-                success: function(response) {
-                    json = JSON.parse(response);
-                    $('#verifikasiNIM').val(json[0].nim_terlapor);
-                    $('#verifikasiNama').val(json[0].nama_terlapor);
-                    $('#verifikasiKelas').val(json[0].kelas);
-                    $('#verifikasiJenisPelanggaran').val(json[0].jenis_pelanggaran);
-                    $('#verifikasiTingkat').val(json[0].tingkat_pelanggaran);
-                    $('#verifikasiTanggal').val(json[0].datetime);
-                    $('#verifikasiCatatan').val(json[0].kronologi);
-                    // if (json[0].tautan_bukti != '-') {
-                    //     $('#verifikasiBukti').attr('data-url', json[0].tautan_bukti);
-                    //     $('#verifikasiBukti').addClass('btn-warning');
-                    //     $('#verifikasiBukti').removeClass('btn-danger');
-                    //     $('#verifikasiBukti').removeClass('disabled');
-                    // } else {
-                    //     $('#verifikasiBukti').attr('data-url', '');
-                    //     $('#verifikasiBukti').addClass('btn-danger');
-                    //     $('#verifikasiBukti').removeClass('btn-warning');
-                    //     $('#verifikasiBukti').addClass('disabled');
-                    // }
-
-                    $('#loading-spinner').addClass('d-none');
-                    $('#loading-spinner').removeClass('d-flex');
-                    $('#modalVerifikasi').modal('show');
-                }
-            });
-        };
-
-        $(document).ready(function() {
-            var tabelAwal = $('#tabel-awal').DataTable({
-                "lengthMenu": [10, 15, 20],
-                "pageLength": 10,
-                "paging": true,
-                "info": true,
-                "searching": false,
-                "responsive": true,
-                "scrollX": true,
-                "ordering": false,
-                ajax: {
-                    url: '/getDataPelanggaran',
-                    type: 'POST',
-                    data: function() {
-                        return {
-                            // verify: 'false'
-                        };
+            $(document).ready(function() {
+                var tabelAwal = $('#tabel-awal').DataTable({
+                    "lengthMenu": [10, 15, 20],
+                    "pageLength": 10,
+                    "paging": true,
+                    "info": true,
+                    "searching": false,
+                    "responsive": true,
+                    "scrollX": true,
+                    "ordering": false,
+                    ajax: {
+                        url: '/getDataPelanggaran',
+                        type: 'POST',
+                        data: function() {
+                            return {
+                                // verify: 'false'
+                            };
+                        },
+                        dataSrc: function(json) {
+                            $('#loading-spinner').removeClass('d-flex');
+                            $('#loading-spinner').addClass('d-none');
+                            return json;
+                        },
                     },
-                    dataSrc: function(json) {
-                        $('#loading-spinner').removeClass('d-flex');
-                        $('#loading-spinner').addClass('d-none');
-                        return json;
-                    },
-                },
-                columns: [{
-                        data: 'nim'
-                    },
-                    {
-                        data: 'datetime'
-                    },
-                    {
-                        data: 'nim'
-                    },
-                    {
-                        data: 'nama_mahasiswa'
-                    },
-                    {
-                        data: 'deskripsi'
-                    },
-                    {
-                        data: 'status'
-                    },
-                    {
-                        data: 'tautan_bukti'
-                    },
-                    {
-                        data: 'aksi'
-                    }
-                ],
-                "dom": "<'row'" +
-                    "<'col-sm-6 d-flex align-items-center justify-conten-start'l>" +
-                    "<'col-sm-6 d-flex align-items-center justify-content-end'f>" +
-                    ">" +
-
-                    "<'table-responsive'tr>" +
-
-                    "<'row'" +
-                    "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
-                    "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
-                    ">",
-                // make sure td and th white-space no wrap
-                "columnDefs": [{
-                        "className": "text-nowrap",
-                        "targets": "_all"
-                    },
-                    {
-                        "className": "dt-center",
-                        "targets": "_all"
-                    },
-                    {
-                        "orderable": false,
-                        "targets": "_all"
-                    }
-                ],
-            });
-
-            tabelAwal.on('order.dt search.dt', function() {
-                tabelAwal.column(0, {
-                    search: 'applied',
-                    order: 'applied'
-                }).nodes().each(function(cell, i) {
-                    cell.innerHTML = i + 1;
-                });
-                tabelAwal.columns.adjust();
-            }).draw();
-
-            var tabelVerifikasi = null;
-
-            $('#pills-profile-tab').on('shown.bs.tab', function(e) {
-                // Tunggu hingga tab benar-benar terlihat
-                setTimeout(function() {
-                    // Pastikan elemen tabel ada dan valid
-                    var tableElement = $('#tabel-verifikasi');
-                    if (tableElement.length && tableElement.find('thead').length && tableElement.find('tbody').length) {
-                        $('#loading-spinner').addClass('d-flex');
-                        $('#loading-spinner').removeClass('d-none');
-                        if (!tabelVerifikasi) {
-                            tabelVerifikasi = tableElement.DataTable({
-                                "lengthMenu": [10, 15, 20],
-                                "pageLength": 10,
-                                "paging": true,
-                                "info": true,
-                                "searching": false,
-                                "responsive": true,
-                                "scrollX": true,
-                                "autoWidth": false, // Tambahkan ini
-                                "deferRender": true, // Tambahkan ini
-                                ajax: {
-                                    url: '/getDataPelanggaran',
-                                    type: 'POST',
-                                    data: {
-                                        verify: 'true'
-                                    },
-                                    dataSrc: function(json) {
-                                        $('#loading-spinner').removeClass('d-flex');
-                                        $('#loading-spinner').addClass('d-none');
-                                        return json;
-                                    }
-                                },
-                                "columns": [{
-                                        data: 'nim'
-                                    },
-                                    {
-                                        "data": "datetime"
-                                    },
-                                    {
-                                        "data": "nim"
-                                    },
-                                    {
-                                        "data": "nama_mahasiswa"
-                                    },
-                                    {
-                                        "data": "deskripsi"
-                                    },
-                                    {
-                                        "data": "status"
-                                    },
-                                    {
-                                        "data": "tautan_bukti"
-                                    },
-                                    {
-                                        "data": "aksi"
-                                    }
-                                ],
-                                "columnDefs": [{
-                                        "className": "text-nowrap",
-                                        "targets": "_all"
-                                    },
-                                    {
-                                        "className": "dt-center",
-                                        "targets": "_all"
-                                    },
-                                    {
-                                        "orderable": false,
-                                        "targets": "_all"
-                                    }
-                                ]
-                            });
-
-                            // Pindahkan event handler ke sini, setelah tabelVerifikasi diinisialisasi
-                            tabelVerifikasi.on('order.dt search.dt', function() {
-                                tabelVerifikasi.column(0, {
-                                    search: 'applied',
-                                    order: 'applied'
-                                }).nodes().each(function(cell, i) {
-                                    cell.innerHTML = i + 1;
-                                });
-                                tabelVerifikasi.columns.adjust();
-                            }).draw();
-                        } else {
-                            tabelVerifikasi.ajax.reload();
-                            tabelVerifikasi.columns.adjust();
+                    columns: [{
+                            data: 'nim'
+                        },
+                        {
+                            data: 'datetime'
+                        },
+                        {
+                            data: 'nim'
+                        },
+                        {
+                            data: 'nama_mahasiswa'
+                        },
+                        {
+                            data: 'deskripsi'
+                        },
+                        {
+                            data: 'status'
+                        },
+                        {
+                            data: 'tautan_bukti'
+                        },
+                        {
+                            data: 'aksi'
                         }
-                    } else {
-                        console.error('Elemen tabel tidak valid atau struktur tidak lengkap');
-                    }
-                }, 100);
+                    ],
+                    "dom": "<'row'" +
+                        "<'col-sm-6 d-flex align-items-center justify-conten-start'l>" +
+                        "<'col-sm-6 d-flex align-items-center justify-content-end'f>" +
+                        ">" +
+
+                        "<'table-responsive'tr>" +
+
+                        "<'row'" +
+                        "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
+                        "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
+                        ">",
+                    // make sure td and th white-space no wrap
+                    "columnDefs": [{
+                            "className": "text-nowrap",
+                            "targets": "_all"
+                        },
+                        {
+                            "className": "dt-center",
+                            "targets": "_all"
+                        },
+                        {
+                            "orderable": false,
+                            "targets": "_all"
+                        }
+                    ],
+                });
+
+                tabelAwal.on('order.dt search.dt', function() {
+                    tabelAwal.column(0, {
+                        search: 'applied',
+                        order: 'applied'
+                    }).nodes().each(function(cell, i) {
+                        cell.innerHTML = i + 1;
+                    });
+                    tabelAwal.columns.adjust();
+                }).draw();
+
+                var tabelVerifikasi = null;
+
+                $('#pills-profile-tab').on('shown.bs.tab', function(e) {
+                    // Tunggu hingga tab benar-benar terlihat
+                    setTimeout(function() {
+                        // Pastikan elemen tabel ada dan valid
+                        var tableElement = $('#tabel-verifikasi');
+                        if (tableElement.length && tableElement.find('thead').length && tableElement.find('tbody').length) {
+                            $('#loading-spinner').addClass('d-flex');
+                            $('#loading-spinner').removeClass('d-none');
+                            if (!tabelVerifikasi) {
+                                tabelVerifikasi = tableElement.DataTable({
+                                    "lengthMenu": [10, 15, 20],
+                                    "pageLength": 10,
+                                    "paging": true,
+                                    "info": true,
+                                    "searching": false,
+                                    "responsive": true,
+                                    "scrollX": true,
+                                    "autoWidth": false, // Tambahkan ini
+                                    "deferRender": true, // Tambahkan ini
+                                    ajax: {
+                                        url: '/getDataPelanggaran',
+                                        type: 'POST',
+                                        data: {
+                                            verify: 'true'
+                                        },
+                                        dataSrc: function(json) {
+                                            $('#loading-spinner').removeClass('d-flex');
+                                            $('#loading-spinner').addClass('d-none');
+                                            return json;
+                                        }
+                                    },
+                                    "columns": [{
+                                            data: 'nim'
+                                        },
+                                        {
+                                            "data": "datetime"
+                                        },
+                                        {
+                                            "data": "nim"
+                                        },
+                                        {
+                                            "data": "nama_mahasiswa"
+                                        },
+                                        {
+                                            "data": "deskripsi"
+                                        },
+                                        {
+                                            "data": "status"
+                                        },
+                                        {
+                                            "data": "tautan_bukti"
+                                        },
+                                        {
+                                            "data": "aksi"
+                                        }
+                                    ],
+                                    "columnDefs": [{
+                                            "className": "text-nowrap",
+                                            "targets": "_all"
+                                        },
+                                        {
+                                            "className": "dt-center",
+                                            "targets": "_all"
+                                        },
+                                        {
+                                            "orderable": false,
+                                            "targets": "_all"
+                                        }
+                                    ]
+                                });
+
+                                // Pindahkan event handler ke sini, setelah tabelVerifikasi diinisialisasi
+                                tabelVerifikasi.on('order.dt search.dt', function() {
+                                    tabelVerifikasi.column(0, {
+                                        search: 'applied',
+                                        order: 'applied'
+                                    }).nodes().each(function(cell, i) {
+                                        cell.innerHTML = i + 1;
+                                    });
+                                    tabelVerifikasi.columns.adjust();
+                                }).draw();
+                            } else {
+                                tabelVerifikasi.ajax.reload();
+                                tabelVerifikasi.columns.adjust();
+                            }
+                        } else {
+                            console.error('Elemen tabel tidak valid atau struktur tidak lengkap');
+                        }
+                    }, 100);
+                });
+
+                $('#pills-home-tab').on('shown.bs.tab', function(e) {
+                    $('#loading-spinner').addClass('d-flex');
+                    $('#loading-spinner').removeClass('d-none');
+                    tabelAwal.ajax.reload();
+                    tabelAwal.columns.adjust();
+                });
+
+                $('#tabel-awal, #tabel-verifikasi').on('click', '.btn-bukti', function(e) {
+                    $('#img-bukti').attr('src', $(this).attr('data-url'));
+                });
+
+                $('#verifikasiSanksi').off('change');
+
+                $('#btn-do-verifikasi').on('click', function(e) {
+                    let deskripsi = $('#verifikasiDeskripsi').val();
+                    let sanksi = $('#verifikasiSanksi').attr('title');
+                    let kode_pelanggaran = $('#verifikasiKodePelanggaran').val();
+
+                    $.ajax({
+                        url: '/doVerifikasi',
+                        type: 'POST',
+                        data: {
+                            deskripsi: deskripsi ?? "",
+                            sanksi: sanksi,
+                            kode_pelanggaran: kode_pelanggaran ?? ""
+                        },
+                        success: function(response) {
+                            location.reload();
+                        }
+                    });
+                });
             });
 
-            $('#pills-home-tab').on('shown.bs.tab', function(e) {
-                $('#loading-spinner').addClass('d-flex');
-                $('#loading-spinner').removeClass('d-none');
-                tabelAwal.ajax.reload();
-                tabelAwal.columns.adjust();
+            $(".sidebar ul li").on("click", function() {
+                $(".sidebar ul li.active").removeClass("active");
+                $(this).addClass("active");
             });
 
-            $('#tabel-awal, #tabel-verifikasi').on('click', '.btn-bukti', function(e) {
-                $('#img-bukti').attr('src', $(this).attr('data-url'));
-            });
-        });
-
-        $(".sidebar ul li").on("click", function() {
-            $(".sidebar ul li.active").removeClass("active");
-            $(this).addClass("active");
-        });
-
-        $(".open-btn").on("click", function() {
-            $(".sidebar").addClass("active");
-        });
-
-        $(".close-btn").on("click", function() {
-            $(".sidebar").removeClass("active");
-        });
-
-        document.querySelectorAll('.dropdown-submenu').forEach(function(submenu) {
-            submenu.addEventListener('mouseenter', function() {
-                const submenuMenu = submenu.querySelector('.dropdown-menu');
-                if (submenuMenu) submenuMenu.classList.add('show');
+            $(".open-btn").on("click", function() {
+                $(".sidebar").addClass("active");
             });
 
-            submenu.addEventListener('mouseleave', function() {
-                const submenuMenu = submenu.querySelector('.dropdown-menu');
-                if (submenuMenu) submenuMenu.classList.remove('show');
+            $(".close-btn").on("click", function() {
+                $(".sidebar").removeClass("active");
             });
-        });
 
-        function updateProdiDropdown(element) {
-            let dropdownButton = document.getElementById("verifikasiSanksi");
-            let newText = element.textContent
-                .replace(/<br>/g, '') // Hapus tag <br>
-                .replace(/\s+/g, ' ') // Ganti multiple whitespace dengan satu spasi
-                .trim(); // Hapus whitespace di awal dan akhir
+            document.querySelectorAll('.dropdown-submenu').forEach(function(submenu) {
+                submenu.addEventListener('mouseenter', function() {
+                    const submenuMenu = submenu.querySelector('.dropdown-menu');
+                    if (submenuMenu) submenuMenu.classList.add('show');
+                });
 
-            console.log(newText);
+                submenu.addEventListener('mouseleave', function() {
+                    const submenuMenu = submenu.querySelector('.dropdown-menu');
+                    if (submenuMenu) submenuMenu.classList.remove('show');
+                });
+            });
 
-            dropdownButton.textContent = newText;
-            dropdownButton.setAttribute("title", newText);
+            function updateProdiDropdown(element) {
+                let dropdownButton = document.getElementById("verifikasiSanksi");
+                let newText = element.textContent
+                    .replace(/<br>/g, '')
+                    .replace(/\s+/g, ' ')
+                    .trim();
 
-            $('#btn')
-        }
-    </script>
+                dropdownButton.textContent = newText;
+                dropdownButton.setAttribute("title", newText);
+
+                // Enable the verify button
+                $('#btn-do-verifikasi').prop('disabled', false);
+                $('#btn-do-verifikasi').removeClass('opacity-50');
+            }
+
+            // Update the dropdown item click handler
+            $('.dropdown-item').on('click', function(e) {
+                updateProdiDropdown(this);
+            });
+        </script>
 </body>
 
 </html>

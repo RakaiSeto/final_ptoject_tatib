@@ -31,6 +31,9 @@ $router->addRoute('GET', '/riwayatPelaporan', HomeController::class, 'riwayatPel
 
 $router->addRoute('GET', '/dataPelanggaran', HomeController::class, 'dataPelanggaran');
 $router->addRoute('POST', '/getDataPelanggaran', LaporanController::class, 'getDataPelanggaran');
+$router->addRoute('POST', '/detailPelanggaran', PelanggaranController::class, 'detailPelanggaran');
+$router->addRoute('POST', '/detailDone', PelanggaranController::class, 'detailDone');
+$router->addRoute('POST', '/doVerifikasi', PelanggaranController::class, 'doVerifikasi');
 
 $router->addRoute('POST', '/kelas/tambah', KelasController::class, 'tambahKelas');
 $router->addRoute('GET', '/kelas/delete', KelasController::class, 'deleteKelas');
@@ -48,8 +51,6 @@ $router->addRoute('GET', '/dataKelas', KelasController::class, 'daftarKelas');
 
 $router->addRoute('GET', '/pelanggaranMahasiswa', PelanggaranController::class, 'pelanggaran');
 $router->addRoute('POST', '/getPelanggaranMahasiswa', PelanggaranController::class, 'getPelanggaranMahasiswa');
-$router->addRoute('POST', '/detailPelanggaran', PelanggaranController::class, 'detailPelanggaran');
-
 $router->addRoute('POST', '/tolakPelanggaran', PelanggaranController::class, 'tolakPelanggaran');
 
 $router->addRoute('GET', '/mahasiswa', MahasiswaController::class, 'mahasiswa');
