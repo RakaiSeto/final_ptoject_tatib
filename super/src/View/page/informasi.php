@@ -17,51 +17,60 @@ session_start();
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" rel="stylesheet" />
 
     <style>
-    .nav-tabs .nav-link.active {
-        /* background-color: #fd7e14 !important; */
-        /* border-color: #fd7e14 !important; */
-        font-weight: bold;
-        color: #fd7e14 !important;
-    }
+        .nav-tabs .nav-link.active {
+            /* background-color: #fd7e14 !important; */
+            /* border-color: #fd7e14 !important; */
+            font-weight: bold;
+            color: #fd7e14 !important;
+        }
 
-    /* Ubah warna tab biasa */
-    .nav-tabs .nav-link {
-        color: rgba(253, 126, 20, 0.5);
-    }
+        /* Ubah warna tab biasa */
+        .nav-tabs .nav-link {
+            color: rgba(253, 126, 20, 0.5);
+        }
 
-    /* Warna saat di-hover */
-    .nav-tabs .nav-link:hover {
-        background-color: rgba(253, 126, 20, 0.1);
-        color: #fd7e14;
-    }
+        /* Warna saat di-hover */
+        .nav-tabs .nav-link:hover {
+            background-color: rgba(253, 126, 20, 0.1);
+            color: #fd7e14;
+        }
 
-    /* CSS untuk Button Tambah Informasi Tata Tertib */
-    .tambah-informasi-btn {
-        margin-top: 20px; /* Memberikan jarak bawah pada tombol */
-        /* padding: 10px 20px; Ukuran padding tombol */
-        border-radius: 5px; /* Membulatkan sudut tombol */
-        /* background-color: #28a745; Warna tombol hijau */
-        color: white; /* Warna teks pada tombol */
-        font-size: 16px; /* Ukuran font tombol */
-        transition: background-color 0.3s ease; /* Efek transisi saat hover */
-    }
+        /* CSS untuk Button Tambah Informasi Tata Tertib */
+        .tambah-informasi-btn {
+            margin-top: 20px;
+            /* Memberikan jarak bawah pada tombol */
+            /* padding: 10px 20px; Ukuran padding tombol */
+            border-radius: 5px;
+            /* Membulatkan sudut tombol */
+            /* background-color: #28a745; Warna tombol hijau */
+            color: white;
+            /* Warna teks pada tombol */
+            font-size: 16px;
+            /* Ukuran font tombol */
+            transition: background-color 0.3s ease;
+            /* Efek transisi saat hover */
+        }
 
-    .tambah-informasi-btn:hover {
-        background-color: #218838; /* Warna tombol saat hover */
-    }
+        .tambah-informasi-btn:hover {
+            background-color: #218838;
+            /* Warna tombol saat hover */
+        }
 
-    /* CSS untuk mengatur lebar kolom aksi pada tabel informasi tata tertib */
-    .table th, .table td {
-        vertical-align: middle; /* Menyelaraskan teks ke tengah vertikal */
-    }
+        /* CSS untuk mengatur lebar kolom aksi pada tabel informasi tata tertib */
+        .table th,
+        .table td {
+            vertical-align: middle;
+            /* Menyelaraskan teks ke tengah vertikal */
+        }
 
-    /* Lebar kolom aksi */
-    .table th:last-child, .table td:last-child {
-        width: 120px; /* Mengatur lebar kolom aksi */
-        text-align: center; /* Menyelaraskan tombol ke tengah secara horizontal */
-    }
-
-
+        /* Lebar kolom aksi */
+        .table th:last-child,
+        .table td:last-child {
+            width: 120px;
+            /* Mengatur lebar kolom aksi */
+            text-align: center;
+            /* Menyelaraskan tombol ke tengah secara horizontal */
+        }
     </style>
 </head>
 
@@ -108,7 +117,8 @@ session_start();
                                 <thead>
                                     <!-- Button Tambah Informasi Tata Tertib -->
                                     <div class="text-start mb-3">
-                                        <button class="btn btn-success tambah-informasi-btn" data-bs-toggle="modal" data-bs-target="#addModal">
+                                        <button class="btn btn-success tambah-informasi-btn" data-bs-toggle="modal"
+                                            data-bs-target="#addModal">
                                             Tambah Informasi Tata Tertib
                                         </button>
                                     </div>
@@ -141,12 +151,14 @@ session_start();
                                         <!-- Tombol Edit dan Lihat -->
                                         <td class="text-center">
                                             <!-- Tombol Edit -->
-                                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#lihatModal">
+                                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                                data-bs-target="#lihatModal">
                                                 <i class="fas fa-pencil-alt"></i> <!-- Ikon Edit -->
                                             </button>
 
                                             <!-- Tombol Hapus -->
-                                            <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#editModal">
+                                            <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                                data-bs-target="#editModal">
                                                 <i class="fas fa-trash-alt"></i> <!-- Ikon Hapus -->
                                             </button>
                                         </td>
@@ -155,57 +167,59 @@ session_start();
                             </table>
 
                             <table class="table table-bordered table-hover" id="tabel-awal">
-                            <thead>
-                                <tr>
-                                    <th>Akumulasi Sanksi Pelanggaran</th>
-                                    <th>Aksi</th> <!-- Menambahkan kolom untuk aksi tombol Edit dan Lihat -->
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Perbuatan / tindakan pelanggaran Tata Tertib Kehidupan Kampus akan
-                                        diakumulasikan<br> untuk setiap kategori pelanggaran dan berlaku sepanjang
-                                        mahasiswa
-                                        masih tercatat sebagai mahasiswa di Polinema.<br>
+                                <thead>
+                                    <tr>
+                                        <th>Akumulasi Sanksi Pelanggaran</th>
+                                        <th>Aksi</th> <!-- Menambahkan kolom untuk aksi tombol Edit dan Lihat -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Perbuatan / tindakan pelanggaran Tata Tertib Kehidupan Kampus akan
+                                            diakumulasikan<br> untuk setiap kategori pelanggaran dan berlaku sepanjang
+                                            mahasiswa
+                                            masih tercatat sebagai mahasiswa di Polinema.<br>
 
-                                        <ol type="1">
-                                            <li style=" list-style-type: decimal">Apabila pelanggaran tingkat V
-                                                dilakukan 3 (tiga) kali maka
-                                                klasifikasi
-                                                pelanggaran tersebut ditingkatkan menjadi pelanggaran tingkat IV.
-                                            </li>
-                                            <li style=" list-style-type: decimal">Apabila pelanggaran tingkat IV
-                                                dilakukan 3 (tiga) kali maka
-                                                klasifikasi
-                                                pelanggaran tersebut ditingkatkan menjadi pelanggaran tingkat III.
-                                            </li>
-                                            <li style=" list-style-type: decimal"> Apabila pelanggaran tingkat III
-                                                dilakukan 3 (tiga) kali maka
-                                                klasifikasi
-                                                pelanggaran tersebut ditingkatkan menjadi pelanggaran tingkat II.
-                                            </li>
-                                            <li style=" list-style-type: decimal">Apabila pelanggaran tingkat II
-                                                dilakukan 3 (tiga) kali maka
-                                                klasifikasi
-                                                pelanggaran tersebut ditingkatkan menjadi pelanggaran tingkat I</li>
-                                        </ol>
-                                    </td>
-                                    <!-- Tombol Edit dan Lihat -->
-                                    <td class="text-center">
-                                        <!-- Tombol Edit -->
-                                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editModal">
-                                            <i class="fas fa-pencil-alt"></i> <!-- Ikon Edit -->
-                                        </button>
+                                            <ol type="1">
+                                                <li style=" list-style-type: decimal">Apabila pelanggaran tingkat V
+                                                    dilakukan 3 (tiga) kali maka
+                                                    klasifikasi
+                                                    pelanggaran tersebut ditingkatkan menjadi pelanggaran tingkat IV.
+                                                </li>
+                                                <li style=" list-style-type: decimal">Apabila pelanggaran tingkat IV
+                                                    dilakukan 3 (tiga) kali maka
+                                                    klasifikasi
+                                                    pelanggaran tersebut ditingkatkan menjadi pelanggaran tingkat III.
+                                                </li>
+                                                <li style=" list-style-type: decimal"> Apabila pelanggaran tingkat III
+                                                    dilakukan 3 (tiga) kali maka
+                                                    klasifikasi
+                                                    pelanggaran tersebut ditingkatkan menjadi pelanggaran tingkat II.
+                                                </li>
+                                                <li style=" list-style-type: decimal">Apabila pelanggaran tingkat II
+                                                    dilakukan 3 (tiga) kali maka
+                                                    klasifikasi
+                                                    pelanggaran tersebut ditingkatkan menjadi pelanggaran tingkat I</li>
+                                            </ol>
+                                        </td>
+                                        <!-- Tombol Edit dan Lihat -->
+                                        <td class="text-center">
+                                            <!-- Tombol Edit -->
+                                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                                data-bs-target="#editModal">
+                                                <i class="fas fa-pencil-alt"></i> <!-- Ikon Edit -->
+                                            </button>
 
-                                        <!-- Tombol Hapus -->
-                                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#hapusModal">
-                                            <i class="fas fa-trash-alt"></i> <!-- Ikon Hapus -->
-                                        </button>
+                                            <!-- Tombol Hapus -->
+                                            <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                                data-bs-target="#hapusModal">
+                                                <i class="fas fa-trash-alt"></i> <!-- Ikon Hapus -->
+                                            </button>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
 
                             <table class="table table-bordered table-hover" id="tabel-awal">
                                 <thead>
@@ -316,17 +330,19 @@ session_start();
                                             </ul>
                                         </td>
                                         <!-- Tombol Edit dan Lihat -->
-                                    <td class="text-center">
-                                        <!-- Tombol Edit -->
-                                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#lihatModal">
-                                            <i class="fas fa-pencil-alt"></i> <!-- Ikon Edit -->
-                                        </button>
+                                        <td class="text-center">
+                                            <!-- Tombol Edit -->
+                                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                                data-bs-target="#lihatModal">
+                                                <i class="fas fa-pencil-alt"></i> <!-- Ikon Edit -->
+                                            </button>
 
-                                        <!-- Tombol Hapus -->
-                                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#editModal">
-                                            <i class="fas fa-trash-alt"></i> <!-- Ikon Hapus -->
-                                        </button>
-                                    </td>
+                                            <!-- Tombol Hapus -->
+                                            <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                                data-bs-target="#editModal">
+                                                <i class="fas fa-trash-alt"></i> <!-- Ikon Hapus -->
+                                            </button>
+                                        </td>
 
                                     </tr>
                                 </tbody>
@@ -337,25 +353,30 @@ session_start();
                     </div>
 
                     <!-- Modal Edit Tata Tertib -->
-<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content" style="background-color: #F5F5F5;">
-            <div class="modal-header">
-                <h5 class="modal-title fw-bold" id="editModalLabel">Edit Informasi Tata Tertib</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form id="editForm">
-                    <!-- Input Field untuk Judul -->
-                    <div class="mb-3">
-                        <label for="editJudul" class="form-label fw-bold">Judul Tata Tertib</label>
-                        <input type="text" id="editJudul" class="form-control" placeholder="Masukkan Judul Tata Tertib" value="Akumulasi Sanksi Pelanggaran">
-                    </div>
+                    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                            <div class="modal-content" style="background-color: #F5F5F5;">
+                                <div class="modal-header">
+                                    <h5 class="modal-title fw-bold" id="editModalLabel">Edit Informasi Tata Tertib</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="editForm">
+                                        <!-- Input Field untuk Judul -->
+                                        <div class="mb-3">
+                                            <label for="editJudul" class="form-label fw-bold">Judul Tata Tertib</label>
+                                            <input type="text" id="editJudul" class="form-control"
+                                                placeholder="Masukkan Judul Tata Tertib"
+                                                value="Akumulasi Sanksi Pelanggaran">
+                                        </div>
 
-                    <!-- Textarea untuk Deskripsi Tata Tertib -->
-                    <div class="mb-3">
-                        <label for="editDeskripsi" class="form-label fw-bold">Deskripsi Tata Tertib</label>
-                        <textarea id="editDeskripsi" class="form-control" rows="5">
+                                        <!-- Textarea untuk Deskripsi Tata Tertib -->
+                                        <div class="mb-3">
+                                            <label for="editDeskripsi" class="form-label fw-bold">Deskripsi Tata
+                                                Tertib</label>
+                                            <textarea id="editDeskripsi" class="form-control" rows="5">
 Perbuatan / tindakan pelanggaran Tata Tertib Kehidupan Kampus akan diakumulasikan untuk setiap kategori pelanggaran dan berlaku sepanjang mahasiswa masih tercatat sebagai mahasiswa di Polinema.
                             
     1. Apabila pelanggaran tingkat V dilakukan 3 (tiga) kali maka klasifikasi pelanggaran tersebut ditingkatkan menjadi pelanggaran tingkat IV.
@@ -364,47 +385,56 @@ Perbuatan / tindakan pelanggaran Tata Tertib Kehidupan Kampus akan diakumulasika
     4. Apabila pelanggaran tingkat II dilakukan 3 (tiga) kali maka klasifikasi pelanggaran tersebut ditingkatkan menjadi pelanggaran tingkat I.
                             
                         </textarea>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-success" onclick="saveEditData()">Simpan</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal Tambah Tata Tertib -->
-<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content" style="background-color: #F5F5F5;">
-            <div class="modal-header">
-                <h5 class="modal-title fw-bold" id="addModalLabel">Tambah Informasi Tata Tertib</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form id="addForm">
-                    <!-- Input Field untuk Judul -->
-                    <div class="mb-3">
-                        <label for="addJudul" class="form-label fw-bold">Judul Tata Tertib</label>
-                        <input type="text" id="addJudul" class="form-control" placeholder="Masukkan Judul Tata Tertib">
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-success"
+                                        onclick="saveEditData()">Simpan</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- Textarea untuk Deskripsi Tata Tertib -->
-                    <div class="mb-3">
-                        <label for="addDeskripsi" class="form-label fw-bold">Deskripsi Tata Tertib</label>
-                        <textarea id="addDeskripsi" class="form-control" rows="5" placeholder="Masukkan Deskripsi Tata Tertib"></textarea>
+                    <!-- Modal Tambah Informasi Tertib -->
+                    <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                            <div class="modal-content" style="background-color: #F5F5F5;">
+                                <div class="modal-header">
+                                    <h5 class="modal-title fw-bold" id="addModalLabel">Tambah Informasi Tata Tertib</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="addForm">
+                                        <!-- Input Field untuk Judul -->
+                                        <div class="mb-3">
+                                            <label for="addJudul" class="form-label fw-bold">Judul Tata Tertib</label>
+                                            <input type="text" id="addJudul" class="form-control"
+                                                placeholder="Masukkan Judul Tata Tertib">
+                                        </div>
+
+                                        <!-- Textarea untuk Deskripsi Tata Tertib -->
+                                        <div class="mb-3">
+                                            <label for="addDeskripsi" class="form-label fw-bold">Deskripsi Tata
+                                                Tertib</label>
+                                            <textarea id="addDeskripsi" class="form-control" rows="5"
+                                                placeholder="Masukkan Deskripsi Tata Tertib"></textarea>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-success"
+                                        onclick="saveAddData()">Simpan</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-success" onclick="saveAddData()">Simpan</button>
-            </div>
-        </div>
-    </div>
-</div>
 
                     <div class="tab-pane fade" id="klasifikasi" role="tabpanel" aria-labelledby="klasifikasi-tab">
                         <div class="table-responsive my-4">
@@ -412,9 +442,10 @@ Perbuatan / tindakan pelanggaran Tata Tertib Kehidupan Kampus akan diakumulasika
                                 <thead>
                                     <!-- Button Tambah tata tertib -->
                                     <div class="text-start mb-3">
-                                        <button class="btn btn-success tambah-informasi-btn" data-bs-toggle="modal" data-bs-target="#tambahInformasiModal">
+                                        <button class="btn btn-success tambah-informasi-btn" data-bs-toggle="modal"
+                                            data-bs-target="#tambahTataTertib">
                                             Tambah Tata Tertib
-                                        </button>
+                                        </button>   
                                     </div>
                                     <tr>
                                         <th>No</th>
@@ -425,23 +456,63 @@ Perbuatan / tindakan pelanggaran Tata Tertib Kehidupan Kampus akan diakumulasika
                                 </thead>
                                 <tbody>
                                     <?php
-                                $no=1;
-                                // Menampilkan data dari database ke tabel
-                                foreach ($informasi as $row) {
-                                echo "<tr>";
-                                    echo "<td>" . $no . "</td>";
-                                    echo "<td>" . htmlspecialchars($row->nama_pelanggaran) . "</td>";
-                                    echo "<td>" . htmlspecialchars($row->deskripsi) . "</td>";
-                                    echo "<td>" . htmlspecialchars($row->tingkat_pelanggaran) . "</td>";
-                                    echo "</tr>";
-                                    $no++;
-                                }
-                                ?>
+                                    $no = 1;
+                                    // Menampilkan data dari database ke tabel
+                                    foreach ($informasi as $row) {
+                                        echo "<tr>";
+                                        echo "<td>" . $no . "</td>";
+                                        echo "<td>" . htmlspecialchars($row->nama_pelanggaran) . "</td>";
+                                        echo "<td>" . htmlspecialchars($row->deskripsi) . "</td>";
+                                        echo "<td>" . htmlspecialchars($row->tingkat_pelanggaran) . "</td>";
+                                        echo "</tr>";
+                                        $no++;
+                                    }
+                                    ?>
                                 </tbody>
                             </table>
                         </div>
                     </div>
-
+                    <!-- Modal Tambah List Tata Tertib -->
+                    <div class="modal fade" id="tambahTataTertib" tabindex="-1" aria-labelledby="addModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                            <div class="modal-content" style="background-color: #F5F5F5;">
+                                <div class="modal-header">
+                                    <h5 class="modal-title fw-bold" id="addModalLabel">Tambah Informasi Tata Tertib</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="addForm">
+                                        <!-- Input Field untuk Nama -->
+                                        <div class="mb-3">
+                                            <label for="addNama" class="form-label fw-bold">Nama Pelanggaran</label>
+                                            <input type="text" id="addNama" class="form-control"
+                                                placeholder="Masukkan nama pelanggaran">
+                                        </div>
+                                        <!-- Textarea untuk Deskripsi Tata Tertib -->
+                                        <div class="mb-3">
+                                            <label for="addDeskripsi" class="form-label fw-bold">Deskripsi</label>
+                                            <textarea id="addDeskripsi" class="form-control" rows="3"
+                                                placeholder="Masukkan deskripsi pelanggaran"></textarea>
+                                        </div>
+                                        <!-- Input Field untuk Tingkat -->
+                                        <div class="mb-3">
+                                            <label for="addTingkat" class="form-label fw-bold">Tingkat Pelanggaran</label>
+                                            <input type="text" id="addTingkat" class="form-control"
+                                                placeholder="Masukkan tingkat pelanggaran (1-5)"></input>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-success"
+                                        onclick="saveAddData()">Simpan</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div><!-- tutup bg-white -->
@@ -455,59 +526,59 @@ Perbuatan / tindakan pelanggaran Tata Tertib Kehidupan Kampus akan diakumulasika
 
 
         <script>
-        document.querySelector(".open-btn").addEventListener("click", function() {
-            document.getElementById("side_nav").classList.add("active");
-            document.querySelector(".content").classList.add("sidebar-open");
-        });
+            document.querySelector(".open-btn").addEventListener("click", function () {
+                document.getElementById("side_nav").classList.add("active");
+                document.querySelector(".content").classList.add("sidebar-open");
+            });
 
-        document.querySelector(".close-btn").addEventListener("click", function() {
-            document.getElementById("side_nav").classList.remove("active");
-            document.querySelector(".content").classList.remove("sidebar-open");
-        });
+            document.querySelector(".close-btn").addEventListener("click", function () {
+                document.getElementById("side_nav").classList.remove("active");
+                document.querySelector(".content").classList.remove("sidebar-open");
+            });
 
-        // modal edit
-        function saveEditData() {
-        const judul = document.getElementById('editJudul').value;
-        const deskripsi = document.getElementById('editDeskripsi').value;
+            // modal edit
+            function saveEditData() {
+                const judul = document.getElementById('editJudul').value;
+                const deskripsi = document.getElementById('editDeskripsi').value;
 
-        if (!judul || !deskripsi) {
-            alert('Judul dan Deskripsi Tata Tertib wajib diisi!');
-            return;
-        }
+                if (!judul || !deskripsi) {
+                    alert('Judul dan Deskripsi Tata Tertib wajib diisi!');
+                    return;
+                }
 
-        // Lakukan logika penyimpanan data (bisa menggunakan AJAX atau langsung ditambahkan ke tabel)
-        console.log("Judul yang diedit:", judul);
-        console.log("Deskripsi yang diedit:", deskripsi);
+                // Lakukan logika penyimpanan data (bisa menggunakan AJAX atau langsung ditambahkan ke tabel)
+                console.log("Judul yang diedit:", judul);
+                console.log("Deskripsi yang diedit:", deskripsi);
 
-        // Tutup modal
-        const modal = bootstrap.Modal.getInstance(document.getElementById('editModal'));
-        modal.hide();
+                // Tutup modal
+                const modal = bootstrap.Modal.getInstance(document.getElementById('editModal'));
+                modal.hide();
 
-        // Anda bisa menambahkan kode untuk memperbarui tabel atau menyimpan perubahan di database di sini.
-    }
+                // Anda bisa menambahkan kode untuk memperbarui tabel atau menyimpan perubahan di database di sini.
+            }
 
-    function saveAddData() {
-        const judul = document.getElementById('addJudul').value;
-        const deskripsi = document.getElementById('addDeskripsi').value;
+            function saveAddData() {
+                const judul = document.getElementById('addJudul').value;
+                const deskripsi = document.getElementById('addDeskripsi').value;
 
-        if (!judul || !deskripsi) {
-            alert('Judul dan Deskripsi Tata Tertib wajib diisi!');
-            return;
-        }
+                if (!judul || !deskripsi) {
+                    alert('Judul dan Deskripsi Tata Tertib wajib diisi!');
+                    return;
+                }
 
-        // Lakukan logika penyimpanan data (bisa menggunakan AJAX atau langsung ditambahkan ke tabel)
-        console.log("Judul yang ditambahkan:", judul);
-        console.log("Deskripsi yang ditambahkan:", deskripsi);
+                // Lakukan logika penyimpanan data (bisa menggunakan AJAX atau langsung ditambahkan ke tabel)
+                console.log("Judul yang ditambahkan:", judul);
+                console.log("Deskripsi yang ditambahkan:", deskripsi);
 
-        // Tutup modal
-        const modal = bootstrap.Modal.getInstance(document.getElementById('addModal'));
-        modal.hide();
+                // Tutup modal
+                const modal = bootstrap.Modal.getInstance(document.getElementById('addModal'));
+                modal.hide();
 
-        // Reset form setelah disimpan
-        document.getElementById('addForm').reset();
+                // Reset form setelah disimpan
+                document.getElementById('addForm').reset();
 
-        // Anda bisa menambahkan kode untuk memperbarui tabel atau menyimpan data di database di sini.
-    }
+                // Anda bisa menambahkan kode untuk memperbarui tabel atau menyimpan data di database di sini.
+            }
         </script>
 </body>
 
