@@ -26,7 +26,7 @@ class AuthController extends Controller
             Helper::dumpToLog("mahasiswa $nim tidak ditemukan");
             session_start();
             $_SESSION['Error'] = "Mahasiswa $nim tidak ditemukan";
-            header("Location: /");
+            header("Location: /login");
         } else {
             if ($result[0]->password == Helper::encrypt($password)) {
                 Helper::dumpToLog("success login mahasiswa $nim");
