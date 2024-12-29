@@ -49,8 +49,8 @@
                 class="fas fa-book"></i>
             Pelanggaran Mahasiswa</a>
         </li>
-        <?php echo $_SERVER["REQUEST_URI"] == '/dataDosen' ? '<li class="active">' : '<li>' ?>
-        <a href="/dataDosen" class="text-decoration-none px-3 py-3 d-block fw-bold"><i class="fas fa-book"></i> Data
+        <?php echo $_SERVER["REQUEST_URI"] == '/dosen' ? '<li class="active">' : '<li>' ?>
+        <a href="/dosen" class="text-decoration-none px-3 py-3 d-block fw-bold"><i class="fas fa-book"></i> Data
             Dosen</a>
         </li>
         <?php echo $_SERVER["REQUEST_URI"] == '/mahasiswa' ? '<li class="active">' : '<li>' ?>

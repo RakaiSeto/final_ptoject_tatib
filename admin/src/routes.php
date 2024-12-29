@@ -58,6 +58,15 @@ $router->addRoute('POST', '/doInsertMahasiswa', MahasiswaController::class, 'doI
 $router->addRoute('POST', '/doUpdateMahasiswa', MahasiswaController::class, 'doUpdateMahasiswa');
 $router->addRoute('POST', '/doDeleteMahasiswa', MahasiswaController::class, 'doDeleteMahasiswa');
 
+
+
+$router->addRoute('GET', '/dosen', DosenController::class, 'dosen');
+$router->addRoute('POST', '/getDataDosen', DosenController::class, 'getDataDosen');
+$router->addRoute('POST', '/getDetailDosen', DosenController::class, 'getDetailDosen');
+$router->addRoute('POST', '/doInsertDosen', DosenController::class, 'doInsertDosen');
+$router->addRoute('POST', '/doUpdateDosen', DosenController::class, 'doUpdateDosen');
+$router->addRoute('POST', '/doDeleteDosen', DosenController::class, 'doDeleteDosen');
+$router->addRoute('POST', '/getKelasTanpaDPA', DosenController::class, 'getKelasTanpaDPA');
 // Add a new route for serving static files
 $router->addRoute('GET', '/public/[A-Za-z]+/[A-Za-z0-9\(\)-]+-[A-Za-z]+', StaticController::class, 'serveFile');
 
