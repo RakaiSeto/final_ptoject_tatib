@@ -67,7 +67,7 @@ class data_pelanggaran
             }
         }
 
-        $query .= " ORDER BY dat.datetime DESC";
+        $query .= " ORDER BY CASE WHEN dat.is_done = 0 THEN 0 ELSE 1 END ASC, dat.datetime DESC";
 
         $conn = Db::getInstance();
         try {
@@ -103,7 +103,8 @@ class data_pelanggaran
         }
     }
 
-    public function getDetailPelanggaran(string $id_pelanggaran = null) {
+    public function getDetailPelanggaran(string $id_pelanggaran = null)
+    {
         $result = [];
         $conn = Db::getInstance();
         $query = "SELECT * FROM data_pelanggaran WHERE kode_pelanggaran = '$id_pelanggaran'";
@@ -148,7 +149,7 @@ class data_pelanggaran
                 $query .= " AND dat.is_verified = 0 AND dat.is_done = 0";
             }
 
-            $query .= " ORDER BY dat.is_done, dat.datetime DESC";
+            $query .= " ORDER BY dat.is_done ASC, dat.datetime DESC";
 
             $queryRes = $conn->query($query);
             while ($row = $queryRes->fetch(\PDO::FETCH_ASSOC)) {

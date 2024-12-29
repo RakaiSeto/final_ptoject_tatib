@@ -405,9 +405,7 @@
                 "searching": false,
                 "responsive": true,
                 "scrollX": true,
-                // "order": [
-                //     [2, 'asc']
-                // ],
+                "ordering": false,
                 ajax: {
                     url: '/getDataPelanggaran',
                     type: 'POST',
