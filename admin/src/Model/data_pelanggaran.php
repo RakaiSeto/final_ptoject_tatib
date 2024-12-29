@@ -157,16 +157,16 @@ class data_pelanggaran
                 $temp['kode_pelanggaran'] = $row['kode_pelanggaran'];
                 if ($row['is_done'] == 1) {
                     $temp['status'] = '<span class="badge bg-success">Selesai</span>';
-                    $temp['aksi'] = '<button class="btn btn-primary" onclick="detailPelanggaran(\''. $row['kode_pelanggaran'] . '\'">Detail</button>';
+                    $temp['aksi'] = '<button class="btn btn-primary" onclick="detailPelanggaran(\''. $row['kode_pelanggaran'] . '\')">Detail</button>';
                 } else if ($row['is_banding'] == 1 && $row['is_verified'] == 0) {
                     $temp['status'] = '<span class="badge bg-warning">Banding</span>';
-                    $temp['aksi'] = '<button class="btn btn-warning" onclick="bandingPelanggaran(\''. $row['kode_pelanggaran'] . '\'">Lihat Banding</button>';
+                    $temp['aksi'] = '<button class="btn btn-warning" onclick="bandingPelanggaran(\''. $row['kode_pelanggaran'] . '\')">Lihat Banding</button>';
                 } else if ($row['is_verified'] == 1) {
                     $temp['status'] = '<span class="badge bg-info">Proses</span>';
-                    $temp['aksi'] = '<button class="btn btn-primary" onclick="detailPelanggaran(\''. $row['kode_pelanggaran'] . '\'">Detail</button>';
+                    $temp['aksi'] = '<button class="btn btn-primary" onclick="detailPelanggaran(\''. $row['kode_pelanggaran'] . '\')">Detail</button>';
                 } else {
                     $temp['status'] = '<span class="badge bg-danger">Menunggu Verifikasi</span>';
-                    $temp['aksi'] = '<button class="btn btn-success" onclick="verifikasiPelanggaran(\''. $row['kode_pelanggaran'] . '\'">Verifikasi</button>';
+                    $temp['aksi'] = '<button class="btn btn-success" onclick="verifikasiPelanggaran(\''. $row['kode_pelanggaran'] . '\')">Verifikasi</button>';
                 }
                 array_push($result, $temp);
             }
